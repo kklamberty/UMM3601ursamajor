@@ -10,6 +10,7 @@ var SubmissionSchema = new Schema({
   status: String,
   adviser: String,
   approval: Boolean,
+  title: String,
   abstract: String
 });
 

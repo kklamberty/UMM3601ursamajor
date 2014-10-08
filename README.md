@@ -29,3 +29,4 @@ UMM 3601 Fall 2014 Project
 - Balance between database and Google drive for storage.
 - Filtering out non UMM/UMN Google logins.
 - Figuring out how access to api stuff is restricted on a per-user basis?
+-- Until we figure this out, it seems as though we will be unable to make use of the database.
