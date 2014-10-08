@@ -28,3 +28,4 @@ UMM 3601 Fall 2014 Project
 ##Predicted Complications:
 - Balance between database and Google drive for storage.
 - Filtering out non UMM/UMN Google logins.
+- Figuring out how access to api stuff is restricted on a per-user basis?
