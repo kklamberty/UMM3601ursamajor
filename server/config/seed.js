@@ -61,7 +61,6 @@ Submission.find({}).remove(function(){
         abstract: 'aslffijfsfkaaf,' +
             'fjahafsfjhealhfaihfi'
     }, {
-
         presenterName: "Jacoby",
         coPresenters: ['Bob', 'Joey', 'Frank'],
         discipline: 'CSci',
