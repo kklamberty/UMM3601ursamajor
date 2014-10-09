@@ -7,6 +7,7 @@
 
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
+var Submission = require('../api/submission/submission.model');
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -47,3 +48,17 @@ User.find({}).remove(function() {
     }
   );
 });
+
+Submission.find({}).remove(function(){
+    Submission.create({
+        presenterName: 'mama jama',
+        coPresenters: ['Barack', 'YoMama'],
+        discipline: 'Womens Studies',
+        status: 'Stupid',
+        adviser: 'QQ',
+        approval: true,
+        title: 'A WIFES GUIDE, how to make sandwich',
+        abstract: 'aslffijfsfkaljljljkfsfalhfjaf,' +
+            'fjahafsfjhealhfaihfi'
+    })
+}
