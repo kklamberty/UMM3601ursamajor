@@ -58,7 +58,7 @@ Submission.find({}).remove(function(){
         adviser: 'QQ',
         approval: true,
         title: 'LOL',
-        abstract: 'aslffijfsfkaljljljkfsfalhfjaf,' +
+        abstract: 'aslffijfsfkaaf,' +
             'fjahafsfjhealhfaihfi'
     }, {
 
