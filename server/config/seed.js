@@ -53,18 +53,15 @@ Submission.find({}).remove(function(){
     Submission.create({
         presenterName: 'mama jama',
         coPresenters: ['Barack', 'YoMama'],
-        discipline: 'Womens Studies',
+        discipline: 'Mens Studies',
         status: 'Stupid',
         adviser: 'QQ',
         approval: true,
-        title: 'A WIFES GUIDE, how to make sandwich',
-        abstract: 'aslffijfsfkaljljljkfsfalhfjaf,' +
+        title: 'LOL',
+        abstract: 'aslffijfsfkaaf,' +
             'fjahafsfjhealhfaihfi'
-    })
-}});
+    }, {
 
-Submission.find({}).remove(function () {
-    Submission.create({
         presenterName: "Jacoby",
         coPresenters: ['Bob', 'Joey', 'Frank'],
         discipline: 'CSci',
