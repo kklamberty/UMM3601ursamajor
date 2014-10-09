@@ -7,6 +7,7 @@
 
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
+var Submission = require('../api/submission/submission.model');
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -46,4 +47,17 @@ User.find({}).remove(function() {
       console.log('finished populating users');
     }
   );
+});
+
+Submission.find({}).remove(function () {
+    Submission.create({
+        presenterName: "Jacoby",
+        coPresenters: ['Bob', 'Joey', 'Frank'],
+        discipline: 'CSci',
+        status: 'Accepted',
+        adviser: 'KK',
+        approval: true,
+        title: "Awesome Presentation of Awesomeness",
+        abstract: "Learn stuff"
+    });
 });
