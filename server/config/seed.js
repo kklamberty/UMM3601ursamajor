@@ -70,16 +70,5 @@ Submission.find({}).remove(function(){
         approval: true,
         title: "Awesome Presentation of Awesomeness",
         abstract: "Learn stuff"
-    },
-    {
-        presenterName: 'mama jama',
-            coPresenters: ['Barack', 'YoMama'],
-            discipline: 'Womens Studies',
-            status: 'Stupid',
-            adviser: 'QQ',
-            approval: true,
-            title: 'A WIFES GUIDE, how to make sandwich',
-            abstract: 'aslffijfsfkaljljljkfsfalhfjaf,' +
-        'fjahafsfjhealhfaihfi'
     });
 });
