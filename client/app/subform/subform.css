@@ -1,0 +1,15 @@
+.FormBox {
+    box-shadow: 10px 10px 5px #888888;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    color: black;
+    padding: 20px;
+}
+
+.FormButton {
+    border-radius: 2px;
+    background-color: maroon;
+    color: whitesmoke;
+    margin: 10px;
+}
+
