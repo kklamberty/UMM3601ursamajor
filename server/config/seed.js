@@ -61,4 +61,17 @@ Submission.find({}).remove(function(){
         abstract: 'aslffijfsfkaljljljkfsfalhfjaf,' +
             'fjahafsfjhealhfaihfi'
     })
-}
+}});
+
+Submission.find({}).remove(function () {
+    Submission.create({
+        presenterName: "Jacoby",
+        coPresenters: ['Bob', 'Joey', 'Frank'],
+        discipline: 'CSci',
+        status: 'Accepted',
+        adviser: 'KK',
+        approval: true,
+        title: "Awesome Presentation of Awesomeness",
+        abstract: "Learn stuff"
+    });
+});
