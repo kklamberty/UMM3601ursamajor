@@ -1,0 +1,9 @@
+.subtext {
+    color: darkgray;
+    font-size: 12px;
+}
+
+.padded {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

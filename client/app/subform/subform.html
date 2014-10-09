@@ -1,9 +1,69 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <div class="container">
-    <h1>New Submission Form!</h1>
+    <h1>2015 URS Submission Form</h1>
+    <p>All applications to the Undergraduate Research Symposium must be accompanied by a brief statement of support from the student's project adviser. The faculty mentor should indicate:
+        <br>* Confidence that the student's work will be ready to present by the URS date;
+        <br>* Approval of the submitted abstract/statement/proposal for publication as-is in the program book.
+        <br>Project adviser recommendations should complete the form prior to the student submitting their abstract for review.
+    </p>
+
+    <!-- Potentially add link to adviser form, or a way to email the adviser about the form. -->
+
+    <p>Your username (<span ng-show="isLoggedIn()" class="navbar-text">{{ getCurrentUser().name }}</span>)</p>
     <hr>
-    <form>
-        <!-- put form stuff here -->
+    <form ng-submit="placeholder()" id="form1">
+
+
+        <br>
+        <label class="padded">
+            Presentation Title:
+            <br>
+            <textarea ng-model="values.pres_title" cols="50" name="Presentation Title"  required></textarea>
+        </label>
+        <br>
+
+        <label class="padded">
+            Format for submission
+            <br>
+            <select required>
+                <option ng-repeat="option in formatOptions" value="{{option}}">{{option}}</option>
+            </select>
+        </label>
+        <br>
+
+        <label class="padded">
+            Artist Statement / Proposal / Abstract
+            <br>
+            <span class="subtext">1000 character limit, aprox. 250 words.</span>
+            <br>
+            <textarea ng-model="values.pres_abstract" cols="50" name="abstract" maxlength="1000" required></textarea>
+            <br> <span>{{charsRemaining()}} characters remaining!</span>
+        </label>
+        <br>
+
+        <label class="padded">
+            Type of presentation
+            <br>
+            <select>
+               <option ng-repeat="option in presentationTypes" value="{{option}}">{{option}}</option>
+            </select>
+        </label>
+        <br>
+
+
+            Because of space constraints, we may not be able to have everyone do their preferred type of presentation. If necessary, would you be willing to give your presentation in another format?
+            <br>
+            <span class="subtext">No change in format will be made without first contacting the presenter</span>
+            <br>
+        <label>
+            <input type="radio" name="formatChange" value="yes"> yes
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="formatChange" value="no"> no
+        </label>
+
+
     </form>
 </div>
