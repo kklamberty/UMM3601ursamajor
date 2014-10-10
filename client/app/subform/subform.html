@@ -25,10 +25,13 @@
         <label class="padded">
             Format for submission
             <br>
-            <select ng-model="submissionData.format" placeholder="select one" required>
-                <option value="" disabled selected>Select One</option>
-                <option ng-repeat="option in formatOptions" value="{{option}}">{{option}}</option>
-            </select>
+            <div class="SelectStyle">
+                <select  ng-model="submissionData.format" placeholder="select one" required>
+                    <option value="" disabled selected>Select One</option>
+                    <option ng-repeat="option in formatOptions" value="{{option}}">{{option}}</option>
+                </select>
+            </div>
+
         </label>
         <br>
 
