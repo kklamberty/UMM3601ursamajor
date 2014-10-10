@@ -32,5 +32,24 @@
 }
 
 .SelectStyle {
-  
+    width: 200px;
+    height: 30px;
+    overflow: hidden;
+    text-align: left;
+    color: #000000;
+    background: url(../assets/images/DropArrow.png) no-repeat right royalblue;
+    border-radius: 5px;
+
+}
+
+.SelectStyle select {
+    background: transparent;
+    width: 268px;
+    padding: 5px;
+    font-size: 16px;
+    line-height: 1;
+    border: 0;
+    border-radius: 0;
+    height: 34px;
+    -webkit-appearance: none;
 }
