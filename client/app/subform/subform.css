@@ -4,6 +4,16 @@
 }
 
 .padded {
+   /*outline: dashed red 2px; */
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.stacked {
+    display: inline;
+}
+
+.stacked:after {
+    content: "\a";
+    white-space: pre;
 }

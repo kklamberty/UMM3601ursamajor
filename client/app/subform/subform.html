@@ -14,7 +14,6 @@
     <hr>
     <form ng-submit="placeholder()" id="form1">
 
-
         <br>
         <label class="padded">
             Presentation Title:
@@ -51,18 +50,93 @@
         </label>
         <br>
 
-
-            Because of space constraints, we may not be able to have everyone do their preferred type of presentation. If necessary, would you be willing to give your presentation in another format?
+        <div class="padded">
+            <b>
+                Because of space constraints, we may not be able to have everyone do their preferred type of presentation. <br>
+                If necessary, would you be willing to give your presentation in another format?
+            </b>
             <br>
             <span class="subtext">No change in format will be made without first contacting the presenter</span>
             <br>
-        <label>
-            <input type="radio" name="formatChange" value="yes"> yes
+            <label>
+                <input type="radio" name="formatChange" value="yes"> yes
+            </label>
+            <br>
+            <label>
+                <input type="radio" name="formatChange" value="no"> no
+            </label>
+            <br>
+        </div>
+
+        <div class="padded">
+            <b>Primary Presenter:</b>
+            <br>
+                <input type="text" name="presenter_first" placeholder="first name" required>
+                <input type="text" name="presenter_last" placeholder="last name" required><br>
+                <input type=text" name="presenter_email" placeholder="full email address" required><br>
+        </div>
+
+        <div class="padded">
+            <b>Secondary Presenter #1:</b>
+            <br>
+                <input type="text" name="copresenterOne_first" placeholder="first name">
+                <input type="text" name="copresenterOne_last" placeholder="last name"><br>
+                <input type="text" name="copersenterOne_email" placeholder="full email address"><br>
+        </div>
+
+        <div class="padded">
+            <b>Secondary Presenter #2:</b>
+            <br>
+            <input type="text" name="copresenterTwo_first" placeholder="first name">
+            <input type="text" name="copresenterTwo_last" placeholder="last name"><br>
+            <input type="text" name="copersenterTwo_email" placeholder="full email address"><br>
+        </div>
+
+        <label class="padded">
+            <input type="text" name="discipline" placeholder="Acedemic Discipline" required>
         </label>
         <br>
-        <label>
-            <input type="radio" name="formatChange" value="no"> no
-        </label>
+
+        <div class="padded">
+            <b>Sponsoring Organization or Fund</b><br>
+            <span class="subtext">Choose any applicable. If funded by faculty grant, specify under "other"</span>
+            <br>
+            <label ng-repeat="source in fundingSources" class="stacked">
+                <input type="checkbox" value="{{source}}">{{source}}
+            </label>
+            <input type="text" placeholder="other?">
+        </div>
+
+        <div class="padded">
+            <b>Faculty Sponsor / Project Advisor Information</b><br>
+            <span class="subtext">Every submitted project is required to have a faculty sponsor or project adviser identified.</span><br>
+            <input type="text" required placeholder="Name">
+            <input type="text" required placeholder="Full email address">
+        </div>
+
+        <div class="padded">
+            <b>
+                The URS features one presentation in the opening ceremony. This presentation should have broader appeal with interdisciplinary components,
+                and may easily accommodate a performance component.
+                The featured presenter will have more time, as well as a bigger room than regular presentations.
+                Would you be interested in having your presentation featured during the opening ceremony?
+            </b>
+            <br>
+            <label>
+                <input type="radio" name="featuredPresentation" value="yes" required> yes
+            </label>
+            <br>
+            <label>
+                <input type="radio" name="featuredPresentation" value="no" required> no
+            </label>
+        </div>
+
+        <div>
+            
+        </div>
+
+
+
 
 
     </form>

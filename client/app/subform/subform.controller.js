@@ -16,6 +16,13 @@ angular.module('umm3601ursamajorApp')
          'Performance'
         ];
 
+    $scope.fundingSources = [
+        'UROP',
+        'MAP',
+        'MMP',
+        'LSAMP'
+    ];
+
     $scope.values = [
         {pres_title: String},
         {pres_abstract: String}
