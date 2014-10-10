@@ -18,14 +18,15 @@
         <label class="padded">
             Presentation Title:
             <br>
-            <textarea ng-model="values.pres_title" cols="50" name="Presentation Title"  required></textarea>
+            <textarea ng-model="submissionData.title" cols="50" name="Presentation Title"  required></textarea>
         </label>
         <br>
 
         <label class="padded">
             Format for submission
             <br>
-            <select required>
+            <select ng-model="submissionData.format" placeholder="select one" required>
+                <option value="" disabled selected>Select One</option>
                 <option ng-repeat="option in formatOptions" value="{{option}}">{{option}}</option>
             </select>
         </label>
@@ -36,7 +37,7 @@
             <br>
             <span class="subtext">1000 character limit, aprox. 250 words.</span>
             <br>
-            <textarea ng-model="values.pres_abstract" cols="50" name="abstract" maxlength="1000" required></textarea>
+            <textarea ng-model="submissionData.abstract" cols="50" name="abstract" maxlength="1000" required></textarea>
             <br> <span>{{charsRemaining()}} characters remaining!</span>
         </label>
         <br>
@@ -44,12 +45,14 @@
         <label class="padded">
             Type of presentation
             <br>
-            <select>
-               <option ng-repeat="option in presentationTypes" value="{{option}}">{{option}}</option>
+            <select ng-model="submissionData.presentationType" required>
+                <option value="" disabled selected>Select One</option>
+                <option ng-repeat="option in presentationTypes" value="{{option}}">{{option}}</option>
             </select>
         </label>
         <br>
 
+        <!-- change to use booleans later...! -->
         <div class="padded">
             <b>
                 Because of space constraints, we may not be able to have everyone do their preferred type of presentation. <br>
@@ -59,11 +62,11 @@
             <span class="subtext">No change in format will be made without first contacting the presenter</span>
             <br>
             <label>
-                <input type="radio" name="formatChange" value="yes"> yes
+                <input ng-model="submissionData.formatChange" type="radio" name="formatChange" ng-value="true" required> yes
             </label>
             <br>
             <label>
-                <input type="radio" name="formatChange" value="no"> no
+                <input ng-model="submissionData.formatChange" type="radio" name="formatChange" ng-value="false" required> no
             </label>
             <br>
         </div>
@@ -71,25 +74,25 @@
         <div class="padded">
             <b>Primary Presenter:</b>
             <br>
-                <input type="text" name="presenter_first" placeholder="first name" required>
-                <input type="text" name="presenter_last" placeholder="last name" required><br>
-                <input type=text" name="presenter_email" placeholder="full email address" required><br>
+                <input type="text" name="presenter_first" placeholder="first name" ng-model="submissionData.presenter.first" required>
+                <input type="text" name="presenter_last" placeholder="last name" ng-model="submissionData.presenter.last" required><br>
+                <input type=text" name="presenter_email" placeholder="full email address" ng-model="submissionData.presenter.email" required><br>
         </div>
 
         <div class="padded">
             <b>Secondary Presenter #1:</b>
             <br>
-                <input type="text" name="copresenterOne_first" placeholder="first name">
-                <input type="text" name="copresenterOne_last" placeholder="last name"><br>
-                <input type="text" name="copersenterOne_email" placeholder="full email address"><br>
+                <input type="text" name="copresenterOne_first" placeholder="first name" ng-model="submissionData.copresenterOne.first">
+                <input type="text" name="copresenterOne_last" placeholder="last name" ng-model="submissionData.copresenterOne.last"><br>
+                <input type="text" name="copersenterOne_email" placeholder="full email address" ng-model="submissionData.copresenterOne.email"><br>
         </div>
 
         <div class="padded">
             <b>Secondary Presenter #2:</b>
             <br>
-            <input type="text" name="copresenterTwo_first" placeholder="first name">
-            <input type="text" name="copresenterTwo_last" placeholder="last name"><br>
-            <input type="text" name="copersenterTwo_email" placeholder="full email address"><br>
+            <input type="text" name="copresenterTwo_first" placeholder="first name" ng-model="submissionData.copresenterTwo.first">
+            <input type="text" name="copresenterTwo_last" placeholder="last name" ng-model="submissionData.copresenterTwo.last"><br>
+            <input type="text" name="copersenterTwo_email" placeholder="full email address" ng-model="submissionData.copresenterTwo.email"><br>
         </div>
 
         <label class="padded">

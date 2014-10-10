@@ -23,13 +23,19 @@ angular.module('umm3601ursamajorApp')
         'LSAMP'
     ];
 
-    $scope.values = [
-        {pres_title: String},
-        {pres_abstract: String}
-    ];
+    $scope.submissionData = {
+        title: "",
+        format: "",
+        abstract: "",
+        presentationType: "",
+        formatChange: Boolean,
+        presenterInfo: {first: "", last: "", email: ""},
+        copresenterOne: {first: "", last: "", email: ""},
+        copresenterTwo: {first: "", last: "", email: ""}
+    };
 
     $scope.charsRemaining = function() {
-        return 1000 - $scope.values.pres_abstract.length;
+        return 1000 - $scope.submissionData.abstract.length;
     }
 
   });
