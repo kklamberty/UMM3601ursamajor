@@ -30,3 +30,10 @@ UMM 3601 Fall 2014 Project
 - Filtering out non UMM/UMN Google logins.
 - Figuring out how access to api stuff is restricted on a per-user basis?
 -- Until we figure this out, it seems as though we will be unable to make use of the database.
+
+##Progress Report 10-14
+- Joe pulled the submission form from KK and update it to work with our app
+- Jacob updated angular to store the submission data within our DB
+- Mitch integrated the sign in with google
+- Nic and Mitch updated the routing to be user specific and contain the submission form
+- Peter updated CSS for the home page and the submission form
