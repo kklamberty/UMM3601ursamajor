@@ -51,14 +51,22 @@ User.find({}).remove(function() {
 
 Submission.find({}).remove(function(){
     Submission.create({
-        title: "How to build a house",
-        format: "Artistic Statement",
-        abstract: "First you get one brick, and you lay cement onthe one brick, then you get another brick and lay it on top of the first brick.",
+        title: "Test title",
+        format: "Humanities Proposal",
+        abstract: "Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title",
         presentationType: "Oral Presentation",
         formatChange: Boolean,
-        presenterInfo: {first: "Juan", last: "Don", email: "Juansthebomb@gmail.com"},
-        copresenterOne: {first: "John", last: "Johnson", email: "Johnjohnjohnjohnjohn@john.john"},
-        copresenterTwo: {first: "", last: "", email: ""}
+        presenterInfo: {first: "Firstname", last: "Lastname", email: "ggg@g.g"},
+        copresenterOne: {first: "Adubla", last: "Ablumgata", email: "GgGgGgggggg@ggggg.g"},
+        copresenterTwo: {first: "", last: "", email: ""},
+        discipline: "Csci",
+        sponsors: ["","","","",""], //Might need to worry about if this is static for the DB later.
+        adviserInfo: {name: "KK", email: "KK@k.k"},
+        featuredPresentation: Boolean,
+        mediaServicesEquipment: "",
+        specialRequirements: "",
+        presenterTeeSize: "",
+        otherInfo: ""
     }, {
         presenterName: "Jacoby",
         coPresenters: ['Bob', 'Joey', 'Frank'],
