@@ -3,8 +3,18 @@
     <li class="list-group-item"><h2>List of stored submissions</h2></li>
     <li class="list-group-item" ng-repeat="sub in submissions">
         <h3>{{sub.title}}</h3>
-        <strong>{{sub.presenterName}}</strong>
+        <strong>{{sub.presenterInfo.first}}, {{sub.presenterInfo.last}}</strong>
         <hr>
-        <p>{{sub.abstract}}</p>
+
+        <ul class="list-group">
+            <li>
+
+                <p>Format:  {{sub.format}}</p>
+                <p>Abstract: {{sub.abstract}}</p>
+                <p>Type: {{sub.presentationType}}</p>
+            </li>
+        </ul>
+
+        <p></p>
     </li>
 </ul>

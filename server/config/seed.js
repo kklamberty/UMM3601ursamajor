@@ -51,15 +51,14 @@ User.find({}).remove(function() {
 
 Submission.find({}).remove(function(){
     Submission.create({
-        presenterName: 'mama jama',
-        coPresenters: ['Barack', 'YoMama'],
-        discipline: 'Mens Studies',
-        status: 'Stupid',
-        adviser: 'QQ',
-        approval: true,
-        title: 'LOL',
-        abstract: 'aslffijfsfkaaf,' +
-            'fjahafsfjhealhfaihfi'
+        title: "How to build a house",
+        format: "Artistic Statement",
+        abstract: "First you get one brick, and you lay cement onthe one brick, then you get another brick and lay it on top of the first brick.",
+        presentationType: "Oral Presentation",
+        formatChange: Boolean,
+        presenterInfo: {first: "Juan", last: "Don", email: "Juansthebomb@gmail.com"},
+        copresenterOne: {first: "John", last: "Johnson", email: "Johnjohnjohnjohnjohn@john.john"},
+        copresenterTwo: {first: "", last: "", email: ""}
     }, {
         presenterName: "Jacoby",
         coPresenters: ['Bob', 'Joey', 'Frank'],
