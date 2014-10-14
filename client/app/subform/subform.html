@@ -107,22 +107,16 @@
             <span class="subtext">Choose any applicable. If funded by faculty grant, specify under "other"</span>
             <br>
             <label ng-repeat="source in fundingSources" class="stacked">
-                <input ng-mode="submissionData.sponsors[{{$index}}]" type="checkbox" value={{source}} ng-value={{source}}>{{source}}
+                <input ng-model="submissionData.sponsors[$index]" type="checkbox" value="{{source}}" ng-value="{{source}}" ng-true-value="{{source}}" ng-false-value="">{{source}}
             </label>
             <input type="text" placeholder="other?" ng-model="submissionData.sponsors[4]">
         </div>
 
-        {{submissionData.sponsors[0]}}
-        {{submissionData.sponsors[1]}}
-        {{submissionData.sponsors[2]}}
-        {{submissionData.sponsors[3]}}
-        {{submissionData.sponsors[4]}}
-
         <div class="padded">
             <b>Faculty Sponsor / Project Advisor Information</b><br>
             <span class="subtext">Every submitted project is required to have a faculty sponsor or project adviser identified.</span><br>
-            <input type="text" required placeholder="Name">
-            <input type="text" required placeholder="Full email address">
+            <input type="text" required placeholder="Name" ng-model="submissionData.adviserInfo.name">
+            <input type="text" required placeholder="Full email address" ng-model="submissionData.adviserInfo.email">
         </div>
 
         <div class="padded">
@@ -134,11 +128,11 @@
             </b>
             <br>
             <label>
-                <input type="radio" name="featuredPresentation" value="yes" required> yes
+                <input ng-model="submissionData.featuredPresentation" type="radio" name="featuredPresentation" value="yes" ng-value="true" required> yes
             </label>
             <br>
             <label>
-                <input type="radio" name="featuredPresentation" value="no" required> no
+                <input ng-model="submissionData.featuredPresentation" type="radio" name="featuredPresentation" value="no" ng-value="false" required> no
             </label>
         </div>
         <br>
@@ -156,7 +150,7 @@
             <b>
                 Do you anticipate any special room location, non-media services equipment (i.e., recital hall, piano, etc.),
                 or scheduling requirements (i.e., several groups holding a forum that would require more than the allotted 15 minutes)?
-                Please explain in detail.
+                Please explain in detail:
             </b><br>
             <textarea name="specialRequirements"  cols="50" ng-model="submissionData.specialRequirements" placeholder="explain in detail"></textarea>
         </div>
@@ -174,12 +168,10 @@
         <br>
 
         <label class="padded">
-            Is there anything else you would like us to know about yout presentation?
+            Is there anything else you would like us to know about your presentation?
             <br>
             <textarea cols="50" name="otherInfo" ng-model="submissionData.otherInfo" placeholder="other info?"></textarea>
         </label>
-
-
 
 
     </form>
