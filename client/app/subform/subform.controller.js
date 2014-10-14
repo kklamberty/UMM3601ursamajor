@@ -52,24 +52,25 @@ angular.module('umm3601ursamajorApp')
     };
 
     $scope.submitSubmission = function(){
+        console.log('posting Data!');
         $http.post('api/submissions/',
             {
-            title: $submissionData.title,
-            format: $submissionData.format,
-            abstract: $submissionData.abstract,
-            presentationType: $submissionData.presentationType,
-            formatChange: $submissionData.formatChange,
-            presenterInfo: {first: $submissionData.presenterInfo.first, last: $submissionData.presenterInfo.last, email: $submissionData.presenterInfo.last},
-            copresenterOneInfo: {first: $submissionData.copresenterOne.first, $last: $submissionData.copresenterOne.last, email: $submissionData.copresenterOne.email},
-            copresenterTwoInfo: {first: $submissionData.copresenterTwo.first, $last: $submissionData.copresenterTwo.last, email: $submissionData.copresenterTwo.email},
-            discipline: $submissionData.discipline,
-            sponsors: $submissionData.sponsors,
-            adviserInfo: {name: $submissionData.adviserInfo.name, email: $submissionData.adviserInfo.email},
-            featrued: $submissionInfo.featuredPresentation,
-            mediaServicesEquipment: $submissionData.mediaServicesEquipment,
-            specialRequirements: $submissionData.specialRequirements,
-            presenterTeeSize: $submissionData.presenterTeeSize,
-            otherInfo: $submissionData.otherInfo,
+            title: $scope.submissionData.title,
+            format: $scope.submissionData.format,
+            abstract: $scope.submissionData.abstract,
+            presentationType: $scope.submissionData.presentationType,
+            formatChange: $scope.submissionData.formatChange,
+            presenterInfo: {first: $scope.submissionData.presenterInfo.first, last: $scope.submissionData.presenterInfo.last, email: $scope.submissionData.presenterInfo.last},
+            copresenterOneInfo: {first: $scope.submissionData.copresenterOne.first, $last: $scope.submissionData.copresenterOne.last, email: $scope.submissionData.copresenterOne.email},
+            copresenterTwoInfo: {first: $scope.submissionData.copresenterTwo.first, $last: $scope.submissionData.copresenterTwo.last, email: $scope.submissionData.copresenterTwo.email},
+            discipline: $scope.submissionData.discipline,
+            sponsors: $scope.submissionData.sponsors,
+            adviserInfo: {name: $scope.submissionData.adviserInfo.name, email: $scope.submissionData.adviserInfo.email},
+            featrued: $scope.submissionData.featuredPresentation,
+            mediaServicesEquipment: $scope.submissionData.mediaServicesEquipment,
+            specialRequirements: $scope.submissionData.specialRequirements,
+            presenterTeeSize: $scope.submissionData.presenterTeeSize,
+            otherInfo: $scope.submissionData.otherInfo,
             approval: false,
             status: "pending approval"
             }
