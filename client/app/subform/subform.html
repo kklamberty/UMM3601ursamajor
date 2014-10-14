@@ -25,13 +25,12 @@
         <label class="padded">
             Format for submission
             <br>
-            <div class="SelectStyle">
-                <select  ng-model="submissionData.format" placeholder="select one" required>
-                    <option value="" disabled selected>Select One</option>
+            <div>
+                <select  ng-model="submissionData.format" placeholder="select one" required >
+                    <option value="" disabled selected>Select One </option>
                     <option ng-repeat="option in formatOptions" value="{{option}}">{{option}}</option>
                 </select>
             </div>
-
         </label>
         <br>
 
@@ -79,7 +78,7 @@
             <br>
                 <input type="text" name="presenter_first" placeholder="first name" ng-model="submissionData.presenter.first" required>
                 <input type="text" name="presenter_last" placeholder="last name" ng-model="submissionData.presenter.last" required><br>
-                <input type=text" name="presenter_email" placeholder="full email address" ng-model="submissionData.presenter.email" required><br>
+                <input type="text" name="presenter_email" placeholder="full email address" ng-model="submissionData.presenter.email" required><br>
         </div>
 
         <div class="padded">
@@ -136,9 +135,31 @@
                 <input type="radio" name="featuredPresentation" value="no" required> no
             </label>
         </div>
+        <br>
 
-        <div>
-            
+        <div class="padded">
+            <b>
+                Each presentation room will have available an overhead projector and a Macintosh or PC computer with video projection capabilities.
+                Do you anticipate needing any additional Media Services equipment? Please explain in detail:
+            </b><br>
+            <textarea cols="50" name="mediaServices" ng-model="submissionData.mediaServicesEquipment" placeholder="explain in detail"></textarea>
+        </div>
+        <br>
+
+        <div class="padded">
+            <b>
+                Do you anticipate any special room location, non-media services equipment (i.e., recital hall, piano, etc.),
+                or scheduling requirements (i.e., several groups holding a forum that would require more than the allotted 15 minutes)?
+                Please explain in detail.
+            </b><br>
+            <textarea name="specialRequirements"  cols="50" ng-model="submissionData.specialRequirements" placeholder="explain in detail"></textarea>
+        </div>
+
+        <div class="padded">
+            <select ng-model="submissionData.presenterTeeSize">
+                <option value="" disabled selected>Select One</option>
+                <option ng-repeat="size in teeSizes" value="{{size}}">{{size}}</option>
+            </select>
         </div>
 
 
