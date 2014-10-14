@@ -155,13 +155,23 @@
             <textarea name="specialRequirements"  cols="50" ng-model="submissionData.specialRequirements" placeholder="explain in detail"></textarea>
         </div>
 
-        <div class="padded">
-            <select ng-model="submissionData.presenterTeeSize">
+        <label class="padded">
+            T-Shirt for PRIMARY PRESENTER
+            <br>
+            <span class="subtext">All sizes are US adult sizes</span>
+            <br>
+            <select ng-model="submissionData.presenterTeeSize" required>
                 <option value="" disabled selected>Select One</option>
                 <option ng-repeat="size in teeSizes" value="{{size}}">{{size}}</option>
             </select>
-        </div>
+        </label>
+        <br>
 
+        <label class="padded">
+            Is there anything else you would like us to know about yout presentation?
+            <br>
+            <textarea cols="50" name="otherInfo" ng-model="submissionData.otherInfo" placeholder="other info?"></textarea>
+        </label>
 
 
 
