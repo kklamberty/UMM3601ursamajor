@@ -57,8 +57,8 @@ Submission.find({}).remove(function(){
         presentationType: "Oral Presentation",
         formatChange: Boolean,
         presenterInfo: {first: "Firstname", last: "Lastname", email: "ggg@g.g"},
-        copresenterOne: {first: "Adubla", last: "Ablumgata", email: "GgGgGgggggg@ggggg.g"},
-        copresenterTwo: {first: "", last: "", email: ""},
+        copresenterOneInfo: {first: "Adubla", last: "Ablumgata", email: "GgGgGgggggg@ggggg.g"},
+        copresenterTwoInfo: {first: "", last: "", email: ""},
         discipline: "Csci",
         sponsors: ["","","","",""], //Might need to worry about if this is static for the DB later.
         adviserInfo: {name: "KK", email: "KK@k.k"},
@@ -66,15 +66,27 @@ Submission.find({}).remove(function(){
         mediaServicesEquipment: "",
         specialRequirements: "",
         presenterTeeSize: "",
-        otherInfo: ""
+        otherInfo: "",
+        approval: false,
+        status: "Pending approval"
     }, {
-        presenterName: "Jacoby",
-        coPresenters: ['Bob', 'Joey', 'Frank'],
-        discipline: 'CSci',
-        status: 'Accepted',
-        adviser: 'KK',
+        title: "Other",
+        format: "Humanities Proposal",
+        abstract: "Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title",
+        presentationType: "Oral Presentation",
+        formatChange: Boolean,
+        presenterInfo: {first: "My name is", last: "shakesula", email: "ggg@g.g"},
+        copresenterOneInfo: {first: "Adubla", last: "Ablumgata", email: "GgGgGgggggg@ggggg.g"},
+        copresenterTwoInfo: {first: "", last: "", email: ""},
+        discipline: "Csci",
+        sponsors: ["","","","",""], //Might need to worry about if this is static for the DB later.
+        adviserInfo: {name: "KK", email: "KK@k.k"},
+        featuredPresentation: Boolean,
+        mediaServicesEquipment: "",
+        specialRequirements: "",
+        presenterTeeSize: "",
+        otherInfo: "",
         approval: true,
-        title: "Awesome Presentation of Awesomeness",
-        abstract: "Learn stuff"
+        status: "Active"
     });
 });
