@@ -66,7 +66,7 @@ angular.module('umm3601ursamajorApp')
             discipline: $scope.submissionData.discipline,
             sponsors: $scope.submissionData.sponsors,
             adviserInfo: {name: $scope.submissionData.adviserInfo.name, email: $scope.submissionData.adviserInfo.email},
-            featrued: $scope.submissionData.featuredPresentation,
+            featured: $scope.submissionData.featuredPresentation,
             mediaServicesEquipment: $scope.submissionData.mediaServicesEquipment,
             specialRequirements: $scope.submissionData.specialRequirements,
             presenterTeeSize: $scope.submissionData.presenterTeeSize,
