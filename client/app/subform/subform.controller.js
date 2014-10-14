@@ -23,6 +23,15 @@ angular.module('umm3601ursamajorApp')
         'LSAMP'
     ];
 
+    $scope.teeSizes = [
+        'S',
+        'M',
+        'L',
+        'XL',
+        'XXL',
+        'XXXL'
+    ];
+
     $scope.submissionData = {
         title: "",
         format: "",
