@@ -40,7 +40,15 @@ angular.module('umm3601ursamajorApp')
         formatChange: Boolean,
         presenterInfo: {first: "", last: "", email: ""},
         copresenterOne: {first: "", last: "", email: ""},
-        copresenterTwo: {first: "", last: "", email: ""}
+        copresenterTwo: {first: "", last: "", email: ""},
+        discipline: "",
+        sponsors: ["","","","",""], //Might need to worry about if this is static for the DB later.
+        adviserInfo: {name: "", email: ""},
+        featuredPresentation: Boolean,
+        mediaServicesEquipment: "",
+        specialRequirements: "",
+        presenterTeeSize: "",
+        otherInfo: ""
     };
 
     $scope.charsRemaining = function() {
