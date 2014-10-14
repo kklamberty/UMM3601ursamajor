@@ -4,14 +4,24 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var SubmissionSchema = new Schema({
-  presenterName: String,
-  coPresenters: Array,
-  discipline: String,
-  status: String,
-  adviser: String,
-  approval: Boolean,
   title: String,
-  abstract: String
+  format: String,
+  abstract: String,
+  presentationType: String,
+  formatChange: Boolean,
+  presenterInfo: {first: String, last: String, email: String},
+  copresenterOneInfo: {first: String, last: String, email: String},
+  copresenterTwoInfo: {first: String, last: String, email: String},
+  discipline: String,
+  sponsors: [],
+  adviserInfo: {name: String, email: String},
+  featured: Boolean,
+  mediaServicesEquipment: String,
+  specialRequirements: String,
+  presenterTeeSize: String,
+  otherInfo: String,
+  approval: Boolean,
+  status: String
 });
 
 module.exports = mongoose.model('Submission', SubmissionSchema);

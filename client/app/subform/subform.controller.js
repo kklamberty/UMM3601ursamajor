@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('umm3601ursamajorApp')
-  .controller('SubformCtrl', function ($scope, Auth) {
+  .controller('SubformCtrl', function ($scope, $http, Auth) {
     $scope.isLoggedIn = Auth.isLoggedIn;
 
     $scope.formatOptions =
@@ -51,8 +51,55 @@ angular.module('umm3601ursamajorApp')
         otherInfo: ""
     };
 
+    $scope.submitSubmission = function(){
+        $http.post('api/submissions/',
+            {
+            title: $submissionData.title,
+            format: $submissionData.format,
+            abstract: $submissionData.abstract,
+            presentationType: $submissionData.presentationType,
+            formatChange: $submissionData.formatChange,
+            presenterInfo: {first: $submissionData.presenterInfo.first, last: $submissionData.presenterInfo.last, email: $submissionData.presenterInfo.last},
+            copresenterOneInfo: {first: $submissionData.copresenterOne.first, $last: $submissionData.copresenterOne.last, email: $submissionData.copresenterOne.email},
+            copresenterTwoInfo: {first: $submissionData.copresenterTwo.first, $last: $submissionData.copresenterTwo.last, email: $submissionData.copresenterTwo.email},
+            discipline: $submissionData.discipline,
+            sponsors: $submissionData.sponsors,
+            adviserInfo: {name: $submissionData.adviserInfo.name, email: $submissionData.adviserInfo.email},
+            featrued: $submissionInfo.featuredPresentation,
+            mediaServicesEquipment: $submissionData.mediaServicesEquipment,
+            specialRequirements: $submissionData.specialRequirements,
+            presenterTeeSize: $submissionData.presenterTeeSize,
+            otherInfo: $submissionData.otherInfo,
+            approval: false,
+            status: "pending approval"
+            }
+        );
+        $scope.resetData();
+    };
+
     $scope.charsRemaining = function() {
         return 1000 - $scope.submissionData.abstract.length;
-    }
+    };
+
+    $scope.resetData = function(){
+        $scope.submissionData = {
+            title: "",
+            format: "",
+            abstract: "",
+            presentationType: "",
+            formatChange: Boolean,
+            presenterInfo: {first: "", last: "", email: ""},
+            copresenterOne: {first: "", last: "", email: ""},
+            copresenterTwo: {first: "", last: "", email: ""},
+            discipline: "",
+            sponsors: ["","","","",""], //Might need to worry about if this is static for the DB later.
+            adviserInfo: {name: "", email: ""},
+            featuredPresentation: Boolean,
+            mediaServicesEquipment: "",
+            specialRequirements: "",
+            presenterTeeSize: "",
+            otherInfo: ""
+        };
+    };
 
   });
