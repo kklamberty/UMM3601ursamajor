@@ -31,7 +31,9 @@ angular.module('umm3601ursamajorApp')
         formatChange: Boolean,
         presenterInfo: {first: "", last: "", email: ""},
         copresenterOne: {first: "", last: "", email: ""},
-        copresenterTwo: {first: "", last: "", email: ""}
+        copresenterTwo: {first: "", last: "", email: ""},
+        discipline: "",
+        sponsors: ["","","","",""]
     };
 
     $scope.charsRemaining = function() {

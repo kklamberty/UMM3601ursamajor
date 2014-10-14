@@ -99,7 +99,7 @@
         </div>
 
         <label class="padded">
-            <input type="text" name="discipline" placeholder="Acedemic Discipline" required>
+            <input type="text" name="discipline" placeholder="Acedemic Discipline" ng-model="submissionData.discipline" required>
         </label>
         <br>
 
@@ -108,10 +108,16 @@
             <span class="subtext">Choose any applicable. If funded by faculty grant, specify under "other"</span>
             <br>
             <label ng-repeat="source in fundingSources" class="stacked">
-                <input type="checkbox" value="{{source}}">{{source}}
+                <input ng-mode="submissionData.sponsors[{{$index}}]" type="checkbox" value={{source}} ng-value={{source}}>{{source}}
             </label>
-            <input type="text" placeholder="other?">
+            <input type="text" placeholder="other?" ng-model="submissionData.sponsors[4]">
         </div>
+
+        {{submissionData.sponsors[0]}}
+        {{submissionData.sponsors[1]}}
+        {{submissionData.sponsors[2]}}
+        {{submissionData.sponsors[3]}}
+        {{submissionData.sponsors[4]}}
 
         <div class="padded">
             <b>Faculty Sponsor / Project Advisor Information</b><br>
