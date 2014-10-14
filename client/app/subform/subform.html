@@ -12,7 +12,7 @@
 
     <p>Your username (<span ng-show="isLoggedIn()" class="navbar-text">{{ getCurrentUser().name }}</span>)</p>
     <hr>
-    <form  ng-submit="placeholder()" id="form1">
+    <form  ng-submit="submitSubmission()" id="form1">
 
         <br>
         <label class="padded">
@@ -172,7 +172,8 @@
             <br>
             <textarea cols="50" name="otherInfo" ng-model="submissionData.otherInfo" placeholder="other info?"></textarea>
         </label>
+        <br>
 
-
+        <button class="btn btn-primary padded" type="submit" value="submit">Submit!</button>
     </form>
 </div>
