@@ -2,7 +2,8 @@
 
 <div class="container FormBox">
     <h1>2015 URS Submission Form</h1>
-    <p>All applications to the Undergraduate Research Symposium must be accompanied by a brief statement of support from the student's project adviser. The faculty mentor should indicate:
+    <p>All applications to the Undergraduate Research Symposium must be accompanied by a brief statement of support from the student's project adviser.
+        The faculty mentor should indicate:
         <br>* Confidence that the student's work will be ready to present by the URS date;
         <br>* Approval of the submitted abstract/statement/proposal for publication as-is in the program book.
         <br>Project adviser recommendations should complete the form prior to the student submitting their abstract for review.
@@ -10,8 +11,10 @@
 
     <!-- Potentially add link to adviser form, or a way to email the adviser about the form. -->
 
-    <p>Your username (<span ng-show="isLoggedIn()" class="navbar-text">{{ getCurrentUser().name }}</span>)</p>
+    <p>Your username (x500) will be recorded when you submit this form. </p>
+
     <hr>
+
     <form  ng-submit="submitSubmission()" id="form1">
 
         <br>
@@ -37,10 +40,13 @@
         <label class="padded ">
             Artist Statement / Proposal / Abstract
             <br>
-            <span class="subtext">1000 character limit, aprox. 250 words.</span>
+            <span class="subtext">Paste your text in the box below. Figures and special characters will need to be submitted as a separate document.
+                Please e-mail as a Word or PDF document to sferrian@morris.umn.edu</span>
+            <br>
+            <span class="subtext">1000 character limit, approx. 250 words.</span>
             <br>
             <textarea ng-model="submissionData.abstract" cols="50" name="abstract" maxlength="1000" required></textarea>
-            <br> <span>{{charsRemaining()}} characters remaining!</span>
+            <br> <span>{{charsRemaining()}} characters remaining.</span>
         </label>
         <br>
 
@@ -61,14 +67,14 @@
                 If necessary, would you be willing to give your presentation in another format?
             </b>
             <br>
-            <span class="subtext">No change in format will be made without first contacting the presenter</span>
+            <span class="subtext">No change in format will be made without first contacting the presenter first.</span>
             <br>
             <label>
-                <input ng-model="submissionData.formatChange" type="radio" name="formatChange" ng-value="true" required> yes
+                <input ng-model="submissionData.formatChange" type="radio" name="formatChange" ng-value="true" required> Yes
             </label>
             <br>
             <label>
-                <input ng-model="submissionData.formatChange" type="radio" name="formatChange" ng-value="false" required> no
+                <input ng-model="submissionData.formatChange" type="radio" name="formatChange" ng-value="false" required> No
             </label>
             <br>
         </div>
@@ -107,13 +113,13 @@
             <span class="subtext">Choose any applicable. If funded by faculty grant, specify under "other"</span>
             <br>
             <label ng-repeat="source in fundingSources" class="stacked">
-                <input ng-model="submissionData.sponsors[$index]" type="checkbox" value="{{source}}" ng-value="{{source}}" ng-true-value="{{source}}" ng-false-value="">{{source}}
+                <input ng-model="submissionData.sponsors[$index]" type="checkbox" value="{{source}}" ng-value="{{source}}" ng-true-value="{{source}}" ng-false-value="">{{" " + source}}
             </label>
-            <input type="text" placeholder="other?" ng-model="submissionData.sponsors[4]">
+            <input type="text" placeholder="Other?" ng-model="submissionData.sponsors[4]">
         </div>
 
         <div class="padded">
-            <b>Faculty Sponsor / Project Advisor Information</b><br>
+            <b>Faculty Sponsor / Project Adviser Information</b><br>
             <span class="subtext">Every submitted project is required to have a faculty sponsor or project adviser identified.</span><br>
             <input type="text" required placeholder="Name" ng-model="submissionData.adviserInfo.name">
             <input type="text" required placeholder="Full email address" ng-model="submissionData.adviserInfo.email">
@@ -128,11 +134,11 @@
             </b>
             <br>
             <label>
-                <input ng-model="submissionData.featuredPresentation" type="radio" name="featuredPresentation" value="yes" ng-value="true" required> yes
+                <input ng-model="submissionData.featuredPresentation" type="radio" name="featuredPresentation" value="yes" ng-value="true" required> Yes
             </label>
             <br>
             <label>
-                <input ng-model="submissionData.featuredPresentation" type="radio" name="featuredPresentation" value="no" ng-value="false" required> no
+                <input ng-model="submissionData.featuredPresentation" type="radio" name="featuredPresentation" value="no" ng-value="false" required> No
             </label>
         </div>
         <br>
@@ -142,7 +148,7 @@
                 Each presentation room will have available an overhead projector and a Macintosh or PC computer with video projection capabilities.
                 Do you anticipate needing any additional Media Services equipment? Please explain in detail:
             </b><br>
-            <textarea cols="50" name="mediaServices" ng-model="submissionData.mediaServicesEquipment" placeholder="explain in detail"></textarea>
+            <textarea cols="50" name="mediaServices" ng-model="submissionData.mediaServicesEquipment" placeholder="Explain in detail."></textarea>
         </div>
         <br>
 
@@ -152,7 +158,7 @@
                 or scheduling requirements (i.e., several groups holding a forum that would require more than the allotted 15 minutes)?
                 Please explain in detail:
             </b><br>
-            <textarea name="specialRequirements"  cols="50" ng-model="submissionData.specialRequirements" placeholder="explain in detail"></textarea>
+            <textarea name="specialRequirements"  cols="50" ng-model="submissionData.specialRequirements" placeholder="Explain in detail."></textarea>
         </div>
 
         <label class="padded">
@@ -170,7 +176,7 @@
         <label class="padded">
             Is there anything else you would like us to know about your presentation?
             <br>
-            <textarea cols="50" name="otherInfo" ng-model="submissionData.otherInfo" placeholder="other info?"></textarea>
+            <textarea cols="50" name="otherInfo" ng-model="submissionData.otherInfo" placeholder="Other info?"></textarea>
         </label>
         <br>
 

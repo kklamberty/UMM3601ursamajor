@@ -20,6 +20,7 @@ UMM 3601 Fall 2014 Project
 
 ##Initial goals / plans:
 - Set up project / environment and make placeholder site.
+-- As of 10/8, got it all set up and began work.
 - __Story__: Logging in with Google account.
 -- As of 10/10, we were able to log in via Google.
 - __Story__: Create submission (form).
@@ -31,7 +32,7 @@ UMM 3601 Fall 2014 Project
 ##Additional goals / hopes:
 - Prototype a submission list to display relevant submissions. Currently only ones that the person is presenter/copresenter of.
 -- As of 10/10, we have the component, still need to make it only show relevant.
-- Time permitting, we would like them to only be able to submit is they are logged in with a Morris account or at the very least a Google account.
+- Time permitting, we would like them to only be able to submit if they are logged in with a Morris account or at the very least a Google account.
 - Make it look as it might for later on in the project.
 -- Currently, form looks pretty similar to familiar ones. Web pages are certainly not final yet.
 
@@ -44,6 +45,7 @@ UMM 3601 Fall 2014 Project
 -- Not entirely focused on this for the iteration. Just focusing on having it work for Google logins.
 - Figuring out how access to api stuff is restricted on a per-user basis?
 -- Until we figure this out, it seems as though we will be unable to make use of the database.
+- Validating that actual emails are entered instead of just strings.
 
 
 ##Progress Report 10-10 (Added 10-14 since we didn't take time to update the readme)
@@ -62,10 +64,19 @@ UMM 3601 Fall 2014 Project
 - Peter updated CSS for the home page and the submission form.
 
 
+##Progress Report 10-15
+- Database is fully working to store submitted applications.
+- Added filters for the submission component.
+- Finshed cleaning up the submission form.
+- Updated seeds for database for presentation.
+- Made Home page look presentable.
+
+
 ##Testing & Pair Programming:
 - All Angular for the submission form has been tested manually by displaying the data through data-binding upon input.
 - All CSS has been tested for any given change visually. More specifically, a change is made, and we watch carefully where it was changed at.
 - Data base storage is being tested by viewing the entries in the plug-in, in the browser, and via a component that was created to view a submission list.
+-- 9-15:  We have, in fact, tested the database using all those means.
 - Log-in has been tested using an actual Google account not made for our testing purposes to check that it was recognized.
 - Submission form is being double-checked to make sure it includes all the necessary information from the old form.
 

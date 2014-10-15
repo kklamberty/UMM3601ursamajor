@@ -51,42 +51,42 @@ User.find({}).remove(function() {
 
 Submission.find({}).remove(function(){
     Submission.create({
-        title: "Test title",
+        title: "The Properties of an Aardvark who Eats Ants",
         format: "Humanities Proposal",
-        abstract: "Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title",
+        abstract: "Once upon a time, an aardvark ate an ant. Not just any ant, the ant was soaked in radioactive toxins.",
         presentationType: "Oral Presentation",
-        formatChange: Boolean,
-        presenterInfo: {first: "Firstname", last: "Lastname", email: "ggg@g.g"},
-        copresenterOneInfo: {first: "Adubla", last: "Ablumgata", email: "GgGgGgggggg@ggggg.g"},
+        formatChange: true,
+        presenterInfo: {first: "Aladdin", last: "VonSchweidel", email: "vonsc999@morris.umn.edu"},
+        copresenterOneInfo: {first: "Adubla", last: "Ablumgata", email: "ablum@morris.umn.edu"},
         copresenterTwoInfo: {first: "", last: "", email: ""},
-        discipline: "Csci",
+        discipline: "Philosophy",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {name: "KK", email: "KK@k.k"},
-        featuredPresentation: Boolean,
+        adviserInfo: {name: "KK Lamberty", email: "lamberty@morris.umn.edu"},
+        featuredPresentation: false,
         mediaServicesEquipment: "",
         specialRequirements: "",
-        presenterTeeSize: "",
+        presenterTeeSize: "S",
         otherInfo: "",
         approval: false,
         status: "Pending approval"
     }, {
-        title: "Other",
-        format: "Humanities Proposal",
-        abstract: "Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title Test title",
-        presentationType: "Oral Presentation",
-        formatChange: Boolean,
-        presenterInfo: {first: "My name is", last: "shakesula", email: "ggg@g.g"},
-        copresenterOneInfo: {first: "Adubla", last: "Ablumgata", email: "GgGgGgggggg@ggggg.g"},
+        title: "Bill & Nye's Excellent Experimental Adventure",
+        format: "Artist Statement",
+        abstract: "Here, I, William Sanford Nye, will talk about all my college adventures.",
+        presentationType: "Performance",
+        formatChange: false,
+        presenterInfo: {first: "Bill", last: "Nye", email: "nyexx10@morris.umn.edu"},
+        copresenterOneInfo: {first: "", last: "", email: ""},
         copresenterTwoInfo: {first: "", last: "", email: ""},
-        discipline: "Csci",
-        sponsors: ["","","","",""], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {name: "KK", email: "KK@k.k"},
-        featuredPresentation: Boolean,
-        mediaServicesEquipment: "Microphone for my sick rhymes",
+        discipline: "CSci",
+        sponsors: [], //Might need to worry about if this is static for the DB later.
+        adviserInfo: {name: "KK Lamberty", email: "lamberty@morris.umn.edu"},
+        featuredPresentation: true,
+        mediaServicesEquipment: "Microphone for my sick rhymes.",
         specialRequirements: "",
-        presenterTeeSize: "",
+        presenterTeeSize: "XL",
         otherInfo: "",
-        approval: true,
-        status: "Active"
+        approval: false,
+        status: "Pending approval"
     });
 });
