@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('umm3601ursamajorApp')
-  .controller('SubformCtrl', function ($scope, $http, Auth) {
+  .controller('SubformCtrl', function ($scope, $http, Auth, $location) {
     $scope.isLoggedIn = Auth.isLoggedIn;
 
     $scope.formatOptions =
@@ -84,6 +84,7 @@ angular.module('umm3601ursamajorApp')
             }
         );
         $scope.resetData();
+        $location.path('/');
     };
 
     $scope.charsRemaining = function() {

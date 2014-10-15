@@ -81,5 +81,7 @@ UMM 3601 Fall 2014 Project
 -- Nic and Peter for CSS.
 -- Joseph and Mitch for Database.
 -- Nic and Peter for submission component.
+-- Nic and Joseph for submission display
+-- Joseph and Nic for submission display filters
 -- There are certainly more examples than this...
 

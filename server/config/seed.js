@@ -60,7 +60,7 @@ Submission.find({}).remove(function(){
         copresenterOneInfo: {first: "Adubla", last: "Ablumgata", email: "GgGgGgggggg@ggggg.g"},
         copresenterTwoInfo: {first: "", last: "", email: ""},
         discipline: "Csci",
-        sponsors: ["","","","",""], //Might need to worry about if this is static for the DB later.
+        sponsors: [], //Might need to worry about if this is static for the DB later.
         adviserInfo: {name: "KK", email: "KK@k.k"},
         featuredPresentation: Boolean,
         mediaServicesEquipment: "",
