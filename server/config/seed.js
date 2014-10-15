@@ -82,7 +82,7 @@ Submission.find({}).remove(function(){
         sponsors: ["","","","",""], //Might need to worry about if this is static for the DB later.
         adviserInfo: {name: "KK", email: "KK@k.k"},
         featuredPresentation: Boolean,
-        mediaServicesEquipment: "",
+        mediaServicesEquipment: "Microphone for my sick rhymes",
         specialRequirements: "",
         presenterTeeSize: "",
         otherInfo: "",
