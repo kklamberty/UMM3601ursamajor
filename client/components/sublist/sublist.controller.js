@@ -10,7 +10,7 @@ angular.module('umm3601ursamajorApp')
                 if(item.length > 0){
                     return title + " " + item;
                 }
-            } else if (item !== "" || item !== null){
+            } else if (item !== "" && item !== null){
                 return title + " " + item;
             }
         }
