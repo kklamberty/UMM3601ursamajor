@@ -54,3 +54,21 @@
     height: 34px;
     -webkit-appearance: none;
 }
+
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    input.ng-invalid, textarea.ng-invalid {
+        outline:solid 1px #FA787E;
+    }
+
+    /*not working right now*/
+
+    /*input[type="radio"].ng-invalid, input[type="checkbox"].ng-invalid {*/
+        /*background-color: red;*/
+        /*color: red;*/
+    /*}*/
+}
+
+/*input.ng-valid.ng-dirty{*/
+    /*outline: none;*/
+/*}*/
