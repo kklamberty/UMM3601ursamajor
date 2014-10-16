@@ -8,7 +8,7 @@
   </div>
 </header>
 
-<div class="container">
+<div ng-show="isLoggedIn()" class="container">
   <!--<div class="row">-->
     <!--<div class="col-lg-12">-->
       <!--<h1 class="page-header">Features:</h1>-->
@@ -31,7 +31,9 @@
 
   <div ng-include="'components/sublist/sublist.html'"></div>
 </div>
-
+<div ng-hide="isLoggedIn()">
+    <a ng-href="/login" class="btn btn-primary subButton">Please Login!</a>
+</div>
 
 
 <footer class="footer">
