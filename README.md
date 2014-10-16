@@ -67,9 +67,12 @@ UMM 3601 Fall 2014 Project
 ##Progress Report 10-15
 - Database is fully working to store submitted applications.
 - Added filters for the submission component.
-- Finshed cleaning up the submission form.
+- Finished cleaning up the submission form.
 - Updated seeds for database for presentation.
 - Made Home page look presentable.
+- Made it so you can't see a submission button without being logged in.
+- Added extra junk to the form. Collapse doesn't work for firefox.
+- Fixed the picture.
 
 
 ##Testing & Pair Programming:
