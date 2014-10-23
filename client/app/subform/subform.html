@@ -169,7 +169,7 @@
             <label ng-repeat="source in fundingSources" class="stacked">
                 <input ng-model="submissionData.sponsors[$index]" type="checkbox" value="{{source}}" ng-value="{{source}}" ng-true-value="{{source}}" ng-false-value="">{{" " + source}}
             </label>
-            <input type="text" placeholder="Other?" ng-model="submissionData.sponsors[4]">
+            <input type="text" placeholder="Other?" ng-model="submissionData.sponsors[sponsors.length]">
         </div>
 
         <div class="padded">
