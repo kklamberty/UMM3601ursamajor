@@ -23,6 +23,8 @@ angular.module('umm3601ursamajorApp')
         'LSAMP'
     ];
 
+    $scope.numberOfSources = $scope.fundingSources.length;
+
     $scope.teeSizes = [
         'S',
         'M',
