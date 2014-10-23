@@ -44,7 +44,7 @@ angular.module('umm3601ursamajorApp')
         copresenterOne: {first: "", last: "", email: ""},
         copresenterTwo: {first: "", last: "", email: ""},
         discipline: "",
-        sponsors: ["","","","",""], //Might need to worry about if this is static for the DB later.
+        sponsors: [],
         sponsorsFinal: [],
         adviserInfo: {name: "", email: ""},
         featuredPresentation: Boolean,
