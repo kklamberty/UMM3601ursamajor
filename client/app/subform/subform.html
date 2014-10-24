@@ -75,7 +75,7 @@
         <label class="padded">
             Presentation Title:
             <br>
-            <textarea ng-model="submissionData.title" cols="50" name="Presentation Title"  required></textarea>
+            <textarea ng-model="submissionData.title" cols="50" name="Presentation Title" maxlength="350" required></textarea>
         </label>
         <br>
 
@@ -202,7 +202,7 @@
                 Each presentation room will have available an overhead projector and a Macintosh or PC computer with video projection capabilities.
                 Do you anticipate needing any additional Media Services equipment? Please explain in detail:
             </b><br>
-            <textarea cols="50" name="mediaServices" ng-model="submissionData.mediaServicesEquipment" placeholder="Explain in detail."></textarea>
+            <textarea cols="50" name="mediaServices" ng-model="submissionData.mediaServicesEquipment" placeholder="Explain in detail." maxlength="1000"></textarea>
         </div>
         <br>
 
@@ -212,7 +212,7 @@
                 or scheduling requirements (i.e., several groups holding a forum that would require more than the allotted 15 minutes)?
                 Please explain in detail:
             </b><br>
-            <textarea name="specialRequirements"  cols="50" ng-model="submissionData.specialRequirements" placeholder="Explain in detail."></textarea>
+            <textarea name="specialRequirements"  cols="50" ng-model="submissionData.specialRequirements" placeholder="Explain in detail." maxlength="1000"></textarea>
         </div>
 
         <label class="padded">
@@ -230,7 +230,7 @@
         <label class="padded">
             Is there anything else you would like us to know about your presentation?
             <br>
-            <textarea cols="50" name="otherInfo" ng-model="submissionData.otherInfo" placeholder="Other info?"></textarea>
+            <textarea cols="50" name="otherInfo" ng-model="submissionData.otherInfo" placeholder="Other info?" maxlength="1000"></textarea>
         </label>
         <br>
 
