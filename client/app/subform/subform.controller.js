@@ -1,9 +1,19 @@
 'use strict';
+//$scope.isLoggedIn = Auth.isLoggedIn;
 
 angular.module('umm3601ursamajorApp')
+//    .run(function ($scope, $location) {
+//        $location.path('/');
+//        $scope.$on('$logcheck', function() {
+//            if ($scope.isLoggedIn) {
+//                $location.path('/')
+//            } else {
+//                $location.path('/');
+//            }
+//        })
+//    })
   .controller('SubformCtrl', function ($scope, $http, Auth, $location) {
     $scope.isLoggedIn = Auth.isLoggedIn;
-
     $scope.formatOptions =
         ['Artist Statement',
          'Humanities Proposal',
@@ -115,3 +125,4 @@ angular.module('umm3601ursamajorApp')
     };
 
   });
+
