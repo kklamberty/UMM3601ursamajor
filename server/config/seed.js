@@ -47,7 +47,8 @@ Subformtext.find({}).remove(function() {
         notes1: "",
         nameDisclaimer: "Your username (x500) will be recorded when you submit this form.",
         header1: "URS submission descriptions:",
-        criteria: "All submissions should be no more than 250 words and should contain the following elements:" +
+        criteria:"General Criteria:" +
+            "\nAll submissions should be no more than 250 words and should contain the following elements:" +
             "\nA concise explanation of the creative or scholarly implications of the project. What is the creative/intellectual context of your work?" +
             "\nLanguage that is clear and comprehensible to those who are not experts in the field." +
             "\nProfessional tone, including appropriate word choice and correct grammar, spelling, and punctuation.",
@@ -70,7 +71,7 @@ Subformtext.find({}).remove(function() {
             "\n4. An explanation of the significance and broader implications of the project's results.",
         notes3: "If you are unsure which category best fits your project, please consult your faculty sponsor.",
         submissionTitle: "Presentation Title: ",
-        submissionFormat: "Format for submission",
+        submissionFormat: "Format for submission: ",
         submissionAbstract: "Artist Statement / Proposal / Abstract ",
         submissionAbstractNotes: "Paste your text in the box below. Figures and special characters will need to be submitted as a separate document. Please e-mail as a Word or PDF document to sferrian@morris.umn.edu" +
             "\n1000 character limit, approx. 250 words.",
@@ -88,7 +89,7 @@ Subformtext.find({}).remove(function() {
         submissionFeatured: "The URS features one presentation in the opening ceremony. This presentation should have broader appeal with interdisciplinary components, and may easily accommodate a performance component. The featured presenter will have more time, as well as a bigger room than regular presentations. Would you be interested in having your presentation featured during the opening ceremony? ",
         submissionMediaServices: "Each presentation room will have available an overhead projector and a Macintosh or PC computer with video projection capabilities. Do you anticipate needing any additional Media Services equipment? Please explain in detail: ",
         submissionSpecialRequirements: "Do you anticipate any special room location, non-media services equipment (i.e., recital hall, piano, etc.), or scheduling requirements (i.e., several groups holding a forum that would require more than the allotted 15 minutes)? Please explain in detail: ",
-        submissionTee: "Do you anticipate any special room location, non-media services equipment (i.e., recital hall, piano, etc.), or scheduling requirements (i.e., several groups holding a forum that would require more than the allotted 15 minutes)? Please explain in detail: ",
+        submissionTee: "T-Shirt for PRIMARY PRESENTER ",
         submissionTeeNotes: "All sizes are US adult sizes",
         submissionOther: "Is there anything else you would like us to know about your presentation?"
     });
