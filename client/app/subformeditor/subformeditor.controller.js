@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('umm3601ursamajorApp')
-  .controller('SubformeditorCtrl', function ($scope, $http) {
-
+  .controller('SubformeditorCtrl', function ($scope, $http, Auth, $location) {
+        if(Auth.isLoggedIn() === false) {
+            $location.path('/');
+        }
         $scope.submissionTextArray = [];
         $scope.submissionText = {};
 
