@@ -1,7 +1,11 @@
 'use strict';
 
 angular.module('umm3601ursamajorApp')
+
   .controller('SubformCtrl', function ($scope, $http, Auth, $location) {
+    if(Auth.isLoggedIn() === false) {
+        $location.path('/login');
+    }
     $scope.isLoggedIn = Auth.isLoggedIn;
 
     $scope.formatOptions =
