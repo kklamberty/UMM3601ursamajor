@@ -9,10 +9,72 @@
         <label class="padded">
             Edit the presentation title:
             <br>
-            <textarea ng-model="submissionTextArray[0].title"  cols="25" name="Title"></textarea>
+            <textarea ng-model="submissionText.title"  cols="30" name="Title"></textarea>
         </label>
         <br>
 
+        <label class="padded">
+            Edit the text describing the necessary adviser conditions:
+            <br>
+            <textarea ng-model="submissionText.adviserDisclaimer"  cols="75" rows="8" name="AdviserDisclaimer"></textarea>
+        </label>
+        <br>
+
+        <label class="padded">
+            Edit the summary for the Undergraduate Research Symposium:
+            <br>
+            <textarea ng-model="submissionText.ursSummary"  cols="75" rows="8" name="UrsSummary"></textarea>
+        </label>
+        <br>
+
+        <label class="padded">
+            Add any additional information here:
+            <br>
+            <textarea ng-model="submissionText.notes1"  cols="75" rows="8" name="Notes1"></textarea>
+        </label>
+        <br>
+
+        <label class="padded">
+            Add any disclaimers here:
+            <br>
+            <textarea ng-model="submissionText.nameDisclaimer"  cols="75" rows="8" name="NameDisclaimer"></textarea>
+        </label>
+        <br>
+
+        <label class="padded">
+            Edit the section title for submission criteria:
+            <br>
+            <textarea ng-model="submissionText.header1"  cols="75" rows="8" name="Header1"></textarea>
+        </label>
+        <br>
+
+        <label class="padded">
+            Edit general criteria for the submission here:
+            <br>
+            <textarea ng-model="submissionText.criteria"  cols="75" rows="8" name="Criteria"></textarea>
+        </label>
+        <br>
+
+        <label class="padded">
+            Edit the section title for field-specific criteria:
+            <br>
+            <textarea ng-model="submissionText.header2"  cols="75" rows="8" name="Header2"></textarea>
+        </label>
+        <br>
+
+        <label class="padded">
+            Add notes relevant to field-specific criteria:
+            <br>
+            <textarea ng-model="submissionText.notes2"  cols="75" rows="8" name="Notes2"></textarea>
+        </label>
+        <br>
+
+        <label class="padded">
+            Edit the field-specific criteria for Artist Statements:
+            <br>
+            <textarea ng-model="submissionText.artistCriteria"  cols="75" rows="8" name="ArtistCriteria"></textarea>
+        </label>
+        <br>
 
     </form>
 </div>
