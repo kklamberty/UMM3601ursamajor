@@ -1,1 +1,18 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container FormBox">
+    <form ng-submit="submitChanges()" id="form2">
+
+        <h1>URS Submission Form Text Editor</h1>
+        <hr>
+
+        <label class="padded">
+            Edit the presentation title:
+            <br>
+            <textarea ng-model="submissionTextArray[0].title"  cols="25" name="Title"></textarea>
+        </label>
+        <br>
+
+
+    </form>
+</div>
