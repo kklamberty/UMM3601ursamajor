@@ -1,26 +1,28 @@
+<div class="container-fluid" style="word-wrap: break-word">
+    <ul class="list-group" ng-controller="SublistCtrl">
+        <li class="list-group-item"><h2>List of stored submissions</h2></li>
+        <li class="list-group-item" ng-repeat="sub in submissions">
+            <h3>{{sub.title}}</h3>
+            <strong>{{sub.presenterInfo.last}}, {{sub.presenterInfo.first}}</strong>
+            <hr>
 
-<ul class="list-group" ng-controller="SublistCtrl">
-    <li class="list-group-item"><h2>List of stored submissions</h2></li>
-    <li class="list-group-item" ng-repeat="sub in submissions">
-        <h3>{{sub.title}}</h3>
-        <strong>{{sub.presenterInfo.last}}, {{sub.presenterInfo.first}}</strong>
-        <hr>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <p>Discipline: {{sub.discipline}}</p>
+                    <p>Format:  {{sub.format}}</p>
+                    <p>Type: {{sub.presentationType}}</p>
+                    <br>
+                    <p>Abstract: <br> {{sub.abstract}}</p>
+                    <p>Advisor: {{sub.adviserInfo.name}}, email: {{sub.adviserInfo.email}}</p>
+                    <p>{{sub.sponsors | isntempty:"Sponsors:"}}</p>
+                    <p>Approved? {{sub.approval}}</p>
+                    <p>{{sub.mediaServicesEquipment | isntempty:"Media Services Equipment:"}}</p>
+                    <p></p>
+                </li>
+            </ul>
 
-        <ul class="list-group">
-            <li class="list-group-item">
-                <p>Discipline: {{sub.discipline}}</p>
-                <p>Format:  {{sub.format}}</p>
-                <p>Type: {{sub.presentationType}}</p>
-                <p></p>
-                <p>Abstract: {{sub.abstract}}</p>
-                <p>Advisor: {{sub.adviserInfo.name}}, email: {{sub.adviserInfo.email}}</p>
-                <p>{{sub.sponsors | isntempty:"Sponsors:"}}</p>
-                <p>Approved? {{sub.approval}}</p>
-                <p>{{sub.mediaServicesEquipment | isntempty:"Media Services Equipment:"}}</p>
-                <p></p>
-            </li>
-        </ul>
+            <p></p>
+        </li>
+    </ul>
+</div>
 
-        <p></p>
-    </li>
-</ul>

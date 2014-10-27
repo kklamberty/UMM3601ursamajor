@@ -23,6 +23,8 @@ angular.module('umm3601ursamajorApp')
         'LSAMP'
     ];
 
+    $scope.numberOfSources = $scope.fundingSources.length;
+
     $scope.teeSizes = [
         'S',
         'M',
@@ -42,7 +44,7 @@ angular.module('umm3601ursamajorApp')
         copresenterOne: {first: "", last: "", email: ""},
         copresenterTwo: {first: "", last: "", email: ""},
         discipline: "",
-        sponsors: ["","","","",""], //Might need to worry about if this is static for the DB later.
+        sponsors: [],
         sponsorsFinal: [],
         adviserInfo: {name: "", email: ""},
         featuredPresentation: Boolean,
@@ -56,7 +58,7 @@ angular.module('umm3601ursamajorApp')
 
     $scope.submitSubmission = function(){
         for(var i = 0; i< $scope.submissionData.sponsors.length; i++){
-            if($scope.submissionData.sponsors[i] !== "") {
+            if($scope.submissionData.sponsors[i] != "" && $scope.submissionData.sponsors[i] != null) {
                 $scope.submissionData.sponsorsFinal.push($scope.submissionData.sponsors[i]);
             }
         }
@@ -69,8 +71,8 @@ angular.module('umm3601ursamajorApp')
             presentationType: $scope.submissionData.presentationType,
             formatChange: $scope.submissionData.formatChange,
             presenterInfo: {first: $scope.submissionData.presenterInfo.first, last: $scope.submissionData.presenterInfo.last, email: $scope.submissionData.presenterInfo.last},
-            copresenterOneInfo: {first: $scope.submissionData.copresenterOne.first, $last: $scope.submissionData.copresenterOne.last, email: $scope.submissionData.copresenterOne.email},
-            copresenterTwoInfo: {first: $scope.submissionData.copresenterTwo.first, $last: $scope.submissionData.copresenterTwo.last, email: $scope.submissionData.copresenterTwo.email},
+            copresenterOneInfo: {first: $scope.submissionData.copresenterOne.first, last: $scope.submissionData.copresenterOne.last, email: $scope.submissionData.copresenterOne.email},
+            copresenterTwoInfo: {first: $scope.submissionData.copresenterTwo.first, last: $scope.submissionData.copresenterTwo.last, email: $scope.submissionData.copresenterTwo.email},
             discipline: $scope.submissionData.discipline,
             sponsors: $scope.submissionData.sponsorsFinal,
             adviserInfo: {name: $scope.submissionData.adviserInfo.name, email: $scope.submissionData.adviserInfo.email},

@@ -1,7 +1,13 @@
 'use strict';
 
 angular.module('umm3601ursamajorApp')
-  .controller('MainCtrl', function ($scope, $http, socket) {
+  .controller('MainCtrl', function ($scope, $http, Auth, socket) {
+
+    $scope.isCollapsed = true;
+    $scope.isLoggedIn = Auth.isLoggedIn;
+    $scope.isAdmin = Auth.isAdmin;
+    $scope.getCurrentUser = Auth.getCurrentUser;
+
     $scope.awesomeThings = [];
 
     $http.get('/api/things').success(function(awesomeThings) {

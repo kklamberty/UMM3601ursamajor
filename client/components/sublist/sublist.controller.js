@@ -4,7 +4,7 @@
 'use strict';
 
 angular.module('umm3601ursamajorApp')
-    .filter('isntempty', function(){
+    .filter('isntempty', function() {
         return function(item, title){
             if(typeof(item) == "object"){
                 if(item.length > 0){
