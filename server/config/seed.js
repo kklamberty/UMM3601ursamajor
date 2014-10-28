@@ -125,7 +125,7 @@ Submission.find({}).remove(function(){
         copresenterTwoInfo: {first: "", last: "", email: ""},
         discipline: "Philosophy",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {name: "KK Lamberty", email: "lamberty@morris.umn.edu"},
+        adviserInfo: {first: "Kristin", last: "Lamberty", email: "lamberty@morris.umn.edu"},
         featuredPresentation: false,
         mediaServicesEquipment: "",
         specialRequirements: "",
@@ -144,7 +144,7 @@ Submission.find({}).remove(function(){
         copresenterTwoInfo: {first: "", last: "", email: ""},
         discipline: "CSci",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {name: "KK Lamberty", email: "lamberty@morris.umn.edu"},
+        adviserInfo: {first: "Kristin", last: "Lamberty", email: "lamberty@morris.umn.edu"},
         featuredPresentation: true,
         mediaServicesEquipment: "Microphone for my sick rhymes.",
         specialRequirements: "",
@@ -164,7 +164,7 @@ Submission.find({}).remove(function(){
         copresenterTwoInfo: {first: "", last: "", email: ""},
         discipline: "Biology",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {name: "KK Lamberty", email: "lamberty@morris.umn.edu"},
+        adviserInfo: {first: "Kristin", last: "Lamberty", email: "lamberty@morris.umn.edu"},
         featuredPresentation: true,
         mediaServicesEquipment: "Microphone for my sick rhymes, 5 laser stage lights with automated gimbals.",
         specialRequirements: "A whale suit.",
@@ -183,7 +183,7 @@ Submission.find({}).remove(function(){
         copresenterTwoInfo: {first: "Crust", last: "Bun", email: "bunxx501@morris.umn.edu"},
         discipline: "History",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {name: "KK Lamberty", email: "lamberty@morris.umn.edu"},
+        adviserInfo: {first: "Kristin", last: "Lamberty", email: "lamberty@morris.umn.edu"},
         featuredPresentation: true,
         mediaServicesEquipment: "",
         specialRequirements: "fangs",
@@ -205,7 +205,7 @@ Submission.find({}).remove(function(){
         copresenterTwoInfo: {first: "Dill", last: "Pickle", email: "pickl002@morris.umn.edu"},
         discipline: "pottery",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {name: "KK Lamberty", email: "lamberty@morris.umn.edu"},
+        adviserInfo: {first: "Daniel", last: "Demontreu", email: "lamberty@morris.umn.edu"},
         featuredPresentation: false,
         mediaServicesEquipment: "",
         specialRequirements: "a sloth",
