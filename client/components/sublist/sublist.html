@@ -15,7 +15,7 @@
                     <p>Abstract: <br> {{sub.abstract}}</p>
                     <p>Advisor: {{sub.adviserInfo.name}}, email: {{sub.adviserInfo.email}}</p>
                     <p>{{sub.sponsors | isntempty:"Sponsors:"}}</p>
-                    <p>Approved? {{sub.approval}}</p>
+                    <p>Approved? {{approvalWordChange(sub.approval)}}</p>
                     <p>{{sub.mediaServicesEquipment | isntempty:"Media Services Equipment:"}}</p>
                     <p></p>
                 </li>
