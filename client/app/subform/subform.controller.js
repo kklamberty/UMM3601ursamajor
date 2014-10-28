@@ -3,6 +3,7 @@
 angular.module('umm3601ursamajorApp')
 
   .controller('SubformCtrl', function ($scope, $http, Auth, $location) {
+
     if(Auth.isLoggedIn() === false) {
         $location.path('/');
     }
@@ -70,7 +71,8 @@ angular.module('umm3601ursamajorApp')
         }
 
         console.log('posting Data!');
-        $http.post('api/submissions/',
+
+        $http.post('/api/submissions/',
             {
             title: $scope.submissionData.title,
             format: $scope.submissionData.format,
@@ -94,7 +96,7 @@ angular.module('umm3601ursamajorApp')
             }
         );
         $scope.resetData();
-        $location.path('/');
+        $location.path('/submissionpage');
     };
 
     $scope.charsRemaining = function() {
