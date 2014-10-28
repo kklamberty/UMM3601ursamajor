@@ -2,6 +2,9 @@
 
 angular.module('umm3601ursamajorApp')
   .controller('AdminCtrl', function ($scope, $http, Auth, User) {
+    if(!Auth.isAdmin) {
+        $location.path('/');
+    }
 
     // Use the User $resource to fetch all users
     $scope.users = User.query();
