@@ -13,11 +13,11 @@
                     <p>Type: {{sub.presentationType}}</p>
                     <br>
                     <p>Abstract: <br> {{sub.abstract}}</p>
-                    <p>Advisor: {{sub.adviserInfo.first}}, {{sub.adviserInfo.last}}  email: {{sub.adviserInfo.email}}</p>
+                    <p>Advisor: {{sub.adviserInfo.last}}, {{sub.adviserInfo.first}}  email: {{sub.adviserInfo.email}}</p>
                     <p>{{sub.sponsors | isntempty:"Sponsors:"}}</p>
                     <p>Approved? {{sub.approval}}</p>
                     <p>{{sub.mediaServicesEquipment | isntempty:"Media Services Equipment:"}}</p>
-                    <p></p>
+                    <p>Subbmitted on: {{sub.timestamp}}</p>
                 </li>
             </ul>
 
