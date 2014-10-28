@@ -6,7 +6,9 @@ angular.module('umm3601ursamajorApp')
     if(Auth.isLoggedIn() === false) {
         $location.path('/');
     }
+
     $scope.isLoggedIn = Auth.isLoggedIn;
+    $scope.timestamp = Date();
 
     $scope.formatOptions =
         ['Artist Statement',
@@ -66,6 +68,7 @@ angular.module('umm3601ursamajorApp')
                 $scope.submissionData.sponsorsFinal.push($scope.submissionData.sponsors[i]);
             }
         }
+
         console.log('posting Data!');
         $http.post('api/submissions/',
             {
@@ -86,7 +89,8 @@ angular.module('umm3601ursamajorApp')
             presenterTeeSize: $scope.submissionData.presenterTeeSize,
             otherInfo: $scope.submissionData.otherInfo,
             approval: false,
-            status: "pending approval"
+            status: "pending approval",
+            timestamp: $scope.timestamp
             }
         );
         $scope.resetData();

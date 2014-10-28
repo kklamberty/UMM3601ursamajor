@@ -21,7 +21,8 @@ var SubmissionSchema = new Schema({
   presenterTeeSize: String,
   otherInfo: String,
   approval: Boolean,
-  status: String
+  status: String,
+  timestamp: String
 });
 
 module.exports = mongoose.model('Submission', SubmissionSchema);

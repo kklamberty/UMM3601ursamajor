@@ -132,7 +132,8 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "S",
         otherInfo: "",
         approval: false,
-        status: "Pending approval"
+        status: "Pending approval",
+        timestamp: "Sat Oct 18 2014 10:48:54 GMT-0500 (CDT)"
     }, {
         title: "Bill & Nye's Excellent Experimental Adventure",
         format: "Artist Statement",
@@ -151,7 +152,8 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "XL",
         otherInfo: "",
         approval: false,
-        status: "Pending approval"
+        status: "Pending approval",
+        timestamp: "Tue Oct 21 2014 23:22:54 GMT-0500 (CDT)"
     }, {
         title: "On the migration of majestic space whales",
         format: "Artist Statement",
@@ -171,7 +173,8 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "XXXXXXXXXXXXXXXXXXXXL",
         otherInfo: "yes.",
         approval: true,
-        status: "Ready for launch"
+        status: "Ready for launch",
+        timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)"
     }, {
         title: "Vampires in US History",
         format: "Social Science",
@@ -190,7 +193,8 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "S",
         otherInfo: "yes.",
         approval: false,
-        status: "Pending approval"
+        status: "Pending approval",
+        timestamp: "Thur Oct 23 2014 1:48:54 GMT-0500 (CDT)"
     }, {
         title: "A study of the properties of a paperclip in the digestive system of a sloth",
         format: "Artist Statement",
@@ -212,6 +216,7 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "M",
         otherInfo: "Maybe",
         approval: false,
-        status: "Awaiting Adviser Approval"
+        status: "Awaiting Adviser Approval",
+        timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)"
     });
 });
