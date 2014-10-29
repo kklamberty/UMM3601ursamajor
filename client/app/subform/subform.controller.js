@@ -7,7 +7,7 @@ angular.module('umm3601ursamajorApp')
     if(Auth.isLoggedIn() === false) {
         $location.path('/');
     }
-
+    $scope.isAdmin = Auth.isAdmin;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.timestamp = Date();
 

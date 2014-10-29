@@ -16,9 +16,9 @@ angular.module('umm3601ursamajorApp')
         }
     })
 
-    .controller('SublistCtrl', function ($scope, $http, socket, $modal, Modal) {
+    .controller('SublistCtrl', function ($scope, $http, socket, $modal, Modal, Auth) {
         $scope.submissions = [];
-
+        $scope.isAdmin = Auth.isAdmin;
         $http.get('/api/submissions').success(function(submissions) {
             $scope.submissions = submissions;
             socket.syncUpdates('submission', $scope.submissions);
