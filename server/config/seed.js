@@ -115,81 +115,102 @@ User.find({}).remove(function() {
 
 Submission.find({}).remove(function(){
     Submission.create({
-        title: "The Properties of an Aardvark who Eats Ants",
-        format: "Humanities Proposal",
-        abstract: "Once upon a time, an aardvark ate an ant. Not just any ant, the ant was soaked in radioactive toxins.",
+        title: "On Your March, Get Set, Rust!",
+        format: "Science or Social Science Abstract",
+        abstract: "The title of my project is called On Your March, Get Set, Rust! " +
+            "The purpose of my experiment was to find out if salt water rusts nails faster than freshwater and which type of nails, " +
+            "galvanized or common will rust quickly.The procedure involved sanding ten galvanized and common nails." +
+            "The nails were placed in glass jars and added with 150mL of water mixed with 15mL of salt. The experiment was observed for two weeks. " +
+            "The amount of rust was recorded on both types of nails. I repeated these steps for two types of nails in freshwater. " +
+            "My results of my data resolves that galvanized and common nails in freshwater had a higher average or rust than the other nails in salt water. " +
+            "My data also concludes that the rusting color was black. In conclusion the nails in freshwater rusted more than the nails in saltwater. " +
+            "Saltwater may rust something faster than freshwater, but salt contains sodium chloride in which it causes the nails in saltwater to rust at a slower rate.",
         presentationType: "Oral Presentation",
         formatChange: true,
-        presenterInfo: {first: "Aladdin", last: "VonSchweidel", email: "vonsc999@morris.umn.edu"},
-        copresenterOneInfo: {first: "Adubla", last: "Ablumgata", email: "ablum@morris.umn.edu"},
+        presenterInfo: {first: "Ryan", last: "VonSchweidel", email: "vonsc009@morris.umn.edu"},
+        copresenterOneInfo: {first: "", last: "", email: ""},
         copresenterTwoInfo: {first: "", last: "", email: ""},
-        discipline: "Philosophy",
+        discipline: "Chemistry",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {first: "Kristin", last: "Lamberty", email: "lamberty@morris.umn.edu"},
+        adviserInfo: {first: "Jim", last: "Togeas", email: "togeasjb@morris.umn.edu"},
         featuredPresentation: false,
         mediaServicesEquipment: "",
         specialRequirements: "",
-        presenterTeeSize: "S",
+        presenterTeeSize: "L",
         otherInfo: "",
-        approval: false,
-        status: "Pending approval",
+        approval: true,
+        status: "Ready for launch",
         timestamp: "Sat Oct 18 2014 10:48:54 GMT-0500 (CDT)"
     }, {
-        title: "Bill & Nye's Excellent Experimental Adventure",
+        title: "Blind Construction: Mixed Media",
         format: "Artist Statement",
-        abstract: "Here, I, William Sanford Nye, will talk about all my college adventures.",
+        abstract: "The basis of this project was to create a garment using mixed media in order to mimic the human body. " +
+            "The materials we used to create this piece include: buckram, copper wire, spray paint, fabric paint, a variety of novelty fabrics, and chains.  " +
+            "The techniques we created in order to manipulate the piece include: fabric branding and burning, grid painting, sewing, draping, molding buckram, and coiling.  " +
+            "Our overall approach was to create a theatrical wearable art piece. " +
+            "Upon completion of the assignment we found the piece aesthetically pleasing because of the way it molds to the human body, but can be a piece all on its own.",
         presentationType: "Performance",
         formatChange: false,
-        presenterInfo: {first: "Bill", last: "Nye", email: "nyexx10@morris.umn.edu"},
-        copresenterOneInfo: {first: "", last: "", email: ""},
-        copresenterTwoInfo: {first: "", last: "", email: ""},
-        discipline: "CSci",
+        presenterInfo: {first: "Diana", last: "Dewi", email: "dewi010@morris.umn.edu"},
+        copresenterOneInfo: {first: "Jennifer", last: "Kittleson", email: "kittle003@morris.umn.edu"},
+        copresenterTwoInfo: {first: "Sherrill", last: "Sellers", email: "selle012@morris.umn.edu"},
+        discipline: "Art History",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {first: "Kristin", last: "Lamberty", email: "lamberty@morris.umn.edu"},
+        adviserInfo: {first: "Julia", last: "Dabbs", email: "dabbsj@morris.umn.edu"},
         featuredPresentation: true,
-        mediaServicesEquipment: "Microphone for my sick rhymes.",
-        specialRequirements: "",
-        presenterTeeSize: "XL",
+        mediaServicesEquipment: "",
+        specialRequirements: "A space to perform with three people.",
+        presenterTeeSize: "M",
         otherInfo: "",
         approval: false,
         status: "Pending approval",
         timestamp: "Tue Oct 21 2014 23:22:54 GMT-0500 (CDT)"
     }, {
-        title: "On the migration of majestic space whales",
+        title: "The Commemoration and Memorialization of the American Revolution",
         format: "Artist Statement",
-        abstract: "They swim through the endless void, without care and knowing not the concept of time. Through the study of these great beats we can come to better know not " +
-            "only their migration patterns, but ourselves as well.",
+        abstract: "This project involves discovering how the American Revolution was remembered during the nineteenth century.  " +
+            "The goal is to show that the American Revolution was memorialized by the actions of the United States government during the 1800s. " +
+            "This has been done by examining events such as the Supreme Court cases of John Marshall and the Nullification Crisis. " +
+            "Upon examination of these events, it becomes clear that John Marshall and John Calhoun (creator of the Doctrine of Nullification) " +
+            "attempted to use the American Revolution to bolster their claims by citing speeches from Founding Fathers. " +
+            "Through showing that the American Revolution lives on in memory, " +
+            "this research highlights the importance of the revolution in shaping the actions of the United States government.",
         presentationType: "Performance",
         formatChange: false,
-        presenterInfo: {first: "Timmy", last: "Flabberghast III", email: "flabb137@morris.umn.edu"},
-        copresenterOneInfo: {first: "Sally", last: "Birch", email: "birch001@morris.umn.edu"},
+        presenterInfo: {first: "Benjamin", last: "Herman III", email: "herma137@morris.umn.edu"},
+        copresenterOneInfo: {first: "Jean", last: "Lee", email: "lee334@morris.umn.edu"},
         copresenterTwoInfo: {first: "", last: "", email: ""},
-        discipline: "Biology",
+        discipline: "History",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {first: "Kristin", last: "Lamberty", email: "lamberty@morris.umn.edu"},
+        adviserInfo: {first: "Deane", last: "Jennifer", email: "deanej@morris.umn.edu"},
         featuredPresentation: true,
-        mediaServicesEquipment: "Microphone for my sick rhymes, 5 laser stage lights with automated gimbals.",
-        specialRequirements: "A whale suit.",
-        presenterTeeSize: "XXXXXXXXXXXXXXXXXXXXL",
+        mediaServicesEquipment: "A way to show images, either a projector or a warning so I can print them.",
+        specialRequirements: "",
+        presenterTeeSize: "XL",
         otherInfo: "yes.",
         approval: true,
         status: "Ready for launch",
         timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)"
     }, {
-        title: "Vampires in US History",
+        title: "Margaret C. Anderson’s Little Review",
         format: "Social Science",
-        abstract: "The impacts of vampires on human society through out the ages in the United States.",
-        presentationType: "Oral Presentation",
+        abstract: "This research looks at the work of Margaret C. Anderson, the editor of the Little Review.  " +
+            "The review published first works by Sherwood Anderson, James Joyce, Wyndham Lewis, and Ezra Pound.  " +
+            "This research draws upon mostly primary sources including memoirs, published letters, and a complete collection of the Little Review. " +
+            "Most prior research on Anderson focuses on her connection to the famous writers and personalities that she published and associated with.  " +
+            "This focus undermines her role as the dominant creative force behind one of the most influential little magazines published in the 20th Century. " +
+            "This case example shows how little magazine publishing is arguably a literary art.",
+        presentationType: "Poster or Visual Display",
         formatChange: true,
-        presenterInfo: {first: "Teresa", last: "Bunt", email: "buntx489@morris.umn.edu"},
-        copresenterOneInfo: {first: "Dill", last: "Pickle", email: "pickl002@morris.umn.edu"},
-        copresenterTwoInfo: {first: "Crust", last: "Bun", email: "bunxx501@morris.umn.edu"},
-        discipline: "History",
+        presenterInfo: {first: "Sophia", last: "Estante", email: "estan489@morris.umn.edu"},
+        copresenterOneInfo: {first: "Lorrie", last: "Moore", email: "moore002@morris.umn.edu"},
+        copresenterTwoInfo: {first: "", last: "", email: ""},
+        discipline: "English",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {first: "Kristin", last: "Lamberty", email: "lamberty@morris.umn.edu"},
+        adviserInfo: {first: "Deane", last: "Brad", email: "deanb@morris.umn.edu"},
         featuredPresentation: true,
         mediaServicesEquipment: "",
-        specialRequirements: "fangs",
+        specialRequirements: "A small space to make the presentation personal.",
         presenterTeeSize: "S",
         otherInfo: "yes.",
         approval: false,
@@ -202,14 +223,14 @@ Submission.find({}).remove(function(){
             "While such a claim might seem unexpected, it usually conflicts with the need to provide thin clients to hackers worldwide. " +
             "In fact, few security experts would disagree with the construction of kernels. In order to overcome this question, we construct an analysis of the Ethernet (Mollah)," +
             " which we use to prove that redundancy and replication can interfere to achieve this aim. ",
-        presentationType: "Performance",
+        presentationType: "Oral Presentation",
         formatChange: false,
         presenterInfo: {first: "Sally", last: "Birch", email: "birch001@morris.umn.edu"},
         copresenterOneInfo: {first: "Timmy", last: "Flabberghast III", email: "flabb137@morris.umn.edu"},
         copresenterTwoInfo: {first: "Dill", last: "Pickle", email: "pickl002@morris.umn.edu"},
-        discipline: "pottery",
+        discipline: "Biology",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {first: "Daniel", last: "Demontreu", email: "lamberty@morris.umn.edu"},
+        adviserInfo: {first: "Margaret", last: "Kuchenreuther", email: "kuchenma@morris.umn.edu"},
         featuredPresentation: false,
         mediaServicesEquipment: "",
         specialRequirements: "a sloth",
