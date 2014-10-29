@@ -229,7 +229,7 @@ Submission.find({}).remove(function(){
         copresenterTwoInfo: {first: "", last: "", email: ""},
         discipline: "History",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {first: "Deane", last: "Jennifer", email: "deanej@morris.umn.edu"},
+        adviserInfo: {first: "Jennifer", last: "Deane", email: "deanej@morris.umn.edu"},
         featuredPresentation: true,
         mediaServicesEquipment: "A way to show images, either a projector or a warning so I can print them.",
         specialRequirements: "",
@@ -254,7 +254,7 @@ Submission.find({}).remove(function(){
         copresenterTwoInfo: {first: "", last: "", email: ""},
         discipline: "English",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {first: "Deane", last: "Brad", email: "deanb@morris.umn.edu"},
+        adviserInfo: {first: "Brad", last: "Deane", email: "deanb@morris.umn.edu"},
         featuredPresentation: true,
         mediaServicesEquipment: "",
         specialRequirements: "A small space to make the presentation personal.",
