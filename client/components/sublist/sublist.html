@@ -13,11 +13,14 @@
                     <p>Type: {{sub.presentationType}}</p>
                     <br>
                     <p>Abstract: <br> {{sub.abstract}}</p>
-                    <p>Advisor: {{sub.adviserInfo.name}}, email: {{sub.adviserInfo.email}}</p>
+                    <br>
+                    <p>Adviser: {{sub.adviserInfo.last}}, {{sub.adviserInfo.first}}</p>
+                    <p>Adviser E-mail: {{sub.adviserInfo.email}}</p>
                     <p>{{sub.sponsors | isntempty:"Sponsors:"}}</p>
-                    <p>Approved? {{sub.approval}}</p>
+                    <p>Approved? {{approvalWordChange(sub.approval)}}</p>
+                    <br>
                     <p>{{sub.mediaServicesEquipment | isntempty:"Media Services Equipment:"}}</p>
-                    <p></p>
+                    <p>Subbmitted on: {{sub.timestamp}}</p>
                 </li>
             </ul>
 

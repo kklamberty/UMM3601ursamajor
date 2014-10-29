@@ -1,9 +1,9 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-<div ng-show="isLoggedIn()" class="container FormBox">
+<div class="container FormBox">
     <h1>2015 URS Submission Form</h1>
     <p>All applications to the Undergraduate Research Symposium must be accompanied by a brief statement of support from the student's project adviser.
         The faculty mentor should indicate:
-        <br>* Confidence that the student's work will be ready to present by the URS date.
+        <br>* Confidence that the student's work will be ready to present by the URS date;
         <br>* Approval of the submitted abstract/statement/proposal for publication as-is in the program book.
         <br>Project adviser recommendations should complete the form prior to the student submitting their abstract for review.
     </p>
@@ -74,7 +74,7 @@
         <label class="padded">
             Presentation Title:
             <br>
-            <textarea ng-model="submissionData.title" cols="50" name="Presentation Title" maxlength="350" required></textarea>
+            <textarea ng-model="submissionData.title" cols="50" name="Presentation Title"  required></textarea>
         </label>
         <br>
 
@@ -174,7 +174,8 @@
         <div class="padded">
             <b>Faculty Sponsor / Project Adviser Information</b><br>
             <span class="subtext">Every submitted project is required to have a faculty sponsor or project adviser identified.</span><br>
-            <input type="text" required placeholder="Name" ng-model="submissionData.adviserInfo.name">
+            <input type="text" required placeholder="First" ng-model="submissionData.adviserInfo.first">
+            <input type="text" required placeholder="Last" ng-model="submissionData.adviserInfo.last"><br>
             <input type="text" required placeholder="Full email address" ng-model="submissionData.adviserInfo.email">
         </div>
 
@@ -234,5 +235,7 @@
         <br>
 
         <button class="btn btn-primary padded" type="submit" value="submit">Submit!</button>
+
     </form>
+
 </div>
