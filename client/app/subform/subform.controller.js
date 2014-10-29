@@ -71,39 +71,44 @@ angular.module('umm3601ursamajorApp')
 
 
     $scope.submitSubmission = function(){
-        for(var i = 0; i< $scope.submissionData.sponsors.length; i++){
-            if($scope.submissionData.sponsors[i] != "" && $scope.submissionData.sponsors[i] != null) {
-                $scope.submissionData.sponsorsFinal.push($scope.submissionData.sponsors[i]);
-            }
-        }
 
-        console.log('posting Data!');
+        var r = confirm("Are you sure you want to submit?");
+        if (r == true) {
+            for (var i = 0; i < $scope.submissionData.sponsors.length; i++) {
+                if ($scope.submissionData.sponsors[i] != "" && $scope.submissionData.sponsors[i] != null) {
+                    $scope.submissionData.sponsorsFinal.push($scope.submissionData.sponsors[i]);
+                }
 
-        $http.post('/api/submissions/',
-            {
-            title: $scope.submissionData.title,
-            format: $scope.submissionData.format,
-            abstract: $scope.submissionData.abstract,
-            presentationType: $scope.submissionData.presentationType,
-            formatChange: $scope.submissionData.formatChange,
-            presenterInfo: {first: $scope.submissionData.presenterInfo.first, last: $scope.submissionData.presenterInfo.last, email: $scope.submissionData.presenterInfo.last},
-            copresenterOneInfo: {first: $scope.submissionData.copresenterOne.first, last: $scope.submissionData.copresenterOne.last, email: $scope.submissionData.copresenterOne.email},
-            copresenterTwoInfo: {first: $scope.submissionData.copresenterTwo.first, last: $scope.submissionData.copresenterTwo.last, email: $scope.submissionData.copresenterTwo.email},
-            discipline: $scope.submissionData.discipline,
-            sponsors: $scope.submissionData.sponsorsFinal,
-            adviserInfo: {first: $scope.submissionData.adviserInfo.first, last: $scope.submissionData.adviserInfo.last, email: $scope.submissionData.adviserInfo.email},
-            featured: $scope.submissionData.featuredPresentation,
-            mediaServicesEquipment: $scope.submissionData.mediaServicesEquipment,
-            specialRequirements: $scope.submissionData.specialRequirements,
-            presenterTeeSize: $scope.submissionData.presenterTeeSize,
-            otherInfo: $scope.submissionData.otherInfo,
-            approval: false,
-            status: "pending approval",
-            timestamp: $scope.timestamp
             }
-        );
-        $scope.resetData();
-        $location.path('/submissionpage');
+
+            console.log('posting Data!');
+
+            $http.post('/api/submissions/',
+                {
+                    title: $scope.submissionData.title,
+                    format: $scope.submissionData.format,
+                    abstract: $scope.submissionData.abstract,
+                    presentationType: $scope.submissionData.presentationType,
+                    formatChange: $scope.submissionData.formatChange,
+                    presenterInfo: {first: $scope.submissionData.presenterInfo.first, last: $scope.submissionData.presenterInfo.last, email: $scope.submissionData.presenterInfo.email},
+                    copresenterOneInfo: {first: $scope.submissionData.copresenterOne.first, last: $scope.submissionData.copresenterOne.last, email: $scope.submissionData.copresenterOne.email},
+                    copresenterTwoInfo: {first: $scope.submissionData.copresenterTwo.first, last: $scope.submissionData.copresenterTwo.last, email: $scope.submissionData.copresenterTwo.email},
+                    discipline: $scope.submissionData.discipline,
+                    sponsors: $scope.submissionData.sponsorsFinal,
+                    adviserInfo: {first: $scope.submissionData.adviserInfo.first, last: $scope.submissionData.adviserInfo.last, email: $scope.submissionData.adviserInfo.email},
+                    featured: $scope.submissionData.featuredPresentation,
+                    mediaServicesEquipment: $scope.submissionData.mediaServicesEquipment,
+                    specialRequirements: $scope.submissionData.specialRequirements,
+                    presenterTeeSize: $scope.submissionData.presenterTeeSize,
+                    otherInfo: $scope.submissionData.otherInfo,
+                    approval: false,
+                    status: "pending approval",
+                    timestamp: $scope.timestamp
+                }
+            );
+            $scope.resetData();
+            $location.path('/submissionpage');
+        };
     };
 
     $scope.charsRemaining = function() {
