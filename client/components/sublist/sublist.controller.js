@@ -98,7 +98,17 @@ angular.module('umm3601ursamajorApp')
                     console.log("Success!!!");
                 });
             $scope.editStatus();
-        }
+        };
+
+
+        $scope.approvalWordChange = function(approval){
+             if(approval){
+                 return "Yes";
+                 }
+             else{
+                 return "No";
+                 }
+             };
 
 
     });

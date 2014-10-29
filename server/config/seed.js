@@ -166,7 +166,7 @@ Submission.find({}).remove(function(){
         status: {strict: "Awaiting Revisions", text: "Submitter is working on updating"},
         timestamp: "Tue Oct 21 2014 23:22:54 GMT-0500 (CDT)"
     }, {
-        title: "On the migration of majestic space whales",
+        title: "On the Migration of Majestic Space Whales",
         format: "Artist Statement",
         abstract: "They swim through the endless void, without care and knowing not the concept of time." +
             "Through the study of these great beats we can come to better know not only their migration patterns," +

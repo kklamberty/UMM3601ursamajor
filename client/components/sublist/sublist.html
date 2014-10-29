@@ -12,7 +12,7 @@
                     <p>Format:  {{sub.format}}</p>
                     <p>Type: {{sub.presentationType}}</p>
                     <p>Advisor: {{sub.adviserInfo.last}},{{sub.adviserInfo.first}}  email: {{sub.adviserInfo.email}}</p>
-                    <p>Approved? {{sub.approval}}</p>
+                    <p>Approved? {{approvalWordChange(sub.approval)}}</p>
                     <p>{{sub.sponsors | isntempty:"Sponsors:"}}</p>
                     <p>{{sub.mediaServicesEquipment | isntempty:"Media Services Equipment:"}}</p>
                     <p>Abstract: <br> {{sub.abstract | limitTo: 300}}</p>
@@ -69,7 +69,7 @@
                     <p>Type: {{selection.item.presentationType}}</p>
                     <p>Advisor: {{selection.item.adviserInfo.last}},{{selection.item.adviserInfo.first}} email: {{selection.item.adviserInfo.email}}</p>
                     <p>{{selection.item.sponsors | isntempty:"Sponsors:"}}</p>
-                    <p>Approved? {{selection.item.approval}}</p>
+                    <p>Approved? {{approvalWordChange(selection.item.approval)}}</p>
                     <p>{{selection.item.mediaServicesEquipment | isntempty:"Media Services Equipment:"}}</p>
                     <p>Date of submission: {{selection.item.timestamp}}</p>
                 </li>
