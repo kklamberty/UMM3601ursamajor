@@ -61,6 +61,13 @@ angular.module('umm3601ursamajorApp')
         otherInfo: ""
     };
 
+    $scope.submissionTextArray = [];
+    $scope.submissionText = {};
+
+    $http.get('/api/subformtexts').success(function(submissionTextArray) {
+        $scope.submissionTextArray = submissionTextArray;
+        $scope.submissionText = $scope.submissionTextArray[0];
+    });
 
 
     $scope.submitSubmission = function(){

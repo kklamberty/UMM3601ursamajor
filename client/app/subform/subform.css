@@ -39,7 +39,7 @@
     overflow: hidden;
     text-align: left;
     color: #000000;
-    background: url(../assets/images/DropArrow.png) no-repeat right royalblue;
+    /*background: url(../assets/images/DropArrow.png) no-repeat right royalblue;*/
     border-radius: 5px;
 }
 
@@ -72,3 +72,41 @@
 /*input.ng-valid.ng-dirty{*/
     /*outline: none;*/
 /*}*/
+.preStyle {
+    background-color: ghostwhite;
+    border: 0px;
+    overflow: hidden;
+    word-break: break-all;
+    word-wrap: normal;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size:  14px;
+}
+
+.preStyleH1 {
+    background-color: ghostwhite;
+    border: 0px;
+    overflow: hidden;
+    word-break: break-all;
+    word-wrap: normal;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size:  300%;
+}
+
+.preStyleH4 {
+    background-color: ghostwhite;
+    border: 0px;
+    overflow: hidden;
+    word-break: break-all;
+    word-wrap: normal;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size:  150%;
+}

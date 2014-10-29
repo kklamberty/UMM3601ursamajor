@@ -49,9 +49,9 @@ Subformtext.find({}).remove(function() {
         header1: "URS submission descriptions:",
         criteria:"General Criteria:" +
             "\nAll submissions should be no more than 250 words and should contain the following elements:" +
-            "\nA concise explanation of the creative or scholarly implications of the project. What is the creative/intellectual context of your work?" +
-            "\nLanguage that is clear and comprehensible to those who are not experts in the field." +
-            "\nProfessional tone, including appropriate word choice and correct grammar, spelling, and punctuation.",
+            "\n1. A concise explanation of the creative or scholarly implications of the project. What is the creative/intellectual context of your work?" +
+            "\n2. Language that is clear and comprehensible to those who are not experts in the field." +
+            "\n3. Professional tone, including appropriate word choice and correct grammar, spelling, and punctuation.",
         header2: "Field-specific criteria:",
         notes2: "Mark the category below that best describes your project. Your 250-word submission must also include the appropriate field-specific elements listed below.",
         artistCriteria: "Artist statements" +
