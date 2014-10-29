@@ -82,6 +82,7 @@
     white-space: -o-pre-wrap;    /* Opera 7 */
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size:  14px;
+    padding: 0;
 }
 
 .preStyleH1 {
@@ -95,6 +96,7 @@
     white-space: -o-pre-wrap;    /* Opera 7 */
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size:  300%;
+    padding: 0;
 }
 
 .preStyleH4 {
@@ -108,6 +110,7 @@
     white-space: -o-pre-wrap;    /* Opera 7 */
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size:  150%;
+    padding: 0;
 }
 
 .preStyleSmall {
@@ -122,4 +125,5 @@
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size:  85%;
     color: grey;
+    padding: 0;
 }

@@ -79,9 +79,9 @@ Subformtext.find({}).remove(function() {
         submissionFormatChange: "Because of space constraints, we may not be able to have everyone do their preferred type of presentation." +
             "\nIf necessary, would you be willing to give your presentation in another format?",
         submissionChangeNotes: "No change in format will be made without first contacting the presenter first.",
-        submissionPresenter: "Primary Presenter",
-        submissionCopresenterOne: "Secondary Presenter #1",
-        submissionCopresenterTwo: "Secondary Presenter #2",
+        submissionPresenter: "Primary Presenter:",
+        submissionCopresenterOne: "Secondary Presenter #1:",
+        submissionCopresenterTwo: "Secondary Presenter #2:",
         submissionSponsors: "Sponsoring Organization or Fund",
         submissionSponsorsNotes: "Choose any applicable. If funded by faculty grant, specify under 'other' ",
         submissionAdviser: "Faculty Sponsor / Project Adviser Information",
@@ -102,6 +102,23 @@ User.find({}).remove(function() {
             email: 'test@test.com',
             password: 'test'
         }, {
+            provider: 'google',
+            role: 'admin',
+            email: 'kanga139@morris.umn.edu',
+            name: 'Matthew Kangas',
+            google: {
+                email: 'kanga139@morris.umn.edu',
+                family_name: 'Kangas',
+                given_name: 'Matthew',
+                hd: 'morris.umn.edu',
+                id: '112564589444054176387',
+                link: "https://plus.google.com/112639306116346340748",
+                locale: "en",
+                name: "Matthew Kangas",
+                picture: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+                verified_email: true
+            }
+        },{
             provider: 'local',
             role: 'admin',
             name: 'Admin',
