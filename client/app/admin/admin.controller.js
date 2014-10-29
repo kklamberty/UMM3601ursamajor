@@ -1,14 +1,13 @@
 'use strict';
 
 angular.module('umm3601ursamajorApp')
-  .controller('AdminCtrl', function ($scope, $http, Auth, User) {
-    if(!Auth.isAdmin) {
+  .controller('AdminCtrl', function ($scope, $http, Auth, User, $location) {
+    if(!Auth.isAdmin()) {
         $location.path('/');
     }
 
     // Use the User $resource to fetch all users
     $scope.users = User.query();
-
     $scope.isAdmin = Auth.isAdmin;
 
 //    $scope.submissions = [];
