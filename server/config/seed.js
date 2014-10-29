@@ -217,7 +217,7 @@ Submission.find({}).remove(function(){
         status: "Pending approval",
         timestamp: "Thur Oct 23 2014 1:48:54 GMT-0500 (CDT)"
     }, {
-        title: "A study of the properties of a paperclip in the digestive system of a sloth",
+        title: "A Study of the Properties of a Paperclip in the Digestive System of a Sloth",
         format: "Artist Statement",
         abstract: "Many physicists would agree that, had it not been for scatter/gather I/O, the study of link-level acknowledgements might never have occurred. " +
             "While such a claim might seem unexpected, it usually conflicts with the need to provide thin clients to hackers worldwide. " +
