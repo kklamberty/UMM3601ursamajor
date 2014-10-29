@@ -83,7 +83,7 @@ angular.module('umm3601ursamajorApp')
                     abstract: $scope.submissionData.abstract,
                     presentationType: $scope.submissionData.presentationType,
                     formatChange: $scope.submissionData.formatChange,
-                    presenterInfo: {first: $scope.submissionData.presenterInfo.first, last: $scope.submissionData.presenterInfo.last, email: $scope.submissionData.presenterInfo.last},
+                    presenterInfo: {first: $scope.submissionData.presenterInfo.first, last: $scope.submissionData.presenterInfo.last, email: $scope.submissionData.presenterInfo.email},
                     copresenterOneInfo: {first: $scope.submissionData.copresenterOne.first, last: $scope.submissionData.copresenterOne.last, email: $scope.submissionData.copresenterOne.email},
                     copresenterTwoInfo: {first: $scope.submissionData.copresenterTwo.first, last: $scope.submissionData.copresenterTwo.last, email: $scope.submissionData.copresenterTwo.email},
                     discipline: $scope.submissionData.discipline,
