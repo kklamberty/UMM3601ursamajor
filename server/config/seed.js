@@ -79,9 +79,9 @@ Subformtext.find({}).remove(function() {
         submissionFormatChange: "Because of space constraints, we may not be able to have everyone do their preferred type of presentation." +
             "\nIf necessary, would you be willing to give your presentation in another format?",
         submissionChangeNotes: "No change in format will be made without first contacting the presenter first.",
-        submissionPresenter: "Primary Presenter",
-        submissionCopresenterOne: "Secondary Presenter #1",
-        submissionCopresenterTwo: "Secondary Presenter #2",
+        submissionPresenter: "Primary Presenter:",
+        submissionCopresenterOne: "Secondary Presenter #1:",
+        submissionCopresenterTwo: "Secondary Presenter #2:",
         submissionSponsors: "Sponsoring Organization or Fund",
         submissionSponsorsNotes: "Choose any applicable. If funded by faculty grant, specify under 'other' ",
         submissionAdviser: "Faculty Sponsor / Project Adviser Information",

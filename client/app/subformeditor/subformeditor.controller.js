@@ -37,7 +37,7 @@ angular.module('umm3601ursamajorApp')
                         scienceCriteria: $scope.submissionText.scienceCriteria,
                         notes3: $scope.submissionText.notes3,
                         submissionTitle: $scope.submissionText.submissionTitle,
-                        submissionFormat: $scope.submissionText.Format,
+                        submissionFormat: $scope.submissionText.submissionFormat,
                         submissionAbstract: $scope.submissionText.submissionAbstract,
                         submissionAbstractNotes: $scope.submissionText.submissionAbstractNotes,
                         submissionPresentationType: $scope.submissionText.submissionPresentationType,
