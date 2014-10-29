@@ -1,12 +1,13 @@
 'use strict';
 
 angular.module('umm3601ursamajorApp')
-  .controller('SubformeditorCtrl', function ($scope, $http, Auth, $location) {
-
-        if(Auth.isLoggedIn() === false) {
+  .controller('SubformeditorCtrl', function ($scope, $http, Auth, $location, User) {
+        if(!Auth.isAdmin()) {
             $location.path('/');
         }
 
+        $scope.users = User.query();
+        $scope.isAdmin = Auth.isAdmin;
         $scope.submissionTextArray = [];
         $scope.submissionText = {};
 
