@@ -1,67 +1,37 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container FormBox">
-    <h1>2015 URS Submission Form</h1>
-    <p>All applications to the Undergraduate Research Symposium must be accompanied by a brief statement of support from the student's project adviser.
-        The faculty mentor should indicate:
-        <br>* Confidence that the student's work will be ready to present by the URS date;
-        <br>* Approval of the submitted abstract/statement/proposal for publication as-is in the program book.
-        <br>Project adviser recommendations should complete the form prior to the student submitting their abstract for review.
-    </p>
-    <p>
-        The UMM Undergraduate Research Symposium is a forum for UMM students to present their research, creative,
-        and scholarly work representing the Divisions of Education,
-        Humanities, Science and Mathematics, and Social Sciences at UMM.
-        Accordingly, submissions from students enrolled at other institutions will not be accepted.
-    </p>
-    <p>
-        Please remember to copy yourself, all co-presenters, and your faculty sponsor on your submission.
-        This is how you will access your abstract to make any changes requested in the future.
-    </p>
 
-    <p>Your username (x500) will be recorded when you submit this form. </p>
+    <pre class="preStyleH1">{{submissionText.title}}</pre>
 
-    <h4>URS submission descriptions:</h4>
+    <pre class="preStyle">{{submissionText.adviserDisclaimer}}</pre>
 
-    <p>General Criteria:</p>
-    <p>All submissions should be no more than 250 words and should contain the following elements:</p>
-    <ol>
-        <li>A concise explanation of the creative or scholarly implications of the project. What is the creative/intellectual context of your work? </li>
-        <li>Language that is clear and comprehensible to those who are not experts in the field. </li>
-        <li>Professional tone, including appropriate word choice and correct grammar, spelling, and punctuation.</li>
-    </ol>
-    <h4>Field-specific criteria:</h4>
-    <p>Mark the category below that best describes your project. Your 250-word submission must also include the appropriate field-specific elements listed below. </p>
+    <pre class="preStyle">{{submissionText.ursSummary}}</pre>
+
+    <pre class="preStyle">{{submissionText.notes1}}</pre>
+
+    <pre class="preStyle">{{submissionText.nameDisclaimer}}</pre>
+
+    <pre class="preStyleH4">{{submissionText.header1}}</pre>
+
+    <pre class="preStyle">{{submissionText.criteria}}</pre>
+
+    <pre class="preStyleH4">{{submissionText.header2}}</pre>
+
+    <pre class="preStyle">{{submissionText.notes2}}</pre>
+
     <details>
-        <summary>Artist statements</summary>
-        <ol>
-            <li>A concise explanation of the subject matter or concepts you are exploring (what you do).</li>
-            <li>A concise explanation of artistic goals (why you do what you do).</li>
-            <li>A concise explanation of processes, production methods, tools, media, innovations, etc. (how you do what you do).</li>
-            <li>A concise explanation of historical context, including how this work builds on, differs from, or responds to existing work or performances.</li>
-        </ol>
+        <pre class="preStyle">{{submissionText.artistCriteria}}</pre>
     </details>
 
     <details>
-        <summary>Humanities proposals</summary>
-        <ol>
-            <li>A concise explanation of the relevant intellectual and scholarly context of your work.</li>
-            <li>A concise explanation of how your project fits within this intellectual context. Does it extend, revise, or complicate, or provide a new way of looking at existing work in the field?</li>
-            <li>A clear statement of argument: a specific, debatable claim, not merely a summary of others’ research.</li>
-            <li>An explanation of the significance and broader implications of your work.</li>
-        </ol>
+        <pre class="preStyle">{{submissionText.humanitiesCriteria}}</pre>
     </details>
 
     <details>
-        <summary>Science & Social Science abstracts</summary>
-        <ol>
-            <li>A concise explanation of the scholarly context for the project with a statement of the project’s specific objective.</li>
-            <li>A clear explanation of the methods used to address the objective.</li>
-            <li>A clear explanation of the results or findings.</li>
-            <li>An explanation of the significance and broader implications of the project's results.</li>
-        </ol>
+        <pre class="preStyle">{{submissionText.scienceCriteria}}</pre>
     </details>
 
-    <p>If you are unsure which category best fits your project, please consult your faculty sponsor.</p>
+    <pre class="preStyle">{{submissionText.notes3}}</pre>
 
 
     <!-- Potentially add link to adviser form, or a way to email the adviser about the form. -->
@@ -69,18 +39,14 @@
     <hr>
 
     <form  ng-submit="submitSubmission()" id="form1">
-
-        <br>
         <label class="padded">
-            Presentation Title:
-            <br>
+            <pre class="preStyle">{{submissionText.submissionTitle}}</pre>
             <textarea ng-model="submissionData.title" cols="50" name="Presentation Title"  required></textarea>
         </label>
         <br>
 
         <label class="padded">
-            Format for submission
-            <br>
+            <pre class="preStyle">{{submissionText.submissionFormat}}</pre>
             <div>
                 <select  ng-model="submissionData.format" placeholder="select one" required ng-required>
                     <option value="" disabled selected>Select One </option>
