@@ -21,7 +21,7 @@ var SubmissionSchema = new Schema({
   presenterTeeSize: String,
   otherInfo: String,
   approval: Boolean,
-  status: String,
+  status: {strict: String, text: String},
   timestamp: String
 });
 
