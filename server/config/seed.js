@@ -102,6 +102,23 @@ User.find({}).remove(function() {
             email: 'test@test.com',
             password: 'test'
         }, {
+            provider: 'google',
+            role: 'admin',
+            email: 'kanga139@morris.umn.edu',
+            name: 'Matthew Kangas',
+            google: {
+                email: 'kanga139@morris.umn.edu',
+                family_name: 'Kangas',
+                given_name: 'Matthew',
+                hd: 'morris.umn.edu',
+                id: '112564589444054176387',
+                link: "https://plus.google.com/112639306116346340748",
+                locale: "en",
+                name: "Matthew Kangas",
+                picture: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+                verified_email: true
+            }
+        },{
             provider: 'local',
             role: 'admin',
             name: 'Admin',
