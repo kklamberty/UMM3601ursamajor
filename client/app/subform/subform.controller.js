@@ -102,7 +102,7 @@ angular.module('umm3601ursamajorApp')
                     presenterTeeSize: $scope.submissionData.presenterTeeSize,
                     otherInfo: $scope.submissionData.otherInfo,
                     approval: false,
-                    status: "pending approval",
+                    status: {strict: "Awaiting Adviser Approval", text: "Adviser has not been notified"},
                     timestamp: $scope.timestamp
                 }
             );
