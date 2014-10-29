@@ -179,7 +179,7 @@ Submission.find({}).remove(function(){
         specialRequirements: "A space to perform with three people.",
         presenterTeeSize: "M",
         otherInfo: "",
-        approval: false,
+        approval: true,
         status: {strict: "Awaiting Revisions", text: "Submitter is working on updating"},
         timestamp: "Tue Oct 21 2014 23:22:54 GMT-0500 (CDT)"
     }, {
@@ -210,7 +210,7 @@ Submission.find({}).remove(function(){
         specialRequirements: "A whale suit.",
         presenterTeeSize: "XXXXXXXXXXXXXXXXXXXXL",
         otherInfo: "yes.",
-        approval: true,
+        approval: false,
         status: {strict: "Awaiting Adviser Approval", text: "Adviser has been notified"}
     }, {
         title: "The Commemoration and Memorialization of the American Revolution",
@@ -260,7 +260,7 @@ Submission.find({}).remove(function(){
         specialRequirements: "A small space to make the presentation personal.",
         presenterTeeSize: "S",
         otherInfo: "yes.",
-        approval: false,
+        approval: true,
         status: {strict: "Approved", text: "Ready for launch"},
         timestamp: "Thur Oct 23 2014 1:48:54 GMT-0500 (CDT)"
     }, {
@@ -283,7 +283,7 @@ Submission.find({}).remove(function(){
         specialRequirements: "a sloth",
         presenterTeeSize: "M",
         otherInfo: "Maybe",
-        approval: false,
+        approval: true,
         status: {strict: "Pending Review", text: "Not all reviewers have had a chance to look at it yet"},
         timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)"
     });
