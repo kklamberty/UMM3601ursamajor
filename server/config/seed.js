@@ -155,7 +155,7 @@ Submission.find({}).remove(function(){
         copresenterOneInfo: {first: "Jennifer", last: "Kittleson", email: "kittle003@morris.umn.edu"},
         copresenterTwoInfo: {first: "Sherrill", last: "Sellers", email: "selle012@morris.umn.edu"},
         discipline: "Art History",
-        sponsors: [], //Might need to worry about if this is static for the DB later.
+        sponsors: [],
         adviserInfo: {first: "Julia", last: "Dabbs", email: "dabbsj@morris.umn.edu"},
         featuredPresentation: true,
         mediaServicesEquipment: "",

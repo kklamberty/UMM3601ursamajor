@@ -57,21 +57,15 @@
         <br>
 
         <label class="padded ">
-            Artist Statement / Proposal / Abstract
-            <br>
-            <span class="subtext">Paste your text in the box below. Figures and special characters will need to be submitted as a separate document.
-                Please e-mail as a Word or PDF document to sferrian@morris.umn.edu</span>
-            <br>
-            <span class="subtext">1000 character limit, approx. 250 words.</span>
-            <br>
+            <pre class="preStyle">{{submissionText.submissionAbstract}}</pre>
+            <pre class="preStyleSmall">{{submissionText.submissionAbstractNotes}}</pre>
             <textarea ng-model="submissionData.abstract" cols="50" name="abstract" maxlength="1000" required></textarea>
             <br> <span>{{charsRemaining()}} characters remaining.</span>
         </label>
         <br>
 
         <label class="padded">
-            Type of presentation
-            <br>
+            <pre class="preStyle">{{submissionText.submissionPresentationType}}</pre>
             <select ng-model="submissionData.presentationType" required>
                 <option value="" disabled selected>Select One</option>
                 <option ng-repeat="option in presentationTypes" value="{{option}}">{{option}}</option>
@@ -79,7 +73,7 @@
         </label>
         <br>
 
-        <!-- change to use booleans later...! -->
+
         <div class="padded">
             <b>
                 Because of space constraints, we may not be able to have everyone do their preferred type of presentation. <br>
