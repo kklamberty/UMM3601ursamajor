@@ -21,6 +21,12 @@ angular.module('umm3601ursamajorApp')
 
         $scope.isAdmin = Auth.isAdmin;
 
+        $scope.getCurrentUser = Auth.getCurrentUser;
+
+        $scope.canSeeSub = function(submission) {
+          return $scope.getCurrentUser().email === submission.presenterInfo.email;
+        }; //We should look back at this
+
         $http.get('/api/submissions').success(function(submissions) {
             $scope.submissions = submissions;
             socket.syncUpdates('submission', $scope.submissions);

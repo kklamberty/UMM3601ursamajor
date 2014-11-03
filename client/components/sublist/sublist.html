@@ -3,12 +3,14 @@
     <ul class="list-group" ng-hide="selection.selected">
         <li class="list-group-item"><h2>List of stored submissions</h2></li>
         <li class="list-group-item" ng-style="statusColorTab(sub.status.strict)" ng-repeat="sub in submissions">
+          <!--<div ng-show="canSeeSub(sub)">-->
             <h3>{{sub.title}}</h3>
             <strong>{{sub.presenterInfo.last}}, {{sub.presenterInfo.first}}</strong>
             <hr>
             <ul class="list-group">
                 <li class="list-group-item">
                     <p>Discipline: {{sub.discipline}}</p>
+                    <p>Submitter's Email: {{sub.presenterInfo.email}}</p>
                     <p>Format:  {{sub.format}}</p>
                     <p>Type: {{sub.presentationType}}</p>
                     <p>Advisor: {{sub.adviserInfo.last}}, {{sub.adviserInfo.first}}  email: {{sub.adviserInfo.email}}</p>
@@ -21,7 +23,9 @@
             </ul>
             <button class="btn btn-primary btn-sm" ng-click="selectItem($index)">Details</button>
             <br>
-        </li>
+          <!--</div>-->
+          </li>
+
     </ul>
 
     <ul class="list-group" ng-show="selection.selected">

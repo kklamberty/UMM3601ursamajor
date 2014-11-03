@@ -144,7 +144,7 @@ Submission.find({}).remove(function(){
             "Saltwater may rust something faster than freshwater, but salt contains sodium chloride in which it causes the nails in saltwater to rust at a slower rate.",
         presentationType: "Oral Presentation",
         formatChange: true,
-        presenterInfo: {first: "Ryan", last: "VonSchweidel", email: "vonsc009@morris.umn.edu"},
+        presenterInfo: {first: "Emma", last: "Sax", email: "saxxx027@morris.umn.edu"},
         copresenterOneInfo: {first: "", last: "", email: ""},
         copresenterTwoInfo: {first: "", last: "", email: ""},
         discipline: "Chemistry",
