@@ -108,7 +108,7 @@ angular.module('umm3601ursamajorApp')
             );
             $scope.resetData();
             $location.path('/submissionpage');
-        };
+        }
     };
 
     $scope.charsRemaining = function() {

@@ -225,7 +225,7 @@ Submission.find({}).remove(function(){
         title: "Margaret C. Anderson’s Little Review",
         format: "Social Science",
         abstract: "This research looks at the work of Margaret C. Anderson, the editor of the Little Review.  " +
-            "The review published first works by Sherwood Anderson, James Joyce, Wyndham Lewis, and Ezra Pound.  " +
+            "The review pubglished first works by Sherwood Anderson, James Joyce, Wyndham Lewis, and Ezra Pound.  " +
             "This research draws upon mostly primary sources including memoirs, published letters, and a complete collection of the Little Review. " +
             "Most prior research on Anderson focuses on her connection to the famous writers and personalities that she published and associated with.  " +
             "This focus undermines her role as the dominant creative force behind one of the most influential little magazines published in the 20th Century. " +
