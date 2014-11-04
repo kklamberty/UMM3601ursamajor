@@ -21,10 +21,22 @@ angular.module('umm3601ursamajorApp')
 
         $scope.isAdmin = Auth.isAdmin;
 
+        $scope.isReviewer = Auth.isReviewer;
+
         $scope.getCurrentUser = Auth.getCurrentUser;
 
         $scope.canSeeSub = function(submission) {
-          return $scope.getCurrentUser().email === submission.presenterInfo.email;
+            if($scope.getCurrentUser().role == "admin") {
+                return true;
+            }
+            if($scope.isReviewer) {
+                if (submission.reviewers.indexOf($scope.getCurrentUser().email) != -1) {
+                    return true;
+                }
+            }
+            return $scope.getCurrentUser().email === submission.presenterInfo.email ||
+                   $scope.getCurrentUser().email === submission.copresenterOneInfo.email ||
+                   $scope.getCurrentUser().email === submission.copresenterTwoInfo.email;
         };
 
         $http.get('/api/submissions').success(function(submissions) {

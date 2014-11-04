@@ -30,7 +30,7 @@ exports.setup = function (User, config) {
                 }
             });
         } else {
-            done(new Error("Need a Morris x500 to access page"));
+            done(new Error("Need a Morris x500 to access page\n"));
 //              res.redirectSource('/login');
 //            function notMorrisLoginError(message) {
 //                this.name = "notMorrisLoginError";

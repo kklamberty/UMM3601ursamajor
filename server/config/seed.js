@@ -126,6 +126,23 @@ User.find({}).remove(function() {
             password: 'admin'
         }, function() {
             console.log('finished populating users');
+        }, {
+            provider: 'google',
+            role: 'reviewer',
+            email: 'gusaa004@morris.umn.edu',
+            name: 'Dalton Gusaas',
+            google: {
+                email: 'gusaa004@morris.umn.edu',
+                family_name: 'Gusaas',
+                given_name: 'Dalton',
+                hd: 'morris.umn.edu',
+                id: '105501894365476440976',
+                link: "https://plus.google.com/105501894365476440976",
+                locale: "en",
+                name: "Dalton Gusaas",
+                picture: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+                verified_email: true
+            }
         }
     );
 });
@@ -157,7 +174,8 @@ Submission.find({}).remove(function(){
         otherInfo: "",
         approval: true,
         status:  {strict: "Pending Review", text: "Has not been reviewed yet"},
-        timestamp: "Sat Oct 18 2014 10:48:54 GMT-0500 (CDT)"
+        timestamp: "Sat Oct 18 2014 10:48:54 GMT-0500 (CDT)",
+        reviewers: ["gusaa004@morris.umn.edu", "reviewer1@morris.umn.edu", "reviewer8@morris.umn.edu"]
     }, {
         title: "Blind Construction: Mixed Media",
         format: "Artist Statement",
@@ -168,7 +186,7 @@ Submission.find({}).remove(function(){
             "Upon completion of the assignment we found the piece aesthetically pleasing because of the way it molds to the human body, but can be a piece all on its own.",
         presentationType: "Performance",
         formatChange: false,
-        presenterInfo: {first: "Diana", last: "Dewi", email: "dewi010@morris.umn.edu"},
+        presenterInfo: {first: "Diana", last: "Dewi", email: "saxxx027@morris.umn.edu"},
         copresenterOneInfo: {first: "Jennifer", last: "Kittleson", email: "kittle003@morris.umn.edu"},
         copresenterTwoInfo: {first: "Sherrill", last: "Sellers", email: "selle012@morris.umn.edu"},
         discipline: "Art History",
@@ -181,7 +199,8 @@ Submission.find({}).remove(function(){
         otherInfo: "",
         approval: true,
         status: {strict: "Awaiting Revisions", text: "Submitter is working on updating"},
-        timestamp: "Tue Oct 21 2014 23:22:54 GMT-0500 (CDT)"
+        timestamp: "Tue Oct 21 2014 23:22:54 GMT-0500 (CDT)",
+        reviewers: []
     }, {
         title: "On the Migration of Majestic Space Whales",
         format: "Artist Statement",
@@ -200,7 +219,7 @@ Submission.find({}).remove(function(){
         presentationType: "Performance",
         formatChange: false,
         presenterInfo: {first: "Timmy", last: "Flabberghast III", email: "flabb137@morris.umn.edu"},
-        copresenterOneInfo: {first: "Sally", last: "Birch", email: "birch001@morris.umn.edu"},
+        copresenterOneInfo: {first: "Sally", last: "Birch", email: "saxxx027@morris.umn.edu"},
         copresenterTwoInfo: {first: "", last: "", email: ""},
         discipline: "Biology",
         sponsors: [], //Might need to worry about if this is static for the DB later.
@@ -211,7 +230,9 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "XXXXXXXXXXXXXXXXXXXXL",
         otherInfo: "yes.",
         approval: false,
-        status: {strict: "Awaiting Adviser Approval", text: "Adviser has been notified"}
+        status: {strict: "Awaiting Adviser Approval", text: "Adviser has been notified"},
+        timestamp: "Mon Sept 2 2014 1:48:54 GMT-0500 (CDT)",
+        reviewers: ["gusaa004@morris.umn.edu"]
     }, {
         title: "The Commemoration and Memorialization of the American Revolution",
         format: "Artist Statement",
@@ -237,7 +258,8 @@ Submission.find({}).remove(function(){
         otherInfo: "yes.",
         approval: true,
         status: {strict: "Awaiting Revisions", text: "Needs to be updated an iota"},
-        timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)"
+        timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)",
+        reviewers: []
     }, {
         title: "Margaret C. Anderson’s Little Review",
         format: "Social Science",
@@ -262,7 +284,8 @@ Submission.find({}).remove(function(){
         otherInfo: "yes.",
         approval: true,
         status: {strict: "Approved", text: "Ready for launch"},
-        timestamp: "Thur Oct 23 2014 1:48:54 GMT-0500 (CDT)"
+        timestamp: "Thur Oct 23 2014 1:48:54 GMT-0500 (CDT)",
+        reviewers: []
     }, {
         title: "A Study of the Properties of a Paperclip in the Digestive System of a Sloth",
         format: "Artist Statement",
@@ -274,7 +297,7 @@ Submission.find({}).remove(function(){
         formatChange: false,
         presenterInfo: {first: "Sally", last: "Birch", email: "birch001@morris.umn.edu"},
         copresenterOneInfo: {first: "Timmy", last: "Flabberghast III", email: "flabb137@morris.umn.edu"},
-        copresenterTwoInfo: {first: "Dill", last: "Pickle", email: "pickl002@morris.umn.edu"},
+        copresenterTwoInfo: {first: "Dill", last: "Pickle", email: "saxxx027@morris.umn.edu"},
         discipline: "Biology",
         sponsors: [], //Might need to worry about if this is static for the DB later.
         adviserInfo: {first: "Margaret", last: "Kuchenreuther", email: "kuchenma@morris.umn.edu"},
@@ -285,6 +308,7 @@ Submission.find({}).remove(function(){
         otherInfo: "Maybe",
         approval: true,
         status: {strict: "Pending Review", text: "Not all reviewers have had a chance to look at it yet"},
-        timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)"
+        timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)",
+        reviewers: []
     });
 });

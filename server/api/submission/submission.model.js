@@ -22,7 +22,8 @@ var SubmissionSchema = new Schema({
   otherInfo: String,
   approval: Boolean,
   status: {strict: String, text: String},
-  timestamp: String
+  timestamp: String,
+  reviewers: []
 });
 
 module.exports = mongoose.model('Submission', SubmissionSchema);
