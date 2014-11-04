@@ -22,7 +22,6 @@ angular.module('umm3601ursamajorApp')
         $scope.isAdmin = Auth.isAdmin;
         $scope.getCurrentUser = Auth.getCurrentUser;
         $scope.email = Auth.getCurrentUser().email;
-//        $scope.presenterEmail = presenterInfo().email;
 
         $scope.isReviewer = Auth.isReviewer;
 
@@ -33,13 +32,13 @@ angular.module('umm3601ursamajorApp')
                 return true;
             }
             if($scope.isReviewer) {
-                if (submission.reviewers.indexOf($scope.getCurrentUser().email) != -1) {
+                if (submission.reviewers.indexOf($scope.email) != -1) {
                     return true;
                 }
             }
-            return $scope.getCurrentUser().email === submission.presenterInfo.email ||
-                   $scope.getCurrentUser().email === submission.copresenterOneInfo.email ||
-                   $scope.getCurrentUser().email === submission.copresenterTwoInfo.email;
+            return $scope.email === submission.presenterInfo.email ||
+                   $scope.email === submission.copresenterOneInfo.email ||
+                   $scope.email === submission.copresenterTwoInfo.email;
         };
 
         $http.get('/api/submissions').success(function(submissions) {
@@ -81,7 +80,8 @@ angular.module('umm3601ursamajorApp')
                 case "Awaiting Revisions":
                     return {'background-color': 'rgba(0, 100, 255, 1)'};
                     break;
-                case "Approved":
+                case "Approved"://        $scope.presenterEmail = presenterInfo().email;
+
                     return {'background-color': 'rgba(0, 255, 0, 1)'};
                     break;
                 case "Awaiting Adviser Approval":
@@ -102,7 +102,7 @@ angular.module('umm3601ursamajorApp')
 
         $scope.resetSelection = function(){
             $scope.selection.selected = false;
-            $scope.resetTemps();
+            $scope.resetTemps();$scope.selection.item.presenterInfo.email
         };
 
         $scope.deleteSubmissionConfirm = function(item){
@@ -171,6 +171,7 @@ angular.module('umm3601ursamajorApp')
             $scope.editStatus();
         };
 
+        
 
         $scope.approvalWordChange = function(approval){
              if(approval){
