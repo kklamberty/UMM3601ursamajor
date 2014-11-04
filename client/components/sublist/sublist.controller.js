@@ -25,7 +25,7 @@ angular.module('umm3601ursamajorApp')
 
         $scope.canSeeSub = function(submission) {
           return $scope.getCurrentUser().email === submission.presenterInfo.email;
-        }; //We should look back at this
+        };
 
         $http.get('/api/submissions').success(function(submissions) {
             $scope.submissions = submissions;

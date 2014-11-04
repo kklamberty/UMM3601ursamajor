@@ -30,7 +30,14 @@ exports.setup = function (User, config) {
                 }
             });
         } else {
-            done(new Error("Need a Morris x500 to access page"))
+            done(new Error("Need a Morris x500 to access page"));
+//              res.redirectSource('/login');
+//            function notMorrisLoginError(message) {
+//                this.name = "notMorrisLoginError";
+//                this.message(message || "Use a Morris x500 to access page")
+//            }
+//            notMorrisLoginError.prototype = Error.prototype;
+//            window.alert("Need a Morris x500 to access page!");
         }
     }
   ));
