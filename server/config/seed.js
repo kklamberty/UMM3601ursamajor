@@ -79,9 +79,9 @@ Subformtext.find({}).remove(function() {
         submissionFormatChange: "Because of space constraints, we may not be able to have everyone do their preferred type of presentation." +
             "\nIf necessary, would you be willing to give your presentation in another format?",
         submissionChangeNotes: "No change in format will be made without first contacting the presenter first.",
-        submissionPresenter: "Primary Presenter",
-        submissionCopresenterOne: "Secondary Presenter #1",
-        submissionCopresenterTwo: "Secondary Presenter #2",
+        submissionPresenter: "Primary Presenter:",
+        submissionCopresenterOne: "Secondary Presenter #1:",
+        submissionCopresenterTwo: "Secondary Presenter #2:",
         submissionSponsors: "Sponsoring Organization or Fund",
         submissionSponsorsNotes: "Choose any applicable. If funded by faculty grant, specify under 'other' ",
         submissionAdviser: "Faculty Sponsor / Project Adviser Information",
@@ -102,6 +102,23 @@ User.find({}).remove(function() {
             email: 'test@test.com',
             password: 'test'
         }, {
+            provider: 'google',
+            role: 'admin',
+            email: 'kanga139@morris.umn.edu',
+            name: 'Matthew Kangas',
+            google: {
+                email: 'kanga139@morris.umn.edu',
+                family_name: 'Kangas',
+                given_name: 'Matthew',
+                hd: 'morris.umn.edu',
+                id: '112564589444054176387',
+                link: "https://plus.google.com/112639306116346340748",
+                locale: "en",
+                name: "Matthew Kangas",
+                picture: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+                verified_email: true
+            }
+        },{
             provider: 'local',
             role: 'admin',
             name: 'Admin',
@@ -155,14 +172,14 @@ Submission.find({}).remove(function(){
         copresenterOneInfo: {first: "Jennifer", last: "Kittleson", email: "kittle003@morris.umn.edu"},
         copresenterTwoInfo: {first: "Sherrill", last: "Sellers", email: "selle012@morris.umn.edu"},
         discipline: "Art History",
-        sponsors: [], //Might need to worry about if this is static for the DB later.
+        sponsors: [],
         adviserInfo: {first: "Julia", last: "Dabbs", email: "dabbsj@morris.umn.edu"},
         featuredPresentation: true,
         mediaServicesEquipment: "",
         specialRequirements: "A space to perform with three people.",
         presenterTeeSize: "M",
         otherInfo: "",
-        approval: false,
+        approval: true,
         status: {strict: "Awaiting Revisions", text: "Submitter is working on updating"},
         timestamp: "Tue Oct 21 2014 23:22:54 GMT-0500 (CDT)"
     }, {
@@ -193,7 +210,7 @@ Submission.find({}).remove(function(){
         specialRequirements: "A whale suit.",
         presenterTeeSize: "XXXXXXXXXXXXXXXXXXXXL",
         otherInfo: "yes.",
-        approval: true,
+        approval: false,
         status: {strict: "Awaiting Adviser Approval", text: "Adviser has been notified"}
     }, {
         title: "The Commemoration and Memorialization of the American Revolution",
@@ -212,7 +229,7 @@ Submission.find({}).remove(function(){
         copresenterTwoInfo: {first: "", last: "", email: ""},
         discipline: "History",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {first: "Deane", last: "Jennifer", email: "deanej@morris.umn.edu"},
+        adviserInfo: {first: "Jennifer", last: "Deane", email: "deanej@morris.umn.edu"},
         featuredPresentation: true,
         mediaServicesEquipment: "A way to show images, either a projector or a warning so I can print them.",
         specialRequirements: "",
@@ -237,13 +254,13 @@ Submission.find({}).remove(function(){
         copresenterTwoInfo: {first: "", last: "", email: ""},
         discipline: "English",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {first: "Deane", last: "Brad", email: "deanb@morris.umn.edu"},
+        adviserInfo: {first: "Brad", last: "Deane", email: "deanb@morris.umn.edu"},
         featuredPresentation: true,
         mediaServicesEquipment: "",
         specialRequirements: "A small space to make the presentation personal.",
         presenterTeeSize: "S",
         otherInfo: "yes.",
-        approval: false,
+        approval: true,
         status: {strict: "Approved", text: "Ready for launch"},
         timestamp: "Thur Oct 23 2014 1:48:54 GMT-0500 (CDT)"
     }, {
@@ -266,7 +283,7 @@ Submission.find({}).remove(function(){
         specialRequirements: "a sloth",
         presenterTeeSize: "M",
         otherInfo: "Maybe",
-        approval: false,
+        approval: true,
         status: {strict: "Pending Review", text: "Not all reviewers have had a chance to look at it yet"},
         timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)"
     });

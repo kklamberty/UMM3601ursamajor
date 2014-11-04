@@ -16,8 +16,10 @@ angular.module('umm3601ursamajorApp')
         }
     })
 
-    .controller('SublistCtrl', function ($scope, $http, socket, $modal, Modal) {
+    .controller('SublistCtrl', function ($scope, $http, socket, $modal, Modal, Auth) {
         $scope.submissions = [];
+
+        $scope.isAdmin = Auth.isAdmin;
 
         $http.get('/api/submissions').success(function(submissions) {
             $scope.submissions = submissions;
@@ -65,10 +67,12 @@ angular.module('umm3601ursamajorApp')
             console.log("setting index " + itemIndex + " as active item");
             $scope.selection.selected = true;
             $scope.selection.item = $scope.submissions[itemIndex];
+            $scope.resetTemps();
         };
 
         $scope.resetSelection = function(){
             $scope.selection.selected = false;
+            $scope.resetTemps();
         };
 
         $scope.deleteSubmissionConfirm = function(item){
@@ -84,19 +88,49 @@ angular.module('umm3601ursamajorApp')
         // Controlling editing of status in details view
         $scope.statusEdit = {
             editing: false,
-            options: ["Awaiting Adviser Approval", "Approved", "Awaiting Revisions", "Pending Review"]
+            options: ["Awaiting Adviser Approval", "Approved", "Awaiting Revisions", "Pending Review"],
+            temp: {strict: "", text: ""}
         };
+
+        $scope.resetTemps = function() {
+            if($scope.selection.item != null){
+                $scope.statusEdit.temp.strict = $scope.selection.item.status.strict;
+                $scope.statusEdit.temp.text = $scope.selection.item.status.text;
+            }
+        };
+
+        $scope.resetTemps();
 
         $scope.editStatus = function(){
             $scope.statusEdit.editing = !$scope.statusEdit.editing;
+            $scope.resetTemps();
         };
 
         $scope.submitStatusEdit = function(){
             $http.patch('api/submissions/' + $scope.selection.item._id,
-                {status: {strict: $scope.selection.item.status.strict, text: $scope.selection.item.status.text}}
+                {status: {strict: $scope.statusEdit.temp.strict, text: $scope.statusEdit.temp.text}}
             ).success(function(){
-                    console.log("Success!!!");
+                    console.log("Successfully updated status of submission");
+            });
+
+            if($scope.selection.item.approval && $scope.statusEdit.temp.strict === "Awaiting Adviser Approval"){
+                $http.patch('api/submissions/' + $scope.selection.item._id,
+                    {approval: false}
+                ).success(function(){
+                    $scope.selection.item.approval = false;
+                    console.log("Successfully updated approval of submission (un-approved)");
                 });
+            } else if(!$scope.selection.item.approval && $scope.statusEdit.temp.strict !== "Awaiting Adviser Approval"){
+                $http.patch('api/submissions/' + $scope.selection.item._id,
+                    {approval: true}
+                ).success(function(){
+                    $scope.selection.item.approval = true;
+                    console.log("Successfully updated approval of submission (approved)");
+                });
+            }
+            $scope.selection.item.status.strict = $scope.statusEdit.temp.strict;
+            $scope.selection.item.status.text = $scope.statusEdit.temp.text;
+            $scope.resetTemps();
             $scope.editStatus();
         };
 

@@ -57,21 +57,15 @@
         <br>
 
         <label class="padded ">
-            Artist Statement / Proposal / Abstract
-            <br>
-            <span class="subtext">Paste your text in the box below. Figures and special characters will need to be submitted as a separate document.
-                Please e-mail as a Word or PDF document to sferrian@morris.umn.edu</span>
-            <br>
-            <span class="subtext">1000 character limit, approx. 250 words.</span>
-            <br>
+            <pre class="preStyle">{{submissionText.submissionAbstract}}</pre>
+            <pre class="preStyleSmall">{{submissionText.submissionAbstractNotes}}</pre>
             <textarea ng-model="submissionData.abstract" cols="50" name="abstract" maxlength="1000" required></textarea>
             <br> <span>{{charsRemaining()}} characters remaining.</span>
         </label>
         <br>
 
         <label class="padded">
-            Type of presentation
-            <br>
+            <pre class="preStyle">{{submissionText.submissionPresentationType}}</pre>
             <select ng-model="submissionData.presentationType" required>
                 <option value="" disabled selected>Select One</option>
                 <option ng-repeat="option in presentationTypes" value="{{option}}">{{option}}</option>
@@ -79,15 +73,10 @@
         </label>
         <br>
 
-        <!-- change to use booleans later...! -->
+
         <div class="padded">
-            <b>
-                Because of space constraints, we may not be able to have everyone do their preferred type of presentation. <br>
-                If necessary, would you be willing to give your presentation in another format?
-            </b>
-            <br>
-            <span class="subtext">No change in format will be made without first contacting the presenter first.</span>
-            <br>
+            <b><pre class="preStyle">{{submissionText.submissionFormatChange}}</pre></b>
+            <pre class="preStyleSmall">{{submissionText.submissionChangeNotes}}</pre>
             <label>
                 <input ng-model="submissionData.formatChange" type="radio" name="formatChange" ng-value="true" required> Yes
             </label>
@@ -99,24 +88,21 @@
         </div>
 
         <div class="padded">
-            <b>Primary Presenter:</b>
-            <br>
-                <input type="text" name="presenter_first" placeholder="first name" ng-model="submissionData.presenterInfo.first" required>
-                <input type="text" name="presenter_last" placeholder="last name" ng-model="submissionData.presenterInfo.last" required><br>
-                <input type="text" name="presenter_email" placeholder="full email address" ng-model="submissionData.presenterInfo.email" required><br>
+            <b><pre class="preStyle">{{submissionText.submissionPresenter}}</pre></b>
+            <input type="text" name="presenter_first" placeholder="first name" ng-model="submissionData.presenterInfo.first" required>
+            <input type="text" name="presenter_last" placeholder="last name" ng-model="submissionData.presenterInfo.last" required><br>
+            <input type="text" name="presenter_email" placeholder="full email address" ng-model="submissionData.presenterInfo.email" required><br>
         </div>
 
         <div class="padded">
-            <b>Secondary Presenter #1:</b>
-            <br>
-                <input type="text" name="copresenterOne_first" placeholder="first name" ng-model="submissionData.copresenterOne.first">
-                <input type="text" name="copresenterOne_last" placeholder="last name" ng-model="submissionData.copresenterOne.last"><br>
-                <input type="text" name="copersenterOne_email" placeholder="full email address" ng-model="submissionData.copresenterOne.email"><br>
+            <b><pre class="preStyle">{{submissionText.submissionCopresenterOne}}</pre></b>
+            <input type="text" name="copresenterOne_first" placeholder="first name" ng-model="submissionData.copresenterOne.first">
+            <input type="text" name="copresenterOne_last" placeholder="last name" ng-model="submissionData.copresenterOne.last"><br>
+            <input type="text" name="copersenterOne_email" placeholder="full email address" ng-model="submissionData.copresenterOne.email"><br>
         </div>
 
         <div class="padded">
-            <b>Secondary Presenter #2:</b>
-            <br>
+            <b><pre class="preStyle">{{submissionText.submissionCopresenterTwo}}</pre></b>
             <input type="text" name="copresenterTwo_first" placeholder="first name" ng-model="submissionData.copresenterTwo.first">
             <input type="text" name="copresenterTwo_last" placeholder="last name" ng-model="submissionData.copresenterTwo.last"><br>
             <input type="text" name="copersenterTwo_email" placeholder="full email address" ng-model="submissionData.copresenterTwo.email"><br>
@@ -128,9 +114,8 @@
         <br>
 
         <div class="padded">
-            <b>Sponsoring Organization or Fund</b><br>
-            <span class="subtext">Choose any applicable. If funded by faculty grant, specify under "other"</span>
-            <br>
+            <b><pre class="preStyle">{{submissionText.submissionSponsors}}</pre></b>
+            <pre class="preStyleSmall">{{submissionText.submissionSponsorsNotes}}</pre>
             <label ng-repeat="source in fundingSources" class="stacked">
                 <input ng-model="submissionData.sponsors[$index]" type="checkbox" value="{{source}}" ng-value="{{source}}" ng-true-value="'{{source}}'" ng-false-value="''">{{" " + source}}
             </label>
@@ -138,21 +123,15 @@
         </div>
 
         <div class="padded">
-            <b>Faculty Sponsor / Project Adviser Information</b><br>
-            <span class="subtext">Every submitted project is required to have a faculty sponsor or project adviser identified.</span><br>
+            <b><pre class="preStyle">{{submissionText.submissionAdviser}}</pre></b>
+            <pre class="preStyleSmall">{{submissionText.submissionAdviserNotes}}</pre>
             <input type="text" required placeholder="First" ng-model="submissionData.adviserInfo.first">
             <input type="text" required placeholder="Last" ng-model="submissionData.adviserInfo.last"><br>
             <input type="text" required placeholder="Full email address" ng-model="submissionData.adviserInfo.email">
         </div>
 
         <div class="padded">
-            <b>
-                The URS features one presentation in the opening ceremony. This presentation should have broader appeal with interdisciplinary components,
-                and may easily accommodate a performance component.
-                The featured presenter will have more time, as well as a bigger room than regular presentations.
-                Would you be interested in having your presentation featured during the opening ceremony?
-            </b>
-            <br>
+            <b><pre class="preStyle">{{submissionText.submissionFeatured}}</pre></b>
             <label>
                 <input ng-model="submissionData.featuredPresentation" type="radio" name="featuredPresentation" value="yes" ng-value="true" required> Yes
             </label>
@@ -164,28 +143,19 @@
         <br>
 
         <div class="padded">
-            <b>
-                Each presentation room will have available an overhead projector and a Macintosh or PC computer with video projection capabilities.
-                Do you anticipate needing any additional Media Services equipment? Please explain in detail:
-            </b><br>
+            <b><pre class="preStyle">{{submissionText.submissionMediaServices}}</pre></b>
             <textarea cols="50" name="mediaServices" ng-model="submissionData.mediaServicesEquipment" placeholder="Explain in detail." maxlength="1000"></textarea>
         </div>
         <br>
 
         <div class="padded">
-            <b>
-                Do you anticipate any special room location, non-media services equipment (i.e., recital hall, piano, etc.),
-                or scheduling requirements (i.e., several groups holding a forum that would require more than the allotted 15 minutes)?
-                Please explain in detail:
-            </b><br>
+            <b><pre class="preStyle">{{submissionText.submissionSpecialRequirements}}</pre></b>
             <textarea name="specialRequirements"  cols="50" ng-model="submissionData.specialRequirements" placeholder="Explain in detail." maxlength="1000"></textarea>
         </div>
 
         <label class="padded">
-            T-Shirt for PRIMARY PRESENTER
-            <br>
-            <span class="subtext">All sizes are US adult sizes</span>
-            <br>
+            <pre class="preStyle">{{submissionText.submissionTee}}</pre>
+            <pre class="preStyleSmall">{{submissionText.submissionTeeNotes}}</pre>
             <select ng-model="submissionData.presenterTeeSize" required>
                 <option value="" disabled selected>Select One</option>
                 <option ng-repeat="size in teeSizes" value="{{size}}">{{size}}</option>
@@ -194,8 +164,7 @@
         <br>
 
         <label class="padded">
-            Is there anything else you would like us to know about your presentation?
-            <br>
+            <pre class="preStyle">{{submissionText.submissionOther}}</pre>
             <textarea cols="50" name="otherInfo" ng-model="submissionData.otherInfo" placeholder="Other info?" maxlength="1000"></textarea>
         </label>
         <br>

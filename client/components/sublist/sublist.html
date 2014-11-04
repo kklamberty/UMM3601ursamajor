@@ -11,11 +11,12 @@
                     <p>Discipline: {{sub.discipline}}</p>
                     <p>Format:  {{sub.format}}</p>
                     <p>Type: {{sub.presentationType}}</p>
-                    <p>Advisor: {{sub.adviserInfo.last}},{{sub.adviserInfo.first}}  email: {{sub.adviserInfo.email}}</p>
+                    <p>Advisor: {{sub.adviserInfo.last}}, {{sub.adviserInfo.first}}  email: {{sub.adviserInfo.email}}</p>
                     <p>Approved? {{approvalWordChange(sub.approval)}}</p>
                     <p>{{sub.sponsors | isntempty:"Sponsors:"}}</p>
                     <p>{{sub.mediaServicesEquipment | isntempty:"Media Services Equipment:"}}</p>
                     <p>Abstract: <br> {{sub.abstract | limitTo: 300}}</p>
+                    <p>Date of submission: {{sub.timestamp}}</p>
                 </li>
             </ul>
             <button class="btn btn-primary btn-sm" ng-click="selectItem($index)">Details</button>
@@ -27,12 +28,12 @@
         <li class="list-group-item">
             <button class="btn btn-sm btn-block" ng-click="resetSelection()">Back to submission list</button>
             <br>
-            <button class="btn btn-sm btn-danger" ng-click="deleteSubmissionConfirm(selection.item)"><span class="glyphicon glyphicon-trash"></span></button>
+            <button ng-show="isAdmin()" class="btn btn-sm btn-danger" ng-click="deleteSubmissionConfirm(selection.item)"><span class="glyphicon glyphicon-trash"></span></button>
         </li>
         <li class="list-group-item" ng-style="statusColorTab(selection.item.status.strict)">
 
             <div class="block alert" ng-style="statusColorBody(selection.item.status.strict)">
-                <button class="btn btn-sm btn-warning close" ng-click="editStatus(selection.item)"><span class="glyphicon glyphicon-file"></span></button>
+                <button ng-show="isAdmin()" class="btn btn-sm btn-warning close" ng-click="editStatus(selection.item)"><span class="glyphicon glyphicon-file"></span></button>
                 <b>Status:</b> {{selection.item.status.strict}} <br>
                 <b>Comment:</b> {{selection.item.status.text}}</p>
                 <div ng-show="statusEdit.editing">
@@ -41,7 +42,7 @@
                         <div class="col-md-6">
                             <label>
                                 Select Submission Status <br>
-                                <select ng-model="selection.item.status.strict">
+                                <select ng-model="statusEdit.temp.strict">
                                     <option ng-repeat="status in statusEdit.options" ng-value="{{'status'}}">{{status}}</option>
                                 </select>
                             </label>
@@ -49,7 +50,7 @@
                         <div class="col-md-6">
                             <label>
                                 Elaborate <br>
-                                <textarea cols="30" ng-model="selection.item.status.text"></textarea>
+                                <textarea cols="30" ng-model="statusEdit.temp.text"></textarea>
                             </label>
                         </div>
                     </div>
@@ -66,7 +67,7 @@
                     <p>Discipline: {{selection.item.discipline}}</p>
                     <p>Format:  {{selection.item.format}}</p>
                     <p>Type: {{selection.item.presentationType}}</p>
-                    <p>Advisor: {{selection.item.adviserInfo.last}},{{selection.item.adviserInfo.first}} email: {{selection.item.adviserInfo.email}}</p>
+                    <p>Advisor: {{selection.item.adviserInfo.last}}, {{selection.item.adviserInfo.first}} email: {{selection.item.adviserInfo.email}}</p>
                     <p>{{selection.item.sponsors | isntempty:"Sponsors:"}}</p>
                     <p>Approved? {{approvalWordChange(selection.item.approval)}}</p>
                     <p>{{selection.item.mediaServicesEquipment | isntempty:"Media Services Equipment:"}}</p>

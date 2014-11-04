@@ -7,7 +7,7 @@ angular.module('umm3601ursamajorApp')
     if(Auth.isLoggedIn() === false) {
         $location.path('/');
     }
-
+    $scope.isAdmin = Auth.isAdmin;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.timestamp = Date();
 
@@ -102,7 +102,7 @@ angular.module('umm3601ursamajorApp')
                     presenterTeeSize: $scope.submissionData.presenterTeeSize,
                     otherInfo: $scope.submissionData.otherInfo,
                     approval: false,
-                    status: "pending approval",
+                    status: {strict: "Awaiting Adviser Approval", text: "Adviser has not been notified"},
                     timestamp: $scope.timestamp
                 }
             );
