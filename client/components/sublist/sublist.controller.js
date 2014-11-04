@@ -20,12 +20,24 @@ angular.module('umm3601ursamajorApp')
         $scope.submissions = [];
 
         $scope.isAdmin = Auth.isAdmin;
+        $scope.getCurrentUser = Auth.getCurrentUser;
+        $scope.email = Auth.getCurrentUser().email;
+//        $scope.presenterEmail = presenterInfo().email;
 
         $http.get('/api/submissions').success(function(submissions) {
             $scope.submissions = submissions;
             socket.syncUpdates('submission', $scope.submissions);
         });
 
+
+        var sendGmail = function(opts){
+            var str = 'http://mail.google.com/mail/?view=cm&fs=1'+
+                '&to=' + opts.to +
+                '&su=' + opts.subject +
+                '&body=' + opts.message +
+                '&ui=1';
+            location.href = str;
+        };
         $scope.statusColorTab = function(status){
             switch(status){
                 case "Pending Review":
@@ -113,6 +125,7 @@ angular.module('umm3601ursamajorApp')
                     console.log("Successfully updated status of submission");
             });
 
+
             if($scope.selection.item.approval && $scope.statusEdit.temp.strict === "Awaiting Adviser Approval"){
                 $http.patch('api/submissions/' + $scope.selection.item._id,
                     {approval: false}
@@ -128,6 +141,12 @@ angular.module('umm3601ursamajorApp')
                     console.log("Successfully updated approval of submission (approved)");
                 });
             }
+            sendGmail({
+                to: $scope.selection.item.presenterInfo.email,
+                subject: 'URS Submission Test',
+                message: ''
+            });
+
             $scope.selection.item.status.strict = $scope.statusEdit.temp.strict;
             $scope.selection.item.status.text = $scope.statusEdit.temp.text;
             $scope.resetTemps();
