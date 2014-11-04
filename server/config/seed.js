@@ -124,6 +124,12 @@ User.find({}).remove(function() {
             name: 'Admin',
             email: 'admin@admin.com',
             password: 'admin'
+        }, {
+            provider: 'local',
+            role: 'reviewer',
+            name: 'Reviewer',
+            email: 'reviewer@reviewer.com',
+            password: 'reviewer'
         }, function() {
             console.log('finished populating users');
         }, {
@@ -175,7 +181,7 @@ Submission.find({}).remove(function(){
         approval: true,
         status:  {strict: "Pending Review", text: "Has not been reviewed yet"},
         timestamp: "Sat Oct 18 2014 10:48:54 GMT-0500 (CDT)",
-        reviewers: ["gusaa004@morris.umn.edu", "reviewer1@morris.umn.edu", "reviewer8@morris.umn.edu"]
+        reviewers: ["gusaa004@morris.umn.edu", "reviewer@reviewer.com"]
     }, {
         title: "Blind Construction: Mixed Media",
         format: "Artist Statement",
@@ -200,7 +206,7 @@ Submission.find({}).remove(function(){
         approval: true,
         status: {strict: "Awaiting Revisions", text: "Submitter is working on updating"},
         timestamp: "Tue Oct 21 2014 23:22:54 GMT-0500 (CDT)",
-        reviewers: []
+        reviewers: ["reviewer@reviewer.com"]
     }, {
         title: "On the Migration of Majestic Space Whales",
         format: "Artist Statement",
@@ -232,7 +238,7 @@ Submission.find({}).remove(function(){
         approval: false,
         status: {strict: "Awaiting Adviser Approval", text: "Adviser has been notified"},
         timestamp: "Mon Sept 2 2014 1:48:54 GMT-0500 (CDT)",
-        reviewers: ["gusaa004@morris.umn.edu"]
+        reviewers: ["gusaa004@morris.umn.edu", "reviewer@reviewer.com"]
     }, {
         title: "The Commemoration and Memorialization of the American Revolution",
         format: "Artist Statement",
@@ -259,12 +265,12 @@ Submission.find({}).remove(function(){
         approval: true,
         status: {strict: "Awaiting Revisions", text: "Needs to be updated an iota"},
         timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)",
-        reviewers: []
+        reviewers: ["reviewer@reviewer.com"]
     }, {
         title: "Margaret C. Anderson’s Little Review",
         format: "Social Science",
         abstract: "This research looks at the work of Margaret C. Anderson, the editor of the Little Review.  " +
-            "The review pubglished first works by Sherwood Anderson, James Joyce, Wyndham Lewis, and Ezra Pound.  " +
+            "The review published first works by Sherwood Anderson, James Joyce, Wyndham Lewis, and Ezra Pound.  " +
             "This research draws upon mostly primary sources including memoirs, published letters, and a complete collection of the Little Review. " +
             "Most prior research on Anderson focuses on her connection to the famous writers and personalities that she published and associated with.  " +
             "This focus undermines her role as the dominant creative force behind one of the most influential little magazines published in the 20th Century. " +
@@ -285,7 +291,7 @@ Submission.find({}).remove(function(){
         approval: true,
         status: {strict: "Approved", text: "Ready for launch"},
         timestamp: "Thur Oct 23 2014 1:48:54 GMT-0500 (CDT)",
-        reviewers: []
+        reviewers: ["gusaa004@morris.umn.edu"]
     }, {
         title: "A Study of the Properties of a Paperclip in the Digestive System of a Sloth",
         format: "Artist Statement",
@@ -309,6 +315,6 @@ Submission.find({}).remove(function(){
         approval: true,
         status: {strict: "Pending Review", text: "Not all reviewers have had a chance to look at it yet"},
         timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)",
-        reviewers: []
+        reviewers: ["reviewer@reviewer.com"]
     });
 });

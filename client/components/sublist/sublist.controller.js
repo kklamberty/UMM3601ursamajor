@@ -19,26 +19,27 @@ angular.module('umm3601ursamajorApp')
     .controller('SublistCtrl', function ($scope, $http, socket, $modal, Modal, Auth) {
         $scope.submissions = [];
 
-        $scope.isAdmin = Auth.isAdmin;
         $scope.getCurrentUser = Auth.getCurrentUser;
+
         $scope.email = Auth.getCurrentUser().email;
+
+        $scope.isAdmin = Auth.isAdmin;
 
         $scope.isReviewer = Auth.isReviewer;
 
-        $scope.getCurrentUser = Auth.getCurrentUser;
+        $scope.isPresenter = function(submission) {
+          return $scope.email === submission.presenterInfo.email;
+        };
+
+        $scope.isCoPresenter = function(submission) {
+          return $scope.email === submission.copresenterOneInfo.email ||
+                 $scope.email === submission.copresenterTwoInfo.email;
+        };
 
         $scope.canSeeSub = function(submission) {
-            if($scope.getCurrentUser().role == "admin") {
-                return true;
-            }
-            if($scope.isReviewer) {
-                if (submission.reviewers.indexOf($scope.email) != -1) {
-                    return true;
-                }
-            }
-            return $scope.email === submission.presenterInfo.email ||
-                   $scope.email === submission.copresenterOneInfo.email ||
-                   $scope.email === submission.copresenterTwoInfo.email;
+         return $scope.isAdmin() ||
+                ($scope.isReviewer() && (submission.reviewers.indexOf($scope.email) != -1)) ||
+                $scope.isPresenter(submission) || $scope.isCoPresenter(submission);
         };
 
         $http.get('/api/submissions').success(function(submissions) {
@@ -57,35 +58,34 @@ angular.module('umm3601ursamajorApp')
         };
         $scope.statusColorTab = function(status){
             switch(status){
-                case "Pending Review":
+                case "Awaiting Adviser Approval (red)":
+                    return {'border-left': '4px solid rgba(255, 0, 0, 1)'};
+                    break;
+                case "Adviser Approved, Pending Review (yellow)":
                     return {'border-left': '4px solid rgba(255, 220, 10, 1)'};
                     break;
-                case "Awaiting Revisions":
+                case "Adviser Approved, Fully Reviewed, Ready for Revisions (blue)":
                     return {'border-left': '4px solid rgba(0, 100, 255, 1)'};
                     break;
-                case "Approved":
+                case "URS Abstract is Accepted and Complete (green)":
                     return {'border-left': '4px solid rgba(0, 255, 0, 1)'};
-                    break;
-                case "Awaiting Adviser Approval":
-                    return {'border-left': '4px solid rgba(255, 0, 0, 1)'};
                     break;
             }
         };
 
         $scope.statusColorBody = function(status){
             switch(status){
-                case "Pending Review":
+                case "Awaiting Adviser Approval (red)":
+                    return {'background-color': 'rgba(255, 0, 0, 1)'};
+                    break;
+                case "Adviser Approved, Pending Review (yellow)":
                     return {'background-color': 'rgba(255, 220, 10, 1)'};
                     break;
-                case "Awaiting Revisions":
+                case "Adviser Approved, Fully Reviewed, Ready for Revisions (blue)":
                     return {'background-color': 'rgba(0, 100, 255, 1)'};
                     break;
-                case "Approved"://        $scope.presenterEmail = presenterInfo().email;
-
+                case "URS Abstract is Accepted and Complete (green)":
                     return {'background-color': 'rgba(0, 255, 0, 1)'};
-                    break;
-                case "Awaiting Adviser Approval":
-                    return {'background-color': 'rgba(255, 0, 0, 1)'};
                     break;
             }
         };
@@ -118,7 +118,10 @@ angular.module('umm3601ursamajorApp')
         // Controlling editing of status in details view
         $scope.statusEdit = {
             editing: false,
-            options: ["Awaiting Adviser Approval", "Approved", "Awaiting Revisions", "Pending Review"],
+            options: ["Awaiting Adviser Approval (red)",
+                      "Adviser Approved, Pending Review (yellow)",
+                      "Adviser Approved, Fully Reviewed, Ready for Revisions (blue)",
+                      "URS Abstract is Accepted and Complete (green)"],
             temp: {strict: "", text: ""}
         };
 
