@@ -136,6 +136,15 @@ angular.module('umm3601ursamajorApp')
         return currentUser.role === 'admin';
       },
 
+        /**
+         * Check if a user is a reviewer
+         *
+         * @return {Boolean}
+         */
+        isReviewer: function() {
+            return currentUser.role === 'reviewer';
+        },
+
       /**
        * Get auth token
        */
