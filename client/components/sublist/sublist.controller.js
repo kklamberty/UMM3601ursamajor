@@ -28,9 +28,6 @@ angular.module('umm3601ursamajorApp')
         $scope.getCurrentUser = Auth.getCurrentUser;
 
         $scope.canSeeSub = function(submission) {
-            if($scope.getCurrentUser().role == "admin") {
-                return true;
-            }
             if($scope.isReviewer) {
                 if (submission.reviewers.indexOf($scope.email) != -1) {
                     return true;
@@ -38,7 +35,8 @@ angular.module('umm3601ursamajorApp')
             }
             return $scope.email === submission.presenterInfo.email ||
                    $scope.email === submission.copresenterOneInfo.email ||
-                   $scope.email === submission.copresenterTwoInfo.email;
+                   $scope.email === submission.copresenterTwoInfo.email ||
+                   $scope.getCurrentUser().role == "admin";
         };
 
         $http.get('/api/submissions').success(function(submissions) {
