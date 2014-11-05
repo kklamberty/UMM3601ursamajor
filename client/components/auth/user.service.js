@@ -12,6 +12,12 @@ angular.module('umm3601ursamajorApp')
           controller:'password'
         }
       },
+        changeRole: {
+            method: 'PUT',
+            params: {
+//        controller:'role'
+            }
+        },
       get: {
         method: 'GET',
         params: {
