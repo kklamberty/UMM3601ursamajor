@@ -92,7 +92,20 @@ angular.module('umm3601ursamajorApp')
         }).$promise;
       },
 
-      /**
+        changeRole: function(role, user, callback) {
+            var cb = callback || angular.noop;
+
+            return User.changeRole({ id: user._id }, {
+                role: role
+            }, function(user) {
+                return cb(user);
+            }, function(err) {
+                return cb(err);
+            }).$promise;
+        },
+
+
+        /**
        * Gets all available info on authenticated user
        *
        * @return {Object} user
