@@ -11,6 +11,7 @@ angular.module('umm3601ursamajorApp')
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.timestamp = Date();
 
+
     $scope.formatOptions =
         ['Artist Statement',
          'Humanities Proposal',
