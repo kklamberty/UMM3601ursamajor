@@ -60,16 +60,16 @@ angular.module('umm3601ursamajorApp')
         };
         $scope.statusColorTab = function(status){
             switch(status){
-                case "Awaiting Adviser Approval (red)":
+                case "Awaiting Adviser Approval":
                     return {'border-left': '4px solid rgba(255, 0, 0, 1)'};
                     break;
-                case "Adviser Approved, Pending Review (yellow)":
+                case "Adviser Approved, Pending Review":
                     return {'border-left': '4px solid rgba(255, 220, 10, 1)'};
                     break;
-                case "Adviser Approved, Fully Reviewed, Ready for Revisions (blue)":
+                case "Adviser Approved, Fully Reviewed, Ready for Revisions":
                     return {'border-left': '4px solid rgba(0, 100, 255, 1)'};
                     break;
-                case "URS Abstract is Accepted and Complete (green)":
+                case "URS Abstract is Accepted and Complete":
                     return {'border-left': '4px solid rgba(0, 255, 0, 1)'};
                     break;
             }
@@ -77,16 +77,16 @@ angular.module('umm3601ursamajorApp')
 
         $scope.statusColorBody = function(status){
             switch(status){
-                case "Awaiting Adviser Approval (red)":
+                case "Awaiting Adviser Approval":
                     return {'background-color': 'rgba(255, 0, 0, 1)'};
                     break;
-                case "Adviser Approved, Pending Review (yellow)":
+                case "Adviser Approved, Pending Review":
                     return {'background-color': 'rgba(255, 220, 10, 1)'};
                     break;
-                case "Adviser Approved, Fully Reviewed, Ready for Revisions (blue)":
+                case "Adviser Approved, Fully Reviewed, Ready for Revisions":
                     return {'background-color': 'rgba(0, 100, 255, 1)'};
                     break;
-                case "URS Abstract is Accepted and Complete (green)":
+                case "URS Abstract is Accepted and Complete":
                     return {'background-color': 'rgba(0, 255, 0, 1)'};
                     break;
             }
@@ -120,10 +120,10 @@ angular.module('umm3601ursamajorApp')
         // Controlling editing of status in details view
         $scope.statusEdit = {
             editing: false,
-            options: ["Awaiting Adviser Approval (red)",
-                      "Adviser Approved, Pending Review (yellow)",
-                      "Adviser Approved, Fully Reviewed, Ready for Revisions (blue)",
-                      "URS Abstract is Accepted and Complete (green)"],
+            options: ["Awaiting Adviser Approval",
+                      "Adviser Approved, Pending Review",
+                      "Adviser Approved, Fully Reviewed, Ready for Revisions",
+                      "URS Abstract is Accepted and Complete"],
             temp: {strict: "", text: ""}
         };
 

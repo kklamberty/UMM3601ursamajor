@@ -179,7 +179,7 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "L",
         otherInfo: "",
         approval: true,
-        status:  {strict: "Pending Review", text: "Has not been reviewed yet"},
+        status:  {strict: "Adviser Approved, Pending Review", text: "Has not been reviewed yet"},
         timestamp: "Sat Oct 18 2014 10:48:54 GMT-0500 (CDT)",
         reviewers: ["gusaa004@morris.umn.edu", "reviewer@reviewer.com"]
     }, {
@@ -204,7 +204,7 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "M",
         otherInfo: "",
         approval: true,
-        status: {strict: "Awaiting Revisions", text: "Submitter is working on updating"},
+        status: {strict: "Adviser Approved, Fully Reviewed, Ready for Revisions", text: "Submitter is working on updating"},
         timestamp: "Tue Oct 21 2014 23:22:54 GMT-0500 (CDT)",
         reviewers: ["reviewer@reviewer.com"]
     }, {
@@ -263,7 +263,7 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "XL",
         otherInfo: "yes.",
         approval: true,
-        status: {strict: "Awaiting Revisions", text: "Needs to be updated an iota"},
+        status: {strict: "Adviser Approved, Fully Reviewed, Ready for Revisions", text: "Needs to be updated an iota"},
         timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)",
         reviewers: ["reviewer@reviewer.com"]
     }, {
@@ -289,7 +289,7 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "S",
         otherInfo: "yes.",
         approval: true,
-        status: {strict: "Approved", text: "Ready for launch"},
+        status: {strict: "URS Abstract is Accepted and Complete", text: "Ready for launch"},
         timestamp: "Thur Oct 23 2014 1:48:54 GMT-0500 (CDT)",
         reviewers: ["gusaa004@morris.umn.edu"]
     }, {
@@ -313,7 +313,7 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "M",
         otherInfo: "Maybe",
         approval: true,
-        status: {strict: "Pending Review", text: "Not all reviewers have had a chance to look at it yet"},
+        status: {strict: "Adviser Approved, Pending Review", text: "Not all reviewers have had a chance to look at it yet"},
         timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)",
         reviewers: ["reviewer@reviewer.com"]
     });
