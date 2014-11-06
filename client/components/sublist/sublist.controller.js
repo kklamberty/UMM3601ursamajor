@@ -58,6 +58,7 @@ angular.module('umm3601ursamajorApp')
                 '&ui=1';
             $window.open(str);
         };
+
         $scope.statusColorTab = function(status){
             switch(status){
                 case "Awaiting Adviser Approval":
@@ -123,6 +124,10 @@ angular.module('umm3601ursamajorApp')
             options: ["Reviewing in Process",
                 "Revisions Needed",
                 "Accepted"],
+            subject:"URS submission update",
+            body:[ ", your URS submission has been approved by your adviser.",
+                  ", your URS submission has been flagged for revisions, and is in need of changes.",
+                ", your URS submission has been approved, congratulations!"],
             temp: {strict: "", text: ""}
         };
 
@@ -148,6 +153,7 @@ angular.module('umm3601ursamajorApp')
             });
 
 
+
             if($scope.selection.item.approval && $scope.statusEdit.temp.strict === "Awaiting Adviser Approval"){
                 $http.patch('api/submissions/' + $scope.selection.item._id,
                     {approval: false}
@@ -163,14 +169,16 @@ angular.module('umm3601ursamajorApp')
                     console.log("Successfully updated approval of submission (approved)");
                 });
             }
-            sendGmail({
-                to: $scope.selection.item.presenterInfo.email,
-                subject: 'URS Submission Test',
-                message: ''
-            });
+
 
             $scope.selection.item.status.strict = $scope.statusEdit.temp.strict;
             $scope.selection.item.status.text = $scope.statusEdit.temp.text;
+
+            sendGmail({
+                to: $scope.selection.item.presenterInfo.email,
+                subject: $scope.statusEdit.subject,
+                message: $scope.selection.item.presenterInfo.first + $scope.statusEdit.body[$scope.statusEdit.options.indexOf($scope.selection.item.status.strict)]
+            });
             $scope.resetTemps();
             $scope.editStatus();
         };
