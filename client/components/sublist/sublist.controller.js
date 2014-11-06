@@ -16,7 +16,7 @@ angular.module('umm3601ursamajorApp')
         }
     })
 
-    .controller('SublistCtrl', function ($scope, $http, socket, $modal, Modal, Auth) {
+    .controller('SublistCtrl', function ($scope, $http, socket, $modal, Modal, Auth, $window) {
         $scope.submissions = [];
 
         $scope.getCurrentUser = Auth.getCurrentUser;
@@ -56,7 +56,7 @@ angular.module('umm3601ursamajorApp')
                 '&su=' + opts.subject +
                 '&body=' + opts.message +
                 '&ui=1';
-            location.href = str;
+            $window.open(str);
         };
         $scope.statusColorTab = function(status){
             switch(status){
