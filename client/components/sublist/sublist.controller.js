@@ -28,9 +28,6 @@ angular.module('umm3601ursamajorApp')
         $scope.getCurrentUser = Auth.getCurrentUser;
 
         $scope.canSeeSub = function(submission) {
-            if($scope.getCurrentUser().role == "admin") {
-                return true;
-            }
             if($scope.isReviewer) {
                 if (submission.reviewers.indexOf($scope.email) != -1) {
                     return true;
@@ -38,7 +35,8 @@ angular.module('umm3601ursamajorApp')
             }
             return $scope.email === submission.presenterInfo.email ||
                    $scope.email === submission.copresenterOneInfo.email ||
-                   $scope.email === submission.copresenterTwoInfo.email;
+                   $scope.email === submission.copresenterTwoInfo.email ||
+                   $scope.getCurrentUser().role == "admin";
         };
 
         $http.get('/api/submissions').success(function(submissions) {
@@ -57,35 +55,34 @@ angular.module('umm3601ursamajorApp')
         };
         $scope.statusColorTab = function(status){
             switch(status){
-                case "Pending Review":
-                    return {'border-left': '4px solid rgba(255, 220, 10, 1)'};
-                    break;
-                case "Awaiting Revisions":
-                    return {'border-left': '4px solid rgba(0, 100, 255, 1)'};
-                    break;
-                case "Approved":
-                    return {'border-left': '4px solid rgba(0, 255, 0, 1)'};
-                    break;
                 case "Awaiting Adviser Approval":
                     return {'border-left': '4px solid rgba(255, 0, 0, 1)'};
+                    break;
+                case "Reviewing in Process":
+                    return {'border-left': '4px solid rgba(255, 220, 10, 1)'};
+                    break;
+                case "Needs Revisions":
+                    return {'border-left': '4px solid rgba(0, 100, 255, 1)'};
+                    break;
+                case "Accepted":
+                    return {'border-left': '4px solid rgba(0, 255, 0, 1)'};
                     break;
             }
         };
 
         $scope.statusColorBody = function(status){
             switch(status){
-                case "Pending Review":
-                    return {'background-color': 'rgba(255, 220, 10, 1)'};
-                    break;
-                case "Awaiting Revisions":
-                    return {'background-color': 'rgba(0, 100, 255, 1)'};
-                    break;
-                case "Approved"://        $scope.presenterEmail = presenterInfo().email;
-
-                    return {'background-color': 'rgba(0, 255, 0, 1)'};
-                    break;
                 case "Awaiting Adviser Approval":
                     return {'background-color': 'rgba(255, 0, 0, 1)'};
+                    break;
+                case "Reviewing in Process":
+                    return {'background-color': 'rgba(255, 220, 10, 1)'};
+                    break;
+                case "Needs Revisions":
+                    return {'background-color': 'rgba(0, 100, 255, 1)'};
+                    break;
+                case "Accepted":
+                    return {'background-color': 'rgba(0, 255, 0, 1)'};
                     break;
             }
         };
@@ -102,7 +99,7 @@ angular.module('umm3601ursamajorApp')
 
         $scope.resetSelection = function(){
             $scope.selection.selected = false;
-            $scope.resetTemps();$scope.selection.item.presenterInfo.email
+            $scope.resetTemps();
         };
 
         $scope.deleteSubmissionConfirm = function(item){
@@ -118,7 +115,7 @@ angular.module('umm3601ursamajorApp')
         // Controlling editing of status in details view
         $scope.statusEdit = {
             editing: false,
-            options: ["Awaiting Adviser Approval", "Approved", "Awaiting Revisions", "Pending Review"],
+            options: ["Reviewing in Process", "Needs Revisions", "Accepted"],
             temp: {strict: "", text: ""}
         };
 
@@ -143,6 +140,11 @@ angular.module('umm3601ursamajorApp')
                     console.log("Successfully updated status of submission");
             });
 
+            sendGmail({
+                to: $scope.selection.item.presenterInfo.email,
+                subject: 'URS Submission Test',
+                message: ''
+            });
 
             if($scope.selection.item.approval && $scope.statusEdit.temp.strict === "Awaiting Adviser Approval"){
                 $http.patch('api/submissions/' + $scope.selection.item._id,
@@ -159,11 +161,7 @@ angular.module('umm3601ursamajorApp')
                     console.log("Successfully updated approval of submission (approved)");
                 });
             }
-            sendGmail({
-                to: $scope.selection.item.presenterInfo.email,
-                subject: 'URS Submission Test',
-                message: ''
-            });
+
 
             $scope.selection.item.status.strict = $scope.statusEdit.temp.strict;
             $scope.selection.item.status.text = $scope.statusEdit.temp.text;
