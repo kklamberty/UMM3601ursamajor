@@ -3,20 +3,23 @@
     <ul class="list-group" ng-hide="selection.selected">
         <li class="list-group-item" id="text"><h2>Submissions</h2></li>
         <li class="list-group-item" ng-style="statusColorTab(sub.status.strict)" ng-repeat="sub in submissions" ng-show="canSeeSub(sub)">
-            <h3>{{sub.title}}</h3>
-            <strong>{{sub.presenterInfo.last}}, {{sub.presenterInfo.first}}</strong>
+            <h3 id="text">{{sub.title}}</h3>
+            <strong>{{sub.presenterInfo.first}} {{sub.presenterInfo.last}}</strong>
             <hr>
             <ul class="list-group">
                 <li class="list-group-item">
                     <p>Discipline: {{sub.discipline}}</p>
                     <p>Submitter's Email: {{sub.presenterInfo.email}}</p>
+                    <p>{{sub.copresenterOneInfo.first | isntempty:"Co-Presenter One Name: "}}{{sub.copresenterOneInfo.last | isntempty:""}}{{sub.copresenterOneInfo.email | isntempty:" Email: "}}</p>
+                    <p>{{sub.copresenterTwoInfo.first | isntempty:"Co-Presenter Two Name: "}}{{sub.copresenterTwoInfo.last | isntempty:""}}{{sub.copresenterTwoInfo.email | isntempty:" Email: "}}</p>
                     <p>Format:  {{sub.format}}</p>
                     <p>Type: {{sub.presentationType}}</p>
-                    <p>Advisor: {{sub.adviserInfo.last}}, {{sub.adviserInfo.first}}  email: {{sub.adviserInfo.email}}</p>
+                    <p>Advisor: {{sub.adviserInfo.first}} {{sub.adviserInfo.last}}  Email: {{sub.adviserInfo.email}}</p>
                     <p>Approved? {{approvalWordChange(sub.approval)}}</p>
-                    <p>{{sub.sponsors | isntempty:"Sponsors:"}}</p>
-                    <p>{{sub.mediaServicesEquipment | isntempty:"Media Services Equipment:"}}</p>
+                    <p>{{sub.sponsors | isntempty:"Sponsors: "}}</p>
+                    <p>{{sub.mediaServicesEquipment | isntempty:"Media Services Equipment: "}}</p>
                     <p>Abstract: <br> {{sub.abstract | limitTo: 300}}</p>
+
                     <p>Date of submission: {{sub.timestamp}}</p>
                 </li>
             </ul>
