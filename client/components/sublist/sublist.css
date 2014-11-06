@@ -7,6 +7,6 @@
 }
 
 #text{
-    font-style: italic;
-    font-variant: small-caps;
+    font-style: oblique;
+    font-family: "Times New Roman", Times, monospace;
 }
