@@ -19,24 +19,29 @@ angular.module('umm3601ursamajorApp')
     .controller('SublistCtrl', function ($scope, $http, socket, $modal, Modal, Auth) {
         $scope.submissions = [];
 
-        $scope.isAdmin = Auth.isAdmin;
         $scope.getCurrentUser = Auth.getCurrentUser;
+
         $scope.email = Auth.getCurrentUser().email;
 
         $scope.isReviewer = Auth.isReviewer;
 
+        $scope.isAdmin = Auth.isAdmin;
+
         $scope.getCurrentUser = Auth.getCurrentUser;
 
+        $scope.isPresenter = function(submission) {
+            return $scope.email === submission.presenterInfo.email;
+        };
+
+        $scope.isCoPresenter = function(submission) {
+            return $scope.email === submission.copresenterOneInfo.email ||
+                $scope.email === submission.copresenterTwoInfo.email;
+        };
+
         $scope.canSeeSub = function(submission) {
-            if($scope.isReviewer) {
-                if (submission.reviewers.indexOf($scope.email) != -1) {
-                    return true;
-                }
-            }
-            return $scope.email === submission.presenterInfo.email ||
-                   $scope.email === submission.copresenterOneInfo.email ||
-                   $scope.email === submission.copresenterTwoInfo.email ||
-                   $scope.getCurrentUser().role == "admin";
+            return $scope.isAdmin() ||
+                   ($scope.isReviewer() && (submission.reviewers.indexOf($scope.email) != -1)) ||
+                   $scope.isPresenter(submission) || $scope.isCoPresenter(submission);
         };
 
         $http.get('/api/submissions').success(function(submissions) {
@@ -53,6 +58,7 @@ angular.module('umm3601ursamajorApp')
                 '&ui=1';
             location.href = str;
         };
+
         $scope.statusColorTab = function(status){
             switch(status){
                 case "Awaiting Adviser Approval":
@@ -61,10 +67,10 @@ angular.module('umm3601ursamajorApp')
                 case "Reviewing in Process":
                     return {'border-left': '4px solid rgba(255, 220, 10, 1)'};
                     break;
-                case "Needs Revisions":
+                case "Revisions Needed":
                     return {'border-left': '4px solid rgba(0, 100, 255, 1)'};
                     break;
-                case "Accepted":
+                case "URS Abstract is Accepted and Complete":
                     return {'border-left': '4px solid rgba(0, 255, 0, 1)'};
                     break;
             }
@@ -78,10 +84,10 @@ angular.module('umm3601ursamajorApp')
                 case "Reviewing in Process":
                     return {'background-color': 'rgba(255, 220, 10, 1)'};
                     break;
-                case "Needs Revisions":
+                case "Revisions Needed":
                     return {'background-color': 'rgba(0, 100, 255, 1)'};
                     break;
-                case "Accepted":
+                case "URS Abstract is Accepted and Complete":
                     return {'background-color': 'rgba(0, 255, 0, 1)'};
                     break;
             }
@@ -115,7 +121,9 @@ angular.module('umm3601ursamajorApp')
         // Controlling editing of status in details view
         $scope.statusEdit = {
             editing: false,
-            options: ["Reviewing in Process", "Needs Revisions", "Accepted"],
+            options: ["Reviewing in Process",
+                "Revisions Needed",
+                "URS Abstract is Accepted and Complete"],
             temp: {strict: "", text: ""}
         };
 
@@ -140,11 +148,6 @@ angular.module('umm3601ursamajorApp')
                     console.log("Successfully updated status of submission");
             });
 
-            sendGmail({
-                to: $scope.selection.item.presenterInfo.email,
-                subject: 'URS Submission Test',
-                message: ''
-            });
 
             if($scope.selection.item.approval && $scope.statusEdit.temp.strict === "Awaiting Adviser Approval"){
                 $http.patch('api/submissions/' + $scope.selection.item._id,
@@ -161,7 +164,11 @@ angular.module('umm3601ursamajorApp')
                     console.log("Successfully updated approval of submission (approved)");
                 });
             }
-
+            sendGmail({
+                to: $scope.selection.item.presenterInfo.email,
+                subject: 'URS Submission Test',
+                message: ''
+            });
 
             $scope.selection.item.status.strict = $scope.statusEdit.temp.strict;
             $scope.selection.item.status.text = $scope.statusEdit.temp.text;
