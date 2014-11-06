@@ -1,28 +1,87 @@
-<div class="container-fluid" style="word-wrap: break-word">
-    <ul class="list-group" ng-controller="SublistCtrl">
+<div class="container-fluid breakLongWords" ng-controller="SublistCtrl">
+
+    <ul class="list-group" ng-hide="selection.selected">
         <li class="list-group-item"><h2>List of stored submissions</h2></li>
-        <li class="list-group-item" ng-repeat="sub in submissions">
+        <li class="list-group-item" ng-style="statusColorTab(sub.status.strict)" ng-repeat="sub in submissions" ng-show="canSeeSub(sub)">
             <h3>{{sub.title}}</h3>
             <strong>{{sub.presenterInfo.last}}, {{sub.presenterInfo.first}}</strong>
             <hr>
-
             <ul class="list-group">
                 <li class="list-group-item">
                     <p>Discipline: {{sub.discipline}}</p>
+                    <p>Submitter's Email: {{sub.presenterInfo.email}}</p>
                     <p>Format:  {{sub.format}}</p>
                     <p>Type: {{sub.presentationType}}</p>
-                    <br>
-                    <p>Abstract: <br> {{sub.abstract}}</p>
-                    <p>Advisor: {{sub.adviserInfo.name}}, email: {{sub.adviserInfo.email}}</p>
+                    <p>Advisor: {{sub.adviserInfo.last}}, {{sub.adviserInfo.first}}  email: {{sub.adviserInfo.email}}</p>
+                    <p>Approved? {{approvalWordChange(sub.approval)}}</p>
                     <p>{{sub.sponsors | isntempty:"Sponsors:"}}</p>
-                    <p>Approved? {{sub.approval}}</p>
                     <p>{{sub.mediaServicesEquipment | isntempty:"Media Services Equipment:"}}</p>
-                    <p></p>
+                    <p>Abstract: <br> {{sub.abstract | limitTo: 300}}</p>
+                    <p>Date of submission: {{sub.timestamp}}</p>
                 </li>
             </ul>
+            <button class="btn btn-primary btn-sm" ng-click="selectItem($index)">Details</button>
+            <br>
+          </li>
 
-            <p></p>
+    </ul>
+
+    <ul class="list-group" ng-show="selection.selected">
+        <li class="list-group-item">
+            <button class="btn btn-sm btn-block" ng-click="resetSelection()">Back to submission list</button>
+            <br>
+            <button ng-show="isAdmin()" class="btn btn-sm btn-danger" ng-click="deleteSubmissionConfirm(selection.item)"><span class="glyphicon glyphicon-trash"></span></button>
         </li>
+        <li class="list-group-item" ng-style="statusColorTab(selection.item.status.strict)">
+
+            <div class="block alert" ng-style="statusColorBody(selection.item.status.strict)">
+                <button ng-show="isAdmin()" class="btn btn-sm btn-warning close" ng-click="editStatus(selection.item)"><span class="glyphicon glyphicon-file"></span></button>
+                <b>Status:</b> {{selection.item.status.strict}} <br>
+                <b>Comment:</b> {{selection.item.status.text}}</p>
+                <div ng-show="statusEdit.editing">
+                    <hr>
+                    <div class="container-fluid row">
+                        <div class="col-md-6">
+                            <label>
+                                Select Submission Status <br>
+                                <select ng-model="statusEdit.temp.strict">
+                                    <option ng-repeat="status in statusEdit.options" ng-value="{{'status'}}">{{status}}</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <label>
+                                Elaborate <br>
+                                <textarea cols="30" ng-model="statusEdit.temp.text"></textarea>
+                            </label>
+                        </div>
+                    </div>
+                    <button class="btn btn-default" ng-click="editStatus()">Cancel</button>
+                    <button class="btn btn-warning" ng-click="submitStatusEdit()">Submit</button>
+                </div>
+            </div>
+
+            <h3>{{selection.item.title}}</h3>
+            <strong>{{selection.item.presenterInfo.last}}, {{selection.item.presenterInfo.first}}</strong>
+            <hr>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <p>Discipline: {{selection.item.discipline}}</p>
+                    <p>Format:  {{selection.item.format}}</p>
+                    <p>Type: {{selection.item.presentationType}}</p>
+                    <p>Advisor: {{selection.item.adviserInfo.last}}, {{selection.item.adviserInfo.first}} email: {{selection.item.adviserInfo.email}}</p>
+                    <p>{{selection.item.sponsors | isntempty:"Sponsors:"}}</p>
+                    <p>Approved? {{approvalWordChange(selection.item.approval)}}</p>
+                    <p>{{selection.item.mediaServicesEquipment | isntempty:"Media Services Equipment:"}}</p>
+                    <p>Date of submission: {{selection.item.timestamp}}</p>
+                </li>
+            </ul>
+            <ul class="list-group">
+                <li class="list-group-item"><h3>Abstract</h3></li>
+                <li class="list-group-item"><p>{{selection.item.abstract}}</p></li>
+            </ul>
+            <br>
+        </li>
+
     </ul>
 </div>
-

@@ -12,6 +12,13 @@ angular.module('umm3601ursamajorApp')
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
 
+//    $scope.loggedIn = function(){
+//        if(Auth.email.indexOf("@morris") >= 0){
+//            return true;
+//        }
+//        return false;
+//    };
+
     $scope.logout = function() {
       Auth.logout();
       $location.path('/login');

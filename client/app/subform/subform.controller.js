@@ -3,10 +3,14 @@
 angular.module('umm3601ursamajorApp')
 
   .controller('SubformCtrl', function ($scope, $http, Auth, $location) {
+
     if(Auth.isLoggedIn() === false) {
         $location.path('/');
     }
+    $scope.isAdmin = Auth.isAdmin;
     $scope.isLoggedIn = Auth.isLoggedIn;
+    $scope.timestamp = Date();
+
 
     $scope.formatOptions =
         ['Artist Statement',
@@ -50,7 +54,7 @@ angular.module('umm3601ursamajorApp')
         discipline: "",
         sponsors: [],
         sponsorsFinal: [],
-        adviserInfo: {name: "", email: ""},
+        adviserInfo: {first: "", last: "", email: ""},
         featuredPresentation: Boolean,
         mediaServicesEquipment: "",
         specialRequirements: "",
@@ -58,39 +62,54 @@ angular.module('umm3601ursamajorApp')
         otherInfo: ""
     };
 
+    $scope.submissionTextArray = [];
+    $scope.submissionText = {};
+
+    $http.get('/api/subformtexts').success(function(submissionTextArray) {
+        $scope.submissionTextArray = submissionTextArray;
+        $scope.submissionText = $scope.submissionTextArray[0];
+    });
 
 
     $scope.submitSubmission = function(){
-        for(var i = 0; i< $scope.submissionData.sponsors.length; i++){
-            if($scope.submissionData.sponsors[i] != "" && $scope.submissionData.sponsors[i] != null) {
-                $scope.submissionData.sponsorsFinal.push($scope.submissionData.sponsors[i]);
+
+        var r = confirm("Are you sure you want to submit?");
+        if (r == true) {
+            for (var i = 0; i < $scope.submissionData.sponsors.length; i++) {
+                if ($scope.submissionData.sponsors[i] != "" && $scope.submissionData.sponsors[i] != null) {
+                    $scope.submissionData.sponsorsFinal.push($scope.submissionData.sponsors[i]);
+                }
+
             }
+
+            console.log('posting Data!');
+
+            $http.post('/api/submissions/',
+                {
+                    title: $scope.submissionData.title,
+                    format: $scope.submissionData.format,
+                    abstract: $scope.submissionData.abstract,
+                    presentationType: $scope.submissionData.presentationType,
+                    formatChange: $scope.submissionData.formatChange,
+                    presenterInfo: {first: $scope.submissionData.presenterInfo.first, last: $scope.submissionData.presenterInfo.last, email: $scope.submissionData.presenterInfo.email},
+                    copresenterOneInfo: {first: $scope.submissionData.copresenterOne.first, last: $scope.submissionData.copresenterOne.last, email: $scope.submissionData.copresenterOne.email},
+                    copresenterTwoInfo: {first: $scope.submissionData.copresenterTwo.first, last: $scope.submissionData.copresenterTwo.last, email: $scope.submissionData.copresenterTwo.email},
+                    discipline: $scope.submissionData.discipline,
+                    sponsors: $scope.submissionData.sponsorsFinal,
+                    adviserInfo: {first: $scope.submissionData.adviserInfo.first, last: $scope.submissionData.adviserInfo.last, email: $scope.submissionData.adviserInfo.email},
+                    featured: $scope.submissionData.featuredPresentation,
+                    mediaServicesEquipment: $scope.submissionData.mediaServicesEquipment,
+                    specialRequirements: $scope.submissionData.specialRequirements,
+                    presenterTeeSize: $scope.submissionData.presenterTeeSize,
+                    otherInfo: $scope.submissionData.otherInfo,
+                    approval: false,
+                    status: {strict: "Awaiting Adviser Approval", text: "Adviser has not been notified"},
+                    timestamp: $scope.timestamp
+                }
+            );
+            $scope.resetData();
+            $location.path('/submissionpage');
         }
-        console.log('posting Data!');
-        $http.post('api/submissions/',
-            {
-            title: $scope.submissionData.title,
-            format: $scope.submissionData.format,
-            abstract: $scope.submissionData.abstract,
-            presentationType: $scope.submissionData.presentationType,
-            formatChange: $scope.submissionData.formatChange,
-            presenterInfo: {first: $scope.submissionData.presenterInfo.first, last: $scope.submissionData.presenterInfo.last, email: $scope.submissionData.presenterInfo.last},
-            copresenterOneInfo: {first: $scope.submissionData.copresenterOne.first, last: $scope.submissionData.copresenterOne.last, email: $scope.submissionData.copresenterOne.email},
-            copresenterTwoInfo: {first: $scope.submissionData.copresenterTwo.first, last: $scope.submissionData.copresenterTwo.last, email: $scope.submissionData.copresenterTwo.email},
-            discipline: $scope.submissionData.discipline,
-            sponsors: $scope.submissionData.sponsorsFinal,
-            adviserInfo: {name: $scope.submissionData.adviserInfo.name, email: $scope.submissionData.adviserInfo.email},
-            featured: $scope.submissionData.featuredPresentation,
-            mediaServicesEquipment: $scope.submissionData.mediaServicesEquipment,
-            specialRequirements: $scope.submissionData.specialRequirements,
-            presenterTeeSize: $scope.submissionData.presenterTeeSize,
-            otherInfo: $scope.submissionData.otherInfo,
-            approval: false,
-            status: "pending approval"
-            }
-        );
-        $scope.resetData();
-        $location.path('/');
     };
 
     $scope.charsRemaining = function() {
@@ -109,7 +128,7 @@ angular.module('umm3601ursamajorApp')
             copresenterTwo: {first: "", last: "", email: ""},
             discipline: "",
             sponsors: ["","","","",""], //Might need to worry about if this is static for the DB later.
-            adviserInfo: {name: "", email: ""},
+            adviserInfo: {first: "", last: "", email: ""},
             featuredPresentation: Boolean,
             mediaServicesEquipment: "",
             specialRequirements: "",

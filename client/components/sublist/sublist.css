@@ -1,0 +1,7 @@
+.breakLongWords {
+    word-wrap: break-word;
+}
+
+.block {
+    display: block;
+}

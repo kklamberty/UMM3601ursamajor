@@ -14,14 +14,16 @@ var SubmissionSchema = new Schema({
   copresenterTwoInfo: {first: String, last: String, email: String},
   discipline: String,
   sponsors: [],
-  adviserInfo: {name: String, email: String},
+  adviserInfo: {first: String, last: String, email: String},
   featured: Boolean,
   mediaServicesEquipment: String,
   specialRequirements: String,
   presenterTeeSize: String,
   otherInfo: String,
   approval: Boolean,
-  status: String
+  status: {strict: String, text: String},
+  timestamp: String,
+  reviewers: []
 });
 
 module.exports = mongoose.model('Submission', SubmissionSchema);
