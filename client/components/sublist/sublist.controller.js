@@ -58,7 +58,6 @@ angular.module('umm3601ursamajorApp')
                 '&ui=1';
             location.href = str;
         };
-
         $scope.statusColorTab = function(status){
             switch(status){
                 case "Awaiting Adviser Approval":
