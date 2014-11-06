@@ -29,6 +29,14 @@ angular.module('umm3601ursamajorApp')
 
         $scope.getCurrentUser = Auth.getCurrentUser;
 
+        $scope.hasCoPresenter = function(submission){
+            return submission.copresenterOne.first === null;
+        }
+
+        $scope.hasCoPresenterTwo = function(submission){
+            return submission.copresenterTwo.first === null;
+        }
+
         $scope.isPresenter = function(submission) {
             return $scope.email === submission.presenterInfo.email;
         };
