@@ -69,7 +69,7 @@ angular.module('umm3601ursamajorApp')
                 case "Revisions Needed":
                     return {'border-left': '4px solid rgba(0, 100, 255, 1)'};
                     break;
-                case "URS Abstract is Accepted and Complete":
+                case "Accepted":
                     return {'border-left': '4px solid rgba(0, 255, 0, 1)'};
                     break;
             }
@@ -86,7 +86,7 @@ angular.module('umm3601ursamajorApp')
                 case "Revisions Needed":
                     return {'background-color': 'rgba(0, 100, 255, 1)'};
                     break;
-                case "URS Abstract is Accepted and Complete":
+                case "Accepted":
                     return {'background-color': 'rgba(0, 255, 0, 1)'};
                     break;
             }
@@ -122,7 +122,7 @@ angular.module('umm3601ursamajorApp')
             editing: false,
             options: ["Reviewing in Process",
                 "Revisions Needed",
-                "URS Abstract is Accepted and Complete"],
+                "Accepted"],
             temp: {strict: "", text: ""}
         };
 

@@ -289,7 +289,7 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "S",
         otherInfo: "yes.",
         approval: true,
-        status: {strict: "URS Abstract is Accepted and Complete", text: "Ready for launch"},
+        status: {strict: "Accepted", text: "Ready for launch"},
         timestamp: "Thur Oct 23 2014 1:48:54 GMT-0500 (CDT)",
         reviewers: ["gusaa004@morris.umn.edu"]
     }, {
