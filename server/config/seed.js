@@ -11,7 +11,7 @@ var Submission = require('../api/submission/submission.model');
 var Subformtext = require('../api/subformtext/subformtext.model');
 
 
-/*//We don't need this data, look into a way of removing it and it's related API
+//We don't need this data, look into a way of removing it and it's related API
 Thing.find({}).remove(function() {
     Thing.create({
         name : 'Development Tools',
@@ -32,7 +32,7 @@ Thing.find({}).remove(function() {
         name : 'Deployment Ready',
         info : 'Easily deploy your app to Heroku or Openshift with the heroku and openshift subgenerators'
     });
-});*/
+});
 
 Subformtext.find({}).remove(function() {
     Subformtext.create({
