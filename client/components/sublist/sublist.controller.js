@@ -43,7 +43,7 @@ angular.module('umm3601ursamajorApp')
 
         $scope.isCoPresenter = function(submission) {
             return $scope.email === submission.copresenterOneInfo.email ||
-                $scope.email === submission.copresenterTwoInfo.email;
+                   $scope.email === submission.copresenterTwoInfo.email;
         };
 
         $scope.canSeeSub = function(submission) {
