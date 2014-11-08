@@ -144,6 +144,14 @@ angular.module('umm3601ursamajorApp')
             temp: {strict: "", text: ""}
         };
 
+        $scope.getColor = function(strict) {
+            for(var i = 0; i < status.length; i++){
+                if($scope.status[i].strict === strict){
+                    return $scope.status[i].color;
+                }
+            }
+        };
+
         $scope.resetTemps = function() {
             if($scope.selection.item != null){
                 $scope.statusEdit.temp.strict = $scope.selection.item.status.strict;
@@ -190,7 +198,8 @@ angular.module('umm3601ursamajorApp')
             sendGmail({
                 to: $scope.selection.item.presenterInfo.email,
                 subject: $scope.statusEdit.subject,
-                message: $scope.selection.item.presenterInfo.first + $scope.statusEdit.body[$scope.statusEdit.options.indexOf($scope.selection.item.status.strict)]
+                message: $scope.selection.item.presenterInfo.first +
+                    $scope.statusEdit.body[$scope.statusEdit.options.indexOf($scope.selection.item.status.strict)]
             });
             $scope.resetTemps();
             $scope.editStatus();
