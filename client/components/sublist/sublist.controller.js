@@ -57,6 +57,11 @@ angular.module('umm3601ursamajorApp')
             socket.syncUpdates('submission', $scope.submissions);
         });
 
+        $http.get('/api/status').success(function(status) {
+            $scope.status = status;
+            socket.syncUpdates('status', $scope.status);
+        });
+
 
         var sendGmail = function(opts){
             var str = 'http://mail.google.com/mail/?view=cm&fs=1'+

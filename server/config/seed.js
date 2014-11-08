@@ -34,6 +34,32 @@ Thing.find({}).remove(function() {
     });
 });
 
+status.find({}).remove(function() {
+    status.create({
+        strict: "Reviewing in Process",
+        color: {red: 255, green: 220, blue: 10, alpha: 1},
+        emailSubject: "URS submission update",
+        emailBody: ", your URS submission has been approved by your adviser."
+    },{
+        strict: "Revisions Needed",
+        color: {red: 0, green: 100, blue: 255, alpha: 1},
+        emailSubject: "URS submission update",
+        emailBody: ", your URS submission has been flagged for revisions, and is in need of changes."
+    },{
+        strict: "Accepted",
+        color: {red: 0, green: 255, blue: 0, alpha: 1},
+        emailSubject: "URS submission update",
+        emailBody:  ", your URS submission has been approved, congratulations!"
+    },{
+        strict: "Awaiting Adviser Approval",
+        color: {red: 255, green: 0, blue: 0, alpha: 1},
+        emailSubject: "",
+        emailBody: ""
+    });
+
+
+});
+
 Subformtext.find({}).remove(function() {
     Subformtext.create({
         title: "2015 URS Submission Form",
