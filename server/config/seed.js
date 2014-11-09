@@ -144,7 +144,7 @@ User.find({}).remove(function() {
                 picture: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
                 verified_email: true
             }
-        },{
+        },{ 
             provider: 'local',
             role: 'admin',
             name: 'Admin',
