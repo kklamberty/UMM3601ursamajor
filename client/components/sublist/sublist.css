@@ -5,3 +5,8 @@
 .block {
     display: block;
 }
+
+#text{
+    font-style: oblique;
+    font-family: "Times New Roman", Times, monospace;
+}

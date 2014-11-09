@@ -16,7 +16,7 @@ angular.module('umm3601ursamajorApp')
         }
     })
 
-    .controller('SublistCtrl', function ($scope, $http, socket, $modal, Modal, Auth) {
+    .controller('SublistCtrl', function ($scope, $http, socket, $modal, Modal, Auth, $window) {
         $scope.submissions = [];
 
         $scope.getCurrentUser = Auth.getCurrentUser;
@@ -29,13 +29,21 @@ angular.module('umm3601ursamajorApp')
 
         $scope.getCurrentUser = Auth.getCurrentUser;
 
+        $scope.hasCoPresenter = function(submission){
+            return submission.copresenterOne.first === null;
+        }
+
+        $scope.hasCoPresenterTwo = function(submission){
+            return submission.copresenterTwo.first === null;
+        }
+
         $scope.isPresenter = function(submission) {
             return $scope.email === submission.presenterInfo.email;
         };
 
         $scope.isCoPresenter = function(submission) {
             return $scope.email === submission.copresenterOneInfo.email ||
-                $scope.email === submission.copresenterTwoInfo.email;
+                   $scope.email === submission.copresenterTwoInfo.email;
         };
 
         $scope.canSeeSub = function(submission) {
@@ -56,8 +64,9 @@ angular.module('umm3601ursamajorApp')
                 '&su=' + opts.subject +
                 '&body=' + opts.message +
                 '&ui=1';
-            location.href = str;
+            $window.open(str);
         };
+
         $scope.statusColorTab = function(status){
             switch(status){
                 case "Awaiting Adviser Approval":
@@ -69,7 +78,7 @@ angular.module('umm3601ursamajorApp')
                 case "Revisions Needed":
                     return {'border-left': '4px solid rgba(0, 100, 255, 1)'};
                     break;
-                case "URS Abstract is Accepted and Complete":
+                case "Accepted":
                     return {'border-left': '4px solid rgba(0, 255, 0, 1)'};
                     break;
             }
@@ -86,7 +95,7 @@ angular.module('umm3601ursamajorApp')
                 case "Revisions Needed":
                     return {'background-color': 'rgba(0, 100, 255, 1)'};
                     break;
-                case "URS Abstract is Accepted and Complete":
+                case "Accepted":
                     return {'background-color': 'rgba(0, 255, 0, 1)'};
                     break;
             }
@@ -122,7 +131,11 @@ angular.module('umm3601ursamajorApp')
             editing: false,
             options: ["Reviewing in Process",
                 "Revisions Needed",
-                "URS Abstract is Accepted and Complete"],
+                "Accepted"],
+            subject:"URS submission update",
+            body:[ ", your URS submission has been approved by your adviser.",
+                  ", your URS submission has been flagged for revisions, and is in need of changes.",
+                ", your URS submission has been approved, congratulations!"],
             temp: {strict: "", text: ""}
         };
 
@@ -148,6 +161,7 @@ angular.module('umm3601ursamajorApp')
             });
 
 
+
             if($scope.selection.item.approval && $scope.statusEdit.temp.strict === "Awaiting Adviser Approval"){
                 $http.patch('api/submissions/' + $scope.selection.item._id,
                     {approval: false}
@@ -163,14 +177,16 @@ angular.module('umm3601ursamajorApp')
                     console.log("Successfully updated approval of submission (approved)");
                 });
             }
-            sendGmail({
-                to: $scope.selection.item.presenterInfo.email,
-                subject: 'URS Submission Test',
-                message: ''
-            });
+
 
             $scope.selection.item.status.strict = $scope.statusEdit.temp.strict;
             $scope.selection.item.status.text = $scope.statusEdit.temp.text;
+
+            sendGmail({
+                to: $scope.selection.item.presenterInfo.email,
+                subject: $scope.statusEdit.subject,
+                message: $scope.selection.item.presenterInfo.first + $scope.statusEdit.body[$scope.statusEdit.options.indexOf($scope.selection.item.status.strict)]
+            });
             $scope.resetTemps();
             $scope.editStatus();
         };

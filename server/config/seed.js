@@ -168,7 +168,7 @@ Submission.find({}).remove(function(){
         presentationType: "Oral Presentation",
         formatChange: true,
         presenterInfo: {first: "Emma", last: "Sax", email: "saxxx027@morris.umn.edu"},
-        copresenterOneInfo: {first: "", last: "", email: ""},
+        copresenterOneInfo: {first: "Maggie", last: "Casale", email: "casal033@morris.umn.edu"},
         copresenterTwoInfo: {first: "", last: "", email: ""},
         discipline: "Chemistry",
         sponsors: [], //Might need to worry about if this is static for the DB later.
@@ -178,7 +178,7 @@ Submission.find({}).remove(function(){
         specialRequirements: "",
         presenterTeeSize: "L",
         otherInfo: "",
-        approval: true,
+        approval: false,
         status:  {strict: "Awaiting Adviser Approval", text: "Has not been reviewed yet"},
         timestamp: "Sat Oct 18 2014 10:48:54 GMT-0500 (CDT)",
         reviewers: ["gusaa004@morris.umn.edu", "reviewer@reviewer.com"]
@@ -194,7 +194,7 @@ Submission.find({}).remove(function(){
         formatChange: false,
         presenterInfo: {first: "Diana", last: "Dewi", email: "saxxx027@morris.umn.edu"},
         copresenterOneInfo: {first: "Jennifer", last: "Kittleson", email: "kittle003@morris.umn.edu"},
-        copresenterTwoInfo: {first: "Sherrill", last: "Sellers", email: "selle012@morris.umn.edu"},
+        copresenterTwoInfo: {first: "Maggie", last: "Casale", email: "casal033@morris.umn.edu"},
         discipline: "Art History",
         sponsors: [],
         adviserInfo: {first: "Julia", last: "Dabbs", email: "dabbsj@morris.umn.edu"},
@@ -289,7 +289,7 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "S",
         otherInfo: "yes.",
         approval: true,
-        status: {strict: "URS Abstract is Accepted and Complete", text: "Ready for launch"},
+        status: {strict: "Accepted", text: "Ready for launch"},
         timestamp: "Thur Oct 23 2014 1:48:54 GMT-0500 (CDT)",
         reviewers: ["gusaa004@morris.umn.edu"]
     }, {
@@ -312,7 +312,7 @@ Submission.find({}).remove(function(){
         specialRequirements: "a sloth",
         presenterTeeSize: "M",
         otherInfo: "Maybe",
-        approval: true,
+        approval: false,
         status: {strict: "Awaiting Adviser Approval", text: "Not all reviewers have had a chance to look at it yet"},
         timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)",
         reviewers: ["reviewer@reviewer.com"]
