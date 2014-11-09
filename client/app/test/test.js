@@ -10,9 +10,7 @@ angular.module('umm3601ursamajorApp')
                 controller: 'TestCtrl'
             });
     });
-//    .controller('testingCtrl', function ($scope, $http, Auth, $location) {
-//
-//    }
+
 angular.module("textAngularTest", ['textAngular']);
 
 
