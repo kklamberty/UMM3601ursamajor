@@ -4,8 +4,6 @@
 <head>
     <title>Untitled</title>
 
-
-
     <script type="text/javascript">
         function applyTag(obj, tag)
         {
@@ -43,7 +41,7 @@
             var com = prompt("Enter comment", "");
             if (com != null) {
                 document.getElementById("words").innerHTML =
-                       "This is the comment:"+ com;
+                        "This is the comment:"+ com;
             }
         }
     </script>
@@ -52,7 +50,8 @@
 
 <body>
 
-<p>Blah blah blah.</p>
+
+<p>Write your text below:</p>
 
 <textarea id="ta" rows="10" cols="50"></textarea> <br /><br />
 
@@ -66,3 +65,45 @@
 
 </body>
 </html>
+
+<!--This is Emma trying to work with bolding stuff. It currently doesn't work-->
+
+<!--<p>Write your text below:</p>-->
+
+
+<!--<form  ng-submit="submitSubmission()" id="form1">-->
+
+    <!--<input type="button" value="Bold" ng-click="makeBold()" />-->
+    <!--<input type="button" value="Italics" ng-click="makeItalisized()" />-->
+    <!--<!--<input type="button" value="Link" onclick="applyTag(document.getElementById('ta'), 'href')" />-->
+    <!--<!--<button class="btn btn-primary padded" type="submit" value="submit">Submit</button>-->
+
+    <!--<br>-->
+    <!--<br>-->
+
+    <!--<textarea id="testingID" ng-model="testText" rows="10" cols="50"></textarea>-->
+
+<!--</form>-->
+
+<!--<p>{{testText}}</p>-->
+
+<!--<script>-->
+<!--//    function makeBold() {-->
+<!--//        var str = testText;-->
+<!--//        var result = str.bold();-->
+<!--//        document.getElementById("FinalText").innerHTML = result;-->
+<!--//    }-->
+<!--//-->
+<!--//    function makeItalisized() {-->
+<!--//        var str = "my string";-->
+<!--//        var result = str.italics();-->
+<!--//        document.getElementById("FinalText").innerHTML = result;-->
+<!--//    }-->
+<!--</script>-->
+
+<!--<br>-->
+<!--<p>{{makeBold()}}</p>-->
+<!--<p>{{makeItalisized()}}</p>-->
+
+<!--</body>-->
+<!--</html>-->
