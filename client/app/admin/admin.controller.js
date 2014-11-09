@@ -9,7 +9,7 @@ angular.module('umm3601ursamajorApp')
     // Use the User $resource to fetch all users
     $scope.users = User.query();
     $scope.isAdmin = Auth.isAdmin;
-
+//
 //    $scope.submissions = [];
 //
 //    $http.get('/api/submissions').success(function(submissions) {
@@ -17,17 +17,18 @@ angular.module('umm3601ursamajorApp')
 //    });
 
         $scope.roleOptions =
-            [   'Student',
+            [   'user',
                 'Review Group 1',
                 'Review Group 2',
-                'Committee Chair'
+                'Committee Chair',
+                'admin'
             ];
         $scope.role =
             [""];
 
 
 
-        $scope.delete = function(user) {
+      $scope.delete = function(user) {
       User.remove({ id: user._id });
       angular.forEach($scope.users, function(u, i) {
         if (u === user) {

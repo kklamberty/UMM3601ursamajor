@@ -23,7 +23,7 @@ angular.module('umm3601ursamajorApp')
 
         $scope.email = Auth.getCurrentUser().email;
 
-        $scope.isReviewer = Auth.isReviewer;
+        $scope.isMember = Auth.isMember;
 
         $scope.isAdmin = Auth.isAdmin;
 
@@ -46,10 +46,15 @@ angular.module('umm3601ursamajorApp')
                    $scope.email === submission.copresenterTwoInfo.email;
         };
 
+        $scope.isAdviser = function(submission) {
+            return submission.adviserInfo.email === $scope.user.email;
+        };
+
         $scope.canSeeSub = function(submission) {
             return $scope.isAdmin() ||
-                   ($scope.isReviewer() && (submission.reviewers.indexOf($scope.email) != -1)) ||
-                   $scope.isPresenter(submission) || $scope.isCoPresenter(submission);
+                   ($scope.isMember() && (submission.reviewers.indexOf($scope.email) != -1)) ||
+                   $scope.isPresenter(submission) || $scope.isCoPresenter(submission) ||
+                    $scope.isAdviser(submission);
         };
 
         $http.get('/api/submissions').success(function(submissions) {
@@ -144,13 +149,15 @@ angular.module('umm3601ursamajorApp')
             temp: {strict: "", text: ""}
         };
 
-        $scope.getColor = function(strict) {
-            for(var i = 0; i < status.length; i++){
-                if($scope.status[i].strict === strict){
-                    return $scope.status[i].color;
-                }
-            }
-        };
+        //Not working code, scrapped to use on a later date
+        //     -Nic (11/9)
+//        $scope.getColor = function(strict) {
+//            for(var i = 0; i < status.length; i++){
+//                if($scope.status[i].strict === strict){
+//                    return $scope.status[i].color;
+//                }
+//            }
+//        };
 
         $scope.resetTemps = function() {
             if($scope.selection.item != null){
