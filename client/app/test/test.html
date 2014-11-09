@@ -4,6 +4,8 @@
 <head>
     <title>Untitled</title>
 
+
+
     <script type="text/javascript">
         function applyTag(obj, tag)
         {
@@ -36,6 +38,14 @@
                 obj.value += text;
 
         };
+
+        function comment(){
+            var com = prompt("Enter comment", "");
+            if (com != null) {
+                document.getElementById("words").innerHTML =
+                       "This is the comment:"+ com;
+            }
+        }
     </script>
 
 </head>
@@ -48,7 +58,11 @@
 
 <input type="button" value="Bold" onclick="applyTag(document.getElementById('ta'), 'b')" />
 <input type="button" value="Italics" onclick="applyTag(document.getElementById('ta'), 'i')" />
-<input type="button" value="Link" onclick="applyTag(document.getElementById('ta'), 'href')" />
+<input type="button" value="Link" onclick="applyTag(document.getElementById('ta'), 'a') + comment()" />
+
+<p><button onclick="comment()">Comment</button></p>
+
+<p id="words"></p>
 
 </body>
 </html>
