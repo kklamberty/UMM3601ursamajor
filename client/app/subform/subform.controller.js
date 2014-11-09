@@ -104,7 +104,8 @@ angular.module('umm3601ursamajorApp')
                     otherInfo: $scope.submissionData.otherInfo,
                     approval: false,
                     status: {strict: "Awaiting Adviser Approval", text: "Adviser has not been notified"},
-                    timestamp: $scope.timestamp
+                    timestamp: $scope.timestamp,
+                    group: 0
                 }
             );
             $scope.resetData();

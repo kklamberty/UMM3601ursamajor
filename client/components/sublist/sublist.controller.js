@@ -21,6 +21,8 @@ angular.module('umm3601ursamajorApp')
 
         $scope.getCurrentUser = Auth.getCurrentUser;
 
+        $scope.group = Auth.getCurrentUser().group;
+
         $scope.email = Auth.getCurrentUser().email;
 
         $scope.isMember = Auth.isMember;
@@ -47,14 +49,21 @@ angular.module('umm3601ursamajorApp')
         };
 
         $scope.isAdviser = function(submission) {
-            return submission.adviserInfo.email === $scope.user.email;
+            return $scope.email === submission.adviserInfo.email;
+        };
+        $scope.isMemberGroup = function(submission){
+            return $scope.group === submission.group;
         };
 
         $scope.canSeeSub = function(submission) {
-            return $scope.isAdmin() ||
-                   ($scope.isMember() && (submission.reviewers.indexOf($scope.email) != -1)) ||
-                   $scope.isPresenter(submission) || $scope.isCoPresenter(submission) ||
-                    $scope.isAdviser(submission);
+            if($scope.isAdmin() ||
+                $scope.isPresenter(submission) ||
+                $scope.isCoPresenter(submission) ||
+                $scope.isAdviser(submission) ||
+                $scope.isMemberGroup(submission)
+                ){
+                return true
+            }
         };
 
         $http.get('/api/submissions').success(function(submissions) {

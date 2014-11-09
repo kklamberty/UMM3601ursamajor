@@ -1,7 +1,8 @@
 <div class="container-fluid breakLongWords" ng-controller="SublistCtrl">
 
     <ul class="list-group" ng-hide="selection.selected">
-        <li class="list-group-item" id="text"><h2>Submissions</h2></li>
+        <li class="list-group-item" id="text">
+            <h2>Submissions </h2></li>
         <li class="list-group-item" ng-style="statusColorTab(sub.status.strict)" ng-repeat="sub in submissions" ng-show="canSeeSub(sub)">
             <h3 id="text">{{sub.title}}</h3>
             <strong>{{sub.presenterInfo.first}} {{sub.presenterInfo.last}}</strong>
@@ -19,7 +20,7 @@
                     <p>{{sub.sponsors | isntempty:"Sponsors: "}}</p>
                     <p>{{sub.mediaServicesEquipment | isntempty:"Media Services Equipment: "}}</p>
                     <p>Abstract: <br> {{sub.abstract | limitTo: 300}}</p>
-
+                    <strong><p ng-show="isMemberGroup(sub)"> This submission is in your review group</p></strong>
                     <p>Date of submission: {{sub.timestamp}}</p>
                 </li>
             </ul>
@@ -63,7 +64,6 @@
                     <button class="btn btn-warning" ng-click="submitStatusEdit()">Submit</button>
                 </div>
             </div>
-
             <h3>{{selection.item.title}}</h3>
             <strong>{{selection.item.presenterInfo.last}}, {{selection.item.presenterInfo.first}}</strong>
             <hr>
@@ -85,6 +85,5 @@
             </ul>
             <br>
         </li>
-
     </ul>
 </div>
