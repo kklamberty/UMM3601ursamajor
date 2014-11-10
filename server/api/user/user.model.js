@@ -14,7 +14,7 @@ var UserSchema = new Schema({
   },
   group: {
       type: Number,
-      default: 0
+      default: -1
   },
   hashedPassword: String,
   provider: String,

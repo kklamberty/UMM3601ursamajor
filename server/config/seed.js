@@ -170,7 +170,7 @@ User.find({}).remove(function() {
             console.log('finished populating users');
         }, {
             provider: 'google',
-            role: 'member',
+            role: 'reviewer',
             email: 'gusaa004@morris.umn.edu',
             name: 'Dalton Gusaas',
             google: {
@@ -308,7 +308,7 @@ Submission.find({}).remove(function(){
         abstract: "This research looks at the work of Margaret C. Anderson, the editor of the Little Review.  " +
             "The review published first works by Sherwood Anderson, James Joyce, Wyndham Lewis, and Ezra Pound.  " +
             "This research draws upon mostly primary sources including memoirs, published letters, and a complete collection of the Little Review. " +
-            "Most prior research on Anderson focuses on her connection to the famous writers and personalities that she published and associated with.  " +
+            "Most prior research on Anderson focsal033@morris.umn.eduuses on her connection to the famous writers and personalities that she published and associated with.  " +
             "This focus undermines her role as the dominant creative force behind one of the most influential little magazines published in the 20th Century. " +
             "This case example shows how little magazine publishing is arguably a literary art.",
         presentationType: "Poster or Visual Display",
