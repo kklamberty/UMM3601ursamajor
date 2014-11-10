@@ -19,10 +19,10 @@ angular.module('umm3601ursamajorApp')
         $scope.roleOptions =
             [   'user',
                 'member',
-                'admin'
+                'admin',
+                'adviser'
             ];
-        $scope.role =
-            [""];
+
 
 
 
