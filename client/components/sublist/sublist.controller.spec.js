@@ -15,7 +15,7 @@ describe('filter', function() {
           inject(function(isntemptyFilter) {
               expect(isntemptyFilter("item1", "First Item")).toBe("First Item item1");
               expect(isntemptyFilter(21, "myNumber")).toBe("myNumber 21");
-              expect(isntemptyFilter("", "emptyString")).toBe("emptyString  ");
+              expect(isntemptyFilter("", "emptyString")).toBe('emptyString  ');
           }));
     });
 });
