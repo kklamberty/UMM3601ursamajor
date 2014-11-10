@@ -30,7 +30,7 @@ exports.setup = function (User, config) {
                 }
             });
         } else {
-            done("Please go back a page to log-in again with your UMM X500");
+            done("Please go back a page to log-in again with your UMM X500 If using the Google+ button please go to your google account and log in with your X-500.");
         }
     }
   ));
