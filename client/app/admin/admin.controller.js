@@ -17,9 +17,9 @@ angular.module('umm3601ursamajorApp')
 //    });
 
         $scope.roleOptions =
-            [   {id: 1, role: 'user'},
-                {id: 2, role: 'member'},
-                {id: 3, role: 'admin'}
+            [   'user',
+                'member',
+                'admin'
             ];
         $scope.role = "";
 
@@ -43,11 +43,10 @@ angular.module('umm3601ursamajorApp')
             });
         };
 
-        $scope.changeRole = function(role, user) {
+        $scope.changeRole = function(user) {
             console.log(user);
-            console.log(role);
-            if(confirm(role + user +'Are you sure you want to update this users role?')) {
-                Auth.changeRole(role, user);
+            if(confirm('Are you sure you want to update this users role?')) {
+                Auth.changeRole(user.role, user);
             };
         };
     });
