@@ -59,7 +59,7 @@
             </span>
             <div>
                 <select ng-model="user.role"  placeholder="select one" required ng-required>
-                    <option value="" disabled selected>Select One </option>
+                    <option value="disabled selected">Select One </option>
                     <option ng-repeat="option in roleOptions" value="{{option}}">{{option}}</option>
                 </select>
             </div>
@@ -70,5 +70,4 @@
             <a ng-click="delete(user)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
         </li>
     </ul>
-
 </div>

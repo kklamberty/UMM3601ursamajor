@@ -1,17 +1,13 @@
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
-
-
-
 exports.setup = function (User, config) {
   passport.use(new GoogleStrategy({
       clientID: config.google.clientID,
       clientSecret: config.google.clientSecret,
       callbackURL: config.google.callbackURL
-
     },
-    function(accessToken, refreshToken, profile, done, Auth, $location) {
+    function(accessToken, refreshToken, profile, done) {
         if(profile._json.hd === "morris.umn.edu") {
             User.findOne({
                 'google.id': profile.id
@@ -34,7 +30,7 @@ exports.setup = function (User, config) {
                 }
             });
         } else {
-            done("please log in with your x-500")
+            done("Please go back a page to log in again with your UMM X-500. If using the Google+ button please go to your google account and log in with your X-500.");
         }
     }
   ));
