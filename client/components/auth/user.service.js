@@ -15,7 +15,11 @@ angular.module('umm3601ursamajorApp')
         changeRole: {
             method: 'PUT',
             params: {
-//        controller:'role'
+            }
+        },
+        changeGroup: {
+            method: 'PUT',
+            params: {
             }
         },
       get: {

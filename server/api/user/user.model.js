@@ -54,7 +54,8 @@ UserSchema
   .get(function() {
     return {
       '_id': this._id,
-      'role': this.role
+      'role': this.role,
+      'group': this.group
     };
   });
 

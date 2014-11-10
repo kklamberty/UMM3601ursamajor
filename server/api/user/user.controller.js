@@ -27,6 +27,7 @@ exports.create = function (req, res, next) {
   var newUser = new User(req.body);
   newUser.provider = 'local';
   newUser.role = 'user';
+  newUser.group =
   newUser.save(function(err, user) {
     if (err) return validationError(res, err);
     var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
@@ -79,12 +80,31 @@ exports.changePassword = function(req, res, next) {
   });
 };
 
+/**
+ * Change a users role
+ */
 exports.changeRole = function(req, res, next) {
     var userId = req.params.id;
     var newRole = String(req.body.role);
 
     User.findById(userId, function (err, user) {
         user.role = newRole;
+        user.save(function(err) {
+            if (err) return validationError(res, err);
+            res.send(200);
+        });
+    });
+};
+
+/**
+ * Change a users group
+ */
+exports.changeGroup = function(req, res, next) {
+    var userId = req.params.id;
+    var newGroup = Number(req.body.group);
+
+    User.findById(userId, function (err, user) {
+        user.group = newGroup;
         user.save(function(err) {
             if (err) return validationError(res, err);
             res.send(200);
