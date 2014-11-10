@@ -14,7 +14,7 @@
                 Currently is a  {{user.role}}
             </span>
             <div>
-                <select  placeholder="select one" required ng-required>
+                <select ng-model="user.role"  placeholder="select one" required ng-required>
                     <option value="" disabled selected>Select One </option>
                     <option ng-repeat="option in roleOptions" value="{{option}}">{{option}}</option>
                 </select>
