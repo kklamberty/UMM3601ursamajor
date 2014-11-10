@@ -154,15 +154,23 @@ User.find({}).remove(function() {
             password: 'admin'
         }, {
             provider: 'local',
-            role: 'reviewer',
-            name: 'Reviewer',
-            email: 'reviewer@reviewer.com',
-            password: 'reviewer'
+            role: 'member',
+            name: 'Member',
+            email: 'member@member.com',
+            password: 'member',
+            group: 1
+        }, {
+            provider: 'local',
+            role: 'member',
+            name: 'Member',
+            email: 'member2@member.com',
+            password: 'member',
+            group: 2
         }, function() {
             console.log('finished populating users');
         }, {
             provider: 'google',
-            role: 'reviewer',
+            role: 'member',
             email: 'gusaa004@morris.umn.edu',
             name: 'Dalton Gusaas',
             google: {
@@ -209,8 +217,7 @@ Submission.find({}).remove(function(){
         approval: false,
         status:  {strict: "Awaiting Adviser Approval", text: "Has not been reviewed yet"},
         timestamp: "Sat Oct 18 2014 10:48:54 GMT-0500 (CDT)",
-        reviewers: ["gusaa004@morris.umn.edu", "reviewer@reviewer.com"],
-        comments: []
+        group: 1
     }, {
         title: "Blind Construction: Mixed Media",
         format: "Artist Statement",
@@ -235,8 +242,7 @@ Submission.find({}).remove(function(){
         approval: true,
         status: {strict: "Revisions Needed", text: "Submitter is working on updating"},
         timestamp: "Tue Oct 21 2014 23:22:54 GMT-0500 (CDT)",
-        reviewers: ["reviewer@reviewer.com"],
-        comments: []
+        group: 1
     }, {
         title: "On the Migration of Majestic Space Whales",
         format: "Artist Statement",
@@ -268,8 +274,7 @@ Submission.find({}).remove(function(){
         approval: false,
         status: {strict: "Awaiting Adviser Approval", text: "Adviser has been notified"},
         timestamp: "Mon Sept 2 2014 1:48:54 GMT-0500 (CDT)",
-        reviewers: ["gusaa004@morris.umn.edu", "reviewer@reviewer.com"],
-        comments: []
+        group: 1
     }, {
         title: "The Commemoration and Memorialization of the American Revolution",
         format: "Artist Statement",
@@ -296,8 +301,7 @@ Submission.find({}).remove(function(){
         approval: true,
         status: {strict: "Reviewing in Process", text: "Needs to be updated an iota"},
         timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)",
-        reviewers: ["reviewer@reviewer.com"],
-        comments: []
+        group: 3
     }, {
         title: "Margaret C. Anderson’s Little Review",
         format: "Social Science",
@@ -323,8 +327,7 @@ Submission.find({}).remove(function(){
         approval: true,
         status: {strict: "Accepted", text: "Ready for launch"},
         timestamp: "Thur Oct 23 2014 1:48:54 GMT-0500 (CDT)",
-        reviewers: ["gusaa004@morris.umn.edu"],
-        comments: []
+        group: 0
     }, {
         title: "A Study of the Properties of a Paperclip in the Digestive System of a Sloth",
         format: "Artist Statement",
@@ -348,7 +351,6 @@ Submission.find({}).remove(function(){
         approval: false,
         status: {strict: "Awaiting Adviser Approval", text: "Not all reviewers have had a chance to look at it yet"},
         timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)",
-        reviewers: ["reviewer@reviewer.com"],
-        comments: []
+        group: 3
     });
 });

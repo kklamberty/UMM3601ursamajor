@@ -11,6 +11,7 @@ angular.module('umm3601ursamajorApp')
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
+//    $scope.group = Auth.getCurrentUser.group;
 
 //    $scope.loggedIn = function(){
 //        if(Auth.email.indexOf("@morris") >= 0){

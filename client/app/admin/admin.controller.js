@@ -18,9 +18,7 @@ angular.module('umm3601ursamajorApp')
 
         $scope.roleOptions =
             [   'user',
-                'Review Group 1',
-                'Review Group 2',
-                'Committee Chair',
+                'member',
                 'admin'
             ];
         $scope.role =

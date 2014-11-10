@@ -12,6 +12,10 @@ var UserSchema = new Schema({
     type: String,
     default: 'user'
   },
+  group: {
+      type: Number,
+      default: 0
+  },
   hashedPassword: String,
   provider: String,
   salt: String,
@@ -39,7 +43,8 @@ UserSchema
   .get(function() {
     return {
       'name': this.name,
-      'role': this.role
+      'role': this.role,
+      'group': this.group
     };
   });
 
