@@ -30,7 +30,7 @@ exports.setup = function (User, config) {
                 }
             });
         } else {
-
+            done("Please go back a page to log-in again with your UMM X500");
         }
     }
   ));
