@@ -1,6 +1,6 @@
 /**
- * Created by saxxx027 on 11/10/14.
- */
+* Created by saxxx027 on 11/10/14.
+*/
 
 'use strict';
 
@@ -15,7 +15,7 @@ describe('filter', function() {
           inject(function(isntemptyFilter) {
               expect(isntemptyFilter("item1", "First Item")).toBe("First Item item1");
               expect(isntemptyFilter(21, "myNumber")).toBe("myNumber 21");
-              expect(isntemptyFilter("", "emptyString")).toBe('emptyString  ');
+              expect(isntemptyFilter(["happy", "days", "testing", "rocks"], "arrays")).toBe('arrays happy,days,testing,rocks');
           }));
     });
 });
