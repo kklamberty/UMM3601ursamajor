@@ -16,7 +16,7 @@
                     <p>Format:  {{sub.format}}</p>
                     <p>Type: {{sub.presentationType}}</p>
                     <p>Advisor: {{sub.adviserInfo.first}} {{sub.adviserInfo.last}}  Email: {{sub.adviserInfo.email}}</p>
-                    <p>Approved? {{approvalWordChange(sub.approval)}}</p>
+                    <p>Advisor Approved: {{approvalWordChange(sub.approval)}}</p>
                     <p>{{sub.sponsors | isntempty:"Sponsors: "}}</p>
                     <p>{{sub.mediaServicesEquipment | isntempty:"Media Services Equipment: "}}</p>
                     <p>Abstract: <br> {{sub.abstract | limitTo: 300}}</p>

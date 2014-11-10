@@ -1,61 +1,16 @@
-<div ng-include="'components/navbar/navbar.html'" xmlns="http://www.w3.org/1999/html"></div>
+<div ng-include="'components/navbar/navbar.html'"></div>
 <div>
     <ul id="center">
         <a href="/subformeditor" class="btn btn-primary">Edit the Submission Form Here!</a>
     </ul>
 </div>
 <div class="container">
-    <!--<p>The delete user and user index api routes are restricted to users with the 'admin' role.</p>-->
     <ul class="list-group">
-        <h1>Admin</h1>
-        <li class="list-group-item" ng-repeat="user in users" ng-show="userIsAdmin(user)">
-            <strong>{{user.name}}:</strong><br>
-            <span class="text-muted">
-                {{user.email}}
-            </span>
-            <div ng-controller="AdminCtrl">
-                <select  ng-model="role"
-                        ng-options="option.role for option in roleOptions"
-                        ng-change="changeRole(option.role, user)">
-                        </select>
-            </div>
-
-
-            <!--<button class="btn btn-primary padded" type="submit" value="submit">Submit!</button>-->
-            <a ng-click="delete(user)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
-        </li>
-    </ul>
-
-
-    <ul class="list-group">
-        <h1>Members</h1>
-        <li class="list-group-item" ng-repeat="user in users" ng-show="userIsMember(user)">
+        <li class="list-group-item" ng-repeat="user in users">
             <strong>{{user.name}}:</strong><br>
             <span class="text-muted">
                 {{user.email}} <br>
-            </span>
-            <div>
-                <select  placeholder="select one" required ng-required>
-                    <option value="">Select One</option>
-                    <option ng-repeat="option in roleOptions" value="{{option}}">{{option}}</option>
-                </select>
-            </div>
-
-            <button ng-click="changeRole(user)"> Update Role</button>
-
-            <!--<button class="btn btn-primary padded" type="submit" value="submit">Submit!</button>-->
-            <a ng-click="delete(user)" class="trash"><span class="glyphicon glyphicon-trash pull-right"></span></a>
-        </li>
-    </ul>
-
-
-
-    <ul class="list-group">
-        <h1>Users</h1>
-        <li class="list-group-item" ng-repeat="user in users" ng-show="userIsUser(user)">
-            <strong>{{user.name}}:</strong><br>
-            <span class="text-muted">
-                {{user.email}} <br>
+                Currently is a  {{user.role}}
             </span>
             <div>
                 <select ng-model="user.role"  placeholder="select one" required ng-required>
