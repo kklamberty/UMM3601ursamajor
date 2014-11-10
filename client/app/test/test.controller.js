@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('umm3601ursamajorApp')
-  .controller('TestCtrl', function ($scope) {
+  .controller('TestCtrl', ['$scope', function ($scope) {
 
 //  $scope.makeBold = function(documentID) {
 ////      var result = documentID.bold();
@@ -16,7 +16,7 @@ angular.module('umm3601ursamajorApp')
 //  $scope.submitText = function() {
 //      return $scope.testingText;
 //  };
-
+        $scope.textArea = "<b>Hello</b>";
 
         $scope.makeBold = function() {
             var str = $scope.testText;
@@ -32,4 +32,4 @@ angular.module('umm3601ursamajorApp')
 
 
 
-        });
+        }]);
