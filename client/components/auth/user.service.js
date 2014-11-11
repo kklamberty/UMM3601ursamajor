@@ -12,12 +12,7 @@ angular.module('umm3601ursamajorApp')
           controller:'password'
         }
       },
-        changeRole: {
-            method: 'PUT',
-            params: {
-            }
-        },
-        changeGroup: {
+        updateInfo: {
             method: 'PUT',
             params: {
             }

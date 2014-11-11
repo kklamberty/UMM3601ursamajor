@@ -92,21 +92,11 @@ angular.module('umm3601ursamajorApp')
         }).$promise;
       },
 
-        changeRole: function(role, user, callback) {
+        updateInfo: function(role, group, user, callback) {
             var cb = callback || angular.noop;
 
-            return User.changeRole({ id: user._id }, {
-                role: role
-            }, function(user) {
-                return cb(user);
-            }, function(err) {
-                return cb(err);
-            }).$promise;
-        },
-        changeGroup: function(group, user, callback) {
-            var cb = callback || angular.noop;
-
-            return User.changeGroup({ id: user._id }, {
+            return User.updateInfo({ id: user._id }, {
+                role: role,
                 group: group
             }, function(user) {
                 return cb(user);

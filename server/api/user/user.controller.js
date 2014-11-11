@@ -83,27 +83,13 @@ exports.changePassword = function(req, res, next) {
 /**
  * Change a users role
  */
-exports.changeRole = function(req, res, next) {
+exports.updateInfo = function(req, res, next) {
     var userId = req.params.id;
     var newRole = String(req.body.role);
+    var newGroup = Number(req.body.group)
 
     User.findById(userId, function (err, user) {
         user.role = newRole;
-        user.save(function(err) {
-            if (err) return validationError(res, err);
-            res.send(200);
-        });
-    });
-};
-
-/**
- * Change a users group
- */
-exports.changeGroup = function(req, res, next) {
-    var userId = req.params.id;
-    var newGroup = Number(req.body.group);
-
-    User.findById(userId, function (err, user) {
         user.group = newGroup;
         user.save(function(err) {
             if (err) return validationError(res, err);
