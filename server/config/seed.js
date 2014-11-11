@@ -141,14 +141,14 @@ User.find({}).remove(function() {
             name: 'User',
             email: 'test@test.com',
             password: 'test',
-            group: 2
+            group: -1
         }, {
             provider: 'local',
             role: 'admin',
             name: 'Admin',
             email: 'admin@admin.com',
             password: 'admin',
-            group: 3
+            group: -1
         }, {
             provider: 'local',
             role: 'member',
@@ -318,7 +318,7 @@ Submission.find({}).remove(function(){
         approval: true,
         status: {strict: "Accepted", text: "Ready for launch"},
         timestamp: "Thur Oct 23 2014 1:48:54 GMT-0500 (CDT)",
-        group: 0
+        group: 2
     }, {
         title: "A Study of the Properties of a Paperclip in the Digestive System of a Sloth",
         format: "Artist Statement",
