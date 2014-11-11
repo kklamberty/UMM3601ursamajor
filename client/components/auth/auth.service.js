@@ -103,6 +103,17 @@ angular.module('umm3601ursamajorApp')
                 return cb(err);
             }).$promise;
         },
+        changeGroup: function(group, user, callback) {
+            var cb = callback || angular.noop;
+
+            return User.changeGroup({ id: user._id }, {
+                group: group
+            }, function(user) {
+                return cb(user);
+            }, function(err) {
+                return cb(err);
+            }).$promise;
+        },
 
 
         /**
