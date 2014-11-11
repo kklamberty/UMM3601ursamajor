@@ -101,15 +101,10 @@ Subformtext.find({}).remove(function() {
 
 User.find({}).remove(function() {
     User.create({
-            provider: 'local',
-            name: 'Test User',
-            email: 'test@test.com',
-            password: 'test'
-        }, {
             provider: 'google',
             role: 'admin',
-            email: 'kanga139@morris.umn.edu',
             name: 'Matthew Kangas',
+            email: 'kanga139@morris.umn.edu',
             google: {
                 email: 'kanga139@morris.umn.edu',
                 family_name: 'Kangas',
@@ -123,11 +118,37 @@ User.find({}).remove(function() {
                 verified_email: true
             }
         },{
+            provider: 'google',
+            role: 'adviser',
+            name: 'Maggie Casale',
+            group: 3,
+            email: 'casal033@morris.umn.edu',
+            google: {
+                email: 'casal033@morris.umn.edu',
+                family_name: 'Casale',
+                given_name: 'Maggie',
+                hd: 'morris.umn.edu',
+                id: '112564589444054176387',
+                link: "https://plus.google.com/116234824364241021424",
+                locale: "en",
+                name: "Maggie Casale",
+                picture: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+                verified_email: true
+            }
+        },{
+            provider: 'local',
+            role: 'user',
+            name: 'User',
+            email: 'test@test.com',
+            password: 'test',
+            group: 2
+        }, {
             provider: 'local',
             role: 'admin',
             name: 'Admin',
             email: 'admin@admin.com',
-            password: 'admin'
+            password: 'admin',
+            group: 3
         }, {
             provider: 'local',
             role: 'member',
@@ -135,20 +156,14 @@ User.find({}).remove(function() {
             email: 'member@member.com',
             password: 'member',
             group: 1
-        }, {
-            provider: 'local',
-            role: 'member',
-            name: 'Member',
-            email: 'member2@member.com',
-            password: 'member',
-            group: 2
         }, function() {
             console.log('finished populating users');
         }, {
             provider: 'google',
-            role: 'reviewer',
+            role: 'member',
             email: 'gusaa004@morris.umn.edu',
             name: 'Dalton Gusaas',
+            group: 2,
             google: {
                 email: 'gusaa004@morris.umn.edu',
                 family_name: 'Gusaas',

@@ -18,6 +18,7 @@ function onConnect(socket) {
   });
 
   // Insert sockets below
+  require('../api/roleChange/roleChange.socket').register(socket);
   require('../api/subformtext/subformtext.socket').register(socket);
   require('../api/submission/submission.socket').register(socket);
 }

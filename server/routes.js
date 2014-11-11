@@ -9,6 +9,7 @@ var errors = require('./components/errors');
 module.exports = function(app) {
 
   // Insert routes below
+  app.use('/api/roleChanges', require('./api/roleChange'));
   app.use('/api/subformtexts', require('./api/subformtext'));
   app.use('/api/submissions', require('./api/submission'));
   app.use('/api/users', require('./api/user'));

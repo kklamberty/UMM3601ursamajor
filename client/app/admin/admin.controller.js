@@ -19,8 +19,8 @@ angular.module('umm3601ursamajorApp')
         $scope.roleOptions =
             [   'user',
                 'member',
-                'admin'
-                /*'advisor'*/
+                'admin',
+                'adviser'
             ];
         $scope.groupOptions =
             [   1,
@@ -55,4 +55,11 @@ angular.module('umm3601ursamajorApp')
             };
         };
 
+        $scope.changeGroup = function(user) {
+            console.log(user.group, user.role);
+            if(confirm('Are you sure you want to update this users role?')) {
+                Auth.changeGroup(user.group, user);
+            };
+            console.log(user.group, user.role)
+        };
     });

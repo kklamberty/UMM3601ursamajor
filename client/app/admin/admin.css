@@ -3,6 +3,19 @@
 .removeBullets {
     list-style-type: none;
 }
+.button1 {
+    color: antiquewhite;
+    border-radius: 4px;
+    background: maroon;
+}
+.buttonLrg{
+    color: antiquewhite;
+    padding: 10px 16px;
+    font-size: 10px;
+    line-height: 1.33;
+    border-radius: 6px;
+    background: maroon;
+}
 #center {
     text-align: center;
 }

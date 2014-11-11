@@ -42,3 +42,19 @@
     display: block;
 
 }
+
+.buttonMain{
+    color: antiquewhite;
+    padding: 10px 16px;
+    font-size: 30px;
+    border-radius: 6px;
+    background: maroon;
+    width: 30%;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+
+}
