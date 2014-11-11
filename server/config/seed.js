@@ -121,7 +121,7 @@ User.find({}).remove(function() {
             provider: 'google',
             role: 'adviser',
             name: 'Maggie Casale',
-            group: 3,
+            group: -1,
             email: 'casal033@morris.umn.edu',
             google: {
                 email: 'casal033@morris.umn.edu',

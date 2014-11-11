@@ -51,7 +51,11 @@ angular.module('umm3601ursamajorApp')
         $scope.updateInfo = function(user) {
             console.log(user);
             if(confirm('Are you sure you want to update this users role?')) {
-                Auth.updateInfo(user.role, user.group, user);
+                if(user.role != 'member') {
+                    Auth.updateInfo(user.role, -1, user);
+                } else {
+                    Auth.updateInfo(user.role, user.group, user);
+                }
             };
         };
 
