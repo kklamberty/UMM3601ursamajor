@@ -18,13 +18,14 @@ angular.module('umm3601ursamajorApp')
 
         $scope.roleOptions =
             [   'user',
-                'member',
+                'reviewer',
                 'admin'
             ];
         $scope.groupOptions =
             [   1,
                 2,
-                3
+                3,
+                4
             ];
 
         $scope.userIsAdmin = function(user){

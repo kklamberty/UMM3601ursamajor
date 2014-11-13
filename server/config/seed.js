@@ -151,16 +151,16 @@ User.find({}).remove(function() {
             group: -1
         }, {
             provider: 'local',
-            role: 'member',
-            name: 'Member',
-            email: 'member@member.com',
-            password: 'member',
+            role: 'reviewer',
+            name: 'Reviewer',
+            email: 'reviwer@reviewer.com',
+            password: 'reviewer',
             group: 1
         }, function() {
             console.log('finished populating users');
         }, {
             provider: 'google',
-            role: 'member',
+            role: 'reviewer',
             email: 'gusaa004@morris.umn.edu',
             name: 'Dalton Gusaas',
             group: 2,
