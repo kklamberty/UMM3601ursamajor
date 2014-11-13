@@ -18,6 +18,12 @@ angular.module('umm3601ursamajorApp')
         }
     })
 
+    .filter('fancyLimitTo', function(){
+        return function(input, limit){
+            return input.substring(0, limit) + "[...]";
+        }
+    })
+
     .controller('SublistCtrl', function ($scope, $http, socket, $modal, Modal, Auth, $window) {
         $scope.submissions = [];
 
@@ -193,7 +199,7 @@ angular.module('umm3601ursamajorApp')
             $scope.resetSelection();
         };
 
-        // Controlling editing of status in details view
+        // -------------------------- Editing of status ----------------------------------------------
         $scope.statusEdit = {
             editing: false,
             options: ["Reviewing in Process",
@@ -255,9 +261,10 @@ angular.module('umm3601ursamajorApp')
                 });
             }
 
-
             $scope.selection.item.status.strict = $scope.statusEdit.temp.strict;
             $scope.selection.item.status.text = $scope.statusEdit.temp.text;
+
+        //--------------------------------------------- gmail stuff? ---------------------------------------
 
             sendGmail({
                 to: $scope.selection.item.presenterInfo.email,
