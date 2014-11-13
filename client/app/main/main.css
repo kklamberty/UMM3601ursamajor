@@ -1,3 +1,25 @@
+/* unvisited link */
+a:link {
+    color: #8C1919;
+}
+
+/* visited link */
+a:visited {
+    color: #8C1919;
+}
+
+/* mouse over link */
+a:hover {
+    color: antiquewhite;
+    text-decoration: none;
+}
+
+/* selected link */
+a:active {
+    color: antiquewhite;
+}
+
+
 .thing-form {
     margin: 20px 0;
 }
@@ -16,10 +38,10 @@
 .hero-unit {
     position: relative;
     padding: 30px 15px;
-    color: maroon;
+    color: #FFFFFF;
     text-align: center;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-    background: goldenrod;
+    background: #8C1919;
 }
 
 .footer {
@@ -44,11 +66,10 @@
 }
 
 .buttonMain{
-    color: antiquewhite;
     padding: 10px 16px;
     font-size: 30px;
     border-radius: 6px;
-    background: maroon;
+    background: #E19B14;
     width: 30%;
     text-align: center;
     margin-top: 15px;

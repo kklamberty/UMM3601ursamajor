@@ -1,3 +1,5 @@
+
+
 .trash { color:rgb(209, 91, 71); }
 
 .removeBullets {
@@ -6,7 +8,7 @@
 .button1 {
     color: antiquewhite;
     border-radius: 4px;
-    background: maroon;
+    background: #E19B14;
 }
 .buttonLrg{
     color: antiquewhite;
@@ -14,7 +16,7 @@
     font-size: 30px;
     line-height: 1.33;
     border-radius: 6px;
-    background: maroon;
+    background: #E19B14;
     font-style: oblique;
     font-family: "Times New Roman", Times, monospace;
 

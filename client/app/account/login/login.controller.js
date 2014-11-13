@@ -5,6 +5,10 @@ angular.module('umm3601ursamajorApp')
     $scope.user = {};
     $scope.errors = {};
 
+        if(Auth.isLoggedIn() === true) {
+            $location.path('/');
+        }
+
     $scope.login = function(form) {
       $scope.submitted = true;
 
