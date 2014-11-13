@@ -251,8 +251,8 @@ Submission.find({}).remove(function(){
             "happens layers of dust and rock will begin to collect upon the space whale until eventually the space whale is rendered unable to feed, or is crushed to death.",
         presentationType: "Performance",
         formatChange: false,
-        presenterInfo: {first: "Timmy", last: "Flabberghast III", email: "flabb137@morris.umn.edu"},
-        copresenterOneInfo: {first: "Sally", last: "Birch", email: "saxxx027@morris.umn.edu"},
+        presenterInfo: {first: "Joseph", last: "Thelen", email: "thele116@morris.umn.edu"},
+        copresenterOneInfo: {first: "Jacob", last: "Opdahl", email: "opdah023@morris.umn.edu"},
         copresenterTwoInfo: {first: "", last: "", email: ""},
         discipline: "Biology",
         sponsors: [], //Might need to worry about if this is static for the DB later.
