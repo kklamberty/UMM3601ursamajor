@@ -8,26 +8,27 @@
         </li>
         <li class="list-group-item" ng-style="statusColorTab(sub.status.strict)" ng-repeat="sub in submissions | filter:hasPermissions | filter:searchFilter">
             <h3 id="text">{{sub.title}}</h3>
-            <strong>{{sub.presenterInfo.first}} {{sub.presenterInfo.last}}</strong>
-            <hr>
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <p>Discipline: {{sub.discipline}}</p>
-                    <p>Submitter's Email: {{sub.presenterInfo.email}}</p>
-                    <p>{{sub.copresenterOneInfo.first | isntEmpty:"Co-Presenter One Name:":""}}{{sub.copresenterOneInfo.last | isntEmpty:"":""}}{{sub.copresenterOneInfo.email | isntEmpty:" Email:":""}}</p>
-                    <p>{{sub.copresenterTwoInfo.first | isntEmpty:"Co-Presenter Two Name:":""}}{{sub.copresenterTwoInfo.last | isntEmpty:"":""}}{{sub.copresenterTwoInfo.email | isntEmpty:" Email:":""}}</p>
-                    <p>Format:  {{sub.format}}</p>
-                    <p>Type: {{sub.presentationType}}</p>
-                    <p>Advisor: {{sub.adviserInfo.first}} {{sub.adviserInfo.last}}  Email: {{sub.adviserInfo.email}}</p>
-                    <p>Advisor Approved: {{approvalWordChange(sub.approval)}}</p>
-                    <p>{{sub.sponsors | isntEmpty:"Sponsors:":""}}</p>
-                    <p>{{sub.mediaServicesEquipment | isntEmpty:"Media Services Equipment:":""}}</p>
-                    <p>Abstract: <br> {{sub.abstract | limitTo: 300}}</p>
-                    <strong><p ng-show="isMemberGroup(sub)"> This submission is in your review group</p></strong>
-                    <p>Date of submission: {{sub.timestamp}}</p>
-                </li>
-            </ul>
+
             <button class="buttonL" ng-click="selectItem($index)">Details</button>
+            <strong>{{sub.presenterInfo.first}} {{sub.presenterInfo.last}}</strong>
+            <p class="subtext">
+                {{sub.copresenterOneInfo.first | isntEmpty:"":""}} {{sub.copresenterOneInfo.last | isntEmpty:"":""}}{{sub.copresenterTwoInfo.first | isntEmpty:",":""}} {{sub.copresenterTwoInfo.last | isntEmpty:"":""}}
+            </p>
+
+            <!--<hr>-->
+            <!--&lt;!&ndash;<ul class="list-group">&ndash;&gt;-->
+                <!--&lt;!&ndash;<li class="list-group-item">&ndash;&gt;-->
+                    <!--<p>Submitter's Email: {{sub.presenterInfo.email}}</p>-->
+                    <!--<p>{{sub.copresenterOneInfo.first | isntEmpty:"Co-Presenter #1 Name:":""}}{{sub.copresenterOneInfo.last | isntEmpty:"":""}}</p>-->
+                    <!--<p>{{sub.copresenterTwoInfo.first | isntEmpty:"Co-Presenter #2 Name:":""}}{{sub.copresenterTwoInfo.last | isntEmpty:"":""}}</p>-->
+                    <!--<p>Advisor: {{sub.adviserInfo.first}} {{sub.adviserInfo.last}}</p>-->
+                    <!--<p>Discipline: {{sub.discipline}}</p>-->
+                    <!--<p>Format:  {{sub.format}}</p>-->
+                    <!--<p>Abstract: <br> {{sub.abstract | fancyLimitTo: 300}}</p>-->
+                    <!--<strong><p ng-show="isMemberGroup(sub)"> This submission is in your review group</p></strong>-->
+                    <!--<p>Date of submission: {{sub.timestamp}}</p>-->
+                <!--&lt;!&ndash;</li>&ndash;&gt;-->
+            <!--&lt;!&ndash;</ul>&ndash;&gt;-->
             <br>
           </li>
 
