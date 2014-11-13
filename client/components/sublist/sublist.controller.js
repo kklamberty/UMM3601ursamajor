@@ -22,24 +22,23 @@ angular.module('umm3601ursamajorApp')
         $scope.submissions = [];
 
         $scope.getCurrentUser = Auth.getCurrentUser;
-
         $scope.group = Auth.getCurrentUser().group;
-
         $scope.email = Auth.getCurrentUser().email;
-
         $scope.isMember = Auth.isMember;
-
         $scope.isAdmin = Auth.isAdmin;
 
-        $scope.getCurrentUser = Auth.getCurrentUser;
+        //--------------------- Filter Functions -----------------------
 
-        $scope.hasCoPresenter = function(submission){
-            return submission.copresenterOne.first === null;
-        }
-
-        $scope.hasCoPresenterTwo = function(submission){
-            return submission.copresenterTwo.first === null;
-        }
+        $scope.filterData = {
+            searchText: "",
+            reviewGroupFilterSelection: "All",
+            reviewGroupFilterOptions: [
+                "All",
+                "Unassigned",
+                "Review Group 1",
+                "Review Group 2"
+            ]
+        };
 
         $scope.isPresenter = function(submission) {
             return $scope.email === submission.presenterInfo.email;
@@ -47,36 +46,80 @@ angular.module('umm3601ursamajorApp')
 
         $scope.isCoPresenter = function(submission) {
             return $scope.email === submission.copresenterOneInfo.email ||
-                   $scope.email === submission.copresenterTwoInfo.email;
+                $scope.email === submission.copresenterTwoInfo.email;
         };
 
         $scope.isAdviser = function(submission) {
             return $scope.email === submission.adviserInfo.email;
         };
+
         $scope.isMemberGroup = function(submission){
             return $scope.group === submission.group;
         };
 
-        $scope.canSeeSub = function(submission) {
-            if($scope.isAdmin() ||
-                $scope.isPresenter(submission) ||
-                $scope.isCoPresenter(submission) ||
-                $scope.isAdviser(submission) ||
-                $scope.isMemberGroup(submission)
-                ){
-                return true
+        $scope.hasPermissions = function(submission) {
+            if(!Auth.isLoggedIn){
+                console.log("Not logged in!");
+                return false;
+            }
+
+            if($scope.getCurrentUser.role === "Admin" || $scope.isAdmin){
+                console.log("admin: yes");
+                return true;
+            } else {
+                console.log("Not admin, is logged in");
+                return $scope.isPresenter(submission) ||
+                       $scope.isCoPresenter(submission) ||
+                       $scope.isAdviser(submission) ||
+                       $scope.isMemberGroup(submission)
             }
         };
+
+        $scope.searchFilter = function(submission){
+            var searchText = $scope.filterData.searchText.toLowerCase();
+            return(
+                (submission.presenterInfo.first.toLowerCase().indexOf(searchText) != -1) ||
+                (submission.presenterInfo.last.toLowerCase().indexOf(searchText) != -1) ||
+                (submission.copresenterOneInfo.first.toLowerCase().indexOf(searchText) != -1) ||
+                (submission.copresenterOneInfo.last.toLowerCase().indexOf(searchText) != -1) ||
+                (submission.copresenterTwoInfo.first.toLowerCase().indexOf(searchText) != -1) ||
+                (submission.copresenterTwoInfo.last.toLowerCase().indexOf(searchText) != -1) ||
+                (submission.adviserInfo.first.toLowerCase().indexOf(searchText) != -1) ||
+                (submission.adviserInfo.last.toLowerCase().indexOf(searchText) != -1)
+            )
+        };
+
+
+//        $scope.hasCoPresenter = function(submission){
+//            return submission.copresenterOne.first === null;
+//        };
+//
+//        $scope.hasCoPresenterTwo = function(submission){
+//            return submission.copresenterTwo.first === null;
+//        };
+
+//        $scope.canSeeSub = function(submission) {
+//            if($scope.isAdmin() ||
+//                $scope.isPresenter(submission) ||
+//                $scope.isCoPresenter(submission) ||
+//                $scope.isAdviser(submission) ||
+//                $scope.isMemberGroup(submission)
+//                ){
+//                return true
+//            }
+//        };
+
+        // ----------------------- Getting Data from Mongo ----------------------------
 
         $http.get('/api/submissions').success(function(submissions) {
             $scope.submissions = submissions;
             socket.syncUpdates('submission', $scope.submissions);
         });
 
-        $http.get('/api/status').success(function(status) {
-            $scope.status = status;
-            socket.syncUpdates('status', $scope.status);
-        });
+//        $http.get('/api/status').success(function(status) {
+//            $scope.status = status;
+//            socket.syncUpdates('status', $scope.status);
+//        });
 
 
         var sendGmail = function(opts){
@@ -87,6 +130,8 @@ angular.module('umm3601ursamajorApp')
                 '&ui=1';
             $window.open(str);
         };
+
+        //----------------------------- Color Coding of submission list -----------------------------
 
         $scope.statusColorTab = function(status){
             switch(status){
@@ -122,7 +167,8 @@ angular.module('umm3601ursamajorApp')
             }
         };
 
-        // Controlling selection of submission for detail view
+        // ---------------------- Controlling selection of submission for detail view ---------------------------------
+
         $scope.selection = {selected: false, item: null};
 
         $scope.selectItem = function(itemIndex){

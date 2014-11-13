@@ -2,8 +2,11 @@
 
     <ul class="list-group" ng-hide="selection.selected">
         <li class="list-group-item" id="text">
-            <h2>Submissions </h2></li>
-        <li class="list-group-item" ng-style="statusColorTab(sub.status.strict)" ng-repeat="sub in submissions" ng-show="canSeeSub(sub)">
+            <h2>Submissions </h2>
+            <br>
+            <input type="text" ng-model="filterData.searchText" placeholder="Search">
+        </li>
+        <li class="list-group-item" ng-style="statusColorTab(sub.status.strict)" ng-repeat="sub in submissions | filter:hasPermissions | filter:searchFilter">
             <h3 id="text">{{sub.title}}</h3>
             <strong>{{sub.presenterInfo.first}} {{sub.presenterInfo.last}}</strong>
             <hr>
