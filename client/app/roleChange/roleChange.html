@@ -20,7 +20,7 @@
             </div>
 
             <!--Selector for member group-->
-            <div ng-show="userIsMember(user)">
+            <div ng-show="userIsReviewer(user)">
                 <select ng-model="user.group"  placeholder="" required ng-required>
                     <option value="{{user.group}}" disabled selected>{{user.group}}</option>
                     <option ng-repeat="option in groupOptions" value="{{option}}">{{option}}</option>

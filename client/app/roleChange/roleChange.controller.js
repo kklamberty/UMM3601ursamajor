@@ -19,21 +19,21 @@ angular.module('umm3601ursamajorApp')
 
         $scope.roleOptions =
             [   'user',
-                'member',
-                'admin',
-                'adviser'
+                'reviewer',
+                'admin'
             ];
         $scope.groupOptions =
             [   1,
                 2,
-                3
+                3,
+                4
             ];
 
         $scope.userIsAdmin = function(user){
             return user.role === "admin";
         };
-        $scope.userIsMember = function(user){
-            return user.role === "member";
+        $scope.userIsReviewer = function(user){
+            return user.role === "reviewer";
         };
         $scope.userIsUser = function(user){
             return user.role === "user";
@@ -52,7 +52,7 @@ angular.module('umm3601ursamajorApp')
         $scope.updateInfo = function(user) {
             console.log(user);
             if(confirm('Are you sure you want to update this users role?')) {
-                if(user.role != 'member') {
+                if(user.role != 'reviewer') {
                     Auth.updateInfo(user.role, -1, user);
                 } else {
                     Auth.updateInfo(user.role, user.group, user);

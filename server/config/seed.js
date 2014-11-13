@@ -118,24 +118,6 @@ User.find({}).remove(function() {
                 verified_email: true
             }
         },{
-            provider: 'google',
-            role: 'adviser',
-            name: 'Maggie Casale',
-            group: -1,
-            email: 'casal033@morris.umn.edu',
-            google: {
-                email: 'casal033@morris.umn.edu',
-                family_name: 'Casale',
-                given_name: 'Maggie',
-                hd: 'morris.umn.edu',
-                id: '112564589444054176387',
-                link: "https://plus.google.com/116234824364241021424",
-                locale: "en",
-                name: "Maggie Casale",
-                picture: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
-                verified_email: true
-            }
-        },{
             provider: 'local',
             role: 'user',
             name: 'User',
@@ -153,7 +135,7 @@ User.find({}).remove(function() {
             provider: 'local',
             role: 'reviewer',
             name: 'Reviewer',
-            email: 'reviwer@reviewer.com',
+            email: 'reviewer@reviewer.com',
             password: 'reviewer',
             group: 1
         }, function() {
