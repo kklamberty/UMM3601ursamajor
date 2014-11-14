@@ -6,9 +6,9 @@
             <br>
             <input type="text" ng-model="filterData.searchText" placeholder="Search">
         </li>
+
         <li class="list-group-item" ng-style="statusColorTab(sub.status.strict)" ng-repeat="sub in submissions | filter:hasPermissions | filter:searchFilter">
             <h3 id="text">{{sub.title}}</h3>
-
             <button class="buttonL" ng-click="selectItem($index)">Details</button>
             <strong>Presenter: {{sub.presenterInfo.first}} {{sub.presenterInfo.last}}</strong>
             <p class="subtext">
@@ -31,7 +31,6 @@
             <!--&lt;!&ndash;</ul>&ndash;&gt;-->
             <br>
           </li>
-
     </ul>
  
     <ul class="list-group" ng-show="selection.selected">
@@ -89,6 +88,10 @@
                 <li class="list-group-item"><p>{{selection.item.abstract}}</p></li>
             </ul>
             <br>
+            <p>You are seeing this submission because you are a(n):</p>
+            <p>Admin: {{hasAdminPrivs()}}</p>
+            <p>Presenter: {{isPresenter(selection.item)}}</p>
+            <p>Co-presenter: {{isCoPresenter(selection.item)}}</p>
         </li>
     </ul>
 </div>
