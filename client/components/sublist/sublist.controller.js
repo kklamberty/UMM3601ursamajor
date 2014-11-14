@@ -152,16 +152,16 @@ angular.module('umm3601ursamajorApp')
         $scope.statusColorTab = function(status){
             switch(status){
                 case "Awaiting Adviser Approval":
-                    return {'border-left': '4px solid rgba(255, 0, 0, 1)'};
+                    return {'border-left': '4px solid rgba(200, 30, 0, 1)'};
                     break;
                 case "Reviewing in Process":
-                    return {'border-left': '4px solid rgba(255, 220, 10, 1)'};
+                    return {'border-left': '4px solid rgba(225, 225, 10, 1)'};
                     break;
                 case "Revisions Needed":
-                    return {'border-left': '4px solid rgba(0, 100, 255, 1)'};
+                    return {'border-left': '4px solid rgba(20, 138, 255, 1)'};
                     break;
                 case "Accepted":
-                    return {'border-left': '4px solid rgba(0, 255, 0, 1)'};
+                    return {'border-left': '4px solid rgba(71, 214, 0, 1)'};
                     break;
             }
         };
@@ -169,16 +169,16 @@ angular.module('umm3601ursamajorApp')
         $scope.statusColorBody = function(status){
             switch(status){
                 case "Awaiting Adviser Approval":
-                    return {'background-color': 'rgba(255, 0, 0, 1)'};
+                    return {'background-color': 'rgba(200, 30, 0, 1)'};
                     break;
                 case "Reviewing in Process":
-                    return {'background-color': 'rgba(255, 220, 10, 1)'};
+                    return {'background-color': 'rgba(225, 225, 10, 1)'};
                     break;
                 case "Revisions Needed":
-                    return {'background-color': 'rgba(0, 100, 255, 1)'};
+                    return {'background-color': 'rgba(20, 138, 255, 1)'};
                     break;
                 case "Accepted":
-                    return {'background-color': 'rgba(0, 255, 0, 1)'};
+                    return {'background-color': 'rgba(71, 214, 0, 1)'};
                     break;
             }
         };
