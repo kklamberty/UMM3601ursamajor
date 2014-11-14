@@ -12,10 +12,13 @@
     color: antiquewhite;
     padding: 5px 8px;
     font-size: 13px;
-    line-height: 1.33;
+    /*line-height: 1.33;*/
     border-radius: 6px;
-    background: maroon;
-    font-style: oblique;
+    background: #7a0019;
+
+    border-style: none;
+
+
 }
 #center {
     text-align: center;
