@@ -2,7 +2,9 @@
  * Created by opdah023 on 10/9/14.
  */
 'use strict';
-
+ //When we tested this function, it worked correctly with only two
+ //parameters given, until we checked the final else case, in which
+ // case it broke with only two parameters
 angular.module('umm3601ursamajorApp')
     .filter('isntEmpty', function(){
         return function(input, title, altTitle){
