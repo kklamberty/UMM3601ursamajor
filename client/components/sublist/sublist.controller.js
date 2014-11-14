@@ -49,6 +49,10 @@ angular.module('umm3601ursamajorApp')
             ]
         };
 
+        $scope.setReviewGroupSelection = function(str) {
+            $scope.filterData.reviewGroupFilterSelection = str;
+        };
+
         $scope.hasAdminPrivs = function(){
             return (($scope.getCurrentUser.role != null && $scope.getCurrentUser.role == "Admin") || $scope.isAdmin());
         };
@@ -317,6 +321,10 @@ angular.module('umm3601ursamajorApp')
                  return "No";
                  }
              };
+
+
+        //--------------------------------------------- Tabs Stuff ---------------------------------------
+
 
 
     });
