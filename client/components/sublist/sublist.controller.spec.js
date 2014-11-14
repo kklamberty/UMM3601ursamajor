@@ -20,4 +20,12 @@ describe('filter', function() {
               expect(isntEmptyFilter("", "something else", "this was an empty string")).toBe("this was an empty string");
           }));
     });
+    describe('fancyLimitTo', function() {
+        it('should return first "n" characters of the imputed text',
+            inject(function(fancyLimitToFilter){
+                expect(fancyLimitToFilter("abc", 1 )).toBe("a[...]");
+                expect(fancyLimitToFilter("12345", 0)).toBe("[...]");
+                expect(fancyLimitToFilter("", 5)).toBe("[...]");
+            }));
+    });
 });
