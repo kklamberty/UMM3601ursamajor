@@ -13,12 +13,12 @@
 .buttonLrg{
     color: antiquewhite;
     padding: 10px 16px;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 1.33;
     border-radius: 6px;
     background: #ffcc33;
-    font-style: none;
-    font-family: "Times New Roman", Times, monospace;
+    font-weight: bold;
+    font-family: "Lucida Grande", "Helvetica Nueue", Arial, sans-serif, monospace;
 
 }
 #center {
