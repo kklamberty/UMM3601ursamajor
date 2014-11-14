@@ -10,9 +10,9 @@
             <h3 id="text">{{sub.title}}</h3>
 
             <button class="buttonL" ng-click="selectItem($index)">Details</button>
-            <strong>{{sub.presenterInfo.first}} {{sub.presenterInfo.last}}</strong>
+            <strong>Presenter: {{sub.presenterInfo.first}} {{sub.presenterInfo.last}}</strong>
             <p class="subtext">
-                {{sub.copresenterOneInfo.first | isntEmpty:"":""}} {{sub.copresenterOneInfo.last | isntEmpty:"":""}}{{sub.copresenterTwoInfo.first | isntEmpty:",":""}} {{sub.copresenterTwoInfo.last | isntEmpty:"":""}}
+                Co-Presenter(s): {{sub.copresenterOneInfo.first | isntEmpty:"":""}} {{sub.copresenterOneInfo.last | isntEmpty:"":""}}{{sub.copresenterTwoInfo.first | isntEmpty:",":""}} {{sub.copresenterTwoInfo.last | isntEmpty:"":""}}
             </p>
 
             <!--<hr>-->
@@ -77,9 +77,10 @@
                     <p>Format:  {{selection.item.format}}</p>
                     <p>Type: {{selection.item.presentationType}}</p>
                     <p>Advisor: {{selection.item.adviserInfo.last}}, {{selection.item.adviserInfo.first}} email: {{selection.item.adviserInfo.email}}</p>
+                    <p>Adviser Approved: {{approvalWordChange(selection.item.approval)}}</p>
                     <p>{{selection.item.sponsors | isntEmpty:"Sponsors:":""}}</p>
-                    <p>Approved? {{approvalWordChange(selection.item.approval)}}</p>
                     <p>{{selection.item.mediaServicesEquipment | isntEmpty:"Media Services Equipment:":""}}</p>
+                    <p>{{selection.item.specialRequirements | isntEmpty:"Special Requirements:":""}}</p>
                     <p>Date of submission: {{selection.item.timestamp}}</p>
                 </li>
             </ul>

@@ -242,7 +242,7 @@ Submission.find({}).remove(function(){
         featuredPresentation: true,
         mediaServicesEquipment: "Microphone for my sick rhymes, 5 laser stage lights with automated gimbals.",
         specialRequirements: "A whale suit.",
-        presenterTeeSize: "XXXXXXXXXXXXXXXXXXXXL",
+        presenterTeeSize: "XL",
         otherInfo: "yes.",
         approval: false,
         status: {strict: "Awaiting Adviser Approval", text: "Adviser has been notified"},
