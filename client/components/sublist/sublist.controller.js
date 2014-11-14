@@ -26,7 +26,7 @@ angular.module('umm3601ursamajorApp')
         }
     })
 
-    .controller('SublistCtrl', function ($scope, $http, socket, $modal, Modal, Auth, $window) {
+    .controller('SublistCtrl', function ($scope, $http, socket, $modal, Modal, Auth, $window, $filter) {
         $scope.submissions = [];
 
         $scope.getCurrentUser = Auth.getCurrentUser;
@@ -48,31 +48,39 @@ angular.module('umm3601ursamajorApp')
             ]
         };
 
+        $scope.hasAdminPrivs = function(){
+            return (($scope.getCurrentUser.role != null && $scope.getCurrentUser.role == "Admin") || $scope.isAdmin());
+        };
+
         $scope.isPresenter = function(submission) {
+            if(submission == null) return false;
             return $scope.email === submission.presenterInfo.email;
         };
 
         $scope.isCoPresenter = function(submission) {
+            if(submission == null) return false;
             return $scope.email === submission.copresenterOneInfo.email ||
                 $scope.email === submission.copresenterTwoInfo.email;
         };
 
         $scope.isAdviser = function(submission) {
+            if(submission == null) return false;
             return $scope.email === submission.adviserInfo.email;
         };
 
         $scope.isMemberGroup = function(submission){
+            if(submission == null) return false;
             return $scope.group === submission.group;
         };
 
         $scope.hasPermissions = function(submission) {
+            if(submission == null) return false;
             if(!Auth.isLoggedIn){
                 console.log("Not logged in!");
                 return false;
             }
 
-            if($scope.getCurrentUser.role === "Admin" || $scope.isAdmin){
-                console.log("admin: yes");
+            if($scope.hasAdminPrivs()){
                 return true;
             } else {
                 console.log("Not admin, is logged in");
@@ -182,7 +190,7 @@ angular.module('umm3601ursamajorApp')
         $scope.selectItem = function(itemIndex){
             console.log("setting index " + itemIndex + " as active item");
             $scope.selection.selected = true;
-            $scope.selection.item = $scope.submissions[itemIndex];
+            $scope.selection.item = $filter('filter')($filter('filter')($scope.submissions, $scope.hasPermissions), $scope.searchFilter)[itemIndex];
             $scope.resetTemps();
         };
 
