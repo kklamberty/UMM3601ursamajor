@@ -44,7 +44,8 @@ angular.module('umm3601ursamajorApp')
                 "All",
                 "Unassigned",
                 "Review Group 1",
-                "Review Group 2"
+                "Review Group 2",
+                "Review Group 3"
             ]
         };
 
@@ -88,6 +89,22 @@ angular.module('umm3601ursamajorApp')
                        $scope.isCoPresenter(submission) ||
                        $scope.isAdviser(submission) ||
                        $scope.isMemberGroup(submission)
+            }
+        };
+
+        $scope.reviewGroupFilter = function(submission) {
+            if($scope.filterData.reviewGroupFilterSelection === "All"){
+                return true;
+            } else if($scope.filterData.reviewGroupFilterSelection === "Unassigned"){
+                return submission.group == 0;
+            } else if($scope.filterData.reviewGroupFilterSelection === "Review Group 1"){
+                return submission.group == 1;
+            } else if($scope.filterData.reviewGroupFilterSelection === "Review Group 2"){
+                return submission.group == 2;
+            } else if($scope.filterData.reviewGroupFilterSelection === "Review Group 3"){
+                return submission.group == 3;
+            } else {
+                return false;
             }
         };
 
@@ -190,7 +207,11 @@ angular.module('umm3601ursamajorApp')
         $scope.selectItem = function(itemIndex){
             console.log("setting index " + itemIndex + " as active item");
             $scope.selection.selected = true;
-            $scope.selection.item = $filter('filter')($filter('filter')($scope.submissions, $scope.hasPermissions), $scope.searchFilter)[itemIndex];
+            $scope.selection.item = $filter('filter')(
+                $filter('filter')(
+                    $filter('filter')($scope.submissions, $scope.hasPermissions), $scope.reviewGroupFilter),
+                $scope.searchFilter)[itemIndex];
+
             $scope.resetTemps();
         };
 
