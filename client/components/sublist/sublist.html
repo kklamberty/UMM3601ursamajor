@@ -5,9 +5,12 @@
             <h2>Submissions </h2>
             <br>
             <input type="text" ng-model="filterData.searchText" placeholder="Search">
+            <select ng-show="isAdmin()" ng-model="filterData.reviewGroupFilterSelection">
+                <option ng-repeat="option in filterData.reviewGroupFilterOptions" ng-value="{{option}}">{{option}}</option>
+            </select>
         </li>
 
-        <li class="list-group-item" ng-style="statusColorTab(sub.status.strict)" ng-repeat="sub in submissions | filter:hasPermissions | filter:searchFilter">
+        <li class="list-group-item" ng-style="statusColorTab(sub.status.strict)" ng-repeat="sub in submissions | filter:hasPermissions | filter:reviewGroupFilter | filter:searchFilter">
             <h3 id="text">{{sub.title}}</h3>
             <button class="buttonL" ng-click="selectItem($index)">Details</button>
             <strong>Presenter: {{sub.presenterInfo.first}} {{sub.presenterInfo.last}}</strong>
@@ -92,6 +95,7 @@
             <p>Admin: {{hasAdminPrivs()}}</p>
             <p>Presenter: {{isPresenter(selection.item)}}</p>
             <p>Co-presenter: {{isCoPresenter(selection.item)}}</p>
+            <p>Review Group: {{selection.item.group}}</p>
         </li>
     </ul>
 </div>
