@@ -95,8 +95,8 @@
             <br>
             <p>You are seeing this submission because you are a(n):</p>
             <p ng-show="hasAdminPrivs()">{{"Admin"}}</p>
-            <p ng-show="isPresenter(selection.item)">{{"Presenter"}}</p>
-            <p ng-show="isCoPresenter(selection.item)">{{"CoPresenter"}}</p>
+            <p ng-show="isPresenter(selection.item)">{{"Presenter of this submission"}}</p>
+            <p ng-show="isCoPresenter(selection.item)">{{"Co-presenter of this submission"}}</p>
             <p ng-show="isReviewerGroup(selection.item)">{{"Reviewer in " + "reviewer group " +selection.item.group}}</p>
         </li>
     </ul>
