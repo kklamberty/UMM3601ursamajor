@@ -31,7 +31,7 @@ angular.module('umm3601ursamajorApp')
         $scope.getCurrentUser = Auth.getCurrentUser;
         $scope.group = Auth.getCurrentUser().group;
         $scope.email = Auth.getCurrentUser().email;
-        $scope.isMember = Auth.isMember;
+        $scope.isReviewer = Auth.isReviewer;
         $scope.isAdmin = Auth.isAdmin;
 
         //--------------------- Filter Functions -----------------------
