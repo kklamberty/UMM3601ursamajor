@@ -29,7 +29,9 @@ angular.module('umm3601ursamajorApp')
 
         $scope.toggles = {
             subListToggle: false,
-            statsToggle: false
+            statsToggle: false,
+            subFormEditorToggle: false,
+            userEditToggle: false
         };
 
         $scope.resetToggles = function(){
@@ -48,6 +50,16 @@ angular.module('umm3601ursamajorApp')
         $scope.toggleStats = function(){
             $scope.resetToggles();
             $scope.toggles.statsToggle = true
+        };
+
+        $scope.toggleSubEditor = function(){
+            $scope.resetToggles();
+            $scope.toggles.subFormEditorToggle = true;
+        };
+
+        $scope.toggleUserEdit = function(){
+            $scope.resetToggles();
+            $scope.toggles.userEditToggle = true;
         };
 
     });
