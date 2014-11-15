@@ -9,5 +9,7 @@ angular.module('umm3601ursamajorApp')
         $scope.isLoggedIn = Auth.isLoggedIn;
         $scope.getCurrentUser = Auth.getCurrentUser;
         $scope.getCurrentEmail = Auth.email;
+        $scope.isReviewer = Auth.isReviewer;
+        $scope.getReviewerGroup = Auth.getReviewerGroup;
 
     });
