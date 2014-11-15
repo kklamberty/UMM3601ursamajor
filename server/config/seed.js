@@ -56,18 +56,18 @@ Subformtext.find({}).remove(function() {
             "\n3. Professional tone, including appropriate word choice and correct grammar, spelling, and punctuation.",
         header2: "Field-specific criteria:",
         notes2: "Mark the category below that best describes your project. Your 250-word submission must also include the appropriate field-specific elements listed below.",
-        artistCriteria: "Artist statements" +
-            "\n1. A concise explanation of the subject matter or concepts you are exploring (what you do)." +
+        artistCriteria:
+            "1. A concise explanation of the subject matter or concepts you are exploring (what you do)." +
             "\n2. A concise explanation of artistic goals (why you do what you do)." +
             "\n3. A concise explanation of processes, production methods, tools, media, innovations, etc. (how you do what you do)." +
             "\n4. A concise explanation of historical context, including how this work builds on, differs from, or responds to existing work or performances.",
-        humanitiesCriteria: "Humanities proposals" +
-            "\n1. A concise explanation of the relevant intellectual and scholarly context of your work." +
+        humanitiesCriteria:
+            "1. A concise explanation of the relevant intellectual and scholarly context of your work." +
             "\n2. A concise explanation of how your project fits within this intellectual context. Does it extend, revise, or complicate, or provide a new way of looking at existing work in the field?" +
             "\n3. A clear statement of argument: a specific, debatable claim, not merely a summary of others’ research." +
             "\n4. An explanation of the significance and broader implications of your work.",
-        scienceCriteria: "Science & Social Science abstracts" +
-            "\n1. A concise explanation of the scholarly context for the project with a statement of the project’s specific objective." +
+        scienceCriteria:
+            "1. A concise explanation of the scholarly context for the project with a statement of the project’s specific objective." +
             "\n2. A clear explanation of the methods used to address the objective." +
             "\n3. A clear explanation of the results or findings." +
             "\n4. An explanation of the significance and broader implications of the project's results.",
