@@ -1,3 +1,47 @@
+/**/
 .navbarFormating {
-    color: #E19B14;
+    background-color: #ffcc33;
+    color: #7a0019;
+    /*border-color: #ffcc33;*/
+    border-width: 0px;
+    font-weight: bold;
+}
+
+.navButton {
+    background-color: #ffcc33;
+    color: #7a0019;
+}
+
+.navbar-default .navbar-nav .active a {
+    color: #ffcc33;
+    background-color: #7a0019;
+    font-weight: bold;
+}
+
+.navbar-default .navbar-nav li a {
+    color: #7a0019;
+    font-weight: bold;
+}
+
+.navbar-default .navbar-text {
+    color: #7a0019;
+}
+
+.navbar-default .navbar-nav .active a:hover {
+    color: #ffcc33;
+    background-color: #7a0019;
+    font-weight: bold;
+}
+
+.navbar-default .navbar-brand{
+    color: #7a0019;
+}
+
+.navbar-default .navbar-nav li a:hover {
+    color: #7a0019;
+    font-weight: bold;
+}
+
+.navbar-default .navbar-brand:hover{
+    color: #7a0019;
 }
