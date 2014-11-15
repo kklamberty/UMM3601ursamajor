@@ -46,6 +46,17 @@ a:active {
     font-family: "Times New Roman", Times, monospace;
 }
 
+.fitImage {
+    width: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.row h2 {
+    text-align: center;
+}
+
 .footer {
     text-align: center;
     padding: 30px 0;
