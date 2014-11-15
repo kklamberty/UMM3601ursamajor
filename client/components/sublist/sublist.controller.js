@@ -128,26 +128,6 @@ angular.module('umm3601ursamajorApp')
             )
         };
 
-
-//        $scope.hasCoPresenter = function(submission){
-//            return submission.copresenterOne.first === null;
-//        };
-//
-//        $scope.hasCoPresenterTwo = function(submission){
-//            return submission.copresenterTwo.first === null;
-//        };
-
-//        $scope.canSeeSub = function(submission) {
-//            if($scope.isAdmin() ||
-//                $scope.isPresenter(submission) ||
-//                $scope.isCoPresenter(submission) ||
-//                $scope.isAdviser(submission) ||
-//                $scope.isReviewerGroup(submission)
-//                ){
-//                return true
-//            }
-//        };
-
         // ----------------------- Getting Data from Mongo ----------------------------
 
         $http.get('/api/submissions').success(function(submissions) {
