@@ -36,130 +36,6 @@ Status.find({}).remove(function() {
     });
 });
 
-Subformtext.find({}).remove(function() {
-    Subformtext.create({
-        title: "2015 URS Submission Form",
-        adviserDisclaimer: "All applications to the Undergraduate Research Symposium must be accompanied by a brief statement of support from the student's project adviser." +
-            "\nThe faculty mentor should indicate:" +
-            "\n* Confidence that the student's work will be ready to present by the URS date." +
-            "\n* Approval of the submitted abstract/statement/proposal for publication as-is in the program book." +
-            "\nProject adviser recommendations should complete the form prior to the student submitting their abstract for review.",
-        ursSummary: "The UMM Undergraduate Research Symposium is a forum for UMM students to present their research, creative, and scholarly work representing the Divisions of Education," +
-            "\nHumanities, Science and Mathematics, and Social Sciences at UMM. Accordingly, submissions from students enrolled at other institutions will not be accepted.",
-        notes1: "",
-        nameDisclaimer: "Your username (x500) will be recorded when you submit this form.",
-        header1: "URS submission descriptions:",
-        criteria:"General Criteria:" +
-            "\nAll submissions should be no more than 250 words and should contain the following elements:" +
-            "\n1. A concise explanation of the creative or scholarly implications of the project. What is the creative/intellectual context of your work?" +
-            "\n2. Language that is clear and comprehensible to those who are not experts in the field." +
-            "\n3. Professional tone, including appropriate word choice and correct grammar, spelling, and punctuation.",
-        header2: "Field-specific criteria:",
-        notes2: "Mark the category below that best describes your project. Your 250-word submission must also include the appropriate field-specific elements listed below.",
-        artistCriteria: "Artist statements" +
-            "\n1. A concise explanation of the subject matter or concepts you are exploring (what you do)." +
-            "\n2. A concise explanation of artistic goals (why you do what you do)." +
-            "\n3. A concise explanation of processes, production methods, tools, media, innovations, etc. (how you do what you do)." +
-            "\n4. A concise explanation of historical context, including how this work builds on, differs from, or responds to existing work or performances.",
-        humanitiesCriteria: "Humanities proposals" +
-            "\n1. A concise explanation of the relevant intellectual and scholarly context of your work." +
-            "\n2. A concise explanation of how your project fits within this intellectual context. Does it extend, revise, or complicate, or provide a new way of looking at existing work in the field?" +
-            "\n3. A clear statement of argument: a specific, debatable claim, not merely a summary of others’ research." +
-            "\n4. An explanation of the significance and broader implications of your work.",
-        scienceCriteria: "Science & Social Science abstracts" +
-            "\n1. A concise explanation of the scholarly context for the project with a statement of the project’s specific objective." +
-            "\n2. A clear explanation of the methods used to address the objective." +
-            "\n3. A clear explanation of the results or findings." +
-            "\n4. An explanation of the significance and broader implications of the project's results.",
-        notes3: "If you are unsure which category best fits your project, please consult your faculty sponsor.",
-        submissionTitle: "Presentation Title: ",
-        submissionFormat: "Format for submission: ",
-        submissionAbstract: "Artist Statement / Proposal / Abstract ",
-        submissionAbstractNotes: "Paste your text in the box below. Figures and special characters will need to be submitted as a separate document. Please e-mail as a Word or PDF document to sferrian@morris.umn.edu" +
-            "\n1000 character limit, approx. 250 words.",
-        submissionPresentationType: "Type of Presentation",
-        submissionFormatChange: "Because of space constraints, we may not be able to have everyone do their preferred type of presentation." +
-            "\nIf necessary, would you be willing to give your presentation in another format?",
-        submissionChangeNotes: "No change in format will be made without first contacting the presenter first.",
-        submissionPresenter: "Primary Presenter:",
-        submissionCopresenterOne: "Secondary Presenter #1:",
-        submissionCopresenterTwo: "Secondary Presenter #2:",
-        submissionSponsors: "Sponsoring Organization or Fund",
-        submissionSponsorsNotes: "Choose any applicable. If funded by faculty grant, specify under 'other' ",
-        submissionAdviser: "Faculty Sponsor / Project Adviser Information",
-        submissionAdviserNotes: "Every submitted project is required to have a faculty sponsor or project adviser identified.",
-        submissionFeatured: "The URS features one presentation in the opening ceremony. This presentation should have broader appeal with interdisciplinary components, and may easily accommodate a performance component. The featured presenter will have more time, as well as a bigger room than regular presentations. Would you be interested in having your presentation featured during the opening ceremony? ",
-        submissionMediaServices: "Each presentation room will have available an overhead projector and a Macintosh or PC computer with video projection capabilities. Do you anticipate needing any additional Media Services equipment? Please explain in detail: ",
-        submissionSpecialRequirements: "Do you anticipate any special room location, non-media services equipment (i.e., recital hall, piano, etc.), or scheduling requirements (i.e., several groups holding a forum that would require more than the allotted 15 minutes)? Please explain in detail: ",
-        submissionTee: "T-Shirt for PRIMARY PRESENTER ",
-        submissionTeeNotes: "All sizes are US adult sizes",
-        submissionOther: "Is there anything else you would like us to know about your presentation?"
-    });
-});
-
-User.find({}).remove(function() {
-    User.create({
-            provider: 'google',
-            role: 'admin',
-            name: 'Matthew Kangas',
-            email: 'kanga139@morris.umn.edu',
-            google: {
-                email: 'kanga139@morris.umn.edu',
-                family_name: 'Kangas',
-                given_name: 'Matthew',
-                hd: 'morris.umn.edu',
-                id: '112564589444054176387',
-                link: "https://plus.google.com/112639306116346340748",
-                locale: "en",
-                name: "Matthew Kangas",
-                picture: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
-                verified_email: true
-            }
-        }, {
-            provider: 'local',
-            role: 'user',
-            name: 'User',
-            email: 'test@test.com',
-            password: 'test',
-            group: -1
-        }, {
-            provider: 'local',
-            role: 'admin',
-            name: 'Admin',
-            email: 'admin@admin.com',
-            password: 'admin',
-            group: -1
-        }, {
-            provider: 'local',
-            role: 'reviewer',
-            name: 'Reviewer',
-            email: 'reviewer@reviewer.com',
-            password: 'reviewer',
-            group: 1
-        }, function () {
-            console.log('finished populating users');
-        }, {
-            provider: 'google',
-            role: 'reviewer',
-            email: 'gusaa004@morris.umn.edu',
-            name: 'Dalton Gusaas',
-            group: 2,
-            google: {
-                email: 'gusaa004@morris.umn.edu',
-                family_name: 'Gusaas',
-                given_name: 'Dalton',
-                hd: 'morris.umn.edu',
-                id: '105501894365476440976',
-                link: "https://plus.google.com/105501894365476440976",
-                locale: "en",
-                name: "Dalton Gusaas",
-                picture: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
-                verified_email: true
-            }
-        }
-    );
-});
-
 Submission.find({}).remove(function(){
     Submission.create({
         title: "On Your March, Get Set, Rust!",
@@ -325,3 +201,128 @@ Submission.find({}).remove(function(){
         group: 3
     });
 });
+
+Subformtext.find({}).remove(function() {
+    Subformtext.create({
+        title: "2015 URS Submission Form",
+        adviserDisclaimer: "All applications to the Undergraduate Research Symposium must be accompanied by a brief statement of support from the student's project adviser." +
+            "\nThe faculty mentor should indicate:" +
+            "\n* Confidence that the student's work will be ready to present by the URS date." +
+            "\n* Approval of the submitted abstract/statement/proposal for publication as-is in the program book." +
+            "\nProject adviser recommendations should complete the form prior to the student submitting their abstract for review.",
+        ursSummary: "The UMM Undergraduate Research Symposium is a forum for UMM students to present their research, creative, and scholarly work representing the Divisions of Education," +
+            "\nHumanities, Science and Mathematics, and Social Sciences at UMM. Accordingly, submissions from students enrolled at other institutions will not be accepted.",
+        notes1: "",
+        nameDisclaimer: "Your username (x500) will be recorded when you submit this form.",
+        header1: "URS submission descriptions:",
+        criteria:"General Criteria:" +
+            "\nAll submissions should be no more than 250 words and should contain the following elements:" +
+            "\n1. A concise explanation of the creative or scholarly implications of the project. What is the creative/intellectual context of your work?" +
+            "\n2. Language that is clear and comprehensible to those who are not experts in the field." +
+            "\n3. Professional tone, including appropriate word choice and correct grammar, spelling, and punctuation.",
+        header2: "Field-specific criteria:",
+        notes2: "Mark the category below that best describes your project. Your 250-word submission must also include the appropriate field-specific elements listed below.",
+        artistCriteria: "Artist statements" +
+            "\n1. A concise explanation of the subject matter or concepts you are exploring (what you do)." +
+            "\n2. A concise explanation of artistic goals (why you do what you do)." +
+            "\n3. A concise explanation of processes, production methods, tools, media, innovations, etc. (how you do what you do)." +
+            "\n4. A concise explanation of historical context, including how this work builds on, differs from, or responds to existing work or performances.",
+        humanitiesCriteria: "Humanities proposals" +
+            "\n1. A concise explanation of the relevant intellectual and scholarly context of your work." +
+            "\n2. A concise explanation of how your project fits within this intellectual context. Does it extend, revise, or complicate, or provide a new way of looking at existing work in the field?" +
+            "\n3. A clear statement of argument: a specific, debatable claim, not merely a summary of others’ research." +
+            "\n4. An explanation of the significance and broader implications of your work.",
+        scienceCriteria: "Science & Social Science abstracts" +
+            "\n1. A concise explanation of the scholarly context for the project with a statement of the project’s specific objective." +
+            "\n2. A clear explanation of the methods used to address the objective." +
+            "\n3. A clear explanation of the results or findings." +
+            "\n4. An explanation of the significance and broader implications of the project's results.",
+        notes3: "If you are unsure which category best fits your project, please consult your faculty sponsor.",
+        submissionTitle: "Presentation Title: ",
+        submissionFormat: "Format for submission: ",
+        submissionAbstract: "Artist Statement / Proposal / Abstract ",
+        submissionAbstractNotes: "Paste your text in the box below. Figures and special characters will need to be submitted as a separate document. Please e-mail as a Word or PDF document to sferrian@morris.umn.edu" +
+            "\n1000 character limit, approx. 250 words.",
+        submissionPresentationType: "Type of Presentation",
+        submissionFormatChange: "Because of space constraints, we may not be able to have everyone do their preferred type of presentation." +
+            "\nIf necessary, would you be willing to give your presentation in another format?",
+        submissionChangeNotes: "No change in format will be made without first contacting the presenter first.",
+        submissionPresenter: "Primary Presenter:",
+        submissionCopresenterOne: "Secondary Presenter #1:",
+        submissionCopresenterTwo: "Secondary Presenter #2:",
+        submissionSponsors: "Sponsoring Organization or Fund",
+        submissionSponsorsNotes: "Choose any applicable. If funded by faculty grant, specify under 'other' ",
+        submissionAdviser: "Faculty Sponsor / Project Adviser Information",
+        submissionAdviserNotes: "Every submitted project is required to have a faculty sponsor or project adviser identified.",
+        submissionFeatured: "The URS features one presentation in the opening ceremony. This presentation should have broader appeal with interdisciplinary components, and may easily accommodate a performance component. The featured presenter will have more time, as well as a bigger room than regular presentations. Would you be interested in having your presentation featured during the opening ceremony? ",
+        submissionMediaServices: "Each presentation room will have available an overhead projector and a Macintosh or PC computer with video projection capabilities. Do you anticipate needing any additional Media Services equipment? Please explain in detail: ",
+        submissionSpecialRequirements: "Do you anticipate any special room location, non-media services equipment (i.e., recital hall, piano, etc.), or scheduling requirements (i.e., several groups holding a forum that would require more than the allotted 15 minutes)? Please explain in detail: ",
+        submissionTee: "T-Shirt for PRIMARY PRESENTER ",
+        submissionTeeNotes: "All sizes are US adult sizes",
+        submissionOther: "Is there anything else you would like us to know about your presentation?"
+    });
+});
+
+User.find({}).remove(function() {
+    User.create({
+            provider: 'google',
+            role: 'admin',
+            name: 'Matthew Kangas',
+            email: 'kanga139@morris.umn.edu',
+            google: {
+                email: 'kanga139@morris.umn.edu',
+                family_name: 'Kangas',
+                given_name: 'Matthew',
+                hd: 'morris.umn.edu',
+                id: '112564589444054176387',
+                link: "https://plus.google.com/112639306116346340748",
+                locale: "en",
+                name: "Matthew Kangas",
+                picture: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+                verified_email: true
+            }
+        }, {
+            provider: 'local',
+            role: 'user',
+            name: 'User',
+            email: 'test@test.com',
+            password: 'test',
+            group: -1
+        }, {
+            provider: 'local',
+            role: 'admin',
+            name: 'Admin',
+            email: 'admin@admin.com',
+            password: 'admin',
+            group: -1
+        }, {
+            provider: 'local',
+            role: 'reviewer',
+            name: 'Reviewer',
+            email: 'reviewer@reviewer.com',
+            password: 'reviewer',
+            group: 1
+        }, function () {
+            console.log('finished populating users');
+        }, {
+            provider: 'google',
+            role: 'reviewer',
+            email: 'gusaa004@morris.umn.edu',
+            name: 'Dalton Gusaas',
+            group: 2,
+            google: {
+                email: 'gusaa004@morris.umn.edu',
+                family_name: 'Gusaas',
+                given_name: 'Dalton',
+                hd: 'morris.umn.edu',
+                id: '105501894365476440976',
+                link: "https://plus.google.com/105501894365476440976",
+                locale: "en",
+                name: "Dalton Gusaas",
+                picture: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
+                verified_email: true
+            }
+        }
+    );
+});
+

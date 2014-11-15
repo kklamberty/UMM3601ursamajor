@@ -1,10 +1,7 @@
-/**
- * Created by opdah023 on 10/9/14.
- */
 'use strict';
  //When we tested this function, it worked correctly with only two
  //parameters given, until we checked the final else case, in which
- // case it broke with only two parameters
+ //case it broke with only two parameters
 angular.module('umm3601ursamajorApp')
     .filter('isntEmpty', function(){
         return function(input, title, altTitle){
@@ -28,6 +25,7 @@ angular.module('umm3601ursamajorApp')
 
     .controller('SublistCtrl', function ($scope, $http, socket, $modal, Modal, Auth, $window, $filter) {
         $scope.submissions = [];
+        $scope.status = [];
 
         $scope.getCurrentUser = Auth.getCurrentUser;
         $scope.group = Auth.getCurrentUser().group;
@@ -153,10 +151,10 @@ angular.module('umm3601ursamajorApp')
             socket.syncUpdates('submission', $scope.submissions);
         });
 
-//        $http.get('/api/status').success(function(status) {
-//            $scope.status = status;
-//            socket.syncUpdates('status', $scope.status);
-//        });
+        $http.get('/api/status').success(function(status) {
+            $scope.status = status;
+            socket.syncUpdates('status', $scope.status);
+        });
 
 
         var sendGmail = function(opts){
@@ -235,27 +233,25 @@ angular.module('umm3601ursamajorApp')
         };
 
         // -------------------------- Editing of status ----------------------------------------------
+//OLD
+//        $scope.statusEdit = {
+//            editing: false,
+//            options: ["Reviewing in Process",
+//                "Revisions Needed",
+//                "Accepted"],
+//            subject:"URS submission update",
+//            body:[ ", your URS submission has been approved by your adviser.",
+//                  ", your URS submission has been flagged for revisions, and is in need of changes.",
+//                ", your URS submission has been approved, congratulations!"],
+//            temp: {strict: "", text: ""}
+//        };
+
         $scope.statusEdit = {
-            editing: false,
-            options: ["Reviewing in Process",
-                "Revisions Needed",
-                "Accepted"],
-            subject:"URS submission update",
-            body:[ ", your URS submission has been approved by your adviser.",
-                  ", your URS submission has been flagged for revisions, and is in need of changes.",
-                ", your URS submission has been approved, congratulations!"],
-            temp: {strict: "", text: ""}
+            editing: false
+
         };
 
-        //Not working code, scrapped to use on a later date
-        //     -Nic (11/9)
-//        $scope.getColor = function(strict) {
-//            for(var i = 0; i < status.length; i++){
-//                if($scope.status[i].strict === strict){
-//                    return $scope.status[i].color;
-//                }
-//            }
-//        };
+
 
         $scope.resetTemps = function() {
             if($scope.selection.item != null){
