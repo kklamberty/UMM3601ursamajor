@@ -33,6 +33,7 @@ angular.module('umm3601ursamajorApp')
         $scope.email = Auth.getCurrentUser().email;
         $scope.isReviewer = Auth.isReviewer;
         $scope.isAdmin = Auth.isAdmin;
+        $scope.isCoChair = Auth.isCoChair;
 
         //--------------------- Filter Functions -----------------------
 
@@ -54,7 +55,7 @@ angular.module('umm3601ursamajorApp')
         };
 
         $scope.hasAdminPrivs = function(submission){
-            return (($scope.getCurrentUser.role != null && $scope.getCurrentUser.role == "Admin") || $scope.isAdmin());
+            return (($scope.getCurrentUser.role != null && $scope.getCurrentUser.role == "Admin") || $scope.isAdmin() || $scope.isCoChair());
         };
 
         $scope.isPresenter = function(submission) {

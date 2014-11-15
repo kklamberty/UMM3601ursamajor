@@ -7,7 +7,7 @@
             <h2>Submissions </h2>
             <br>
             <input type="text" ng-model="filterData.searchText" placeholder="Search">
-            <select ng-show="isAdmin()" ng-model="filterData.reviewGroupFilterSelection">
+            <select ng-show="isAdmin() || isCoChair()" ng-model="filterData.reviewGroupFilterSelection">
                 <option ng-repeat="option in filterData.reviewGroupFilterOptions" ng-value="'{{option}}'">{{option}}</option>
             </select>
         </li>
