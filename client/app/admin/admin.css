@@ -21,6 +21,19 @@
     font-family: "Lucida Grande", "Helvetica Nueue", Arial, sans-serif, monospace;
 
 }
+
+.buttonLrg:hover {
+    color: #ffcc33;
+    padding: 10px 16px;
+    font-size: 20px;
+    line-height: 1.33;
+    border-radius: 6px;
+    background: #7a0019;
+    font-weight: bold;
+    font-family: "Lucida Grande", "Helvetica Nueue", Arial, sans-serif, monospace;
+
+}
+
 #center {
     text-align: center;
 }
