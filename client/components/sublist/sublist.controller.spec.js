@@ -29,3 +29,17 @@ describe('filter', function() {
             }));
     });
 });
+
+// TODO: this test isn't finished, just a template as of now. FINISH IT AND WRITE MORE TESTS!!!
+describe('Functions used for filtering', function() {
+    beforeEach(module('umn3601ursamajorApp'));
+
+    var SublistCtrl, scope;
+
+    beforeEach(inject(function($controller, $rootScope) {
+        scope = $rootScope.$new();
+        SublistCtrl = $controller('SublistCtrl', {
+            $scope: scope
+        });
+    }));
+});
