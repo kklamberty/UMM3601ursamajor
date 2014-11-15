@@ -19,7 +19,7 @@
                 <button class="buttonRole" ng-click="updateInfo(user)"> Update User Info</button>
             </div>
 
-            <!--Selector for member group-->
+            <!--Selector for reviewer group-->
             <div ng-show="userIsReviewer(user)">
                 <select ng-model="user.group"  placeholder="" required ng-required>
                     <option value="{{user.group}}" disabled selected>{{user.group}}</option>

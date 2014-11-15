@@ -2,12 +2,15 @@
 
 angular.module('umm3601ursamajorApp')
   .controller('SubformeditorCtrl', function ($scope, $http, Auth, $location, User) {
-        if(!Auth.isAdmin()) {
+        if(Auth.isAdmin() || Auth.isCoChair()) {
+
+        } else{
             $location.path('/');
         }
 
         $scope.users = User.query();
         $scope.isAdmin = Auth.isAdmin;
+        $scope.isCoChair = Auth.isCoChair;
         $scope.submissionTextArray = [];
         $scope.submissionText = {};
 

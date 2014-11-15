@@ -10,13 +10,14 @@ a:visited {
 
 /* mouse over link */
 a:hover {
-    color: antiquewhite;
+    color: #000000;
+
     text-decoration: none;
 }
 
 /* selected link */
 a:active {
-    color: antiquewhite;
+    color: #000000;
 }
 
 
@@ -89,5 +90,5 @@ a:active {
     margin-left: auto;
     margin-right: auto;
     display: block;
-
 }
+

@@ -5,6 +5,7 @@ angular.module('umm3601ursamajorApp')
 
         $scope.submissions = [];
         $scope.users = [];
+        $scope.isAdmin = Auth.isAdmin;
 
         $scope.getSubmissionData = function(){
             $http.get('/api/submissions').success(function(submissions){

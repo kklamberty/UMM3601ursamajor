@@ -5,11 +5,9 @@
 'use strict';
 
 describe('filter', function() {
-
     beforeEach(module('umm3601ursamajorApp'));
 
     describe('isntEmpty', function() {
-
         it('should return return the title and item ' +
             'if the item is an object with length over 0, not ' +
                 'an object, but not "" or null, else altTitle',
@@ -20,6 +18,8 @@ describe('filter', function() {
               expect(isntEmptyFilter("", "something else", "this was an empty string")).toBe("this was an empty string");
           }));
     });
+
+
     describe('fancyLimitTo', function() {
         it('should return first "n" characters of the imputed text',
             inject(function(fancyLimitToFilter){

@@ -30,7 +30,7 @@
                     <!--<p>Discipline: {{sub.discipline}}</p>-->
                     <!--<p>Format:  {{sub.format}}</p>-->
                     <!--<p>Abstract: <br> {{sub.abstract | fancyLimitTo: 300}}</p>-->
-                    <!--<strong><p ng-show="isMemberGroup(sub)"> This submission is in your review group</p></strong>-->
+                    <!--<strong><p ng-show="isReviewerGroup(sub)"> This submission is in your review group</p></strong>-->
                     <!--<p>Date of submission: {{sub.timestamp}}</p>-->
                 <!--&lt;!&ndash;</li>&ndash;&gt;-->
             <!--&lt;!&ndash;</ul>&ndash;&gt;-->
@@ -80,7 +80,7 @@
                     <p>Discipline: {{selection.item.discipline}}</p>
                     <p>Format:  {{selection.item.format}}</p>
                     <p>Type: {{selection.item.presentationType}}</p>
-                    <p>Advisor: {{selection.item.adviserInfo.last}}, {{selection.item.adviserInfo.first}} email: {{selection.item.adviserInfo.email}}</p>
+                    <p>Adviser: {{selection.item.adviserInfo.last}}, {{selection.item.adviserInfo.first}} email: {{selection.item.adviserInfo.email}}</p>
                     <p>Adviser Approved: {{approvalWordChange(selection.item.approval)}}</p>
                     <p>{{selection.item.sponsors | isntEmpty:"Sponsors:":""}}</p>
                     <p>{{selection.item.mediaServicesEquipment | isntEmpty:"Media Services Equipment:":""}}</p>
@@ -94,10 +94,10 @@
             </ul>
             <br>
             <p>You are seeing this submission because you are a(n):</p>
-            <p>Admin: {{hasAdminPrivs()}}</p>
-            <p>Presenter: {{isPresenter(selection.item)}}</p>
-            <p>Co-presenter: {{isCoPresenter(selection.item)}}</p>
-            <p>Review Group: {{selection.item.group}}</p>
+            <p ng-show="hasAdminPrivs()">{{"Admin"}}</p>
+            <p ng-show="isPresenter(selection.item)">{{"Presenter of this submission"}}</p>
+            <p ng-show="isCoPresenter(selection.item)">{{"Co-presenter of this submission"}}</p>
+            <p ng-show="isReviewerGroup(selection.item)">{{"Reviewer in " + "reviewer group " +selection.item.group}}</p>
         </li>
     </ul>
 </div>
