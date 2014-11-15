@@ -8,7 +8,7 @@
 var User = require('../api/user/user.model');
 var Submission = require('../api/submission/submission.model');
 var Subformtext = require('../api/subformtext/subformtext.model');
-//var Status = require('../api/status/status.model');
+var Status = require('../api/status/status.model');
 
 //Not working code, scrapped to use on a later date
 //      -Nic, (11/9)
