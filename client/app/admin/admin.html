@@ -7,7 +7,7 @@
                 <button type="button" class="btn btn-default buttonLrg" ng-click="toggleStats()">System Information</button>
                 <button type="button" class="btn btn-default buttonLrg" ng-click="toggleSubList()">Submission List</button>
                 <a type="button" class="btn btn-default buttonLrg" href="/subformeditor"> Edit the Submission Form</a>
-                <a type="button" class="btn btn-default buttonLrg" href="/roleChange">Edit users</a>
+                <a ng-show="isAdmin()" type="button" class="btn btn-default buttonLrg" href="/roleChange">Edit users</a>
             </div>
         </div>
 
