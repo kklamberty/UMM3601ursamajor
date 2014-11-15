@@ -3,7 +3,7 @@
         <tab ng-repeat="option in filterData.reviewGroupFilterOptions" heading="{{option}}" ng-click="setReviewGroupSelection(option)"></tab>
     </tabset>
     <ul class="list-group" ng-hide="selection.selected">
-        <li class="list-group-item" id="text">
+        <li class="list-group-item noTopBorder" id="text">
             <h2>Submissions </h2>
             <br>
             <input type="text" ng-model="filterData.searchText" placeholder="Search">
