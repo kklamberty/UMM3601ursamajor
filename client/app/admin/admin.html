@@ -7,7 +7,7 @@
                 <button type="button" class="btn btn-default buttonLrg" ng-click="toggleStats()">System Information</button>
                 <button type="button" class="btn btn-default buttonLrg" ng-click="toggleSubList()">Submission List</button>
                 <button type="button" class="btn btn-default buttonLrg" ng-click="toggleSubEditor()"> Edit the Submission Form</button>
-                <button type="button" class="btn btn-default buttonLrg" ng-click="toggleUserEdit()">Edit users</button>
+                <button ng-show="isAdmin()" type="button" class="btn btn-default buttonLrg" ng-click="toggleUserEdit()">Edit users</button>
             </div>
         </div>
 
