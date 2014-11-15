@@ -28,7 +28,6 @@ angular.module('umm3601ursamajorApp')
 
     .controller('SublistCtrl', function ($scope, $http, socket, $modal, Modal, Auth, $window, $filter) {
         $scope.submissions = [];
-
         $scope.getCurrentUser = Auth.getCurrentUser;
         $scope.group = Auth.getCurrentUser().group;
         $scope.email = Auth.getCurrentUser().email;
@@ -54,7 +53,7 @@ angular.module('umm3601ursamajorApp')
             $scope.filterData.reviewGroupFilterSelection = str;
         };
 
-        $scope.hasAdminPrivs = function(){
+        $scope.hasAdminPrivs = function(submission){
             return (($scope.getCurrentUser.role != null && $scope.getCurrentUser.role == "Admin") || $scope.isAdmin());
         };
 
@@ -74,7 +73,7 @@ angular.module('umm3601ursamajorApp')
             return $scope.email === submission.adviserInfo.email;
         };
 
-        $scope.isMemberGroup = function(submission){
+        $scope.isReviewerGroup = function(submission){
             if(submission == null) return false;
             return $scope.group === submission.group;
         };
@@ -93,7 +92,7 @@ angular.module('umm3601ursamajorApp')
                 return $scope.isPresenter(submission) ||
                        $scope.isCoPresenter(submission) ||
                        $scope.isAdviser(submission) ||
-                       $scope.isMemberGroup(submission)
+                       $scope.isReviewerGroup(submission)
             }
         };
 
@@ -143,7 +142,7 @@ angular.module('umm3601ursamajorApp')
 //                $scope.isPresenter(submission) ||
 //                $scope.isCoPresenter(submission) ||
 //                $scope.isAdviser(submission) ||
-//                $scope.isMemberGroup(submission)
+//                $scope.isReviewerGroup(submission)
 //                ){
 //                return true
 //            }
