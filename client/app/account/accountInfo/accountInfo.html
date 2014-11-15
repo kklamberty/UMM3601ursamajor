@@ -1,0 +1,16 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+    <div class="container">
+        <h1>Account Information</h1>
+    </div>
+</header>
+
+<body>
+<div class="FancyBox">
+    <div class="info" ng-show="isLoggedIn()">Hello {{getCurrentUser().name}}! </div>
+    <div class="info" ng-show="isLoggedIn()">You are signed in as {{getCurrentUser().email}}. </div>
+    <div class="info" ng-show="isLoggedIn()">You are signed in as a(n) {{getCurrentUser().role}}.</div>
+
+</div>
+</body>
