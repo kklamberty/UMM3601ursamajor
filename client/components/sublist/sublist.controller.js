@@ -96,6 +96,7 @@ angular.module('umm3601ursamajorApp')
             return $scope.group === submission.group;
         };
 
+
         $scope.hasPermissions = function(submission) {
             if(submission == null) return false;
             if(!Auth.isLoggedIn){
@@ -195,13 +196,14 @@ angular.module('umm3601ursamajorApp')
             $scope.filterData.tabFilter.isReviewer = true;
         };
 
+
         $scope.tabFilters = function(submission){
           if($scope.filterData.tabFilter.isPresenter){
               return $scope.isPresenter(submission);
           }  else if ($scope.filterData.tabFilter.isCoPresenter) {
               return $scope.isCoPresenter(submission);
           } else if ($scope.filterData.tabFilter.isReviewer) {
-                  return $scope.reviewGroupFilter(submission);
+              return $scope.reviewGroupFilter(submission);
           } else if ($scope.filterData.tabFilter.isAdviser) {
               return $scope.isAdviser(submission);
           } else {
@@ -316,21 +318,11 @@ angular.module('umm3601ursamajorApp')
                 "Revisions Needed",
                 "Accepted"],
             subject:"URS submission update",
-            body:[ ", your URS submission has been approved by your adviser.",
-                  ", your URS submission has been flagged for revisions, and is in need of changes.",
-                ", your URS submission has been approved, congratulations!"],
+            body:[ ", Your URS submission has been approved by your adviser.",
+                  ", Your URS submission has been flagged for revisions, and is in need of changes.",
+                ", Your URS submission has been approved, congratulations!"],
             temp: {strict: "", text: ""}
         };
-
-        //Not working code, scrapped to use on a later date
-        //     -Nic (11/9)
-//        $scope.getColor = function(strict) {
-//            for(var i = 0; i < status.length; i++){
-//                if($scope.status[i].strict === strict){
-//                    return $scope.status[i].color;
-//                }
-//            }
-//        };
 
         $scope.resetTemps = function() {
             if($scope.selection.item != null){
@@ -374,7 +366,7 @@ angular.module('umm3601ursamajorApp')
             $scope.selection.item.status.strict = $scope.statusEdit.temp.strict;
             $scope.selection.item.status.text = $scope.statusEdit.temp.text;
 
-        //--------------------------------------------- gmail stuff? ---------------------------------------
+        //--------------------------------------------- Gmail Things ---------------------------------------
 
             sendGmail({
                 to: $scope.selection.item.presenterInfo.email,
