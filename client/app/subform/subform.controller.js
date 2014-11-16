@@ -2,15 +2,32 @@
 
 angular.module('umm3601ursamajorApp')
 
-  .controller('SubformCtrl', function ($scope, $http, Auth, $location) {
+  .controller('SubformCtrl', function ($scope, $http, Auth, $location, socket, $filter) {
 
     if(Auth.isLoggedIn() === false) {
         $location.path('/');
     }
+
     $scope.isAdmin = Auth.isAdmin;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.timestamp = Date();
 
+    $scope.submissions = [];
+    $scope.flaggedSubmissions = [];
+
+    $scope.updateFlaggedSubmissions = function(subs){
+        $scope.flaggedSubmissions = $filter('filter')(subs, function(sub){return (sub.resubmissionData.resubmitFlag && (Auth.getCurrentUser().email === sub.presenterInfo.email))});
+    };
+
+    $http.get('/api/submissions').success(function(submissions) {
+        $scope.submissions = submissions;
+        $scope.updateFlaggedSubmissions(submissions);
+        socket.syncUpdates('submission', $scope.submissions);
+    });
+
+    $scope.hasResubmitFlags = function(){
+        return $scope.flaggedSubmissions.length > 0;
+    };
 
     $scope.formatOptions =
         ['Artist Statement',
@@ -59,7 +76,12 @@ angular.module('umm3601ursamajorApp')
         mediaServicesEquipment: "",
         specialRequirements: "",
         presenterTeeSize: "",
-        otherInfo: ""
+        otherInfo: "",
+        resubmitComment: ""
+    };
+
+    $scope.getResubmitData = function(submissionId){
+      //TODO stuff goes here
     };
 
     $scope.submissionTextArray = [];
@@ -69,7 +91,6 @@ angular.module('umm3601ursamajorApp')
         $scope.submissionTextArray = submissionTextArray;
         $scope.submissionText = $scope.submissionTextArray[0];
     });
-
 
     $scope.submitSubmission = function(){
 
@@ -105,7 +126,8 @@ angular.module('umm3601ursamajorApp')
                     approval: false,
                     status: {strict: "Awaiting Adviser Approval", text: "Adviser has not been notified"},
                     timestamp: $scope.timestamp,
-                    group: 0
+                    group: 0,
+                    resubmissionData: {comment: $scope.submissionData.resubmitComment, parentSubmission: "", resubmitFlag: false }
                 }
             );
             $scope.resetData();

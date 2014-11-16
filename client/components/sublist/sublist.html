@@ -1,18 +1,31 @@
 <div class="container-fluid breakLongWords" ng-controller="SublistCtrl">
-
+    <tabset>
+        <tab heading="All Submissions" ng-click="showAllSubmissions()"></tab>
+        <tab ng-show="isPresenterOnAnything()" heading="Presenter Submissions" ng-click="showMySubmissions()"></tab>
+        <tab ng-show="isCoPresenterOnAnything()" heading="Copresenter Submissions" ng-click="showMyCoSubmissions()"></tab>
+        <tab ng-show="isAdviserOfAnything()" heading="Adviser Submissions" ng-click="showMyAdviserSubmissions()"></tab>
+        <tab ng-show="isReviewerOfAnything()" heading="Reviewer Submissions" ng-click="showMyReviewerSubmissions()"></tab>
+    </tabset>
     <ul class="list-group" ng-hide="selection.selected">
-        <li class="list-group-item" id="text">
+        <li class="list-group-item noTopBorder" id="text">
             <h2>Submissions </h2>
             <br>
             <input type="text" ng-model="filterData.searchText" placeholder="Search">
+            <select ng-show="isAdmin() || isCoChair()" ng-model="filterData.reviewGroupFilterSelection">
+                <option ng-repeat="option in filterData.reviewGroupFilterOptions" ng-value="'{{option}}'">{{option}}</option>
+            </select>
+            <!--<button type="button" class="btn btn-default" ng-click="filterData.orderByPredicate='timestamp'">Order by timestamp</button>-->
         </li>
-        <li class="list-group-item" ng-style="statusColorTab(sub.status.strict)" ng-repeat="sub in submissions | filter:hasPermissions | filter:searchFilter">
-            <h3 id="text">{{sub.title}}</h3>
 
+        <li class="list-group-item" ng-style="statusColorTab(sub.status.strict)" ng-repeat="sub in submissions | filter:hasPermissions | filter:tabFilters | filter:reviewGroupFilter | filter:searchFilter">
+            <h3 id="text">{{sub.title}}</h3>
             <button class="buttonL" ng-click="selectItem($index)">Details</button>
             <strong>Presenter: {{sub.presenterInfo.first}} {{sub.presenterInfo.last}}</strong>
             <p class="subtext">
                 Co-Presenter(s): {{sub.copresenterOneInfo.first | isntEmpty:"":""}} {{sub.copresenterOneInfo.last | isntEmpty:"":""}}{{sub.copresenterTwoInfo.first | isntEmpty:",":""}} {{sub.copresenterTwoInfo.last | isntEmpty:"":""}}
+            </p>
+            <p class="subtext">
+            Date of submission: {{sub.timestamp}}
             </p>
 
             <!--<hr>-->
@@ -25,20 +38,20 @@
                     <!--<p>Discipline: {{sub.discipline}}</p>-->
                     <!--<p>Format:  {{sub.format}}</p>-->
                     <!--<p>Abstract: <br> {{sub.abstract | fancyLimitTo: 300}}</p>-->
-                    <!--<strong><p ng-show="isMemberGroup(sub)"> This submission is in your review group</p></strong>-->
+                    <!--<strong><p ng-show="isReviewerGroup(sub)"> This submission is in your review group</p></strong>-->
                     <!--<p>Date of submission: {{sub.timestamp}}</p>-->
                 <!--&lt;!&ndash;</li>&ndash;&gt;-->
             <!--&lt;!&ndash;</ul>&ndash;&gt;-->
             <br>
           </li>
-
     </ul>
  
     <ul class="list-group" ng-show="selection.selected">
-        <li class="list-group-item">
+        <li class="list-group-item overflowAuto">
             <button class="btn btn-sm btn-block" ng-click="resetSelection()">Back to submission list</button>
             <br>
             <button ng-show="isAdmin()" class="btn btn-sm btn-danger" ng-click="deleteSubmissionConfirm(selection.item)"><span class="glyphicon glyphicon-trash"></span></button>
+            <button class="btn btn-sm btn-primary ReSubButton" ng-click="flagForResubmit()">Flag for re-submission</button>
         </li>
         <li class="list-group-item" ng-style="statusColorTab(selection.item.status.strict)">
 
@@ -76,7 +89,7 @@
                     <p>Discipline: {{selection.item.discipline}}</p>
                     <p>Format:  {{selection.item.format}}</p>
                     <p>Type: {{selection.item.presentationType}}</p>
-                    <p>Advisor: {{selection.item.adviserInfo.last}}, {{selection.item.adviserInfo.first}} email: {{selection.item.adviserInfo.email}}</p>
+                    <p>Adviser: {{selection.item.adviserInfo.last}}, {{selection.item.adviserInfo.first}} email: {{selection.item.adviserInfo.email}}</p>
                     <p>Adviser Approved: {{approvalWordChange(selection.item.approval)}}</p>
                     <p>{{selection.item.sponsors | isntEmpty:"Sponsors:":""}}</p>
                     <p>{{selection.item.mediaServicesEquipment | isntEmpty:"Media Services Equipment:":""}}</p>
@@ -89,6 +102,11 @@
                 <li class="list-group-item"><p>{{selection.item.abstract}}</p></li>
             </ul>
             <br>
+            <p>You are seeing this submission because you are a(n):</p>
+            <p ng-show="hasAdminPrivs()">{{"admin"}}</p>
+            <p ng-show="isPresenter(selection.item)">{{"presenter of this submission"}}</p>
+            <p ng-show="isCoPresenter(selection.item)">{{"co-presenter of this submission"}}</p>
+            <p ng-show="isReviewerGroup(selection.item)">{{"reviewer in " + "Reviewer Group " +selection.item.group}}</p>
         </li>
     </ul>
 </div>

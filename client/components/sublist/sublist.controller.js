@@ -2,7 +2,9 @@
  * Created by opdah023 on 10/9/14.
  */
 'use strict';
-
+ //When we tested this function, it worked correctly with only two
+ //parameters given, until we checked the final else case, in which
+ // case it broke with only two parameters
 angular.module('umm3601ursamajorApp')
     .filter('isntEmpty', function(){
         return function(input, title, altTitle){
@@ -24,60 +26,94 @@ angular.module('umm3601ursamajorApp')
         }
     })
 
-    .controller('SublistCtrl', function ($scope, $http, socket, $modal, Modal, Auth, $window) {
+    .controller('SublistCtrl', function ($scope, $http, socket, $modal, Modal, Auth, $window, $filter) {
         $scope.submissions = [];
-
         $scope.getCurrentUser = Auth.getCurrentUser;
         $scope.group = Auth.getCurrentUser().group;
         $scope.email = Auth.getCurrentUser().email;
-        $scope.isMember = Auth.isMember;
+        $scope.isReviewer = Auth.isReviewer;
         $scope.isAdmin = Auth.isAdmin;
+        $scope.isCoChair = Auth.isCoChair;
 
         //--------------------- Filter Functions -----------------------
 
         $scope.filterData = {
             searchText: "",
+            orderByPredicate: "",
             reviewGroupFilterSelection: "All",
             reviewGroupFilterOptions: [
                 "All",
                 "Unassigned",
                 "Review Group 1",
-                "Review Group 2"
-            ]
+                "Review Group 2",
+                "Review Group 3",
+                "Review Group 4"
+            ],
+            tabFilter: {isPresenter:false, isCoPresenter:false, isReviewer:false, isAdviser:false}
+        };
+
+        $scope.setReviewGroupSelection = function(str) {
+            $scope.filterData.reviewGroupFilterSelection = str;
+        };
+
+        $scope.hasAdminPrivs = function(){
+            return (($scope.getCurrentUser.role != null && $scope.getCurrentUser.role == "Admin") || $scope.isAdmin() || $scope.isCoChair());
         };
 
         $scope.isPresenter = function(submission) {
+            if(submission == null) return false;
             return $scope.email === submission.presenterInfo.email;
         };
 
         $scope.isCoPresenter = function(submission) {
+            if(submission == null) return false;
             return $scope.email === submission.copresenterOneInfo.email ||
                 $scope.email === submission.copresenterTwoInfo.email;
         };
 
         $scope.isAdviser = function(submission) {
+            if(submission == null) return false;
             return $scope.email === submission.adviserInfo.email;
         };
 
-        $scope.isMemberGroup = function(submission){
+        $scope.isReviewerGroup = function(submission){
+            if(submission == null) return false;
             return $scope.group === submission.group;
         };
 
         $scope.hasPermissions = function(submission) {
+            if(submission == null) return false;
             if(!Auth.isLoggedIn){
                 console.log("Not logged in!");
                 return false;
             }
 
-            if($scope.getCurrentUser.role === "Admin" || $scope.isAdmin){
-                console.log("admin: yes");
+            if($scope.hasAdminPrivs()){
                 return true;
             } else {
                 console.log("Not admin, is logged in");
                 return $scope.isPresenter(submission) ||
                        $scope.isCoPresenter(submission) ||
                        $scope.isAdviser(submission) ||
-                       $scope.isMemberGroup(submission)
+                       $scope.isReviewerGroup(submission)
+            }
+        };
+
+        $scope.reviewGroupFilter = function(submission) {
+            if($scope.filterData.reviewGroupFilterSelection === "All"){
+                return true;
+            } else if($scope.filterData.reviewGroupFilterSelection === "Unassigned"){
+                return submission.group == 0;
+            } else if($scope.filterData.reviewGroupFilterSelection === "Review Group 1"){
+                return submission.group == 1;
+            } else if($scope.filterData.reviewGroupFilterSelection === "Review Group 2"){
+                return submission.group == 2;
+            } else if($scope.filterData.reviewGroupFilterSelection === "Review Group 3"){
+                return submission.group == 3;
+            } else if($scope.filterData.reviewGroupFilterSelection === "Review Group 4"){
+                return submission.group == 4;
+            } else {
+                return false;
             }
         };
 
@@ -95,25 +131,70 @@ angular.module('umm3601ursamajorApp')
             )
         };
 
+        $scope.isPresenterOnAnything = function(){
+           return ($filter('filter')($scope.submissions, $scope.isPresenter).length > 0)
+        };
 
-//        $scope.hasCoPresenter = function(submission){
-//            return submission.copresenterOne.first === null;
-//        };
-//
-//        $scope.hasCoPresenterTwo = function(submission){
-//            return submission.copresenterTwo.first === null;
-//        };
+        $scope.isCoPresenterOnAnything = function(){
+            return ($filter('filter')($scope.submissions, $scope.isCoPresenter).length > 0)
+        };
 
-//        $scope.canSeeSub = function(submission) {
-//            if($scope.isAdmin() ||
-//                $scope.isPresenter(submission) ||
-//                $scope.isCoPresenter(submission) ||
-//                $scope.isAdviser(submission) ||
-//                $scope.isMemberGroup(submission)
-//                ){
-//                return true
-//            }
-//        };
+        $scope.isAdviserOfAnything = function(){
+            return ($filter('filter')($scope.submissions, $scope.isAdviser).length > 0)
+        };
+
+        $scope.isReviewerOfAnything = function(){
+            return ($filter('filter')($scope.submissions, $scope.isReviewerGroup).length > 0)
+        };
+
+        // --- Controlling the Tabs ---
+
+        $scope.resetTabs = function(){
+            for(var key in $scope.filterData.tabFilter) {
+                if($scope.filterData.tabFilter.hasOwnProperty(key)){
+                    $scope.filterData.tabFilter[key] = false;
+                }
+            }
+        };
+
+        $scope.showAllSubmissions = function(){
+            $scope.resetTabs();
+        };
+
+        $scope.showMySubmissions = function(){
+            $scope.resetTabs();
+            $scope.filterData.tabFilter.isPresenter = true;
+        };
+
+        $scope.showMyCoSubmissions = function(){
+            $scope.resetTabs();
+            $scope.filterData.tabFilter.isCoPresenter = true;
+        };
+
+        $scope.showMyAdviserSubmissions = function(){
+            $scope.resetTabs();
+            $scope.filterData.tabFilter.isAdviser = true;
+        };
+
+        $scope.showMyReviewerSubmissions = function(){
+            $scope.resetTabs();
+            $scope.filterData.tabFilter.isReviewer = true;
+        };
+
+        $scope.tabFilters = function(submission){
+          if($scope.filterData.tabFilter.isPresenter){
+              return $scope.isPresenter(submission);
+          }  else if ($scope.filterData.tabFilter.isCoPresenter) {
+              return $scope.isCoPresenter(submission);
+          } else if ($scope.filterData.tabFilter.isReviewer) {
+                  return $scope.reviewGroupFilter(submission);
+          } else if ($scope.filterData.tabFilter.isAdviser) {
+              return $scope.isAdviser(submission);
+          } else {
+              console.log("no tab filters applied");
+              return true;
+          }
+        };
 
         // ----------------------- Getting Data from Mongo ----------------------------
 
@@ -142,16 +223,16 @@ angular.module('umm3601ursamajorApp')
         $scope.statusColorTab = function(status){
             switch(status){
                 case "Awaiting Adviser Approval":
-                    return {'border-left': '4px solid rgba(255, 0, 0, 1)'};
+                    return {'border-left': '4px solid rgba(200, 30, 0, 1)'};
                     break;
                 case "Reviewing in Process":
-                    return {'border-left': '4px solid rgba(255, 220, 10, 1)'};
+                    return {'border-left': '4px solid rgba(225, 225, 10, 1)'};
                     break;
                 case "Revisions Needed":
-                    return {'border-left': '4px solid rgba(0, 100, 255, 1)'};
+                    return {'border-left': '4px solid rgba(20, 138, 255, 1)'};
                     break;
                 case "Accepted":
-                    return {'border-left': '4px solid rgba(0, 255, 0, 1)'};
+                    return {'border-left': '4px solid rgba(71, 214, 0, 1)'};
                     break;
             }
         };
@@ -159,16 +240,16 @@ angular.module('umm3601ursamajorApp')
         $scope.statusColorBody = function(status){
             switch(status){
                 case "Awaiting Adviser Approval":
-                    return {'background-color': 'rgba(255, 0, 0, 1)'};
+                    return {'background-color': 'rgba(200, 30, 0, 1)'};
                     break;
                 case "Reviewing in Process":
-                    return {'background-color': 'rgba(255, 220, 10, 1)'};
+                    return {'background-color': 'rgba(225, 225, 10, 1)'};
                     break;
                 case "Revisions Needed":
-                    return {'background-color': 'rgba(0, 100, 255, 1)'};
+                    return {'background-color': 'rgba(20, 138, 255, 1)'};
                     break;
                 case "Accepted":
-                    return {'background-color': 'rgba(0, 255, 0, 1)'};
+                    return {'background-color': 'rgba(71, 214, 0, 1)'};
                     break;
             }
         };
@@ -178,9 +259,24 @@ angular.module('umm3601ursamajorApp')
         $scope.selection = {selected: false, item: null};
 
         $scope.selectItem = function(itemIndex){
-            console.log("setting index " + itemIndex + " as active item");
+            var filteredSubmissions =
+                $filter('filter')(
+                    $filter('filter')(
+                        $filter('filter')(
+                            $filter('filter')(
+                                $scope.submissions,
+                                $scope.hasPermissions
+                            ),
+                            $scope.tabFilters
+                        ),
+                        $scope.reviewGroupFilter
+                    ),
+                    $scope.searchFilter
+                );
+
             $scope.selection.selected = true;
-            $scope.selection.item = $scope.submissions[itemIndex];
+            $scope.selection.item = filteredSubmissions[itemIndex];
+
             $scope.resetTemps();
         };
 
@@ -276,6 +372,14 @@ angular.module('umm3601ursamajorApp')
             $scope.editStatus();
         };
 
+        $scope.flagForResubmit = function(){
+            $http.patch('api/submissions/' + $scope.selection.item._id,
+                {resubmissionData: {comment: "flagged for resubmit", parentSubmission: "", resubmitFlag: true}}
+            ).success(function(){
+                    console.log("Successfully flagged submission for resubmit");
+                });
+        };
+
         
 
         $scope.approvalWordChange = function(approval){
@@ -286,6 +390,10 @@ angular.module('umm3601ursamajorApp')
                  return "No";
                  }
              };
+
+
+        //--------------------------------------------- Tabs Stuff ---------------------------------------
+
 
 
     });

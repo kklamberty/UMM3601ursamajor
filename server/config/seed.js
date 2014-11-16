@@ -8,12 +8,12 @@
 var User = require('../api/user/user.model');
 var Submission = require('../api/submission/submission.model');
 var Subformtext = require('../api/subformtext/subformtext.model');
-
+var Status = require('../api/status/status.model');
 
 //Not working code, scrapped to use on a later date
 //      -Nic, (11/9)
-//status.find({}).remove(function() {
-//    status.create({
+//Status.find({}).remove(function() {
+//    Status.create({
 //        strict: "Reviewing in Process",
 //        color: {red: 255, green: 220, blue: 10, alpha: 1},
 //        emailSubject: "URS submission update",
@@ -34,8 +34,6 @@ var Subformtext = require('../api/subformtext/subformtext.model');
 //        emailSubject: "",
 //        emailBody: ""
 //    });
-//
-//
 //});
 
 Subformtext.find({}).remove(function() {
@@ -58,18 +56,18 @@ Subformtext.find({}).remove(function() {
             "\n3. Professional tone, including appropriate word choice and correct grammar, spelling, and punctuation.",
         header2: "Field-specific criteria:",
         notes2: "Mark the category below that best describes your project. Your 250-word submission must also include the appropriate field-specific elements listed below.",
-        artistCriteria: "Artist statements" +
-            "\n1. A concise explanation of the subject matter or concepts you are exploring (what you do)." +
+        artistCriteria:
+            "1. A concise explanation of the subject matter or concepts you are exploring (what you do)." +
             "\n2. A concise explanation of artistic goals (why you do what you do)." +
             "\n3. A concise explanation of processes, production methods, tools, media, innovations, etc. (how you do what you do)." +
             "\n4. A concise explanation of historical context, including how this work builds on, differs from, or responds to existing work or performances.",
-        humanitiesCriteria: "Humanities proposals" +
-            "\n1. A concise explanation of the relevant intellectual and scholarly context of your work." +
+        humanitiesCriteria:
+            "1. A concise explanation of the relevant intellectual and scholarly context of your work." +
             "\n2. A concise explanation of how your project fits within this intellectual context. Does it extend, revise, or complicate, or provide a new way of looking at existing work in the field?" +
             "\n3. A clear statement of argument: a specific, debatable claim, not merely a summary of others’ research." +
             "\n4. An explanation of the significance and broader implications of your work.",
-        scienceCriteria: "Science & Social Science abstracts" +
-            "\n1. A concise explanation of the scholarly context for the project with a statement of the project’s specific objective." +
+        scienceCriteria:
+            "1. A concise explanation of the scholarly context for the project with a statement of the project’s specific objective." +
             "\n2. A clear explanation of the methods used to address the objective." +
             "\n3. A clear explanation of the results or findings." +
             "\n4. An explanation of the significance and broader implications of the project's results.",
@@ -117,7 +115,7 @@ User.find({}).remove(function() {
                 picture: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
                 verified_email: true
             }
-        },{
+        }, {
             provider: 'local',
             role: 'user',
             name: 'User',
@@ -133,12 +131,19 @@ User.find({}).remove(function() {
             group: -1
         }, {
             provider: 'local',
+            role: 'co-chair',
+            name: 'Co-Chair',
+            email: 'coChair@coChair.com',
+            password: 'cochair',
+            group: -1
+        }, {
+            provider: 'local',
             role: 'reviewer',
             name: 'Reviewer',
             email: 'reviewer@reviewer.com',
             password: 'reviewer',
-            group: 1
-        }, function() {
+            group: 3
+        }, function () {
             console.log('finished populating users');
         }, {
             provider: 'google',
@@ -190,7 +195,8 @@ Submission.find({}).remove(function(){
         approval: false,
         status:  {strict: "Awaiting Adviser Approval", text: "Has not been reviewed yet"},
         timestamp: "Sat Oct 18 2014 10:48:54 GMT-0500 (CDT)",
-        group: 1
+        group: 1,
+        resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
     }, {
         title: "Blind Construction: Mixed Media",
         format: "Artist Statement",
@@ -215,7 +221,8 @@ Submission.find({}).remove(function(){
         approval: true,
         status: {strict: "Revisions Needed", text: "Submitter is working on updating"},
         timestamp: "Tue Oct 21 2014 23:22:54 GMT-0500 (CDT)",
-        group: 1
+        group: 1,
+        resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
     }, {
         title: "On the Migration of Majestic Space Whales",
         format: "Artist Statement",
@@ -247,7 +254,8 @@ Submission.find({}).remove(function(){
         approval: false,
         status: {strict: "Awaiting Adviser Approval", text: "Adviser has been notified"},
         timestamp: "Mon Sept 2 2014 1:48:54 GMT-0500 (CDT)",
-        group: 1
+        group: 1,
+        resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
     }, {
         title: "The Commemoration and Memorialization of the American Revolution",
         format: "Artist Statement",
@@ -274,7 +282,8 @@ Submission.find({}).remove(function(){
         approval: true,
         status: {strict: "Reviewing in Process", text: "Needs to be updated an iota"},
         timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)",
-        group: 3
+        group: 3,
+        resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
     }, {
         title: "Margaret C. Anderson’s Little Review",
         format: "Social Science",
@@ -300,7 +309,8 @@ Submission.find({}).remove(function(){
         approval: true,
         status: {strict: "Accepted", text: "Ready for launch"},
         timestamp: "Thur Oct 23 2014 1:48:54 GMT-0500 (CDT)",
-        group: 2
+        group: 2,
+        resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
     }, {
         title: "A Study of the Properties of a Paperclip in the Digestive System of a Sloth",
         format: "Artist Statement",
@@ -315,7 +325,7 @@ Submission.find({}).remove(function(){
         copresenterTwoInfo: {first: "Dill", last: "Pickle", email: "saxxx027@morris.umn.edu"},
         discipline: "Biology",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {first: "Margaret", last: "Kuchenreuther", email: "kuchenma@morris.umn.edu"},
+        adviserInfo: {first: "Margaret", last: "Kuchenreuther", email: "saxxx027@morris.umn.edu"},
         featuredPresentation: false,
         mediaServicesEquipment: "",
         specialRequirements: "a sloth",
@@ -324,6 +334,7 @@ Submission.find({}).remove(function(){
         approval: false,
         status: {strict: "Awaiting Adviser Approval", text: "Not all reviewers have had a chance to look at it yet"},
         timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)",
-        group: 3
+        group: 3,
+        resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
     });
 });

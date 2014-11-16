@@ -23,7 +23,8 @@ var SubmissionSchema = new Schema({
   approval: Boolean,
   status: {strict: String, text: String},
   timestamp: String,
-  group: Number
+  group: Number,
+  resubmissionData: {comment: String, parentSubmission: String, resubmitFlag: Boolean}
 
 });
 
