@@ -182,15 +182,16 @@ angular.module('umm3601ursamajorApp')
         };
 
         $scope.tabFilters = function(submission){
-          if($scope.filterData.tabFilter.isPresenter == true){
+          if($scope.filterData.tabFilter.isPresenter){
               return $scope.isPresenter(submission);
-          }  else if ($scope.filterData.tabFilter.isCoPresenter == true) {
+          }  else if ($scope.filterData.tabFilter.isCoPresenter) {
               return $scope.isCoPresenter(submission);
-          } else if ($scope.filterData.tabFilter.isReviewer == true) {
+          } else if ($scope.filterData.tabFilter.isReviewer) {
                   return $scope.reviewGroupFilter(submission);
-          } else if ($scope.filterData.tabFilter.isAdviser == true) {
+          } else if ($scope.filterData.tabFilter.isAdviser) {
               return $scope.isAdviser(submission);
           } else {
+              console.log("no tab filters applied");
               return true;
           }
         };
@@ -258,9 +259,7 @@ angular.module('umm3601ursamajorApp')
         $scope.selection = {selected: false, item: null};
 
         $scope.selectItem = function(itemIndex){
-            console.log("setting index " + itemIndex + " as active item");
-            $scope.selection.selected = true;
-            $scope.selection.item =
+            var filteredSubmissions =
                 $filter('filter')(
                     $filter('filter')(
                         $filter('filter')(
@@ -273,7 +272,10 @@ angular.module('umm3601ursamajorApp')
                         $scope.reviewGroupFilter
                     ),
                     $scope.searchFilter
-                )[itemIndex];
+                );
+
+            $scope.selection.selected = true;
+            $scope.selection.item = filteredSubmissions[itemIndex];
 
             $scope.resetTemps();
         };

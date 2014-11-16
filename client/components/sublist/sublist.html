@@ -17,7 +17,7 @@
             <!--<button type="button" class="btn btn-default" ng-click="filterData.orderByPredicate='timestamp'">Order by timestamp</button>-->
         </li>
 
-        <li class="list-group-item" ng-style="statusColorTab(sub.status.strict)" ng-repeat="sub in submissions | filter:hasPermissions | filter:tabFilters | filter:reviewGroupFilter | filter:searchFilter | orderBy:filterData.orderByPredicate">
+        <li class="list-group-item" ng-style="statusColorTab(sub.status.strict)" ng-repeat="sub in submissions | filter:hasPermissions | filter:tabFilters | filter:reviewGroupFilter | filter:searchFilter">
             <h3 id="text">{{sub.title}}</h3>
             <button class="buttonL" ng-click="selectItem($index)">Details</button>
             <strong>Presenter: {{sub.presenterInfo.first}} {{sub.presenterInfo.last}}</strong>
@@ -51,7 +51,7 @@
             <button class="btn btn-sm btn-block" ng-click="resetSelection()">Back to submission list</button>
             <br>
             <button ng-show="isAdmin()" class="btn btn-sm btn-danger" ng-click="deleteSubmissionConfirm(selection.item)"><span class="glyphicon glyphicon-trash"></span></button>
-            <button class="btn btn-sm btn-primary" ng-click="flagForResubmit()">Flag for re-submission</button>
+            <button class="btn btn-sm btn-primary ReSubButton" ng-click="flagForResubmit()">Flag for re-submission</button>
         </li>
         <li class="list-group-item" ng-style="statusColorTab(selection.item.status.strict)">
 

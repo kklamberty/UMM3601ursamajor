@@ -38,8 +38,9 @@
 }
 
 .navbar-default .navbar-nav li a:hover {
-    color: #7a0019;
+    color: #ffcc33;
     font-weight: bold;
+    background-color: #7a0019;
 }
 
 .navbar-default .navbar-brand:hover{
