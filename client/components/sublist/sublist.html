@@ -1,13 +1,12 @@
 <div class="container-fluid breakLongWords" ng-controller="SublistCtrl">
+    <tabset ng-hide="selection.selected">
+        <tab heading="All Submissions" ng-click="showAllSubmissions()"></tab>
+        <tab ng-show="isPresenterOnAnything()" heading="Presenter Submissions" ng-click="showMySubmissions()"></tab>
+        <tab ng-show="isCoPresenterOnAnything()" heading="Copresenter Submissions" ng-click="showMyCoSubmissions()"></tab>
+        <tab ng-show="isAdviserOfAnything()" heading="Adviser Submissions" ng-click="showMyAdviserSubmissions()"></tab>
+        <tab ng-show="isReviewerOfAnything()" heading="Reviewer Submissions" ng-click="showMyReviewerSubmissions()"></tab>
+    </tabset>
     <ul class="list-group" ng-hide="selection.selected">
-        <tabset>
-            <tab heading="All Submissions" ng-click="showAllSubmissions()"></tab>
-            <tab ng-show="isPresenterOnAnything()" heading="My Submissions" ng-click="showMySubmissions()"></tab>
-            <tab ng-show="isCoPresenterOnAnything()" heading="Copresenter Submissions" ng-click="showMyCoSubmissions()"></tab>
-            <tab ng-show="isAdviserOfAnything()" heading="My Advisees' Submissions" ng-click="showMyAdviserSubmissions()"></tab>
-            <tab ng-show="isReviewerOfAnything()" heading="Submissions To Review" ng-click="showMyReviewerSubmissions()"></tab>
-
-        </tabset>
         <li class="list-group-item noTopBorder" id="text">
             <h2>Submissions </h2>
             <br>
@@ -18,8 +17,8 @@
             <!--<button type="button" class="btn btn-default" ng-click="filterData.orderByPredicate='timestamp'">Order by timestamp</button>-->
         </li>
 
-        <li class="list-group-item" ng-style="statusColorTab(sub.status.strict)" ng-repeat="sub in submissions | filter:hasPermissions | filter:tabFilters | filter:reviewGroupFilter | filter:searchFilter">
-            <h3 id="text">{{sub.title}}</h3>
+        <li class="list-group-item" ng-style="statusColorTab(sub.status.strict)" ng-repeat="sub in submissions | filter:hasPermissions | filter:tabFilters | filter:reviewGroupFilter | filter:searchFilter" ng-hide="isResubmission(sub)">
+            <h3 id="text">{{sub.title}} <span ng-show="getResubmission(sub) != null" style="color: red" class="glyphicon glyphicon-warning-sign"></span></h3>
             <button class="buttonL" ng-click="selectItem($index)">Details</button>
             <strong>Presenter: {{sub.presenterInfo.first}} {{sub.presenterInfo.last}}</strong>
             <p class="subtext">
@@ -53,8 +52,6 @@
             <br>
             <button ng-show="isAdmin()" class="btn btn-sm btn-danger" ng-click="deleteSubmissionConfirm(selection.item)"><span class="glyphicon glyphicon-trash"></span></button>
             <button class="btn btn-sm btn-primary ReSubButton" ng-click="flagForResubmit()">Flag for re-submission</button>
-            <br>
-            <br>
         </li>
         <li class="list-group-item" ng-style="statusColorTab(selection.item.status.strict)">
 
@@ -109,7 +106,6 @@
             <p ng-show="hasAdminPrivs()">{{"admin"}}</p>
             <p ng-show="isPresenter(selection.item)">{{"presenter of this submission"}}</p>
             <p ng-show="isCoPresenter(selection.item)">{{"co-presenter of this submission"}}</p>
-            <p ng-show="isAdviser(selection.item)">{{"adviser of this submission"}}</p>
             <p ng-show="isReviewerGroup(selection.item)">{{"reviewer in " + "Reviewer Group " +selection.item.group}}</p>
         </li>
     </ul>

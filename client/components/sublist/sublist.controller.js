@@ -54,6 +54,21 @@ angular.module('umm3601ursamajorApp')
             tabFilter: {isPresenter:false, isCoPresenter:false, isReviewer:false, isAdviser:false}
         };
 
+        $scope.isResubmission = function(submission){
+            return submission.resubmissionData.parentSubmission != "";
+        };
+
+        $scope.getResubmission = function(submission){
+            var resubmits = $filter('filter')($scope.submissions, $scope.isResubmission);
+
+            for(var x = 0; x < resubmits.length; x++){
+                if(resubmits[x].resubmissionData.parentSubmission === submission._id){
+                    return resubmits[x];
+                }
+            }
+            return null;
+        };
+
         $scope.setReviewGroupSelection = function(str) {
             $scope.filterData.reviewGroupFilterSelection = str;
         };
@@ -94,7 +109,6 @@ angular.module('umm3601ursamajorApp')
             if($scope.hasAdminPrivs()){
                 return true;
             } else {
-                console.log("Not admin, is logged in");
                 return $scope.isPresenter(submission) ||
                        $scope.isCoPresenter(submission) ||
                        $scope.isAdviser(submission) ||
@@ -195,7 +209,6 @@ angular.module('umm3601ursamajorApp')
           } else if ($scope.filterData.tabFilter.isAdviser) {
               return $scope.isAdviser(submission);
           } else {
-              console.log("no tab filters applied");
               return true;
           }
         };
@@ -268,7 +281,7 @@ angular.module('umm3601ursamajorApp')
 
         // ---------------------- Controlling selection of submission for detail view ---------------------------------
 
-        $scope.selection = {selected: false, item: null};
+        $scope.selection = {selected: false, item: null, resubmission: null};
 
         $scope.selectItem = function(itemIndex){
             var filteredSubmissions =
@@ -288,6 +301,7 @@ angular.module('umm3601ursamajorApp')
 
             $scope.selection.selected = true;
             $scope.selection.item = filteredSubmissions[itemIndex];
+            $scope.selection.resubmission = $scope.getResubmission($scope.selection.item);
 
             $scope.resetTemps();
         };

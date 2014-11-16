@@ -26,8 +26,12 @@ angular.module('umm3601ursamajorApp')
       $location.path('/login');
 
 /*
-      document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?";
+ document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://www.mysite.com";
+ */
+/*
+ document.location.href = "https://www.google.com/accounts/Logout";
 */
+
     };
 
     $scope.isActive = function(route) {
