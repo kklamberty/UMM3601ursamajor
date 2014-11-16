@@ -30,7 +30,7 @@ angular.module('umm3601ursamajorApp')
 
         $scope.toggles = {
             subListToggle: false,
-            statsToggle: false,
+            statsToggle: true,
             subFormEditorToggle: false,
             userEditToggle: false
         };

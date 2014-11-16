@@ -55,7 +55,7 @@ angular.module('umm3601ursamajorApp')
             $scope.filterData.reviewGroupFilterSelection = str;
         };
 
-        $scope.hasAdminPrivs = function(submission){
+        $scope.hasAdminPrivs = function(){
             return (($scope.getCurrentUser.role != null && $scope.getCurrentUser.role == "Admin") || $scope.isAdmin() || $scope.isCoChair());
         };
 
@@ -131,36 +131,22 @@ angular.module('umm3601ursamajorApp')
         };
 
         $scope.isPresenterOnAnything = function(){
-            if($filter('filter')($scope.submissions, $scope.isPresenter).length == 0){
-                return false;
-            } else{
-                return true;
-            }
+           return ($filter('filter')($scope.submissions, $scope.isPresenter).length > 0)
         };
 
         $scope.isCoPresenterOnAnything = function(){
-            if($filter('filter')($scope.submissions, $scope.isCoPresenter).length == 0){
-                return false;
-            } else{
-                return true;
-            }
+            return ($filter('filter')($scope.submissions, $scope.isCoPresenter).length > 0)
         };
 
         $scope.isAdviserOfAnything = function(){
-            if($filter('filter')($scope.submissions, $scope.isAdviser).length == 0){
-                return false;
-            } else{
-                return true;
-            }
+            return ($filter('filter')($scope.submissions, $scope.isAdviser).length > 0)
         };
 
         $scope.isReviewerOfAnything = function(){
-            if($filter('filter')($scope.submissions, $scope.isReviewerGroup).length == 0){
-                return false;
-            } else{
-                return true;
-            }
+            return ($filter('filter')($scope.submissions, $scope.isReviewerGroup).length > 0)
         };
+
+        // --- Controlling the Tabs ---
 
         $scope.resetTabs = function(){
             for(var key in $scope.filterData.tabFilter) {
@@ -273,10 +259,20 @@ angular.module('umm3601ursamajorApp')
         $scope.selectItem = function(itemIndex){
             console.log("setting index " + itemIndex + " as active item");
             $scope.selection.selected = true;
-            $scope.selection.item = $filter('filter')(
+            $scope.selection.item =
                 $filter('filter')(
-                    $filter('filter')($scope.submissions, $scope.hasPermissions), $scope.reviewGroupFilter),
-                $scope.searchFilter)[itemIndex];
+                    $filter('filter')(
+                        $filter('filter')(
+                            $filter('filter')(
+                                $scope.submissions,
+                                $scope.hasPermissions
+                            ),
+                            $scope.tabFilters
+                        ),
+                        $scope.reviewGroupFilter
+                    ),
+                    $scope.searchFilter
+                )[itemIndex];
 
             $scope.resetTemps();
         };
