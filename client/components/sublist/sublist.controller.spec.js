@@ -32,7 +32,7 @@ describe('filter', function() {
 
 // TODO: this test isn't finished, just a template as of now. FINISH IT AND WRITE MORE TESTS!!!
 describe('Functions used for filtering', function() {
-    beforeEach(module('umn3601ursamajorApp'));
+    beforeEach(module('umm3601ursamajorApp'));
 
     var SublistCtrl, scope;
 
@@ -42,4 +42,8 @@ describe('Functions used for filtering', function() {
             $scope: scope
         });
     }));
+
+    it('should ...', function () {
+        expect(1).toEqual(1);
+    });
 });
