@@ -14,6 +14,7 @@ angular.module('umm3601ursamajorApp')
 
     $scope.submissions = [];
     $scope.flaggedSubmissions = [];
+    $scope.resubmitParent = null;
 
     $scope.updateFlaggedSubmissions = function(subs){
         $scope.flaggedSubmissions = $filter('filter')(subs, function(sub){return (sub.resubmissionData.resubmitFlag && (Auth.getCurrentUser().email === sub.presenterInfo.email))});
@@ -28,6 +29,8 @@ angular.module('umm3601ursamajorApp')
     $scope.hasResubmitFlags = function(){
         return $scope.flaggedSubmissions.length > 0;
     };
+
+    $scope.isResubmitting = false;
 
     $scope.formatOptions =
         ['Artist Statement',
@@ -77,11 +80,37 @@ angular.module('umm3601ursamajorApp')
         specialRequirements: "",
         presenterTeeSize: "",
         otherInfo: "",
-        resubmitComment: ""
+        resubmitComment: "",
+        resubmitParent: "",
+        resubmitFlag: false
     };
 
-    $scope.getResubmitData = function(submissionId){
-      //TODO stuff goes here
+    $scope.getResubmitData = function(submission){
+        $scope.submissionData = {
+            title: submission.title,
+            format: submission.format,
+            abstract: submission.abstract,
+            presentationType: submission.presentationType,
+            formatChange: submission.formatChange,
+            presenterInfo: {first: submission.presenterInfo.first, last: submission.presenterInfo.last, email: submission.presenterInfo.email},
+            copresenterOne: {first: submission.copresenterOneInfo.first, last: submission.copresenterOneInfo.last, email: submission.copresenterOneInfo.email},
+            copresenterTwo: {first: submission.copresenterTwoInfo.first, last: submission.copresenterTwoInfo.last, email: submission.copresenterTwoInfo.email},
+            discipline: submission.discipline,
+            sponsors: submission.sponsors,
+            sponsorsFinal: [],
+            adviserInfo: {first: submission.adviserInfo.first, last: submission.adviserInfo.last, email: submission.adviserInfo.email},
+            featuredPresentation: submission.featured,
+            mediaServicesEquipment: submission.mediaServicesEquipment,
+            specialRequirements: submission.specialRequirements,
+            presenterTeeSize: submission.presenterTeeSize,
+            otherInfo: submission.otherInfo,
+            resubmitComment: "",
+            resubmitParent: submission._id,
+            resubmitFlag: false
+        };
+
+        $scope.isResubmitting = true;
+        $scope.resubmitParent = submission;
     };
 
     $scope.submissionTextArray = [];
@@ -127,9 +156,19 @@ angular.module('umm3601ursamajorApp')
                     status: {strict: "Awaiting Adviser Approval", text: "Adviser has not been notified"},
                     timestamp: $scope.timestamp,
                     group: 0,
-                    resubmissionData: {comment: $scope.submissionData.resubmitComment, parentSubmission: "", resubmitFlag: false }
+                    resubmissionData: {comment: $scope.submissionData.resubmitComment, parentSubmission: $scope.submissionData.resubmitParent, resubmitFlag: $scope.submissionData.resubmitFlag }
                 }
             );
+
+            if ($scope.isResubmitting) {
+                $http.patch('api/submissions/' + $scope.submissionData.resubmitParent,
+                    // This is only setting false right now. comment and submission donot get stored.
+                    {resubmissionData: {comment: $scope.resubmitParent.comment, parentSubmission: $scope.resubmitParent.parentSubmission, resubmitFlag: false}}
+                ).success(function(){
+                    console.log("Successfully unflagged the original submission for resbumission.");
+                });
+            }
+
             $scope.resetData();
             $location.path('/submissionpage');
         }

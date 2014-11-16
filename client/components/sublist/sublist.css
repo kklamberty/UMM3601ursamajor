@@ -59,7 +59,10 @@ hr {
 }
 
 .ReSubButton {
-    margin-right: 0px;
-    display: block;
+    display: inline-block;
     float: right;
+}
+
+.overflowAuto {
+    overflow: auto;
 }
