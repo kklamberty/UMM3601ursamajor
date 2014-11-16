@@ -214,7 +214,7 @@ angular.module('umm3601ursamajorApp')
         };
 
         // ----------------------- Getting Data from Mongo ----------------------------
-        $scope.statusOptions = {
+        $scope.statusEdit = {
             editing: false,
             options: [],
             color: [],
@@ -225,10 +225,10 @@ angular.module('umm3601ursamajorApp')
 
         $scope.statusGet = function(){
             for(var x = 0; x<$scope.status.length; x++){
-                $scope.statusOptions.options.push($scope.status[x].strict);
-                $scope.statusOptions.color.push($scope.status[x].color);
-                $scope.statusOptions.subject.push($scope.status[x].emailSubject);
-                $scope.statusOptions.body.push($scope.status[x].emailBody);
+                $scope.statusEdit.options.push($scope.status[x].strict);
+                $scope.statusEdit.color.push($scope.status[x].color);
+                $scope.statusEdit.subject.push($scope.status[x].emailSubject);
+                $scope.statusEdit.body.push($scope.status[x].emailBody);
             }
         };
 
@@ -257,25 +257,25 @@ angular.module('umm3601ursamajorApp')
         //----------------------------- Color Coding of submission list -----------------------------
 
         $scope.statusColorTab = function(strict) {
-            var index = $scope.statusOptions.options.indexOf(strict);
-            if ($scope.statusOptions.color.length == 0 || index == -1) {
+            var index = $scope.statusEdit.options.indexOf(strict);
+            if ($scope.statusEdit.color.length == 0 || index == -1) {
                 return {'border-left': '4px solid rgba(0, 0, 0, 1)'};
             } else {
-            return {'border-left': '4px solid rgba(' + $scope.statusOptions.color[index].red
-                                               + ',' + $scope.statusOptions.color[index].green
-                                               + ',' + $scope.statusOptions.color[index].blue +
-                                                 ',' + $scope.statusOptions.color[index].alpha + ')'}
+            return {'border-left': '4px solid rgba(' + $scope.statusEdit.color[index].red
+                                               + ',' + $scope.statusEdit.color[index].green
+                                               + ',' + $scope.statusEdit.color[index].blue +
+                                                 ',' + $scope.statusEdit.color[index].alpha + ')'}
         }};
 
         $scope.statusColorBody = function(strict) {
-            var index = $scope.statusOptions.options.indexOf(strict);
-            if ($scope.statusOptions.color.length == 0 || index == -1) {
+            var index = $scope.statusEdit.options.indexOf(strict);
+            if ($scope.statusEdit.color.length == 0 || index == -1) {
                 return {'background-color': 'rgba(0, 0, 0, 1)'};
             } else {
-                return {'background-color': 'rgba(' + $scope.statusOptions.color[index].red
-                                                        + ',' + $scope.statusOptions.color[index].green
-                                                        + ',' + $scope.statusOptions.color[index].blue +
-                                                          ',' + $scope.statusOptions.color[index].alpha + ')'}
+                return {'background-color': 'rgba(' + $scope.statusEdit.color[index].red
+                                                        + ',' + $scope.statusEdit.color[index].green
+                                                        + ',' + $scope.statusEdit.color[index].blue +
+                                                          ',' + $scope.statusEdit.color[index].alpha + ')'}
             }};
 
 
@@ -322,17 +322,26 @@ angular.module('umm3601ursamajorApp')
         };
 
         // -------------------------- Editing of status ----------------------------------------------
-        $scope.statusEdit = {
-            editing: false,
-            options: ["Reviewing in Process",
-                "Revisions Needed",
-                "Accepted"],
-            subject:"URS submission update",
-            body:[ ", Your URS submission has been approved by your adviser.",
-                  ", Your URS submission has been flagged for revisions, and is in need of changes.",
-                ", Your URS submission has been approved, congratulations!"],
-            temp: {strict: "", text: ""}
-        };
+//        $scope.statusEdit = {
+//            editing: false,
+//            options: ["Reviewing in Process",
+//                "Revisions Needed",
+//                "Accepted"],
+//            subject:"URS submission update",
+//            body:[ ", Your URS submission has been approved by your adviser.",
+//                  ", Your URS submission has been flagged for revisions, and is in need of changes.",
+//                ", Your URS submission has been approved, congratulations!"],
+//            temp: {strict: "", text: ""}
+//        };
+
+//        $scope.statusEdit = {
+//            editing: false,
+//            options: [],
+//            color: [],
+//            subject: [],
+//            body: [],
+//            temp: {strict: "", text: ""}
+//        };
 
         $scope.resetTemps = function() {
             if($scope.selection.item != null){
