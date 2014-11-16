@@ -26,7 +26,7 @@ angular.module('umm3601ursamajorApp')
         }
     })
 
-    .controller('SublistCtrl', function ($scope, $http, socket, $modal, Modal, Auth, $window, $filter) {
+    .controller('SublistCtrl', function ($scope, $http, socket, $modal, Modal, Auth, $window, $filter, $location) {
         $scope.submissions = [];
         $scope.status = [];
 
@@ -401,8 +401,9 @@ angular.module('umm3601ursamajorApp')
             $http.patch('api/submissions/' + $scope.selection.item._id,
                 {resubmissionData: {comment: "flagged for resubmit", parentSubmission: "", resubmitFlag: true}}
             ).success(function(){
-                    console.log("Successfully flagged submission for resubmit");
-                });
+                console.log("Successfully flagged submission for resubmit");
+                if(!$scope.hasAdminPrivs()){$location.path('/subform');}
+            });
         };
 
         
