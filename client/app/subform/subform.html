@@ -1,6 +1,8 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container FormBox">
 
+    <div class="alert alert-info" ng-show="hasResubmitFlags()">You have {{flaggedSubmissions.length}} submission(s) flagged for resubmitting!</div>
+
     <pre class="preStyleH1">{{submissionText.title}} </pre>
 
     <pre class="preStyle">{{submissionText.adviserDisclaimer}}</pre>

@@ -2,6 +2,10 @@ hr {
     border: 1px solid lightgray;
 }
 
+.row h2 {
+    text-align: left;
+}
+
 .breakLongWords {
     word-wrap: break-word;
 }
@@ -52,5 +56,4 @@ hr {
     background: maroon;
     font-weight: bold;
     font-family: "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
-
 }

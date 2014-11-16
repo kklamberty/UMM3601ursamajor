@@ -39,6 +39,7 @@ angular.module('umm3601ursamajorApp')
 
         $scope.filterData = {
             searchText: "",
+            orderByPredicate: "",
             reviewGroupFilterSelection: "All",
             reviewGroupFilterOptions: [
                 "All",
@@ -367,6 +368,14 @@ angular.module('umm3601ursamajorApp')
             });
             $scope.resetTemps();
             $scope.editStatus();
+        };
+
+        $scope.flagForResubmit = function(){
+            $http.patch('api/submissions/' + $scope.selection.item._id,
+                {resubmissionData: {comment: "flagged for resubmit", parentSubmission: "", resubmitFlag: true}}
+            ).success(function(){
+                    console.log("Successfully flagged submission for resubmit");
+                });
         };
 
         
