@@ -302,9 +302,9 @@ angular.module('umm3601ursamajorApp')
                 "Revisions Needed",
                 "Accepted"],
             subject:"URS submission update",
-            body:[ ", your URS submission has been approved by your adviser.",
-                  ", your URS submission has been flagged for revisions, and is in need of changes.",
-                ", your URS submission has been approved, congratulations!"],
+            body:[ ", Your URS submission has been approved by your adviser.",
+                  ", Your URS submission has been flagged for revisions, and is in need of changes.",
+                ", Your URS submission has been approved, congratulations!"],
             temp: {strict: "", text: ""}
         };
 

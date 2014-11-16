@@ -193,7 +193,7 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "L",
         otherInfo: "",
         approval: false,
-        status:  {strict: "Awaiting Adviser Approval", text: "Has not been reviewed yet"},
+        status:  {strict: "Awaiting Adviser Approval", text: "Your adviser has yet to approve this submission."},
         timestamp: "Sat Oct 18 2014 10:48:54 GMT-0500 (CDT)",
         group: 1,
         resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
@@ -219,7 +219,7 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "M",
         otherInfo: "",
         approval: true,
-        status: {strict: "Revisions Needed", text: "Submitter is working on updating"},
+        status: {strict: "Revisions Needed", text: "Your URS submission has been flagged for revisions, and is in need of changes."},
         timestamp: "Tue Oct 21 2014 23:22:54 GMT-0500 (CDT)",
         group: 1,
         resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
@@ -252,7 +252,7 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "XL",
         otherInfo: "yes.",
         approval: false,
-        status: {strict: "Awaiting Adviser Approval", text: "Adviser has been notified"},
+        status: {strict: "Awaiting Adviser Approval", text: "Your adviser has yet to approve this submission."},
         timestamp: "Mon Sept 2 2014 1:48:54 GMT-0500 (CDT)",
         group: 1,
         resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
@@ -280,7 +280,7 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "XL",
         otherInfo: "yes.",
         approval: true,
-        status: {strict: "Reviewing in Process", text: "Needs to be updated an iota"},
+        status: {strict: "Reviewing in Process", text: "Your URS submission has been approved by your adviser"},
         timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)",
         group: 3,
         resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
@@ -307,7 +307,7 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "S",
         otherInfo: "yes.",
         approval: true,
-        status: {strict: "Accepted", text: "Ready for launch"},
+        status: {strict: "Accepted", text: "Your URS submission has been approved, congratulations!"},
         timestamp: "Thur Oct 23 2014 1:48:54 GMT-0500 (CDT)",
         group: 2,
         resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
@@ -332,7 +332,7 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "M",
         otherInfo: "Maybe",
         approval: false,
-        status: {strict: "Awaiting Adviser Approval", text: "Not all reviewers have had a chance to look at it yet"},
+        status: {strict: "Awaiting Adviser Approval", text: "Your adviser has yet to approve this submission."},
         timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)",
         group: 3,
         resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
