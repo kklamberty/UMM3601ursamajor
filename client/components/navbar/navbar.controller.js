@@ -22,11 +22,12 @@ angular.module('umm3601ursamajorApp')
 //    };
 
     $scope.logout = function() {
-/*      Auth.logout();*/
-/*
+      Auth.logout();
       $location.path('/login');
-*/
+
+/*
       document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?";
+*/
     };
 
     $scope.isActive = function(route) {
