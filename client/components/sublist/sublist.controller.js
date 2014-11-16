@@ -205,10 +205,10 @@ angular.module('umm3601ursamajorApp')
             socket.syncUpdates('submission', $scope.submissions);
         });
 
-//        $http.get('/api/status').success(function(status) {
-//            $scope.status = status;
-//            socket.syncUpdates('status', $scope.status);
-//        });
+        $http.get('/api/status').success(function(status) {
+            $scope.status = status;
+            socket.syncUpdates('status', $scope.status);
+        });
 
 
         var sendGmail = function(opts){
@@ -304,21 +304,31 @@ angular.module('umm3601ursamajorApp')
                 "Revisions Needed",
                 "Accepted"],
             subject:"URS submission update",
-            body:[ ", your URS submission has been approved by your adviser.",
-                  ", your URS submission has been flagged for revisions, and is in need of changes.",
-                ", your URS submission has been approved, congratulations!"],
+            body:[ ", Your URS submission has been approved by your adviser.",
+                ", Your URS submission has been flagged for revisions, and is in need of changes.",
+                ", Your URS submission has been approved, congratulations!"],
             temp: {strict: "", text: ""}
         };
 
-        //Not working code, scrapped to use on a later date
-        //     -Nic (11/9)
-//        $scope.getColor = function(strict) {
-//            for(var i = 0; i < status.length; i++){
-//                if($scope.status[i].strict === strict){
-//                    return $scope.status[i].color;
-//                }
-//            }
-//        };
+
+        var stricts = [];
+        var colors = [];
+        var emailSubject = [];
+        var emailBody = [];
+
+        $scope.statusOptions = {
+            editing: false,
+            options: $scope.statusGet(strict)
+        };
+
+        $scope.statusGet = function(){
+            for(x in $scope.status){
+                stricts.add(x.strict)
+                colors.add(x.color)
+                emailSubject.add(x.emailSubject)
+                emailBody.add(x.emailBody)
+            }
+        }
 
         $scope.resetTemps = function() {
             if($scope.selection.item != null){
