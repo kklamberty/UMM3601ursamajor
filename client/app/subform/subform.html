@@ -1,7 +1,11 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="container FormBox">
 
-    <div class="alert alert-info" ng-show="hasResubmitFlags()">You have {{flaggedSubmissions.length}} submission(s) flagged for resubmitting!</div>
+    <div class="btn-group-vertical btn-block padded" ng-show="hasResubmitFlags()">
+        <button type="button" class="btn btn-default disabled">You have {{flaggedSubmissions.length}} submission(s) flagged for resubmitting! Click on the submission below to select it for resubmission.</button>
+        <button type="button" class="btn btn-default" ng-repeat="item in flaggedSubmissions" ng-click="getResubmitData(item)">{{item.title}}</button>
+
+    </div>
 
     <pre class="preStyleH1">{{submissionText.title}} </pre>
 
@@ -168,6 +172,12 @@
         <div class="padded">
             <b><pre class="preStyle">{{submissionText.submissionOther}}</pre></b>
             <textarea cols="50" name="otherInfo" ng-model="submissionData.otherInfo" placeholder="Other info?" maxlength="1000"></textarea>
+        </div>
+        <br>
+
+        <div class="padded"  ng-show="isResubmitting">
+            <b>Why are are you resubmitting?</b><br>
+            <textarea cols="50" name="otherInfo" ng-model="submissionData.resubmitComment" placeholder="Reason for modifying?" maxlength="1000"></textarea>
         </div>
         <br>
 
