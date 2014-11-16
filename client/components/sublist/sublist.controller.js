@@ -318,7 +318,10 @@ angular.module('umm3601ursamajorApp')
 
         $scope.statusOptions = {
             editing: false,
-            options: $scope.statusGet(strict)
+            options: stricts,
+            color: colors,
+            subject: emailSubject,
+            body: emailBody
         };
 
         $scope.statusGet = function(){
