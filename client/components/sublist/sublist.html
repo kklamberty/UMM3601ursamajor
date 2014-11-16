@@ -1,18 +1,22 @@
 <div class="container-fluid breakLongWords" ng-controller="SublistCtrl">
     <tabset>
-        <tab ng-repeat="option in filterData.reviewGroupFilterOptions" heading="{{option}}" ng-click="setReviewGroupSelection(option)" ng-show="isAdmin()"></tab>
+        <tab heading="All Submissions" ng-click="showAllSubmissions()"></tab>
+        <tab ng-show="isPresenterOnAnything()" heading="Presenter Submissions" ng-click="showMySubmissions()"></tab>
+        <tab ng-show="isCoPresenterOnAnything()" heading="Copresenter Submissions" ng-click="showMyCoSubmissions()"></tab>
+        <tab ng-show="isAdviserOfAnything()" heading="Adviser Submissions" ng-click="showMyAdviserSubmissions()"></tab>
+        <tab ng-show="isReviewerOfAnything()" heading="Reviewer Submissions" ng-click="showMyReviewerSubmissions()"></tab>
     </tabset>
     <ul class="list-group" ng-hide="selection.selected">
         <li class="list-group-item noTopBorder" id="text">
             <h2>Submissions </h2>
             <br>
             <input type="text" ng-model="filterData.searchText" placeholder="Search">
-            <select ng-show="isAdmin()" ng-model="filterData.reviewGroupFilterSelection">
+            <select ng-show="isAdmin() || isCoChair()" ng-model="filterData.reviewGroupFilterSelection">
                 <option ng-repeat="option in filterData.reviewGroupFilterOptions" ng-value="'{{option}}'">{{option}}</option>
             </select>
         </li>
 
-        <li class="list-group-item" ng-style="statusColorTab(sub.status.strict)" ng-repeat="sub in submissions | filter:hasPermissions | filter:reviewGroupFilter | filter:searchFilter">
+        <li class="list-group-item" ng-style="statusColorTab(sub.status.strict)" ng-repeat="sub in submissions | filter:hasPermissions | filter:tabFilters | filter:reviewGroupFilter | filter:searchFilter">
             <h3 id="text">{{sub.title}}</h3>
             <button class="buttonL" ng-click="selectItem($index)">Details</button>
             <strong>Presenter: {{sub.presenterInfo.first}} {{sub.presenterInfo.last}}</strong>

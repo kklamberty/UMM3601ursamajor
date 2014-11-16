@@ -33,6 +33,7 @@ angular.module('umm3601ursamajorApp')
         $scope.email = Auth.getCurrentUser().email;
         $scope.isReviewer = Auth.isReviewer;
         $scope.isAdmin = Auth.isAdmin;
+        $scope.isCoChair = Auth.isCoChair;
 
         //--------------------- Filter Functions -----------------------
 
@@ -46,7 +47,8 @@ angular.module('umm3601ursamajorApp')
                 "Review Group 2",
                 "Review Group 3",
                 "Review Group 4"
-            ]
+            ],
+            tabFilter: {isPresenter:false, isCoPresenter:false, isReviewer:false, isAdviser:false}
         };
 
         $scope.setReviewGroupSelection = function(str) {
@@ -54,7 +56,7 @@ angular.module('umm3601ursamajorApp')
         };
 
         $scope.hasAdminPrivs = function(submission){
-            return (($scope.getCurrentUser.role != null && $scope.getCurrentUser.role == "Admin") || $scope.isAdmin());
+            return (($scope.getCurrentUser.role != null && $scope.getCurrentUser.role == "Admin") || $scope.isAdmin() || $scope.isCoChair());
         };
 
         $scope.isPresenter = function(submission) {
@@ -126,6 +128,84 @@ angular.module('umm3601ursamajorApp')
                 (submission.adviserInfo.first.toLowerCase().indexOf(searchText) != -1) ||
                 (submission.adviserInfo.last.toLowerCase().indexOf(searchText) != -1)
             )
+        };
+
+        $scope.isPresenterOnAnything = function(){
+            if($filter('filter')($scope.submissions, $scope.isPresenter).length == 0){
+                return false;
+            } else{
+                return true;
+            }
+        };
+
+        $scope.isCoPresenterOnAnything = function(){
+            if($filter('filter')($scope.submissions, $scope.isCoPresenter).length == 0){
+                return false;
+            } else{
+                return true;
+            }
+        };
+
+        $scope.isAdviserOfAnything = function(){
+            if($filter('filter')($scope.submissions, $scope.isAdviser).length == 0){
+                return false;
+            } else{
+                return true;
+            }
+        };
+
+        $scope.isReviewerOfAnything = function(){
+            if($filter('filter')($scope.submissions, $scope.isReviewerGroup).length == 0){
+                return false;
+            } else{
+                return true;
+            }
+        };
+
+        $scope.resetTabs = function(){
+            for(var key in $scope.filterData.tabFilter) {
+                if($scope.filterData.tabFilter.hasOwnProperty(key)){
+                    $scope.filterData.tabFilter[key] = false;
+                }
+            }
+        };
+
+        $scope.showAllSubmissions = function(){
+            $scope.resetTabs();
+        };
+
+        $scope.showMySubmissions = function(){
+            $scope.resetTabs();
+            $scope.filterData.tabFilter.isPresenter = true;
+        };
+
+        $scope.showMyCoSubmissions = function(){
+            $scope.resetTabs();
+            $scope.filterData.tabFilter.isCoPresenter = true;
+        };
+
+        $scope.showMyAdviserSubmissions = function(){
+            $scope.resetTabs();
+            $scope.filterData.tabFilter.isAdviser = true;
+        };
+
+        $scope.showMyReviewerSubmissions = function(){
+            $scope.resetTabs();
+            $scope.filterData.tabFilter.isReviewer = true;
+        };
+
+        $scope.tabFilters = function(submission){
+          if($scope.filterData.tabFilter.isPresenter == true){
+              return $scope.isPresenter(submission);
+          }  else if ($scope.filterData.tabFilter.isCoPresenter == true) {
+              return $scope.isCoPresenter(submission);
+          } else if ($scope.filterData.tabFilter.isReviewer == true) {
+                  return $scope.reviewGroupFilter(submission);
+          } else if ($scope.filterData.tabFilter.isAdviser == true) {
+              return $scope.isAdviser(submission);
+          } else {
+              return true;
+          }
         };
 
         // ----------------------- Getting Data from Mongo ----------------------------
