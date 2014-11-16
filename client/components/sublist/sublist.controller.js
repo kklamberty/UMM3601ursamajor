@@ -199,18 +199,37 @@ angular.module('umm3601ursamajorApp')
         };
 
         // ----------------------- Getting Data from Mongo ----------------------------
+        $scope.statusOptions = {
+            editing: false,
+            options: [],
+            color: [],
+            subject: [],
+            body: [],
+            temp: {strict: "", text: ""}
+        };
+
+        $scope.statusGet = function(){
+            for(var x = 0; x<$scope.status.length; x++){
+                $scope.statusOptions.options.push($scope.status[x].strict);
+                $scope.statusOptions.color.push($scope.status[x].color);
+                $scope.statusOptions.subject.push($scope.status[x].emailSubject);
+                $scope.statusOptions.body.push($scope.status[x].emailBody);
+            }
+        };
+
 
         $http.get('/api/submissions').success(function(submissions) {
             $scope.submissions = submissions;
             socket.syncUpdates('submission', $scope.submissions);
         });
 
-        $http.get('/api/status').success(function(status) {
+        $http.get('/api/statuss').success(function(status) {
             $scope.status = status;
+            $scope.statusGet();
             socket.syncUpdates('status', $scope.status);
         });
 
-
+        //*******Needs to be updated with new status system******
         var sendGmail = function(opts){
             var str = 'http://mail.google.com/mail/?view=cm&fs=1'+
                 '&to=' + opts.to +
@@ -222,39 +241,28 @@ angular.module('umm3601ursamajorApp')
 
         //----------------------------- Color Coding of submission list -----------------------------
 
-        $scope.statusColorTab = function(status){
-            switch(status){
-                case "Awaiting Adviser Approval":
-                    return {'border-left': '4px solid rgba(200, 30, 0, 1)'};
-                    break;
-                case "Reviewing in Process":
-                    return {'border-left': '4px solid rgba(225, 225, 10, 1)'};
-                    break;
-                case "Revisions Needed":
-                    return {'border-left': '4px solid rgba(20, 138, 255, 1)'};
-                    break;
-                case "Accepted":
-                    return {'border-left': '4px solid rgba(71, 214, 0, 1)'};
-                    break;
-            }
-        };
+        $scope.statusColorTab = function(strict) {
+            var index = $scope.statusOptions.options.indexOf(strict);
+            if ($scope.statusOptions.color.length == 0 || index == -1) {
+                return {'border-left': '4px solid rgba(0, 0, 0, 1)'};
+            } else {
+            return {'border-left': '4px solid rgba(' + $scope.statusOptions.color[index].red
+                                               + ',' + $scope.statusOptions.color[index].green
+                                               + ',' + $scope.statusOptions.color[index].blue +
+                                                 ',' + $scope.statusOptions.color[index].alpha + ')'}
+        }};
 
-        $scope.statusColorBody = function(status){
-            switch(status){
-                case "Awaiting Adviser Approval":
-                    return {'background-color': 'rgba(200, 30, 0, 1)'};
-                    break;
-                case "Reviewing in Process":
-                    return {'background-color': 'rgba(225, 225, 10, 1)'};
-                    break;
-                case "Revisions Needed":
-                    return {'background-color': 'rgba(20, 138, 255, 1)'};
-                    break;
-                case "Accepted":
-                    return {'background-color': 'rgba(71, 214, 0, 1)'};
-                    break;
-            }
-        };
+        $scope.statusColorBody = function(strict) {
+            var index = $scope.statusOptions.options.indexOf(strict);
+            if ($scope.statusOptions.color.length == 0 || index == -1) {
+                return {'background-color': 'rgba(0, 0, 0, 1)'};
+            } else {
+                return {'background-color': 'rgba(' + $scope.statusOptions.color[index].red
+                                                        + ',' + $scope.statusOptions.color[index].green
+                                                        + ',' + $scope.statusOptions.color[index].blue +
+                                                          ',' + $scope.statusOptions.color[index].alpha + ')'}
+            }};
+
 
         // ---------------------- Controlling selection of submission for detail view ---------------------------------
 
@@ -298,72 +306,52 @@ angular.module('umm3601ursamajorApp')
         };
 
         // -------------------------- Editing of status ----------------------------------------------
-        $scope.statusEdit = {
-            editing: false,
-            options: ["Reviewing in Process",
-                "Revisions Needed",
-                "Accepted"],
-            subject:"URS submission update",
-            body:[ ", Your URS submission has been approved by your adviser.",
-                ", Your URS submission has been flagged for revisions, and is in need of changes.",
-                ", Your URS submission has been approved, congratulations!"],
-            temp: {strict: "", text: ""}
-        };
+//        $scope.statusOptions = {
+//            editing: false,
+//            options: ["Reviewing in Process",
+//                "Revisions Needed",
+//                "Accepted"],
+//            subject:"URS submission update",
+//            body:[ ", Your URS submission has been approved by your adviser.",
+//                ", Your URS submission has been flagged for revisions, and is in need of changes.",
+//                ", Your URS submission has been approved, congratulations!"],
+//            temp: {strict: "", text: ""}
+//        };
 
 
-        var stricts = [];
-        var colors = [];
-        var emailSubject = [];
-        var emailBody = [];
 
-        $scope.statusOptions = {
-            editing: false,
-            options: stricts,
-            color: colors,
-            subject: emailSubject,
-            body: emailBody
-        };
-
-        $scope.statusGet = function(){
-            for(x in $scope.status){
-                stricts.add(x.strict)
-                colors.add(x.color)
-                emailSubject.add(x.emailSubject)
-                emailBody.add(x.emailBody)
-            }
-        }
 
         $scope.resetTemps = function() {
             if($scope.selection.item != null){
-                $scope.statusEdit.temp.strict = $scope.selection.item.status.strict;
-                $scope.statusEdit.temp.text = $scope.selection.item.status.text;
+                $scope.statusOptions.temp.strict = $scope.selection.item.status.strict;
+                $scope.statusOptions.temp.text = $scope.selection.item.status.text;
             }
         };
 
         $scope.resetTemps();
 
         $scope.editStatus = function(){
-            $scope.statusEdit.editing = !$scope.statusEdit.editing;
+            $scope.statusOptions.editing = !$scope.statusOptions.editing;
             $scope.resetTemps();
         };
 
         $scope.submitStatusEdit = function(){
             $http.patch('api/submissions/' + $scope.selection.item._id,
-                {status: {strict: $scope.statusEdit.temp.strict, text: $scope.statusEdit.temp.text}}
+                {status: {strict: $scope.statusOptions.temp.strict, text: $scope.statusOptions.temp.text}}
             ).success(function(){
                     console.log("Successfully updated status of submission");
             });
 
 
 
-            if($scope.selection.item.approval && $scope.statusEdit.temp.strict === "Awaiting Adviser Approval"){
+            if($scope.selection.item.approval && $scope.statusOptions.temp.strict === "Awaiting Adviser Approval"){
                 $http.patch('api/submissions/' + $scope.selection.item._id,
                     {approval: false}
                 ).success(function(){
                     $scope.selection.item.approval = false;
                     console.log("Successfully updated approval of submission (un-approved)");
                 });
-            } else if(!$scope.selection.item.approval && $scope.statusEdit.temp.strict !== "Awaiting Adviser Approval"){
+            } else if(!$scope.selection.item.approval && $scope.statusOptions.temp.strict !== "Awaiting Adviser Approval"){
                 $http.patch('api/submissions/' + $scope.selection.item._id,
                     {approval: true}
                 ).success(function(){
@@ -372,16 +360,16 @@ angular.module('umm3601ursamajorApp')
                 });
             }
 
-            $scope.selection.item.status.strict = $scope.statusEdit.temp.strict;
-            $scope.selection.item.status.text = $scope.statusEdit.temp.text;
+            $scope.selection.item.status.strict = $scope.statusOptions.temp.strict;
+            $scope.selection.item.status.text = $scope.statusOptions.temp.text;
 
         //--------------------------------------------- gmail stuff? ---------------------------------------
 
             sendGmail({
                 to: $scope.selection.item.presenterInfo.email,
-                subject: $scope.statusEdit.subject,
+                subject: $scope.statusOptions.subject,
                 message: $scope.selection.item.presenterInfo.first +
-                    $scope.statusEdit.body[$scope.statusEdit.options.indexOf($scope.selection.item.status.strict)]
+                    $scope.statusOptions.body[$scope.statusOptions.options.indexOf($scope.selection.item.status.strict)]
             });
             $scope.resetTemps();
             $scope.editStatus();
