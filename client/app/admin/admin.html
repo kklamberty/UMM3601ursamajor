@@ -19,11 +19,15 @@
                 <div ng-include="'app/roleChange/roleChange.html'"></div>
             </div>
 
+
+
             <div ng-show="toggles.statsToggle">
-                <ul class="list-group">
-                    <h1> System Information <h1/>
+                <ul class="list-group" >
                     <li class="list-group-item">
+                        <div id= "title">
+                            System Information
                         <button class="btn btn-primary" ng-click="getSubmissionData()" title="force data refresh"><span class="glyphicon glyphicon-refresh"></span></button>
+                        </div>
                     </li>
                     <li class="list-group-item">
                         <p>Total number of submissions stored: {{totalSubmissions()}}</p>
