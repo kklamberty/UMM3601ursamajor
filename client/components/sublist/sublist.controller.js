@@ -81,6 +81,7 @@ angular.module('umm3601ursamajorApp')
             return $scope.group === submission.group;
         };
 
+
         $scope.hasPermissions = function(submission) {
             if(submission == null) return false;
             if(!Auth.isLoggedIn){
@@ -181,13 +182,14 @@ angular.module('umm3601ursamajorApp')
             $scope.filterData.tabFilter.isReviewer = true;
         };
 
+
         $scope.tabFilters = function(submission){
           if($scope.filterData.tabFilter.isPresenter){
               return $scope.isPresenter(submission);
           }  else if ($scope.filterData.tabFilter.isCoPresenter) {
               return $scope.isCoPresenter(submission);
           } else if ($scope.filterData.tabFilter.isReviewer) {
-                  return $scope.reviewGroupFilter(submission);
+              return $scope.reviewGroupFilter(submission);
           } else if ($scope.filterData.tabFilter.isAdviser) {
               return $scope.isAdviser(submission);
           } else {

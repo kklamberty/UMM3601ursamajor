@@ -2,10 +2,11 @@
     <ul class="list-group" ng-hide="selection.selected">
         <tabset>
             <tab heading="All Submissions" ng-click="showAllSubmissions()"></tab>
-            <tab ng-show="isPresenterOnAnything()" heading="Presenter Submissions" ng-click="showMySubmissions()"></tab>
+            <tab ng-show="isPresenterOnAnything()" heading="My Submissions" ng-click="showMySubmissions()"></tab>
             <tab ng-show="isCoPresenterOnAnything()" heading="Copresenter Submissions" ng-click="showMyCoSubmissions()"></tab>
-            <tab ng-show="isAdviserOfAnything()" heading="Adviser Submissions" ng-click="showMyAdviserSubmissions()"></tab>
-            <tab ng-show="isReviewerOfAnything()" heading="Reviewer Submissions" ng-click="showMyReviewerSubmissions()"></tab>
+            <tab ng-show="isAdviserOfAnything()" heading="My Advisees' Submissions" ng-click="showMyAdviserSubmissions()"></tab>
+            <tab ng-show="isReviewerOfAnything()" heading="Submissions To Review" ng-click="showMyReviewerSubmissions()"></tab>
+
         </tabset>
         <li class="list-group-item noTopBorder" id="text">
             <h2>Submissions </h2>
