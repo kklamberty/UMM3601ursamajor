@@ -1,7 +1,10 @@
+/**
+ * Created by opdah023 on 10/9/14.
+ */
 'use strict';
  //When we tested this function, it worked correctly with only two
  //parameters given, until we checked the final else case, in which
- //case it broke with only two parameters
+ // case it broke with only two parameters
 angular.module('umm3601ursamajorApp')
     .filter('isntEmpty', function(){
         return function(input, title, altTitle){
@@ -30,21 +33,25 @@ angular.module('umm3601ursamajorApp')
         $scope.getCurrentUser = Auth.getCurrentUser;
         $scope.group = Auth.getCurrentUser().group;
         $scope.email = Auth.getCurrentUser().email;
-        $scope.isMember = Auth.isMember;
+        $scope.isReviewer = Auth.isReviewer;
         $scope.isAdmin = Auth.isAdmin;
+        $scope.isCoChair = Auth.isCoChair;
 
         //--------------------- Filter Functions -----------------------
 
         $scope.filterData = {
             searchText: "",
+            orderByPredicate: "",
             reviewGroupFilterSelection: "All",
             reviewGroupFilterOptions: [
                 "All",
                 "Unassigned",
                 "Review Group 1",
                 "Review Group 2",
-                "Review Group 3"
-            ]
+                "Review Group 3",
+                "Review Group 4"
+            ],
+            tabFilter: {isPresenter:false, isCoPresenter:false, isReviewer:false, isAdviser:false}
         };
 
         $scope.setReviewGroupSelection = function(str) {
@@ -52,7 +59,7 @@ angular.module('umm3601ursamajorApp')
         };
 
         $scope.hasAdminPrivs = function(){
-            return (($scope.getCurrentUser.role != null && $scope.getCurrentUser.role == "Admin") || $scope.isAdmin());
+            return (($scope.getCurrentUser.role != null && $scope.getCurrentUser.role == "Admin") || $scope.isAdmin() || $scope.isCoChair());
         };
 
         $scope.isPresenter = function(submission) {
@@ -71,7 +78,7 @@ angular.module('umm3601ursamajorApp')
             return $scope.email === submission.adviserInfo.email;
         };
 
-        $scope.isMemberGroup = function(submission){
+        $scope.isReviewerGroup = function(submission){
             if(submission == null) return false;
             return $scope.group === submission.group;
         };
@@ -90,7 +97,7 @@ angular.module('umm3601ursamajorApp')
                 return $scope.isPresenter(submission) ||
                        $scope.isCoPresenter(submission) ||
                        $scope.isAdviser(submission) ||
-                       $scope.isMemberGroup(submission)
+                       $scope.isReviewerGroup(submission)
             }
         };
 
@@ -105,6 +112,8 @@ angular.module('umm3601ursamajorApp')
                 return submission.group == 2;
             } else if($scope.filterData.reviewGroupFilterSelection === "Review Group 3"){
                 return submission.group == 3;
+            } else if($scope.filterData.reviewGroupFilterSelection === "Review Group 4"){
+                return submission.group == 4;
             } else {
                 return false;
             }
@@ -124,25 +133,70 @@ angular.module('umm3601ursamajorApp')
             )
         };
 
+        $scope.isPresenterOnAnything = function(){
+           return ($filter('filter')($scope.submissions, $scope.isPresenter).length > 0)
+        };
 
-//        $scope.hasCoPresenter = function(submission){
-//            return submission.copresenterOne.first === null;
-//        };
-//
-//        $scope.hasCoPresenterTwo = function(submission){
-//            return submission.copresenterTwo.first === null;
-//        };
+        $scope.isCoPresenterOnAnything = function(){
+            return ($filter('filter')($scope.submissions, $scope.isCoPresenter).length > 0)
+        };
 
-//        $scope.canSeeSub = function(submission) {
-//            if($scope.isAdmin() ||
-//                $scope.isPresenter(submission) ||
-//                $scope.isCoPresenter(submission) ||
-//                $scope.isAdviser(submission) ||
-//                $scope.isMemberGroup(submission)
-//                ){
-//                return true
-//            }
-//        };
+        $scope.isAdviserOfAnything = function(){
+            return ($filter('filter')($scope.submissions, $scope.isAdviser).length > 0)
+        };
+
+        $scope.isReviewerOfAnything = function(){
+            return ($filter('filter')($scope.submissions, $scope.isReviewerGroup).length > 0)
+        };
+
+        // --- Controlling the Tabs ---
+
+        $scope.resetTabs = function(){
+            for(var key in $scope.filterData.tabFilter) {
+                if($scope.filterData.tabFilter.hasOwnProperty(key)){
+                    $scope.filterData.tabFilter[key] = false;
+                }
+            }
+        };
+
+        $scope.showAllSubmissions = function(){
+            $scope.resetTabs();
+        };
+
+        $scope.showMySubmissions = function(){
+            $scope.resetTabs();
+            $scope.filterData.tabFilter.isPresenter = true;
+        };
+
+        $scope.showMyCoSubmissions = function(){
+            $scope.resetTabs();
+            $scope.filterData.tabFilter.isCoPresenter = true;
+        };
+
+        $scope.showMyAdviserSubmissions = function(){
+            $scope.resetTabs();
+            $scope.filterData.tabFilter.isAdviser = true;
+        };
+
+        $scope.showMyReviewerSubmissions = function(){
+            $scope.resetTabs();
+            $scope.filterData.tabFilter.isReviewer = true;
+        };
+
+        $scope.tabFilters = function(submission){
+          if($scope.filterData.tabFilter.isPresenter){
+              return $scope.isPresenter(submission);
+          }  else if ($scope.filterData.tabFilter.isCoPresenter) {
+              return $scope.isCoPresenter(submission);
+          } else if ($scope.filterData.tabFilter.isReviewer) {
+                  return $scope.reviewGroupFilter(submission);
+          } else if ($scope.filterData.tabFilter.isAdviser) {
+              return $scope.isAdviser(submission);
+          } else {
+              console.log("no tab filters applied");
+              return true;
+          }
+        };
 
         // ----------------------- Getting Data from Mongo ----------------------------
 
@@ -151,10 +205,10 @@ angular.module('umm3601ursamajorApp')
             socket.syncUpdates('submission', $scope.submissions);
         });
 
-        $http.get('/api/status').success(function(status) {
-            $scope.status = status;
-            socket.syncUpdates('status', $scope.status);
-        });
+//        $http.get('/api/status').success(function(status) {
+//            $scope.status = status;
+//            socket.syncUpdates('status', $scope.status);
+//        });
 
 
         var sendGmail = function(opts){
@@ -207,12 +261,23 @@ angular.module('umm3601ursamajorApp')
         $scope.selection = {selected: false, item: null};
 
         $scope.selectItem = function(itemIndex){
-            console.log("setting index " + itemIndex + " as active item");
-            $scope.selection.selected = true;
-            $scope.selection.item = $filter('filter')(
+            var filteredSubmissions =
                 $filter('filter')(
-                    $filter('filter')($scope.submissions, $scope.hasPermissions), $scope.reviewGroupFilter),
-                $scope.searchFilter)[itemIndex];
+                    $filter('filter')(
+                        $filter('filter')(
+                            $filter('filter')(
+                                $scope.submissions,
+                                $scope.hasPermissions
+                            ),
+                            $scope.tabFilters
+                        ),
+                        $scope.reviewGroupFilter
+                    ),
+                    $scope.searchFilter
+                );
+
+            $scope.selection.selected = true;
+            $scope.selection.item = filteredSubmissions[itemIndex];
 
             $scope.resetTemps();
         };
@@ -233,25 +298,27 @@ angular.module('umm3601ursamajorApp')
         };
 
         // -------------------------- Editing of status ----------------------------------------------
-//OLD
-//        $scope.statusEdit = {
-//            editing: false,
-//            options: ["Reviewing in Process",
-//                "Revisions Needed",
-//                "Accepted"],
-//            subject:"URS submission update",
-//            body:[ ", your URS submission has been approved by your adviser.",
-//                  ", your URS submission has been flagged for revisions, and is in need of changes.",
-//                ", your URS submission has been approved, congratulations!"],
-//            temp: {strict: "", text: ""}
-//        };
-
         $scope.statusEdit = {
-            editing: false
-
+            editing: false,
+            options: ["Reviewing in Process",
+                "Revisions Needed",
+                "Accepted"],
+            subject:"URS submission update",
+            body:[ ", your URS submission has been approved by your adviser.",
+                  ", your URS submission has been flagged for revisions, and is in need of changes.",
+                ", your URS submission has been approved, congratulations!"],
+            temp: {strict: "", text: ""}
         };
 
-
+        //Not working code, scrapped to use on a later date
+        //     -Nic (11/9)
+//        $scope.getColor = function(strict) {
+//            for(var i = 0; i < status.length; i++){
+//                if($scope.status[i].strict === strict){
+//                    return $scope.status[i].color;
+//                }
+//            }
+//        };
 
         $scope.resetTemps = function() {
             if($scope.selection.item != null){
@@ -305,6 +372,14 @@ angular.module('umm3601ursamajorApp')
             });
             $scope.resetTemps();
             $scope.editStatus();
+        };
+
+        $scope.flagForResubmit = function(){
+            $http.patch('api/submissions/' + $scope.selection.item._id,
+                {resubmissionData: {comment: "flagged for resubmit", parentSubmission: "", resubmitFlag: true}}
+            ).success(function(){
+                    console.log("Successfully flagged submission for resubmit");
+                });
         };
 
         

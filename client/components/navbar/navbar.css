@@ -1,3 +1,4 @@
+/*--------------------------------Code to overwrite the default grey navbar stuff------------------------------------*/
 .navbarFormating {
     background-color: #ffcc33;
     color: #7a0019;
@@ -25,3 +26,24 @@
 .navbar-default .navbar-text {
     color: #7a0019;
 }
+
+.navbar-default .navbar-nav .active a:hover {
+    color: #ffcc33;
+    background-color: #7a0019;
+    font-weight: bold;
+}
+
+.navbar-default .navbar-brand{
+    color: #7a0019;
+}
+
+.navbar-default .navbar-nav li a:hover {
+    color: #ffcc33;
+    font-weight: bold;
+    background-color: #7a0019;
+}
+
+.navbar-default .navbar-brand:hover{
+    color: #7a0019;
+}
+/*----------------------------------------------------------------------------------------*/

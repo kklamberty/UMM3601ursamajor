@@ -3,13 +3,15 @@
 
 angular.module('umm3601ursamajorApp')
     .controller('RoleChangeCtrl', function ($scope, $http, Auth, User, $location) {
-        if(!Auth.isAdmin()) {
+        if(Auth.isAdmin() || Auth.isCoChair()) {
+        } else{
             $location.path('/');
         }
 
         // Use the User $resource to fetch all users
         $scope.users = User.query();
         $scope.isAdmin = Auth.isAdmin;
+        $scope.isCoChair = Auth.isCoChair();
 //
 //    $scope.submissions = [];
 //
@@ -18,9 +20,10 @@ angular.module('umm3601ursamajorApp')
 //    });
 
         $scope.roleOptions =
-            [   'user',
+            [   'co-chair',
                 'reviewer',
-                'admin'
+                'admin',
+                'user'
             ];
         $scope.groupOptions =
             [   1,

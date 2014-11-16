@@ -2,6 +2,10 @@ hr {
     border: 1px solid lightgray;
 }
 
+.row h2 {
+    text-align: left;
+}
+
 .breakLongWords {
     word-wrap: break-word;
 }
@@ -18,6 +22,12 @@ hr {
 .subtext {
     color: dimgray;
     font-size: 12px;
+}
+
+.noTopBorder {
+    border-top: none;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
 }
 
 .floatLeft {
@@ -37,13 +47,22 @@ hr {
 
 .buttonL{
     float: right;
-    color: antiquewhite;
+    color: #ffcc33;
     padding: 8px 10px;
     font-size: 15px;
     line-height: 1.33;
     border-radius: 6px;
+    border-width: 0px;
     background: maroon;
-    font-style: oblique;
-    font-family: "Times New Roman", Times, monospace;
+    font-weight: bold;
+    font-family: "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
+}
 
+.ReSubButton {
+    display: inline-block;
+    float: right;
+}
+
+.overflowAuto {
+    overflow: auto;
 }
