@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('umm3601ursamajorApp')
-  .controller('TestCtrl', ['$scope', function ($scope) {
+  .controller('TestCtrl', function ($scope,$document) {
 
 //  $scope.makeBold = function(documentID) {
 ////      var result = documentID.bold();
@@ -18,18 +18,19 @@ angular.module('umm3601ursamajorApp')
 //  };
         $scope.textArea = "<b>Hello</b>";
 
-        $scope.makeBold = function() {
-            var str = $scope.testText;
-            var result = str.bold();
-            return result;
+        $scope.startIndex = 0;
+        $scope.endIndex = 0;
+
+        console.log($document[0].getElementById('ta').selectionStart);
+        console.log( $document.prop( "body" ) );
+
+
+        $scope.customParams = {};
+
+
+        $scope.getIndex = function(id){
+            console.log($document[0].getElementById(id).selectionStart);
+            console.log($document[0].getElementById(id).selectionEnd);
         }
 
-        $scope.makeItalisized = function() {
-            var str = $scope.testText;
-            var result = str.italics();
-            return result;
-        }
-
-
-
-        }]);
+        });

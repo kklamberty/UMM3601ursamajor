@@ -51,15 +51,15 @@
 <body>
 
 
-<p>Write your text below:</p>
+<p id="bob">Write your text below:</p>
 
-<textarea ng-model="textArea" id="ta" rows="10" cols="50"></textarea> <br /><br />
+<textarea readonly ng-model="textArea" id="ta" rows="10" cols="50"></textarea> <br /><br />
 
 <input type="button" value="Bold" onclick="applyTag(document.getElementById('ta'), 'b')" />
 <input type="button" value="Italics" onclick="applyTag(document.getElementById('ta'), 'i')" />
 <input type="button" value="Link" onclick="applyTag(document.getElementById('ta'), 'a') + comment()" />
 
-<p><button onclick="comment()">Comment</button></p>
+<p><button ng-click="getIndex('ta')">Comment</button></p>
 
 <p id="words"></p>
 
