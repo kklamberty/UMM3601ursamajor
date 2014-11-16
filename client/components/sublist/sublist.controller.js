@@ -83,6 +83,7 @@ angular.module('umm3601ursamajorApp')
             return $scope.group === submission.group;
         };
 
+
         $scope.hasPermissions = function(submission) {
             if(submission == null) return false;
             if(!Auth.isLoggedIn){
@@ -183,13 +184,14 @@ angular.module('umm3601ursamajorApp')
             $scope.filterData.tabFilter.isReviewer = true;
         };
 
+
         $scope.tabFilters = function(submission){
           if($scope.filterData.tabFilter.isPresenter){
               return $scope.isPresenter(submission);
           }  else if ($scope.filterData.tabFilter.isCoPresenter) {
               return $scope.isCoPresenter(submission);
           } else if ($scope.filterData.tabFilter.isReviewer) {
-                  return $scope.reviewGroupFilter(submission);
+              return $scope.reviewGroupFilter(submission);
           } else if ($scope.filterData.tabFilter.isAdviser) {
               return $scope.isAdviser(submission);
           } else {
@@ -306,52 +308,49 @@ angular.module('umm3601ursamajorApp')
         };
 
         // -------------------------- Editing of status ----------------------------------------------
-//        $scope.statusOptions = {
-//            editing: false,
-//            options: ["Reviewing in Process",
-//                "Revisions Needed",
-//                "Accepted"],
-//            subject:"URS submission update",
-//            body:[ ", Your URS submission has been approved by your adviser.",
-//                ", Your URS submission has been flagged for revisions, and is in need of changes.",
-//                ", Your URS submission has been approved, congratulations!"],
-//            temp: {strict: "", text: ""}
-//        };
-
-
-
+        $scope.statusEdit = {
+            editing: false,
+            options: ["Reviewing in Process",
+                "Revisions Needed",
+                "Accepted"],
+            subject:"URS submission update",
+            body:[ ", Your URS submission has been approved by your adviser.",
+                  ", Your URS submission has been flagged for revisions, and is in need of changes.",
+                ", Your URS submission has been approved, congratulations!"],
+            temp: {strict: "", text: ""}
+        };
 
         $scope.resetTemps = function() {
             if($scope.selection.item != null){
-                $scope.statusOptions.temp.strict = $scope.selection.item.status.strict;
-                $scope.statusOptions.temp.text = $scope.selection.item.status.text;
+                $scope.statusEdit.temp.strict = $scope.selection.item.status.strict;
+                $scope.statusEdit.temp.text = $scope.selection.item.status.text;
             }
         };
 
         $scope.resetTemps();
 
         $scope.editStatus = function(){
-            $scope.statusOptions.editing = !$scope.statusOptions.editing;
+            $scope.statusEdit.editing = !$scope.statusEdit.editing;
             $scope.resetTemps();
         };
 
         $scope.submitStatusEdit = function(){
             $http.patch('api/submissions/' + $scope.selection.item._id,
-                {status: {strict: $scope.statusOptions.temp.strict, text: $scope.statusOptions.temp.text}}
+                {status: {strict: $scope.statusEdit.temp.strict, text: $scope.statusEdit.temp.text}}
             ).success(function(){
                     console.log("Successfully updated status of submission");
             });
 
 
 
-            if($scope.selection.item.approval && $scope.statusOptions.temp.strict === "Awaiting Adviser Approval"){
+            if($scope.selection.item.approval && $scope.statusEdit.temp.strict === "Awaiting Adviser Approval"){
                 $http.patch('api/submissions/' + $scope.selection.item._id,
                     {approval: false}
                 ).success(function(){
                     $scope.selection.item.approval = false;
                     console.log("Successfully updated approval of submission (un-approved)");
                 });
-            } else if(!$scope.selection.item.approval && $scope.statusOptions.temp.strict !== "Awaiting Adviser Approval"){
+            } else if(!$scope.selection.item.approval && $scope.statusEdit.temp.strict !== "Awaiting Adviser Approval"){
                 $http.patch('api/submissions/' + $scope.selection.item._id,
                     {approval: true}
                 ).success(function(){
@@ -360,16 +359,16 @@ angular.module('umm3601ursamajorApp')
                 });
             }
 
-            $scope.selection.item.status.strict = $scope.statusOptions.temp.strict;
-            $scope.selection.item.status.text = $scope.statusOptions.temp.text;
+            $scope.selection.item.status.strict = $scope.statusEdit.temp.strict;
+            $scope.selection.item.status.text = $scope.statusEdit.temp.text;
 
-        //--------------------------------------------- gmail stuff? ---------------------------------------
+        //--------------------------------------------- Gmail Things ---------------------------------------
 
             sendGmail({
                 to: $scope.selection.item.presenterInfo.email,
-                subject: $scope.statusOptions.subject,
+                subject: $scope.statusEdit.subject,
                 message: $scope.selection.item.presenterInfo.first +
-                    $scope.statusOptions.body[$scope.statusOptions.options.indexOf($scope.selection.item.status.strict)]
+                    $scope.statusEdit.body[$scope.statusEdit.options.indexOf($scope.selection.item.status.strict)]
             });
             $scope.resetTemps();
             $scope.editStatus();
