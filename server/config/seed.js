@@ -320,7 +320,7 @@ Submission.find({}).remove(function(){
         copresenterTwoInfo: {first: "Dill", last: "Pickle", email: "saxxx027@morris.umn.edu"},
         discipline: "Biology",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {first: "Margaret", last: "Kuchenreuther", email: "kuchenma@morris.umn.edu"},
+        adviserInfo: {first: "Margaret", last: "Kuchenreuther", email: "saxxx027@morris.umn.edu"},
         featuredPresentation: false,
         mediaServicesEquipment: "",
         specialRequirements: "a sloth",
