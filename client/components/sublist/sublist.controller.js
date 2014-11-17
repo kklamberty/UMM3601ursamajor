@@ -422,4 +422,38 @@ angular.module('umm3601ursamajorApp')
 
 
 
+
+
+        //--------------------------------------------- Comments ---------------------------------------
+
+        $scope.addComment = function (submission) {
+            var commentObj = {};
+            var comments = submission.comments;
+            var selection = $window.getSelection();
+            var commentText = prompt("Comment");
+            commentObj.beginner = selection.anchorOffset;
+            commentObj.end = selection.focusOffset;
+            commentObj.commentText = commentText;
+            comments.push(commentObj);
+            $http.patch('api/submissions/' + $scope.selection.item._id,
+                {comments: comments}
+            ).success(function(){
+                    console.log("successfuly pushed comments to submission!");
+                });
+            console.log(submission.comments);
+        };
+
+        $scope.populateComments = function (submission) {
+            var submission = submission;
+            var comments = submission.comments;
+            for (var i = 0; i < comments.length; i++) {
+                var start = comments[i].beginner;
+                var end = comments[i].end;
+                submission.abstract = submission.abstract.substring(0, start) + '<b>' + submission.abstract.substring(start, end) + '</b>' + submission.abstract.substring(end, submission.abstract.length);
+            }
+            return submission.abstract;
+        }
+
+
+
     });
