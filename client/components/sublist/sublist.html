@@ -53,9 +53,10 @@
         <li class="list-group-item overflowAuto">
             <button class="btn btn-sm btn-block" ng-click="resetSelection()">Back to submission list</button>
             <br>
-            <button ng-show="isAdmin()" class="btn btn-sm btn-danger" ng-click="deleteSubmissionConfirm(selection.item)"><span class="glyphicon glyphicon-trash"></span></button>
-            <button ng-show="hasAdminPrivs()" class="btn btn-sm btn-primary ReSubButton" ng-click="flagForResubmit()">Flag for Re-Submission</button>
-            <button ng-show="isPresenter(selection.item)" class="btn btn-sm btn-primary ReSubButton" ng-click="flagForResubmit()">Re-Submit this Submission</button>
+            <button ng-show="isAdmin()" class="btn btn-md btn-danger" ng-click="deleteSubmissionConfirm(selection.item)"><span class="glyphicon glyphicon-trash"></span></button>
+            <button ng-show="hasAdminPrivs()" class="btn btn-md btn-primary ReSubButton" ng-click="flagForResubmit()">Flag for Re-Submission</button>
+            <button ng-show="isPresenter(selection.item)" class="btn btn-md btn-primary ReSubButton" ng-click="flagForResubmit()">Re-Submit this Submission</button>
+            <button ng-show="isAdviser(selection.item)" class="btn btn-md btn-success btn-block ReSubButton " ng-click="advisorApprover()">Approve</button>
         </li>
         <li class="list-group-item" ng-style="statusColorTab(selection.item.status.strict)">
 
