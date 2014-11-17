@@ -1,3 +1,4 @@
+/*Formats the user information sub box*/
 .info{
     font-size: 30px;
     border-color: white;
@@ -8,6 +9,7 @@
     padding-top: 20px;
 }
 
+/*formats the sub box that contains information inside the T-shirt box*/
 .other{
     font-size: 20px;
     border-color: white;
@@ -18,6 +20,7 @@
     padding-top: 20px;
 }
 
+/*Formatting for the text boxes that information is in*/
 .FancyBox {
     background-color: #ffffff;
     border-radius: 0px;
