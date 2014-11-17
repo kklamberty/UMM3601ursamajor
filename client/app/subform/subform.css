@@ -127,3 +127,15 @@
     color: grey;
     padding: 0;
 }
+
+/*Changes the resubmission button color*/
+.ResubButton {
+    background-color: #7a0019;
+    color: #ffcc33;
+}
+
+/*Changes the resubmission button color on hover*/
+.ResubButton:hover {
+    background-color: #ffcc33;
+    color: #7a0019;
+}
