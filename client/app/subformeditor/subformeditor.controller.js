@@ -4,7 +4,7 @@ angular.module('umm3601ursamajorApp')
   .controller('SubformeditorCtrl', function ($scope, $http, Auth, $location, User) {
         if(Auth.isAdmin() || Auth.isChair()) {
 
-        } else{
+        } else {
             $location.path('/');
         }
 
