@@ -166,12 +166,12 @@ angular.module('umm3601ursamajorApp')
         },
 
         /**
-         * Check if a user is a co-chair
+         * Check if a user is a chair
          *
          * @return {Boolean}
          */
-        isCoChair: function() {
-            return currentUser.role === 'co-chair';
+        isChair: function() {
+            return currentUser.role === 'chair';
         },
 
       /**

@@ -131,10 +131,10 @@ User.find({}).remove(function() {
             group: -1
         }, {
             provider: 'local',
-            role: 'co-chair',
-            name: 'Co-Chair',
-            email: 'coChair@coChair.com',
-            password: 'cochair',
+            role: 'chair',
+            name: 'Chair',
+            email: 'chair@chair.com',
+            password: 'chair',
             group: -1
         }, {
             provider: 'local',
@@ -241,7 +241,7 @@ Submission.find({}).remove(function(){
         presentationType: "Performance",
         formatChange: false,
         presenterInfo: {first: "Joseph", last: "Thelen", email: "thele116@morris.umn.edu"},
-        copresenterOneInfo: {first: "Jacob", last: "Opdahl", email: "opdah023@morris.umn.edu"},
+        copresenterOneInfo: {first: "", last: "", email: ""},
         copresenterTwoInfo: {first: "", last: "", email: ""},
         discipline: "Biology",
         sponsors: [], //Might need to worry about if this is static for the DB later.
