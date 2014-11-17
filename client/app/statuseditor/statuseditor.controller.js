@@ -15,6 +15,12 @@ angular.module('umm3601ursamajorApp')
         $http.get('/api/statuss').success(function(statusArray) {
             $scope.statusArray = statusArray;
         });
+
+        $scope.statusEditorColor = function(status){
+            return {'border-left': '4px solid rgb(' + status.color.red + ','
+                                                 + status.color.green + ','
+                                                 + status.color.blue + ')'};
+        };
         $scope.submitChanges = function() {
             var r = confirm("Are you sure you want to edit the status?")
             if (r == true) {
