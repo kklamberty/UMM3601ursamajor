@@ -36,6 +36,10 @@ angular.module('umm3601ursamajorApp')
           return $filter('filter')($scope.submissions, function(sub){return sub.resubmissionData.resubmitFlag}).length
       };
 
+      $scope.unapprovedResubmits = function(){
+          return $filter('filter')($scope.submissions, function(sub){return sub.resubmissionData.parentSubmission != ""}).length;
+      };
+
       //---------------------------- Admin Nav Control ----------------------------------
 
         $scope.toggles = {

@@ -12,29 +12,29 @@ var Status = require('../api/status/status.model');
 
 //Not working code, scrapped to use on a later date
 //      -Nic, (11/9)
-//Status.find({}).remove(function() {
-//    Status.create({
-//        strict: "Reviewing in Process",
-//        color: {red: 255, green: 220, blue: 10, alpha: 1},
-//        emailSubject: "URS submission update",
-//        emailBody: ", your URS submission has been approved by your adviser."
-//    },{
-//        strict: "Revisions Needed",
-//        color: {red: 0, green: 100, blue: 255, alpha: 1},
-//        emailSubject: "URS submission update",
-//        emailBody: ", your URS submission has been flagged for revisions, and is in need of changes."
-//    },{
-//        strict: "Accepted",
-//        color: {red: 0, green: 255, blue: 0, alpha: 1},
-//        emailSubject: "URS submission update",
-//        emailBody:  ", your URS submission has been approved, congratulations!"
-//    },{
-//        strict: "Awaiting Adviser Approval",
-//        color: {red: 255, green: 0, blue: 0, alpha: 1},
-//        emailSubject: "",
-//        emailBody: ""
-//    });
-//});
+Status.find({}).remove(function() {
+    Status.create({
+        strict: "Reviewing in Process",
+        color: {red: 255, green: 220, blue: 10, alpha: 1},
+        emailSubject: "URS submission update",
+        emailBody: ", Your URS submission has been approved by your adviser."
+    },{
+        strict: "Revisions Needed",
+        color: {red: 0, green: 100, blue: 255, alpha: 1},
+        emailSubject: "URS submission update",
+        emailBody: ", Your URS submission has been flagged for revisions, and is in need of changes."
+    },{
+        strict: "Accepted",
+        color: {red: 0, green: 255, blue: 0, alpha: 1},
+        emailSubject: "URS submission update",
+        emailBody:  ", Your URS submission has been approved, congratulations!"
+    },{
+        strict: "Awaiting Adviser Approval",
+        color: {red: 255, green: 0, blue: 0, alpha: 1},
+        emailSubject: "",
+        emailBody: ""
+    });
+});
 
 Subformtext.find({}).remove(function() {
     Subformtext.create({
@@ -193,7 +193,7 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "L",
         otherInfo: "",
         approval: false,
-        status:  {strict: "Awaiting Adviser Approval", text: "Has not been reviewed yet"},
+        status:  {strict: "Awaiting Adviser Approval", text: "Your adviser has yet to approve this submission."},
         timestamp: "Sat Oct 18 2014 10:48:54 GMT-0500 (CDT)",
         group: 1,
         resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
@@ -219,7 +219,7 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "M",
         otherInfo: "",
         approval: true,
-        status: {strict: "Revisions Needed", text: "Submitter is working on updating"},
+        status: {strict: "Revisions Needed", text: "Your URS submission has been flagged for revisions, and is in need of changes."},
         timestamp: "Tue Oct 21 2014 23:22:54 GMT-0500 (CDT)",
         group: 1,
         resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
@@ -252,7 +252,7 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "XL",
         otherInfo: "yes.",
         approval: false,
-        status: {strict: "Awaiting Adviser Approval", text: "Adviser has been notified"},
+        status: {strict: "Awaiting Adviser Approval", text: "Your adviser has yet to approve this submission."},
         timestamp: "Mon Sept 2 2014 1:48:54 GMT-0500 (CDT)",
         group: 1,
         resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
@@ -280,7 +280,7 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "XL",
         otherInfo: "yes.",
         approval: true,
-        status: {strict: "Reviewing in Process", text: "Needs to be updated an iota"},
+        status: {strict: "Reviewing in Process", text: "Your URS submission has been approved by your adviser"},
         timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)",
         group: 3,
         resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
@@ -295,7 +295,7 @@ Submission.find({}).remove(function(){
             "This case example shows how little magazine publishing is arguably a literary art.",
         presentationType: "Poster or Visual Display",
         formatChange: true,
-        presenterInfo: {first: "Sophia", last: "Estante", email: "casal033@morris.umn.edu"},
+        presenterInfo: {first: "Sophia", last: "Estante", email: "estant082@morris.umn.edu"},
         copresenterOneInfo: {first: "Lorrie", last: "Moore", email: "moore002@morris.umn.edu"},
         copresenterTwoInfo: {first: "", last: "", email: ""},
         discipline: "English",
@@ -307,7 +307,7 @@ Submission.find({}).remove(function(){
         presenterTeeSize: "S",
         otherInfo: "yes.",
         approval: true,
-        status: {strict: "Accepted", text: "Ready for launch"},
+        status: {strict: "Accepted", text: "Your URS submission has been approved, congratulations!"},
         timestamp: "Thur Oct 23 2014 1:48:54 GMT-0500 (CDT)",
         group: 2,
         resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
@@ -320,19 +320,19 @@ Submission.find({}).remove(function(){
             " which we use to prove that redundancy and replication can interfere to achieve this aim. ",
         presentationType: "Oral Presentation",
         formatChange: false,
-        presenterInfo: {first: "Sally", last: "Birch", email: "casal033@morris.umn.edu"},
+        presenterInfo: {first: "Sally", last: "Birch", email: "birch003@morris.umn.edu"},
         copresenterOneInfo: {first: "Timmy", last: "Flabberghast III", email: "flabb137@morris.umn.edu"},
         copresenterTwoInfo: {first: "Dill", last: "Pickle", email: "saxxx027@morris.umn.edu"},
         discipline: "Biology",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {first: "Margaret", last: "Kuchenreuther", email: "saxxx027@morris.umn.edu"},
+        adviserInfo: {first: "Margaret", last: "Kuchenreuther", email: "casal033@morris.umn.edu"},
         featuredPresentation: false,
         mediaServicesEquipment: "",
         specialRequirements: "a sloth",
         presenterTeeSize: "M",
         otherInfo: "Maybe",
         approval: false,
-        status: {strict: "Awaiting Adviser Approval", text: "Not all reviewers have had a chance to look at it yet"},
+        status: {strict: "Awaiting Adviser Approval", text: "Your adviser has yet to approve this submission."},
         timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)",
         group: 3,
         resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}

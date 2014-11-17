@@ -26,8 +26,10 @@ angular.module('umm3601ursamajorApp')
         }
     })
 
-    .controller('SublistCtrl', function ($scope, $http, socket, $modal, Modal, Auth, $window, $filter) {
+    .controller('SublistCtrl', function ($scope, $http, socket, $modal, Modal, Auth, $window, $filter, $location) {
         $scope.submissions = [];
+        $scope.status = [];
+
         $scope.getCurrentUser = Auth.getCurrentUser;
         $scope.group = Auth.getCurrentUser().group;
         $scope.email = Auth.getCurrentUser().email;
@@ -50,6 +52,21 @@ angular.module('umm3601ursamajorApp')
                 "Review Group 4"
             ],
             tabFilter: {isPresenter:false, isCoPresenter:false, isReviewer:false, isAdviser:false}
+        };
+
+        $scope.isResubmission = function(submission){
+            return submission.resubmissionData.parentSubmission != "";
+        };
+
+        $scope.getResubmission = function(submission){
+            var resubmits = $filter('filter')($scope.submissions, $scope.isResubmission);
+
+            for(var x = 0; x < resubmits.length; x++){
+                if(resubmits[x].resubmissionData.parentSubmission === submission._id){
+                    return resubmits[x];
+                }
+            }
+            return null;
         };
 
         $scope.setReviewGroupSelection = function(str) {
@@ -81,6 +98,7 @@ angular.module('umm3601ursamajorApp')
             return $scope.group === submission.group;
         };
 
+
         $scope.hasPermissions = function(submission) {
             if(submission == null) return false;
             if(!Auth.isLoggedIn){
@@ -91,7 +109,6 @@ angular.module('umm3601ursamajorApp')
             if($scope.hasAdminPrivs()){
                 return true;
             } else {
-                console.log("Not admin, is logged in");
                 return $scope.isPresenter(submission) ||
                        $scope.isCoPresenter(submission) ||
                        $scope.isAdviser(submission) ||
@@ -181,34 +198,53 @@ angular.module('umm3601ursamajorApp')
             $scope.filterData.tabFilter.isReviewer = true;
         };
 
+
         $scope.tabFilters = function(submission){
           if($scope.filterData.tabFilter.isPresenter){
               return $scope.isPresenter(submission);
           }  else if ($scope.filterData.tabFilter.isCoPresenter) {
               return $scope.isCoPresenter(submission);
           } else if ($scope.filterData.tabFilter.isReviewer) {
-                  return $scope.reviewGroupFilter(submission);
+              return $scope.reviewGroupFilter(submission);
           } else if ($scope.filterData.tabFilter.isAdviser) {
               return $scope.isAdviser(submission);
           } else {
-              console.log("no tab filters applied");
               return true;
           }
         };
 
         // ----------------------- Getting Data from Mongo ----------------------------
+        $scope.statusEdit = {
+            editing: false,
+            options: [],
+            color: [],
+            subject: [],
+            body: [],
+            temp: {strict: "", text: ""}
+        };
+
+        $scope.statusGet = function(){
+            for(var x = 0; x<$scope.status.length; x++){
+                $scope.statusEdit.options.push($scope.status[x].strict);
+                $scope.statusEdit.color.push($scope.status[x].color);
+                $scope.statusEdit.subject.push($scope.status[x].emailSubject);
+                $scope.statusEdit.body.push($scope.status[x].emailBody);
+            }
+        };
+
 
         $http.get('/api/submissions').success(function(submissions) {
             $scope.submissions = submissions;
             socket.syncUpdates('submission', $scope.submissions);
         });
 
-//        $http.get('/api/status').success(function(status) {
-//            $scope.status = status;
-//            socket.syncUpdates('status', $scope.status);
-//        });
+        $http.get('/api/statuss').success(function(status) {
+            $scope.status = status;
+            $scope.statusGet();
+            socket.syncUpdates('status', $scope.status);
+        });
 
-
+        //*******Needs to be updated with new status system******
         var sendGmail = function(opts){
             var str = 'http://mail.google.com/mail/?view=cm&fs=1'+
                 '&to=' + opts.to +
@@ -220,43 +256,32 @@ angular.module('umm3601ursamajorApp')
 
         //----------------------------- Color Coding of submission list -----------------------------
 
-        $scope.statusColorTab = function(status){
-            switch(status){
-                case "Awaiting Adviser Approval":
-                    return {'border-left': '4px solid rgba(200, 30, 0, 1)'};
-                    break;
-                case "Reviewing in Process":
-                    return {'border-left': '4px solid rgba(225, 225, 10, 1)'};
-                    break;
-                case "Revisions Needed":
-                    return {'border-left': '4px solid rgba(20, 138, 255, 1)'};
-                    break;
-                case "Accepted":
-                    return {'border-left': '4px solid rgba(71, 214, 0, 1)'};
-                    break;
-            }
-        };
+        $scope.statusColorTab = function(strict) {
+            var index = $scope.statusEdit.options.indexOf(strict);
+            if ($scope.statusEdit.color.length == 0 || index == -1) {
+                return {'border-left': '4px solid rgba(0, 0, 0, 1)'};
+            } else {
+            return {'border-left': '4px solid rgba(' + $scope.statusEdit.color[index].red
+                                               + ',' + $scope.statusEdit.color[index].green
+                                               + ',' + $scope.statusEdit.color[index].blue +
+                                                 ',' + $scope.statusEdit.color[index].alpha + ')'}
+        }};
 
-        $scope.statusColorBody = function(status){
-            switch(status){
-                case "Awaiting Adviser Approval":
-                    return {'background-color': 'rgba(200, 30, 0, 1)'};
-                    break;
-                case "Reviewing in Process":
-                    return {'background-color': 'rgba(225, 225, 10, 1)'};
-                    break;
-                case "Revisions Needed":
-                    return {'background-color': 'rgba(20, 138, 255, 1)'};
-                    break;
-                case "Accepted":
-                    return {'background-color': 'rgba(71, 214, 0, 1)'};
-                    break;
-            }
-        };
+        $scope.statusColorBody = function(strict) {
+            var index = $scope.statusEdit.options.indexOf(strict);
+            if ($scope.statusEdit.color.length == 0 || index == -1) {
+                return {'background-color': 'rgba(0, 0, 0, 1)'};
+            } else {
+                return {'background-color': 'rgba(' + $scope.statusEdit.color[index].red
+                                                        + ',' + $scope.statusEdit.color[index].green
+                                                        + ',' + $scope.statusEdit.color[index].blue +
+                                                          ',' + $scope.statusEdit.color[index].alpha + ')'}
+            }};
+
 
         // ---------------------- Controlling selection of submission for detail view ---------------------------------
 
-        $scope.selection = {selected: false, item: null};
+        $scope.selection = {selected: false, item: null, resubmission: null};
 
         $scope.selectItem = function(itemIndex){
             var filteredSubmissions =
@@ -276,6 +301,7 @@ angular.module('umm3601ursamajorApp')
 
             $scope.selection.selected = true;
             $scope.selection.item = filteredSubmissions[itemIndex];
+            $scope.selection.resubmission = $scope.getResubmission($scope.selection.item);
 
             $scope.resetTemps();
         };
@@ -296,26 +322,25 @@ angular.module('umm3601ursamajorApp')
         };
 
         // -------------------------- Editing of status ----------------------------------------------
-        $scope.statusEdit = {
-            editing: false,
-            options: ["Reviewing in Process",
-                "Revisions Needed",
-                "Accepted"],
-            subject:"URS submission update",
-            body:[ ", your URS submission has been approved by your adviser.",
-                  ", your URS submission has been flagged for revisions, and is in need of changes.",
-                ", your URS submission has been approved, congratulations!"],
-            temp: {strict: "", text: ""}
-        };
+//        $scope.statusEdit = {
+//            editing: false,
+//            options: ["Reviewing in Process",
+//                "Revisions Needed",
+//                "Accepted"],
+//            subject:"URS submission update",
+//            body:[ ", Your URS submission has been approved by your adviser.",
+//                  ", Your URS submission has been flagged for revisions, and is in need of changes.",
+//                ", Your URS submission has been approved, congratulations!"],
+//            temp: {strict: "", text: ""}
+//        };
 
-        //Not working code, scrapped to use on a later date
-        //     -Nic (11/9)
-//        $scope.getColor = function(strict) {
-//            for(var i = 0; i < status.length; i++){
-//                if($scope.status[i].strict === strict){
-//                    return $scope.status[i].color;
-//                }
-//            }
+//        $scope.statusEdit = {
+//            editing: false,
+//            options: [],
+//            color: [],
+//            subject: [],
+//            body: [],
+//            temp: {strict: "", text: ""}
 //        };
 
         $scope.resetTemps = function() {
@@ -360,7 +385,7 @@ angular.module('umm3601ursamajorApp')
             $scope.selection.item.status.strict = $scope.statusEdit.temp.strict;
             $scope.selection.item.status.text = $scope.statusEdit.temp.text;
 
-        //--------------------------------------------- gmail stuff? ---------------------------------------
+        //--------------------------------------------- Gmail Things ---------------------------------------
 
             sendGmail({
                 to: $scope.selection.item.presenterInfo.email,
@@ -376,8 +401,9 @@ angular.module('umm3601ursamajorApp')
             $http.patch('api/submissions/' + $scope.selection.item._id,
                 {resubmissionData: {comment: "flagged for resubmit", parentSubmission: "", resubmitFlag: true}}
             ).success(function(){
-                    console.log("Successfully flagged submission for resubmit");
-                });
+                console.log("Successfully flagged submission for resubmit");
+                if(!$scope.hasAdminPrivs()){$location.path('/subform');}
+            });
         };
 
         

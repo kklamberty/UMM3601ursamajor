@@ -1,5 +1,5 @@
 <div class="container-fluid breakLongWords" ng-controller="SublistCtrl">
-    <tabset>
+    <tabset ng-hide="selection.selected">
         <tab heading="All Submissions" ng-click="showAllSubmissions()"></tab>
         <tab ng-show="isPresenterOnAnything()" heading="Presenter Submissions" ng-click="showMySubmissions()"></tab>
         <tab ng-show="isCoPresenterOnAnything()" heading="Copresenter Submissions" ng-click="showMyCoSubmissions()"></tab>
@@ -17,15 +17,15 @@
             <!--<button type="button" class="btn btn-default" ng-click="filterData.orderByPredicate='timestamp'">Order by timestamp</button>-->
         </li>
 
-        <li class="list-group-item" ng-style="statusColorTab(sub.status.strict)" ng-repeat="sub in submissions | filter:hasPermissions | filter:tabFilters | filter:reviewGroupFilter | filter:searchFilter">
-            <h3 id="text">{{sub.title}}</h3>
+        <li class="list-group-item" ng-style="statusColorTab(sub.status.strict)" ng-repeat="sub in submissions | filter:hasPermissions | filter:tabFilters | filter:reviewGroupFilter | filter:searchFilter" ng-hide="isResubmission(sub)">
+            <h3 id="text">{{sub.title}} <span ng-show="getResubmission(sub) != null" style="color: red" class="glyphicon glyphicon-warning-sign"></span></h3>
             <button class="buttonL" ng-click="selectItem($index)">Details</button>
             <strong>Presenter: {{sub.presenterInfo.first}} {{sub.presenterInfo.last}}</strong>
             <p class="subtext">
                 Co-Presenter(s): {{sub.copresenterOneInfo.first | isntEmpty:"":""}} {{sub.copresenterOneInfo.last | isntEmpty:"":""}}{{sub.copresenterTwoInfo.first | isntEmpty:",":""}} {{sub.copresenterTwoInfo.last | isntEmpty:"":""}}
             </p>
             <p class="subtext">
-            Date of submission: {{sub.timestamp}}
+            Date of Submission: {{sub.timestamp}}
             </p>
 
             <!--<hr>-->
