@@ -10,7 +10,7 @@ angular.module('umm3601ursamajorApp')
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
-    $scope.isCoChair = Auth.isCoChair;
+    $scope.isChair = Auth.isChair;
     $scope.getCurrentUser = Auth.getCurrentUser;
     //$scope.group = Auth.getCurrentUser.group;
 
@@ -22,11 +22,10 @@ angular.module('umm3601ursamajorApp')
 //    };
 
     $scope.logout = function() {
-/*      Auth.logout();*/
-/*
-      $location.path('/login');
-*/
-      document.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?";
+        document.location.href = "https://www.google.com/accounts/Logout";
+        Auth.logout();
+        $location.path('/login');
+
     };
 
     $scope.isActive = function(route) {

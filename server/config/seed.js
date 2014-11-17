@@ -12,29 +12,29 @@ var Status = require('../api/status/status.model');
 
 //Not working code, scrapped to use on a later date
 //      -Nic, (11/9)
-//Status.find({}).remove(function() {
-//    Status.create({
-//        strict: "Reviewing in Process",
-//        color: {red: 255, green: 220, blue: 10, alpha: 1},
-//        emailSubject: "URS submission update",
-//        emailBody: ", your URS submission has been approved by your adviser."
-//    },{
-//        strict: "Revisions Needed",
-//        color: {red: 0, green: 100, blue: 255, alpha: 1},
-//        emailSubject: "URS submission update",
-//        emailBody: ", your URS submission has been flagged for revisions, and is in need of changes."
-//    },{
-//        strict: "Accepted",
-//        color: {red: 0, green: 255, blue: 0, alpha: 1},
-//        emailSubject: "URS submission update",
-//        emailBody:  ", your URS submission has been approved, congratulations!"
-//    },{
-//        strict: "Awaiting Adviser Approval",
-//        color: {red: 255, green: 0, blue: 0, alpha: 1},
-//        emailSubject: "",
-//        emailBody: ""
-//    });
-//});
+Status.find({}).remove(function() {
+    Status.create({
+        strict: "Reviewing in Process",
+        color: {red: 255, green: 220, blue: 10, alpha: 1},
+        emailSubject: "URS submission update",
+        emailBody: ", Your URS submission has been approved by your adviser."
+    },{
+        strict: "Revisions Needed",
+        color: {red: 0, green: 100, blue: 255, alpha: 1},
+        emailSubject: "URS submission update",
+        emailBody: ", Your URS submission has been flagged for revisions, and is in need of changes."
+    },{
+        strict: "Accepted",
+        color: {red: 0, green: 255, blue: 0, alpha: 1},
+        emailSubject: "URS submission update",
+        emailBody:  ", Your URS submission has been approved, congratulations!"
+    },{
+        strict: "Awaiting Adviser Approval",
+        color: {red: 255, green: 0, blue: 0, alpha: 1},
+        emailSubject: "",
+        emailBody: ""
+    });
+});
 
 Subformtext.find({}).remove(function() {
     Subformtext.create({
@@ -131,10 +131,10 @@ User.find({}).remove(function() {
             group: -1
         }, {
             provider: 'local',
-            role: 'co-chair',
-            name: 'Co-Chair',
-            email: 'coChair@coChair.com',
-            password: 'cochair',
+            role: 'chair',
+            name: 'Chair',
+            email: 'chair@chair.com',
+            password: 'chair',
             group: -1
         }, {
             provider: 'local',
@@ -241,7 +241,7 @@ Submission.find({}).remove(function(){
         presentationType: "Performance",
         formatChange: false,
         presenterInfo: {first: "Joseph", last: "Thelen", email: "thele116@morris.umn.edu"},
-        copresenterOneInfo: {first: "Jacob", last: "Opdahl", email: "opdah023@morris.umn.edu"},
+        copresenterOneInfo: {first: "", last: "", email: ""},
         copresenterTwoInfo: {first: "", last: "", email: ""},
         discipline: "Biology",
         sponsors: [], //Might need to worry about if this is static for the DB later.
