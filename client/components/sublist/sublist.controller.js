@@ -275,7 +275,7 @@ angular.module('umm3601ursamajorApp')
                 return {'background-color': 'rgba(' + $scope.statusEdit.color[index].red
                                                         + ',' + $scope.statusEdit.color[index].green
                                                         + ',' + $scope.statusEdit.color[index].blue +
-                                                          ',' + $scope.statusEdit.color[index].alpha/1.5 + ')'}
+                                                          ',' + $scope.statusEdit.color[index].alpha *.66 + ')'}
             }};
 
 
