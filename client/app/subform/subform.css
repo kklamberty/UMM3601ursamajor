@@ -1,18 +1,23 @@
+
+/*Formats the grey subtext*/
 .subtext {
     color: darkgray;
     font-size: 12px;
 }
 
+/*Adds padding*/
 .padded {
    /*outline: dashed red 2px; */
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
+/*Formats a group of elements to line up*/
 .stacked {
     display: inline;
 }
 
+/**/
 .stacked:after {
     content: "\a";
     white-space: pre;
