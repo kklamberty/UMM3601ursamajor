@@ -2,7 +2,7 @@
 
 angular.module('umm3601ursamajorApp')
   .controller('SubformeditorCtrl', function ($scope, $http, Auth, $location, User) {
-        if(Auth.isAdmin() || Auth.isCoChair()) {
+        if(Auth.isAdmin() || Auth.isChair()) {
 
         } else{
             $location.path('/');
@@ -10,7 +10,7 @@ angular.module('umm3601ursamajorApp')
 
         $scope.users = User.query();
         $scope.isAdmin = Auth.isAdmin;
-        $scope.isCoChair = Auth.isCoChair;
+        $scope.isChair = Auth.isChair;
         $scope.submissionTextArray = [];
         $scope.submissionText = {};
 

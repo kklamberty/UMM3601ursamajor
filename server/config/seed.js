@@ -131,10 +131,10 @@ User.find({}).remove(function() {
             group: -1
         }, {
             provider: 'local',
-            role: 'co-chair',
-            name: 'Co-Chair',
-            email: 'coChair@coChair.com',
-            password: 'cochair',
+            role: 'chair',
+            name: 'Chair',
+            email: 'chair@chair.com',
+            password: 'chair',
             group: -1
         }, {
             provider: 'local',
