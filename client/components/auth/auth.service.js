@@ -170,8 +170,8 @@ angular.module('umm3601ursamajorApp')
          *
          * @return {Boolean}
          */
-        isCoChair: function() {
-            return currentUser.role === 'co-chair';
+        isChair: function() {
+            return currentUser.role === 'chair';
         },
 
       /**
