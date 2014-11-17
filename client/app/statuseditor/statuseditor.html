@@ -1,0 +1,33 @@
+<div ng-controller="StatuseditorCtrl" ng-show="isAdmin() || isCoChair()" class="container-fluid FormBox">
+    <form ng-submit="submitChanges()" id="form2">
+        <h1>Status Option Editor</h1>
+        <hr>
+        <div ng-repeat="status in statusArray">
+            <h2>{{status.strict}}</h2>
+            <label class="padded">
+                Status Title:
+                <br>
+                <textarea ng-model="status.strict"  cols="30" rows="1" name="Strict"></textarea>
+            </label>
+            <br>
+            <label class="padded">
+                Color:
+                <br>
+                Red<input type="range" ng-model="status.color.red" max="255">
+                Green<input type="range" ng-model="status.color.green" max="255">
+                Blue<input type="range" ng-model="status.color.blue" max="255">
+                Alpha<input type="range" ng-model="status.color.alpha" max="100">
+                <textarea ng-model="status.color.red"  cols="3" rows="1" name="ColorRed"></textarea>
+                <textarea ng-model="status.color.green"  cols="3" rows="1" name="ColorGreen"></textarea>
+                <textarea ng-model="status.color.blue"  cols="3" rows="1" name="ColorBlue"></textarea>
+                <textarea ng-model="status.color.alpha"  cols="3" rows="1" name="ColorAlpha"></textarea>
+            </label>
+            <br>
+        </div>
+
+
+
+        <button class="btn btn-primary padded" type="submit" value="submit" >Submit Changes </button>
+
+    </form>
+</div>
