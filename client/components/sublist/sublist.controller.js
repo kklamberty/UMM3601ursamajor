@@ -388,7 +388,7 @@ angular.module('umm3601ursamajorApp')
         //--------------------------------------------- Gmail Things ---------------------------------------
 
             sendGmail({
-                to: $scope.selection.item.presenterInfo.email,
+                to: $scope.selection.item.presenterInfo.email +" "+ $scope.selection.item.copresenterOneInfo.email +" "+ $scope.selection.item.copresenterTwoInfo.email,
                 subject: $scope.statusEdit.subject,
                 message: $scope.selection.item.presenterInfo.first +
                     $scope.statusEdit.body[$scope.statusEdit.options.indexOf($scope.selection.item.status.strict)]
