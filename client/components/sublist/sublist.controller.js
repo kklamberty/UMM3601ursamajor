@@ -322,26 +322,6 @@ angular.module('umm3601ursamajorApp')
         };
 
         // -------------------------- Editing of status ----------------------------------------------
-//        $scope.statusEdit = {
-//            editing: false,
-//            options: ["Reviewing in Process",
-//                "Revisions Needed",
-//                "Accepted"],
-//            subject:"URS submission update",
-//            body:[ ", Your URS submission has been approved by your adviser.",
-//                  ", Your URS submission has been flagged for revisions, and is in need of changes.",
-//                ", Your URS submission has been approved, congratulations!"],
-//            temp: {strict: "", text: ""}
-//        };
-
-//        $scope.statusEdit = {
-//            editing: false,
-//            options: [],
-//            color: [],
-//            subject: [],
-//            body: [],
-//            temp: {strict: "", text: ""}
-//        };
 
         $scope.resetTemps = function() {
             if($scope.selection.item != null){
@@ -365,7 +345,7 @@ angular.module('umm3601ursamajorApp')
             });
 
 
-
+            //TODO: needs to be updated to work with the current status system
             if($scope.selection.item.approval && $scope.statusEdit.temp.strict === "Awaiting Adviser Approval"){
                 $http.patch('api/submissions/' + $scope.selection.item._id,
                     {approval: false}
@@ -385,6 +365,24 @@ angular.module('umm3601ursamajorApp')
             $scope.selection.item.status.strict = $scope.statusEdit.temp.strict;
             $scope.selection.item.status.text = $scope.statusEdit.temp.text;
 
+
+            $scope.flagForResubmit = function(){
+                $http.patch('api/submissions/' + $scope.selection.item._id,
+                    {resubmissionData: {comment: "flagged for resubmit", parentSubmission: "", resubmitFlag: true}}
+                ).success(function(){
+                        console.log("Successfully flagged submission for resubmit");
+                        if(!$scope.hasAdminPrivs()){$location.path('/subform');}
+                    });
+            };
+
+            $scope.advisorApprover = function(){
+                $http.patch('api/submissions/' + $scope.selection.item._id,
+                    {approval: true}
+                ).success(function(){
+                        console.log("Approve this submission");
+                    });
+            };
+
         //--------------------------------------------- Gmail Things ---------------------------------------
 
             sendGmail({
@@ -397,16 +395,7 @@ angular.module('umm3601ursamajorApp')
             $scope.editStatus();
         };
 
-        $scope.flagForResubmit = function(){
-            $http.patch('api/submissions/' + $scope.selection.item._id,
-                {resubmissionData: {comment: "flagged for resubmit", parentSubmission: "", resubmitFlag: true}}
-            ).success(function(){
-                console.log("Successfully flagged submission for resubmit");
-                if(!$scope.hasAdminPrivs()){$location.path('/subform');}
-            });
-        };
 
-        
 
         $scope.approvalWordChange = function(approval){
              if(approval){
@@ -418,8 +407,9 @@ angular.module('umm3601ursamajorApp')
              };
 
 
-        //--------------------------------------------- Tabs Stuff ---------------------------------------
+        //--------------------------------------------- Resubmission ---------------------------------------
 
+        //-----------
 
 
     });
