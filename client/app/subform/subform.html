@@ -2,8 +2,8 @@
 <div class="container FormBox">
 
     <div class="btn-group-vertical btn-block padded" ng-show="hasResubmitFlags()">
-        <button type="button" class="btn btn-default disabled">You have {{flaggedSubmissions.length}} submission(s) flagged for resubmitting! Click on the submission below to select it for resubmission.</button>
-        <button type="button" class="btn btn-default" ng-repeat="item in flaggedSubmissions" ng-click="getResubmitData(item)">{{item.title}}</button>
+        <button type="button" class="btn btn-default disabled ">You have {{flaggedSubmissions.length}} submission(s) flagged for resubmitting! Click on the submission below to select it for resubmission.</button>
+        <button type="button" class="btn btn-default ResubButton" ng-repeat="item in flaggedSubmissions" ng-click="getResubmitData(item)">{{item.title}}</button>
 
     </div>
 
