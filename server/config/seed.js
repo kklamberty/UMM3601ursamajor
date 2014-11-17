@@ -241,7 +241,7 @@ Submission.find({}).remove(function(){
         presentationType: "Performance",
         formatChange: false,
         presenterInfo: {first: "Joseph", last: "Thelen", email: "thele116@morris.umn.edu"},
-        copresenterOneInfo: {first: "Jacob", last: "Opdahl", email: "opdah023@morris.umn.edu"},
+        copresenterOneInfo: {first: "", last: "", email: ""},
         copresenterTwoInfo: {first: "", last: "", email: ""},
         discipline: "Biology",
         sponsors: [], //Might need to worry about if this is static for the DB later.
