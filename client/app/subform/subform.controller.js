@@ -164,13 +164,13 @@ angular.module('umm3601ursamajorApp')
                     resubmissionData: {comment: $scope.submissionData.resubmitComment, parentSubmission: $scope.submissionData.resubmitParent, resubmitFlag: $scope.submissionData.resubmitFlag }
                 });
         };
-        sendGmail({
-            to: $scope.submissionData.adviserInfo.email,
-            subject: 'URS Submission requires approval',
-            message: $scope.submissionData.presenterInfo.first +" "+ $scope.submissionData.presenterInfo.last +
-                ' has submitted a URS submission that requires your approval. Please go to https://ursa-major.' +
-                'herokuapp.com/ to log in and approve the submission.'
-        });
+        alert("Please send the email that is about to be generated.");
+            sendGmail({
+                to: $scope.submissionData.adviserInfo.email,
+                subject: 'URS Submission requires approval',
+                message: $scope.submissionData.presenterInfo.first +" "+ $scope.submissionData.presenterInfo.last +
+                    ' has submitted a URS submission that requires your approval. Please go to https://ursa-major.herokuapp.com/ to log in and approve the submission.'
+            });
         if ($scope.isResubmitting) {
             $http.patch('api/submissions/' + $scope.submissionData.resubmitParent,
              // This is only setting false right now. comment and submission donot get stored.
