@@ -24,6 +24,9 @@
             <p class="subtext">
                 {{sub.copresenterOneInfo.first | isntEmpty:"Co-Presenter(s):":""}} {{sub.copresenterOneInfo.last | isntEmpty:"":""}}{{sub.copresenterTwoInfo.first | isntEmpty:",":""}} {{sub.copresenterTwoInfo.last | isntEmpty:"":""}}
             </p>
+            <p>
+                Adviser: {{sub.adviserInfo.first}} {{sub.adviserInfo.last}}
+            </p>
             <p class="subtext">
             Date of Submission: {{sub.timestamp}}
             </p>
@@ -34,7 +37,7 @@
                     <!--<p>Submitter's Email: {{sub.presenterInfo.email}}</p>-->
                     <!--<p>{{sub.copresenterOneInfo.first | isntEmpty:"Co-Presenter #1 Name:":""}}{{sub.copresenterOneInfo.last | isntEmpty:"":""}}</p>-->
                     <!--<p>{{sub.copresenterTwoInfo.first | isntEmpty:"Co-Presenter #2 Name:":""}}{{sub.copresenterTwoInfo.last | isntEmpty:"":""}}</p>-->
-                    <!--<p>Advisor: {{sub.adviserInfo.first}} {{sub.adviserInfo.last}}</p>-->
+                    <!--<p>Adviser: {{sub.adviserInfo.first}} {{sub.adviserInfo.last}}</p>-->
                     <!--<p>Discipline: {{sub.discipline}}</p>-->
                     <!--<p>Format:  {{sub.format}}</p>-->
                     <!--<p>Abstract: <br> {{sub.abstract | fancyLimitTo: 300}}</p>-->
@@ -109,4 +112,37 @@
             <p ng-show="isReviewerGroup(selection.item)">{{"reviewer in " + "Reviewer Group " +selection.item.group}}</p>
         </li>
     </ul>
+
+        <ul class="list-group" ng-show="selection.resubmission != null">
+            <li class="list-group-item">
+                <h3 id="text">{{selection.resubmission.title}}</h3>
+                <strong>{{selection.resubmission.presenterInfo.last}}, {{selection.resubmission.presenterInfo.first}}</strong>
+                <hr>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <p>Discipline: {{selection.resubmission.discipline}}</p>
+                        <p>Format:  {{selection.resubmission.format}}</p>
+                        <p>Type: {{selection.resubmission.presentationType}}</p>
+                        <p>Adviser: {{selection.resubmission.adviserInfo.last}}, {{selection.resubmission.adviserInfo.first}} email: {{selection.resubmission.adviserInfo.email}}</p>
+                        <p>Adviser Approved: {{approvalWordChange(selection.item.approval)}}</p>
+                        <p>{{selection.resubmission.sponsors | isntEmpty:"Sponsors:":""}}</p>
+                        <p>{{selection.resubmission.mediaServicesEquipment | isntEmpty:"Media Services Equipment:":""}}</p>
+                        <p>{{selection.resubmission.specialRequirements | isntEmpty:"Special Requirements:":""}}</p>
+                        <p>Date of submission: {{selection.resubmission.timestamp}}</p>
+                    </li>
+                </ul>
+                <ul class="list-group">
+                    <li class="list-group-item"><h3>Abstract</h3></li>
+                    <li class="list-group-item"><p>{{selection.resubmission.abstract}}</p></li>
+                </ul>
+                <br>
+                <p>You are seeing this submission because you are a(n):</p>
+                <p ng-show="hasAdminPrivs()">{{"admin"}}</p>
+                <p ng-show="isPresenter(selection.resubmission)">{{"presenter of this submission"}}</p>
+                <p ng-show="isCoPresenter(selection.resubmission)">{{"co-presenter of this submission"}}</p>
+                <p ng-show="isReviewerGroup(selection.resubmission)">{{"reviewer in " + "Reviewer Group " +selection.resubmission.group}}</p>
+            </li>
+        </ul>
+    </div>
+
 </div>
