@@ -110,8 +110,8 @@
         </li>
     </ul>
 
-        <ul class="list-group" ng-show="selection.resubmission != null">
-            <li class="list-group-item">
+        <ul class="list-group" ng-show="(selection.resubmission != null) && selection.selected">
+            <li class="list-group-item rainbowSidebar">
                 <h3 id="text">{{selection.resubmission.title}}</h3>
                 <strong>{{selection.resubmission.presenterInfo.last}}, {{selection.resubmission.presenterInfo.first}}</strong>
                 <hr>
