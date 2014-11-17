@@ -402,6 +402,7 @@ angular.module('umm3601ursamajorApp')
                 {resubmissionData: {comment: "flagged for resubmit", parentSubmission: "", resubmitFlag: true}}
             ).success(function(){
                 console.log("Successfully flagged submission for resubmit");
+                //Might want to change so that owner of the submission is redirected.
                 if(!$scope.hasAdminPrivs()){$location.path('/subform');}
             });
         };
