@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('umm3601ursamajorApp')
-  .controller('StatuseditorCtrl', function ($scope, $http, Auth, $location, User) {
+  .controller('StatuseditorCtrl', function ($scope, $http, Auth, $location, User, Modal) {
         if(Auth.isAdmin() || Auth.isChair()) {
         } else {
             $location.path('/');
@@ -21,6 +21,23 @@ angular.module('umm3601ursamajorApp')
                                                  + status.color.green + ','
                                                  + status.color.blue + ')'};
         };
+
+        $scope.deleteSubmissionConfirm = function(item){
+            Modal.confirm.delete($scope.deleteSubmission)(item.strict, item);
+        };
+
+        $scope.deleteStatus = function(item){
+            console.log("Deleting status: " + item.strict);
+            $http.delete('/api/statuss/' + item._id).success(function(){
+                $scope.statusArray.splice($scope.statusArray.indexOf(item), 1);
+            });
+        };
+
+        //TODO: still not working, boolean is being FALSE
+        $scope.requiredStatus = function(status){
+          return(status.initialState || status.finalState);
+        };
+
         $scope.submitChanges = function() {
             var r = confirm("Are you sure you want to edit the status?")
             if (r == true) {
