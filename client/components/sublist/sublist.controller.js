@@ -454,4 +454,55 @@ angular.module('umm3601ursamajorApp')
         };
 
 
+
+
+        //--------------------------------------------- Comments ---------------------------------------
+
+        $scope.addComment = function (submission) {
+            console.log(submission.abstract.length);
+            var commentObj = {};
+            var comments = submission.comments;
+            var selection = $window.getSelection();
+            var commentText = prompt("Comment");
+            commentObj.beginner = selection.anchorOffset;
+            commentObj.ender = selection.focusOffset;
+            commentObj.commentText = commentText;
+            commentObj.selectionText = selection.toString();
+            commentObj.indicator = 0;
+            comments.push(commentObj);
+            $http.patch('api/submissions/' + $scope.selection.item._id,
+                {comments: comments}
+            ).success(function(){
+                    console.log("successfully pushed comments to submission!");
+                });
+//            console.log(submission.comments);
+//            console.log(submission.abstract.length);
+//            console.log(comments.length);
+//            $scope.populateComments(submission);
+        };
+
+        $scope.populateComments = function (submission) {
+//            var submission = submission;
+            var comments = submission.comments;
+            for (var i = 0; i < comments.length; i++) {
+                var start = comments[i].beginner;
+                var end = comments[i].ender;
+                if (i == 0 && comments[i].indicator == 0) {
+                    submission.abstract = submission.abstract.substring(0, start) + '<b>' + submission.abstract.substring(start, end) + '</b>' + submission.abstract.substring(end, submission.abstract.length);
+                    comments[i].indicator = 1;
+                    console.log(submission.abstract);
+                    console.log(i, "Cats");
+                } else if (comments[i].indicator == 0){
+                    start += 7 * (i + 2);
+                    end += 7 * (i + 2);
+                    submission.abstract = submission.abstract.substring(0, start) + '<b>' + submission.abstract.substring(start, end) + '</b>' + submission.abstract.substring(end, submission.abstract.length);
+                    comments[i].indicator = 1;
+                    console.log(submission.abstract);
+                    console.log(start);
+                    console.log(end);
+                }
+            }
+            return submission.abstract;
+        };
+
     });
