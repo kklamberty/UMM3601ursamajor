@@ -95,29 +95,62 @@ angular.module('umm3601ursamajorApp')
         $window.open(str);
     };
 
-        $scope.getResubmitData = function(submission){
-            $scope.submissionData = {
-               title: submission.title,
-               format: submission.format,
-               abstract: submission.abstract,
-               presentationType: submission.presentationType,
-               formatChange: submission.formatChange,
-               presenterInfo: {first: submission.presenterInfo.first, last: submission.presenterInfo.last, email: submission.presenterInfo.email},
-               copresenterOne: {first: submission.copresenterOneInfo.first, last: submission.copresenterOneInfo.last, email: submission.copresenterOneInfo.email},
-               copresenterTwo: {first: submission.copresenterTwoInfo.first, last: submission.copresenterTwoInfo.last, email: submission.copresenterTwoInfo.email},
-               discipline: submission.discipline,
-               sponsors: submission.sponsors,
-               sponsorsFinal: [],
-               adviserInfo: {first: submission.adviserInfo.first, last: submission.adviserInfo.last, email: submission.adviserInfo.email},
-               featuredPresentation: submission.featured,
-               mediaServicesEquipment: submission.mediaServicesEquipment,
-               specialRequirements: submission.specialRequirements,
-               presenterTeeSize: submission.presenterTeeSize,
-               otherInfo: submission.otherInfo,
-               resubmitComment: "",
-               resubmitParent: submission._id,
-               resubmitFlag: false
-           };
+    $scope.getResubmitData = function(submission){
+        var tempSponsors = [];
+        var addedToggle = false;
+
+        for(var x = 0; x <= $scope.fundingSources.length; x++){
+            addedToggle = false;
+            console.log("Main for loop, sponsor: " + $scope.fundingSources[x]);
+            console.log("Length of sponsors from submission: " + submission.sponsors.length);
+            console.log("X: " + x);
+            for(var y = 0; y < submission.sponsors.length; y++){
+                console.log("final case? " + (x == $scope.fundingSources.length));
+                if(x == $scope.fundingSources.length){
+                    tempSponsors.push(submission.sponsors[submission.sponsors.length - 1]);
+                    break;
+                } else if(submission.sponsors[y] === $scope.fundingSources[x]){
+                    tempSponsors.push(submission.sponsors[y]);
+                    addedToggle = true;
+                }
+            }
+            if(!addedToggle){
+                console.log("Added toggle false!");
+                if(x == $scope.fundingSources.length){
+                    addedToggle = !addedToggle;
+                } else {
+                    tempSponsors.push("");
+                    addedToggle = !addedToggle;
+                }
+            }
+            console.log(tempSponsors);
+        }
+        console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        console.log(tempSponsors);
+
+        $scope.submissionData = {
+            title: submission.title,
+            format: submission.format,
+            abstract: submission.abstract,
+            presentationType: submission.presentationType,
+            formatChange: submission.formatChange,
+            presenterInfo: {first: submission.presenterInfo.first, last: submission.presenterInfo.last, email: submission.presenterInfo.email},
+            copresenterOne: {first: submission.copresenterOneInfo.first, last: submission.copresenterOneInfo.last, email: submission.copresenterOneInfo.email},
+            copresenterTwo: {first: submission.copresenterTwoInfo.first, last: submission.copresenterTwoInfo.last, email: submission.copresenterTwoInfo.email},
+            discipline: submission.discipline,
+            sponsors: submission.sponsors,
+            sponsorsFinal: tempSponsors,
+            adviserInfo: {first: submission.adviserInfo.first, last: submission.adviserInfo.last, email: submission.adviserInfo.email},
+            featuredPresentation: submission.featured,
+            mediaServicesEquipment: submission.mediaServicesEquipment,
+            specialRequirements: submission.specialRequirements,
+            presenterTeeSize: submission.presenterTeeSize,
+            otherInfo: submission.otherInfo,
+            resubmitComment: "",
+            resubmitParent: submission._id,
+            resubmitFlag: false
+        };
+
         $scope.isResubmitting = true;
         $scope.resubmitParent = submission;
     };

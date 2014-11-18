@@ -244,7 +244,7 @@ Submission.find({}).remove(function(){
         copresenterOneInfo: {first: "Jacob", last: "Opdahl", email: "opdah023@morris.umn.edu"},
         copresenterTwoInfo: {first: "", last: "", email: ""},
         discipline: "Biology",
-        sponsors: [], //Might need to worry about if this is static for the DB later.
+        sponsors: ["UROP", "Obama"], //Might need to worry about if this is static for the DB later.
         adviserInfo: {first: "KK",last: "Lamberty", email: "lamberty@morris.umn.edu"},
         featured: true,
         mediaServicesEquipment: "Microphone for my sick rhymes, 5 laser stage lights with automated gimbals.",
