@@ -38,10 +38,11 @@ angular.module('umm3601ursamajorApp')
           return(status.initialState || status.finalState);
         };
 
-        $scope.submitChanges = function() {
-            var r = confirm("Are you sure you want to edit the status?")
-            if (r == true) {
-                for(var x = 0; x < $scope.statusArray.length; x++){
+
+        $scope.submitChanges = function(status) {
+            var r = confirm("Are you sure you want to edit thos status?")
+            var x = $scope.statusArray.indexOf(status);
+            if (r == true){
                     $http.put('/api/statuss/' + $scope.statusArray[x]._id,
                         {
                             strict: $scope.statusArray[x].strict,
@@ -53,6 +54,25 @@ angular.module('umm3601ursamajorApp')
                             $location.path('/admin');
                         })
                 }
-            }
         };
+
+
+        //OLD
+//        $scope.submitChanges = function() {
+//            var r = confirm("Are you sure you want to edit this status?")
+//            if (r){
+//                for(var x = 0; x < $scope.statusArray.length; x++){
+//                    $http.put('/api/statuss/' + $scope.statusArray[x]._id,
+//                        {
+//                            strict: $scope.statusArray[x].strict,
+//                            color: $scope.statusArray[x].color,
+//                            emailSubject: $scope.statusArray[x].emailSubject,
+//                            emailBody: $scope.statusArray[x].emailBody
+//                        }
+//                    ).success(function () {
+//                            $location.path('/admin');
+//                        })
+//                }
+//            }
+//        };
     });
