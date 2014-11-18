@@ -63,6 +63,7 @@ angular.module('umm3601ursamajorApp')
 
             for(var x = 0; x < resubmits.length; x++){
                 if(resubmits[x].resubmissionData.parentSubmission === submission._id){
+                    console.log("resubmit found!");
                     return resubmits[x];
                 }
             }
@@ -405,6 +406,15 @@ angular.module('umm3601ursamajorApp')
             $scope.editStatus();
         };
 
+        $scope.flagForResubmit = function(){
+            $http.patch('api/submissions/' + $scope.selection.item._id,
+                {resubmissionData: {comment: "flagged for resubmit", parentSubmission: "", resubmitFlag: true}}
+            ).success(function(){
+                console.log("Successfully flagged submission for resubmit");
+                //Might want to change so that owner of the submission is redirected.
+                if(!$scope.hasAdminPrivs()){$location.path('/subform');}
+            });
+        };
 
 
         $scope.approvalWordChange = function(approval){

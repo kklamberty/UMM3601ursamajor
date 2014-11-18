@@ -133,7 +133,7 @@ angular.module('umm3601ursamajorApp')
 
     $scope.submitSubmission = function(){
         var r = confirm("Are you sure you want to submit?");
-        if (r == true) {
+        if (r) {
             for (var i = 0; i < $scope.submissionData.sponsors.length; i++) {
                 if ($scope.submissionData.sponsors[i] != "" && $scope.submissionData.sponsors[i] != null) {
                     $scope.submissionData.sponsorsFinal.push($scope.submissionData.sponsors[i]);
@@ -164,7 +164,8 @@ angular.module('umm3601ursamajorApp')
                     resubmissionData: {comment: $scope.submissionData.resubmitComment, parentSubmission: $scope.submissionData.resubmitParent, resubmitFlag: $scope.submissionData.resubmitFlag }
                 });
         };
-        if (r == true) {
+
+        if (r) {
             alert("Please send the email that is about to be generated.");
             sendGmail({
                 to: $scope.submissionData.adviserInfo.email,
@@ -173,7 +174,7 @@ angular.module('umm3601ursamajorApp')
                     ' has submitted a URS submission that requires your approval. Please go to https://ursa-major.herokuapp.com/ to log in and approve the submission.'
             });
         }
-        if ($scope.isResubmitting) {
+        if ($scope.isResubmitting && r) {
             $http.patch('api/submissions/' + $scope.submissionData.resubmitParent,
              // This is only setting false right now. comment and submission donot get stored.
                  {resubmissionData: {comment: $scope.resubmitParent.resubmissionData.comment, parentSubmission: $scope.resubmitParent.resubmissionData.parentSubmission, resubmitFlag: false}}
@@ -181,8 +182,10 @@ angular.module('umm3601ursamajorApp')
                 console.log("Successfully unflagged the original submission for resbumission.");
             });
         }
-        $scope.resetData();
-        $location.path('/submissionpage');
+        if(r) {
+            $scope.resetData();
+            $location.path('/submissionpage');
+        }
     };
 
     $scope.charsRemaining = function() {
