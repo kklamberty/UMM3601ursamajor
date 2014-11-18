@@ -49,7 +49,7 @@
           </li>
     </ul>
 
-    <!-- HTML for deatils view starts here. -->
+    <!-- HTML for details view starts here. -->
 
     <ul class="list-group" ng-show="selection.selected">
         <li class="list-group-item overflowAuto">
@@ -58,7 +58,8 @@
             <button ng-show="isAdmin()" class="btn btn-md btn-danger" ng-click="deleteSubmissionConfirm(selection.item)"><span class="glyphicon glyphicon-trash"></span></button>
             <button ng-show="hasAdminPrivs()" class="btn btn-md btn-primary ReSubButton" ng-click="flagForResubmit()">Flag for Re-Submission</button>
             <button ng-show="isPresenter(selection.item) && (getResubmission(selection.item).length == 0)" class="btn btn-md btn-primary ReSubButton" ng-click="flagForResubmit()">Re-Submit this Submission</button>
-            <button ng-show="isAdviser(selection.item) || hasAdminPrivs()" class="btn btn-md btn-success btn-block ReSubButton " ng-click="advisorApprover()">Approve</button>
+            <br></br>
+            <button ng-show="(isAdviser(selection.item) || hasAdminPrivs()) && !isApproved(selection.item)" class="btn btn-md btn-success btn-block ReSubButton " ng-click="approveSubmission(selection.item)">Do you want to approve this submission?</button>
         </li>
         <li class="list-group-item" ng-style="statusColorTab(selection.item.status.strict)">
 
