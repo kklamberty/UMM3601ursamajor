@@ -2,7 +2,7 @@
 
 angular.module('umm3601ursamajorApp')
 
-  .controller('SubformCtrl', function ($scope, $http, Auth, $location, socket, $filter) {
+  .controller('SubformCtrl', function ($scope, $http, Auth, $location, socket, $filter, $window) {
 
     if(Auth.isLoggedIn() === false) {
         $location.path('/');
@@ -85,35 +85,45 @@ angular.module('umm3601ursamajorApp')
         resubmitFlag: false
     };
 
-    $scope.getResubmitData = function(submission){
-        $scope.submissionData = {
-            title: submission.title,
-            format: submission.format,
-            abstract: submission.abstract,
-            presentationType: submission.presentationType,
-            formatChange: submission.formatChange,
-            presenterInfo: {first: submission.presenterInfo.first, last: submission.presenterInfo.last, email: submission.presenterInfo.email},
-            copresenterOne: {first: submission.copresenterOneInfo.first, last: submission.copresenterOneInfo.last, email: submission.copresenterOneInfo.email},
-            copresenterTwo: {first: submission.copresenterTwoInfo.first, last: submission.copresenterTwoInfo.last, email: submission.copresenterTwoInfo.email},
-            discipline: submission.discipline,
-            sponsors: submission.sponsors,
-            sponsorsFinal: [],
-            adviserInfo: {first: submission.adviserInfo.first, last: submission.adviserInfo.last, email: submission.adviserInfo.email},
-            featuredPresentation: submission.featured,
-            mediaServicesEquipment: submission.mediaServicesEquipment,
-            specialRequirements: submission.specialRequirements,
-            presenterTeeSize: submission.presenterTeeSize,
-            otherInfo: submission.otherInfo,
-            resubmitComment: "",
-            resubmitParent: submission._id,
-            resubmitFlag: false
-        };
+    //Email for advisors
+    var sendGmail = function(opts){
+        var str = 'http://mail.google.com/mail/?view=cm&fs=1'+
+            '&to=' + opts.to +
+            '&su=' + opts.subject +
+            '&body=' + opts.message +
+            '&ui=1';
+        $window.open(str);
+    };
 
+        $scope.getResubmitData = function(submission){
+            $scope.submissionData = {
+               title: submission.title,
+               format: submission.format,
+               abstract: submission.abstract,
+               presentationType: submission.presentationType,
+               formatChange: submission.formatChange,
+               presenterInfo: {first: submission.presenterInfo.first, last: submission.presenterInfo.last, email: submission.presenterInfo.email},
+               copresenterOne: {first: submission.copresenterOneInfo.first, last: submission.copresenterOneInfo.last, email: submission.copresenterOneInfo.email},
+               copresenterTwo: {first: submission.copresenterTwoInfo.first, last: submission.copresenterTwoInfo.last, email: submission.copresenterTwoInfo.email},
+               discipline: submission.discipline,
+               sponsors: submission.sponsors,
+               sponsorsFinal: [],
+               adviserInfo: {first: submission.adviserInfo.first, last: submission.adviserInfo.last, email: submission.adviserInfo.email},
+               featuredPresentation: submission.featured,
+               mediaServicesEquipment: submission.mediaServicesEquipment,
+               specialRequirements: submission.specialRequirements,
+               presenterTeeSize: submission.presenterTeeSize,
+               otherInfo: submission.otherInfo,
+               resubmitComment: "",
+               resubmitParent: submission._id,
+               resubmitFlag: false
+           };
         $scope.isResubmitting = true;
         $scope.resubmitParent = submission;
     };
 
     $scope.submissionTextArray = [];
+
     $scope.submissionText = {};
 
     $http.get('/api/subformtexts').success(function(submissionTextArray) {
@@ -122,21 +132,16 @@ angular.module('umm3601ursamajorApp')
     });
 
     $scope.submitSubmission = function(){
-
         var r = confirm("Are you sure you want to submit?");
         if (r == true) {
             for (var i = 0; i < $scope.submissionData.sponsors.length; i++) {
                 if ($scope.submissionData.sponsors[i] != "" && $scope.submissionData.sponsors[i] != null) {
                     $scope.submissionData.sponsorsFinal.push($scope.submissionData.sponsors[i]);
                 }
-
             }
-
             console.log('posting Data!');
-
             $http.post('/api/submissions/',
-                {
-                    title: $scope.submissionData.title,
+                {   title: $scope.submissionData.title,
                     format: $scope.submissionData.format,
                     abstract: $scope.submissionData.abstract,
                     presentationType: $scope.submissionData.presentationType,
@@ -157,21 +162,27 @@ angular.module('umm3601ursamajorApp')
                     timestamp: $scope.timestamp,
                     group: 0,
                     resubmissionData: {comment: $scope.submissionData.resubmitComment, parentSubmission: $scope.submissionData.resubmitParent, resubmitFlag: $scope.submissionData.resubmitFlag }
-                }
-            );
-
-            if ($scope.isResubmitting) {
-                $http.patch('api/submissions/' + $scope.submissionData.resubmitParent,
-                    // This is only setting false right now. comment and submission donot get stored.
-                    {resubmissionData: {comment: $scope.resubmitParent.resubmissionData.comment, parentSubmission: $scope.resubmitParent.resubmissionData.parentSubmission, resubmitFlag: false}}
-                ).success(function(){
-                    console.log("Successfully unflagged the original submission for resbumission.");
                 });
-            }
-
-            $scope.resetData();
-            $location.path('/submissionpage');
+        };
+        if (r == true) {
+            alert("Please send the email that is about to be generated.");
+            sendGmail({
+                to: $scope.submissionData.adviserInfo.email,
+                subject: 'URS Submission requires approval',
+                message: $scope.submissionData.presenterInfo.first + " " + $scope.submissionData.presenterInfo.last +
+                    ' has submitted a URS submission that requires your approval. Please go to https://ursa-major.herokuapp.com/ to log in and approve the submission.'
+            });
         }
+        if ($scope.isResubmitting) {
+            $http.patch('api/submissions/' + $scope.submissionData.resubmitParent,
+             // This is only setting false right now. comment and submission donot get stored.
+                 {resubmissionData: {comment: $scope.resubmitParent.resubmissionData.comment, parentSubmission: $scope.resubmitParent.resubmissionData.parentSubmission, resubmitFlag: false}}
+            ).success(function(){
+                console.log("Successfully unflagged the original submission for resbumission.");
+            });
+        }
+        $scope.resetData();
+        $location.path('/submissionpage');
     };
 
     $scope.charsRemaining = function() {
