@@ -101,11 +101,11 @@ angular.module('umm3601ursamajorApp')
 
         for(var x = 0; x <= $scope.fundingSources.length; x++){
             addedToggle = false;
-            console.log("Main for loop, sponsor: " + $scope.fundingSources[x]);
-            console.log("Length of sponsors from submission: " + submission.sponsors.length);
-            console.log("X: " + x);
+//            console.log("Main for loop, sponsor: " + $scope.fundingSources[x]);
+//            console.log("Length of sponsors from submission: " + submission.sponsors.length);
+//            console.log("X: " + x);
             for(var y = 0; y < submission.sponsors.length; y++){
-                console.log("final case? " + (x == $scope.fundingSources.length));
+//                console.log("final case? " + (x == $scope.fundingSources.length));
                 if(x == $scope.fundingSources.length){
                     tempSponsors.push(submission.sponsors[submission.sponsors.length - 1]);
                     break;
@@ -115,7 +115,7 @@ angular.module('umm3601ursamajorApp')
                 }
             }
             if(!addedToggle){
-                console.log("Added toggle false!");
+//                console.log("Added toggle false!");
                 if(x == $scope.fundingSources.length){
                     addedToggle = !addedToggle;
                 } else {
@@ -123,9 +123,9 @@ angular.module('umm3601ursamajorApp')
                     addedToggle = !addedToggle;
                 }
             }
-            console.log(tempSponsors);
+//            console.log(tempSponsors);
         }
-        console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        console.log("~~~~~~~~~~~~~~sponsors from parent submission~~~~~~~~~~~~~~~~~~");
         console.log(tempSponsors);
 
         $scope.submissionData = {
@@ -138,8 +138,8 @@ angular.module('umm3601ursamajorApp')
             copresenterOne: {first: submission.copresenterOneInfo.first, last: submission.copresenterOneInfo.last, email: submission.copresenterOneInfo.email},
             copresenterTwo: {first: submission.copresenterTwoInfo.first, last: submission.copresenterTwoInfo.last, email: submission.copresenterTwoInfo.email},
             discipline: submission.discipline,
-            sponsors: submission.sponsors,
-            sponsorsFinal: tempSponsors,
+            sponsors: tempSponsors,
+            sponsorsFinal: [],
             adviserInfo: {first: submission.adviserInfo.first, last: submission.adviserInfo.last, email: submission.adviserInfo.email},
             featuredPresentation: submission.featured,
             mediaServicesEquipment: submission.mediaServicesEquipment,

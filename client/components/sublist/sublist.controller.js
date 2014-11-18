@@ -58,12 +58,12 @@ angular.module('umm3601ursamajorApp')
             return submission.resubmissionData.parentSubmission != "";
         };
 
+        //TODO: this method could easily be made more efficient? It currently checks for ANY resubmission the the entire database for EVERY submission in the database... Horrible... I'm so sorry...
         $scope.getResubmission = function(submission){
             var resubmits = $filter('filter')($scope.submissions, $scope.isResubmission);
 
             for(var x = 0; x < resubmits.length; x++){
                 if(resubmits[x].resubmissionData.parentSubmission === submission._id){
-                    console.log("resubmit found!");
                     return resubmits[x];
                 }
             }
