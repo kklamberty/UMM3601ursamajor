@@ -233,7 +233,6 @@ angular.module('umm3601ursamajorApp')
             }
         };
 
-
         $http.get('/api/submissions').success(function(submissions) {
             $scope.submissions = submissions;
             socket.syncUpdates('submission', $scope.submissions);
@@ -322,6 +321,35 @@ angular.module('umm3601ursamajorApp')
             $scope.resetSelection();
         };
 
+        $scope.isApproved = function(submission) {
+          return submission.approval;
+        };
+
+        $scope.approveSubmission = function(submission) {
+            if($scope.isAdviser(submission) == true || $scope.hasAdminPrivs() == true){
+                var r = confirm("Are you sure you want to approve this submission?");
+                if(r == true){
+                    $http.patch('api/submissions/' + $scope.selection.item._id,
+                        {approval: true}
+                    ).success(function(){
+                            $scope.selection.item.approval = true;
+                            console.log("Successfully updated approval of submission (approved)");
+                        });
+                    $http.patch('api/submissions/' + $scope.selection.item._id,
+                        {status: {strict: "Reviewing in Process", text: "Your URS submission has been approved by your adviser"}}
+                    ).success(function(){
+                            $scope.selection.item.status.strict = "Reviewing in Process";
+                            console.log("Successfully changed status of submission");
+                        });
+                    sendGmail({
+                        to: $scope.selection.item.presenterInfo.email +" "+ $scope.selection.item.copresenterOneInfo.email +" "+ $scope.selection.item.copresenterTwoInfo.email,
+                        subject: $scope.statusEdit.subject,
+                        message: $scope.selection.item.presenterInfo.first + ", your URS abstract has been approved by your adviser. Please await reviewer comments."
+                    });
+                }
+            }
+        };
+
         // -------------------------- Editing of status ----------------------------------------------
 
         $scope.resetTemps = function() {
@@ -365,14 +393,6 @@ angular.module('umm3601ursamajorApp')
 
             $scope.selection.item.status.strict = $scope.statusEdit.temp.strict;
             $scope.selection.item.status.text = $scope.statusEdit.temp.text;
-
-            $scope.advisorApprover = function(){
-                $http.patch('api/submissions/' + $scope.selection.item._id,
-                    {approval: true}
-                ).success(function(){
-                        console.log("Approve this submission");
-                    });
-            };
 
         //--------------------------------------------- Gmail Things ---------------------------------------
 
