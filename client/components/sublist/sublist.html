@@ -106,7 +106,7 @@
                     <h3>Abstract</h3>
                     <button class="btn btn-primary" ng-click="addComment(selection.item)">COMMENT!</button>
                 </li>
-                <li class="list-group-item"><p ng-bind-html="populateComments(selection.item)"></p></li>
+                <li class="list-group-item"><p ng-bind-html="selection.item.abstract"></p></li>
             </ul>
             <br>
             <p>You are seeing this submission because you are a(n):</p>
