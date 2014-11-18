@@ -365,16 +365,6 @@ angular.module('umm3601ursamajorApp')
             $scope.selection.item.status.strict = $scope.statusEdit.temp.strict;
             $scope.selection.item.status.text = $scope.statusEdit.temp.text;
 
-
-            $scope.flagForResubmit = function(){
-                $http.patch('api/submissions/' + $scope.selection.item._id,
-                    {resubmissionData: {comment: "flagged for resubmit", parentSubmission: "", resubmitFlag: true}}
-                ).success(function(){
-                        console.log("Successfully flagged submission for resubmit");
-                        if(!$scope.hasAdminPrivs()){$location.path('/subform');}
-                    });
-            };
-
             $scope.advisorApprover = function(){
                 $http.patch('api/submissions/' + $scope.selection.item._id,
                     {approval: true}
@@ -408,8 +398,15 @@ angular.module('umm3601ursamajorApp')
 
 
         //--------------------------------------------- Resubmission ---------------------------------------
-
-        //-----------
+        $scope.flagForResubmit = function(){
+            console.log("SAttempting to flag for resubmission.");
+            $http.patch('api/submissions/' + $scope.selection.item._id,
+                {resubmissionData: {comment: "flagged for resubmit", parentSubmission: "", resubmitFlag: true}}
+            ).success(function(){
+                    console.log("Successfully flagged submission for resubmit");
+                    if(!$scope.hasAdminPrivs()){$location.path('/subform');}
+                });
+        };
 
 
     });
