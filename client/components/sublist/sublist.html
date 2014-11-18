@@ -109,8 +109,15 @@
                 </li>
             </ul>
             <ul class="list-group">
-                <li class="list-group-item"><h3>Abstract</h3></li>
-                <li class="list-group-item"><p>{{selection.item.abstract}}</p></li>
+                <li class="list-group-item">
+                    <h3>Abstract</h3>
+                    <button class="btn btn-primary" ng-click="addComment(selection.item)">COMMENT!</button>
+                </li>
+                <li class="list-group-item"><p ng-bind-html="selection.item.abstract"></p>
+                    <h3>Comments</h3>
+                <li class="list-group-itwm" ng-repeat="comment in selection.item.comments">
+                <b>{{comment.selectionText}}:</b> {{comment.commentText}}
+                </li>
             </ul>
             <br>
             <p ng-show="isAdmin()">You are seeing this submission because you are an:</p>
@@ -129,6 +136,7 @@
         <ul class="list-group" ng-show="(selection.resubmission != null) && selection.selected">
             <li class="list-group-item">
                 <h1>Resubmission</h1>
+                <button type="button" class="btn btn-success resubbutton" ng-click="approveResubmit()">Approve Resubmission</button>
             </li>
             <li class="list-group-item">
                 <h3 id="text">{{selection.resubmission.title}}</h3>
@@ -150,7 +158,9 @@
                     </li>
                 </ul>
                 <ul class="list-group">
-                    <li class="list-group-item"><h3>Abstract</h3></li>
+                    <li class="list-group-item">
+                        <h3>Abstract</h3>
+                    </li>
                     <li class="list-group-item"><p>{{selection.resubmission.abstract}}</p></li>
                 </ul>
                 <br>

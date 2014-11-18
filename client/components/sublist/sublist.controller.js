@@ -54,12 +54,14 @@ angular.module('umm3601ursamajorApp')
             tabFilter: {isPresenter:false, isCoPresenter:false, isReviewer:false, isAdviser:false}
         };
 
+        // Returns true when the submission HAS a parent, and ISN'T the primary.
         $scope.isResubmission = function(submission){
-            return submission.resubmissionData.parentSubmission != "";
+            return (submission.resubmissionData.parentSubmission != "" && !submission.resubmissionData.isPrimary);
         };
 
         //TODO: this method could easily be made more efficient? It currently checks for ANY resubmission the the entire database for EVERY submission in the database... Horrible... I'm so sorry...
         $scope.getResubmission = function(submission){
+            //Perhaps we could move this into the http call...?
             var resubmits = $filter('filter')($scope.submissions, $scope.isResubmission);
 
             for(var x = 0; x < resubmits.length; x++){
@@ -416,7 +418,6 @@ angular.module('umm3601ursamajorApp')
             });
         };
 
-
         $scope.approvalWordChange = function(approval){
              if(approval){
                  return "Yes";
@@ -426,10 +427,9 @@ angular.module('umm3601ursamajorApp')
                  }
              };
 
-
         //--------------------------------------------- Resubmission ---------------------------------------
         $scope.flagForResubmit = function(){
-            console.log("SAttempting to flag for resubmission.");
+            console.log("Attempting to flag for resubmission.");
             $http.patch('api/submissions/' + $scope.selection.item._id,
                 {resubmissionData: {comment: "flagged for resubmit", parentSubmission: "", resubmitFlag: true}}
             ).success(function(){
@@ -438,5 +438,71 @@ angular.module('umm3601ursamajorApp')
                 });
         };
 
+        //TODO: Right now anyone that can see a resubmission can approve a resubmission, so that needs to get fixed. Should wait to fix until the permissions system is sorted out.
+        $scope.approveResubmit = function(){
+            console.log("Attempting to approve resubmission.");
+            $http.patch('api/submissions/' + $scope.selection.item._id,
+                {resubmissionData: {isPrimary: false}}
+            ).success(function(){
+                    console.log("old primary is no longer primary");
+                    $http.patch('api/submissions/' + $scope.selection.resubmission._id,
+                        {resubmissionData: {isPrimary: true}}
+                    ).success(function(){
+                        console.log("resubmission set as new primary")
+                    });
+            });
+        };
+
+
+
+
+        //--------------------------------------------- Comments ---------------------------------------
+
+        $scope.addComment = function (submission) {
+            console.log(submission.abstract.length);
+            var commentObj = {};
+            var comments = submission.comments;
+            var selection = $window.getSelection();
+            var commentText = prompt("Comment");
+            commentObj.beginner = selection.anchorOffset;
+            commentObj.ender = selection.focusOffset;
+            commentObj.commentText = commentText;
+            commentObj.selectionText = selection.toString();
+            commentObj.indicator = 0;
+            comments.push(commentObj);
+            $http.patch('api/submissions/' + $scope.selection.item._id,
+                {comments: comments}
+            ).success(function(){
+                    console.log("successfully pushed comments to submission!");
+                });
+//            console.log(submission.comments);
+//            console.log(submission.abstract.length);
+//            console.log(comments.length);
+//            $scope.populateComments(submission);
+        };
+
+        $scope.populateComments = function (submission) {
+//            var submission = submission;
+            var comments = submission.comments;
+            for (var i = 0; i < comments.length; i++) {
+                var start = comments[i].beginner;
+                var end = comments[i].ender;
+                if (i == 0 && comments[i].indicator == 0) {
+                    submission.abstract = submission.abstract.substring(0, start) + '<b>' + submission.abstract.substring(start, end) + '</b>' + submission.abstract.substring(end, submission.abstract.length);
+                    comments[i].indicator = 1;
+                    console.log(submission.abstract);
+                    console.log(i, "Cats");
+                } else if (comments[i].indicator == 0){
+                    start += 7 * (i + 2);
+                    end += 7 * (i + 2);
+                    submission.abstract = submission.abstract.substring(0, start) + '<b>' + submission.abstract.substring(start, end) + '</b>' + submission.abstract.substring(end, submission.abstract.length);
+                    comments[i].indicator = 1;
+                    console.log(submission.abstract);
+                    console.log(start);
+                    console.log(end);
+                }
+            }
+            return submission.abstract;
+        };
 
     });
