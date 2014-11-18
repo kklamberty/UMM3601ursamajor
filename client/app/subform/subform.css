@@ -1,18 +1,23 @@
+
+/*Formats the grey subtext*/
 .subtext {
     color: darkgray;
     font-size: 12px;
 }
 
+/*Adds padding*/
 .padded {
    /*outline: dashed red 2px; */
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
+/*Formats a group of elements to line up*/
 .stacked {
     display: inline;
 }
 
+/**/
 .stacked:after {
     content: "\a";
     white-space: pre;
@@ -126,4 +131,16 @@
     font-size:  85%;
     color: grey;
     padding: 0;
+}
+
+/*Changes the resubmission button color*/
+.ResubButton {
+    background-color: #7a0019;
+    color: #ffcc33;
+}
+
+/*Changes the resubmission button color on hover*/
+.ResubButton:hover {
+    background-color: #ffcc33;
+    color: #7a0019;
 }
