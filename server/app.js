@@ -19,7 +19,7 @@ if(config.seedDB) { require('./config/seed'); }
 
 // Setup server
 var app = express();
-app.use(express.static(__dirname + '/app'));
+app.use(express.static(__dirname + '/ursa-major'));
 app.listen(process.env.PORT || 9000);
 var server = require('http').createServer(app);
 var socketio = require('socket.io')(server, {
