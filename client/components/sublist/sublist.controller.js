@@ -58,6 +58,7 @@ angular.module('umm3601ursamajorApp')
             return submission.resubmissionData.parentSubmission != "";
         };
 
+        //TODO: this method could easily be made more efficient? It currently checks for ANY resubmission the the entire database for EVERY submission in the database... Horrible... I'm so sorry...
         $scope.getResubmission = function(submission){
             var resubmits = $filter('filter')($scope.submissions, $scope.isResubmission);
 
@@ -232,7 +233,6 @@ angular.module('umm3601ursamajorApp')
             }
         };
 
-
         $http.get('/api/submissions').success(function(submissions) {
             $scope.submissions = submissions;
             socket.syncUpdates('submission', $scope.submissions);
@@ -275,7 +275,7 @@ angular.module('umm3601ursamajorApp')
                 return {'background-color': 'rgba(' + $scope.statusEdit.color[index].red
                                                         + ',' + $scope.statusEdit.color[index].green
                                                         + ',' + $scope.statusEdit.color[index].blue +
-                                                          ',' + $scope.statusEdit.color[index].alpha + ')'}
+                                                          ',' + $scope.statusEdit.color[index].alpha *.66 + ')'}
             }};
 
 
@@ -321,27 +321,37 @@ angular.module('umm3601ursamajorApp')
             $scope.resetSelection();
         };
 
-        // -------------------------- Editing of status ----------------------------------------------
-//        $scope.statusEdit = {
-//            editing: false,
-//            options: ["Reviewing in Process",
-//                "Revisions Needed",
-//                "Accepted"],
-//            subject:"URS submission update",
-//            body:[ ", Your URS submission has been approved by your adviser.",
-//                  ", Your URS submission has been flagged for revisions, and is in need of changes.",
-//                ", Your URS submission has been approved, congratulations!"],
-//            temp: {strict: "", text: ""}
-//        };
+        $scope.isApproved = function(submission) {
+          return submission.approval;
+        };
 
-//        $scope.statusEdit = {
-//            editing: false,
-//            options: [],
-//            color: [],
-//            subject: [],
-//            body: [],
-//            temp: {strict: "", text: ""}
-//        };
+        $scope.approveSubmission = function(submission) {
+            if($scope.isAdviser(submission) == true || $scope.hasAdminPrivs() == true){
+                var r = confirm("Are you sure you want to approve this submission?");
+                if(r == true){
+                    $http.patch('api/submissions/' + $scope.selection.item._id,
+                        {approval: true}
+                    ).success(function(){
+                            $scope.selection.item.approval = true;
+                            console.log("Successfully updated approval of submission (approved)");
+                        });
+                    $http.patch('api/submissions/' + $scope.selection.item._id,
+                        {status: {strict: "Reviewing in Process", text: "Your URS submission has been approved by your adviser"}}
+                    ).success(function(){
+                            $scope.selection.item.status.strict = "Reviewing in Process";
+                            $scope.selection.item.status.text = "Your URS submission has been approved by your adviser, awaiting revisions";
+                            console.log("Successfully changed status of submission");
+                        });
+                    sendGmail({
+                        to: $scope.selection.item.presenterInfo.email +" "+ $scope.selection.item.copresenterOneInfo.email +" "+ $scope.selection.item.copresenterTwoInfo.email,
+                        subject: $scope.statusEdit.subject,
+                        message: $scope.selection.item.presenterInfo.first + ", your URS abstract has been approved by your adviser. Please await reviewer comments."
+                    });
+                }
+            }
+        };
+
+        // -------------------------- Editing of status ----------------------------------------------
 
         $scope.resetTemps = function() {
             if($scope.selection.item != null){
@@ -364,8 +374,7 @@ angular.module('umm3601ursamajorApp')
                     console.log("Successfully updated status of submission");
             });
 
-
-
+            //TODO: needs to be updated to work with the current status system
             if($scope.selection.item.approval && $scope.statusEdit.temp.strict === "Awaiting Adviser Approval"){
                 $http.patch('api/submissions/' + $scope.selection.item._id,
                     {approval: false}
@@ -402,11 +411,11 @@ angular.module('umm3601ursamajorApp')
                 {resubmissionData: {comment: "flagged for resubmit", parentSubmission: "", resubmitFlag: true}}
             ).success(function(){
                 console.log("Successfully flagged submission for resubmit");
+                //Might want to change so that owner of the submission is redirected.
                 if(!$scope.hasAdminPrivs()){$location.path('/subform');}
             });
         };
 
-        
 
         $scope.approvalWordChange = function(approval){
              if(approval){
@@ -418,8 +427,16 @@ angular.module('umm3601ursamajorApp')
              };
 
 
-        //--------------------------------------------- Tabs Stuff ---------------------------------------
-
+        //--------------------------------------------- Resubmission ---------------------------------------
+        $scope.flagForResubmit = function(){
+            console.log("SAttempting to flag for resubmission.");
+            $http.patch('api/submissions/' + $scope.selection.item._id,
+                {resubmissionData: {comment: "flagged for resubmit", parentSubmission: "", resubmitFlag: true}}
+            ).success(function(){
+                    console.log("Successfully flagged submission for resubmit");
+                    if(!$scope.hasAdminPrivs()){$location.path('/subform');}
+                });
+        };
 
 
 

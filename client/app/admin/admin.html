@@ -6,7 +6,9 @@
             <div class="btn-group-vertical">
                 <button type="button" class="btn btn-default buttonLrg" ng-click="toggleStats()">System Information</button>
                 <button type="button" class="btn btn-default buttonLrg" ng-click="toggleSubEditor()"> Edit the Submission Form</button>
+                <button type="button" class="btn btn-default buttonLrg" ng-click="toggleStatusEdit()">Edit Status Options</button>
                 <button type="button" class="btn btn-default buttonLrg" ng-click="toggleUserEdit()">Edit Users</button>
+
             </div>
         </div>
 
@@ -19,7 +21,9 @@
                 <div ng-include="'app/roleChange/roleChange.html'"></div>
             </div>
 
-
+            <div ng-show="toggles.statusEditToggle">
+                <div ng-include="'app/statuseditor/statuseditor.html'"></div>
+            </div>
 
             <div ng-show="toggles.statsToggle">
                 <ul class="list-group" >

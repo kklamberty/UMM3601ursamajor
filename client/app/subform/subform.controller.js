@@ -2,7 +2,7 @@
 
 angular.module('umm3601ursamajorApp')
 
-  .controller('SubformCtrl', function ($scope, $http, Auth, $location, socket, $filter) {
+  .controller('SubformCtrl', function ($scope, $http, Auth, $location, socket, $filter, $window) {
 
     if(Auth.isLoggedIn() === false) {
         $location.path('/');
@@ -85,7 +85,49 @@ angular.module('umm3601ursamajorApp')
         resubmitFlag: false
     };
 
+    //Email for advisors
+    var sendGmail = function(opts){
+        var str = 'http://mail.google.com/mail/?view=cm&fs=1'+
+            '&to=' + opts.to +
+            '&su=' + opts.subject +
+            '&body=' + opts.message +
+            '&ui=1';
+        $window.open(str);
+    };
+
     $scope.getResubmitData = function(submission){
+        var tempSponsors = [];
+        var addedToggle = false;
+
+        for(var x = 0; x <= $scope.fundingSources.length; x++){
+            addedToggle = false;
+//            console.log("Main for loop, sponsor: " + $scope.fundingSources[x]);
+//            console.log("Length of sponsors from submission: " + submission.sponsors.length);
+//            console.log("X: " + x);
+            for(var y = 0; y < submission.sponsors.length; y++){
+//                console.log("final case? " + (x == $scope.fundingSources.length));
+                if(x == $scope.fundingSources.length){
+                    tempSponsors.push(submission.sponsors[submission.sponsors.length - 1]);
+                    break;
+                } else if(submission.sponsors[y] === $scope.fundingSources[x]){
+                    tempSponsors.push(submission.sponsors[y]);
+                    addedToggle = true;
+                }
+            }
+            if(!addedToggle){
+//                console.log("Added toggle false!");
+                if(x == $scope.fundingSources.length){
+                    addedToggle = !addedToggle;
+                } else {
+                    tempSponsors.push("");
+                    addedToggle = !addedToggle;
+                }
+            }
+//            console.log(tempSponsors);
+        }
+        console.log("~~~~~~~~~~~~~~sponsors from parent submission~~~~~~~~~~~~~~~~~~");
+        console.log(tempSponsors);
+
         $scope.submissionData = {
             title: submission.title,
             format: submission.format,
@@ -96,7 +138,7 @@ angular.module('umm3601ursamajorApp')
             copresenterOne: {first: submission.copresenterOneInfo.first, last: submission.copresenterOneInfo.last, email: submission.copresenterOneInfo.email},
             copresenterTwo: {first: submission.copresenterTwoInfo.first, last: submission.copresenterTwoInfo.last, email: submission.copresenterTwoInfo.email},
             discipline: submission.discipline,
-            sponsors: submission.sponsors,
+            sponsors: tempSponsors,
             sponsorsFinal: [],
             adviserInfo: {first: submission.adviserInfo.first, last: submission.adviserInfo.last, email: submission.adviserInfo.email},
             featuredPresentation: submission.featured,
@@ -114,6 +156,7 @@ angular.module('umm3601ursamajorApp')
     };
 
     $scope.submissionTextArray = [];
+
     $scope.submissionText = {};
 
     $http.get('/api/subformtexts').success(function(submissionTextArray) {
@@ -122,21 +165,16 @@ angular.module('umm3601ursamajorApp')
     });
 
     $scope.submitSubmission = function(){
-
         var r = confirm("Are you sure you want to submit?");
-        if (r == true) {
+        if (r) {
             for (var i = 0; i < $scope.submissionData.sponsors.length; i++) {
                 if ($scope.submissionData.sponsors[i] != "" && $scope.submissionData.sponsors[i] != null) {
                     $scope.submissionData.sponsorsFinal.push($scope.submissionData.sponsors[i]);
                 }
-
             }
-
             console.log('posting Data!');
-
             $http.post('/api/submissions/',
-                {
-                    title: $scope.submissionData.title,
+                {   title: $scope.submissionData.title,
                     format: $scope.submissionData.format,
                     abstract: $scope.submissionData.abstract,
                     presentationType: $scope.submissionData.presentationType,
@@ -157,18 +195,27 @@ angular.module('umm3601ursamajorApp')
                     timestamp: $scope.timestamp,
                     group: 0,
                     resubmissionData: {comment: $scope.submissionData.resubmitComment, parentSubmission: $scope.submissionData.resubmitParent, resubmitFlag: $scope.submissionData.resubmitFlag }
-                }
-            );
-
-            if ($scope.isResubmitting) {
-                $http.patch('api/submissions/' + $scope.submissionData.resubmitParent,
-                    // This is only setting false right now. comment and submission donot get stored.
-                    {resubmissionData: {comment: $scope.resubmitParent.resubmissionData.comment, parentSubmission: $scope.resubmitParent.resubmissionData.parentSubmission, resubmitFlag: false}}
-                ).success(function(){
-                    console.log("Successfully unflagged the original submission for resbumission.");
                 });
-            }
+        };
 
+        if (r) {
+            alert("Please send the email that is about to be generated.");
+            sendGmail({
+                to: $scope.submissionData.adviserInfo.email,
+                subject: 'URS Submission requires approval',
+                message: $scope.submissionData.presenterInfo.first + " " + $scope.submissionData.presenterInfo.last +
+                    ' has submitted a URS submission that requires your approval. Please go to https://ursa-major.herokuapp.com/ to log in and approve the submission.'
+            });
+        }
+        if ($scope.isResubmitting && r) {
+            $http.patch('api/submissions/' + $scope.submissionData.resubmitParent,
+             // This is only setting false right now. comment and submission donot get stored.
+                 {resubmissionData: {comment: $scope.resubmitParent.resubmissionData.comment, parentSubmission: $scope.resubmitParent.resubmissionData.parentSubmission, resubmitFlag: false}}
+            ).success(function(){
+                console.log("Successfully unflagged the original submission for resbumission.");
+            });
+        }
+        if(r) {
             $scope.resetData();
             $location.path('/submissionpage');
         }
