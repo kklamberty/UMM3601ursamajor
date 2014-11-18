@@ -196,7 +196,7 @@ Submission.find({}).remove(function(){
         status:  {strict: "Awaiting Adviser Approval", text: "Your adviser has yet to approve this submission."},
         timestamp: "Sat Oct 18 2014 10:48:54 GMT-0500 (CDT)",
         group: 1,
-        resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
+        resubmissionData: {comment: "Initial Submission", parentSubmission: "", isPrimary: true, resubmitFlag: false}
     }, {
         title: "Blind Construction: Mixed Media",
         format: "Artist Statement",
@@ -222,7 +222,7 @@ Submission.find({}).remove(function(){
         status: {strict: "Revisions Needed", text: "Your URS submission has been flagged for revisions, and is in need of changes."},
         timestamp: "Tue Oct 21 2014 23:22:54 GMT-0500 (CDT)",
         group: 1,
-        resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
+        resubmissionData: {comment: "Initial Submission", parentSubmission: "", isPrimary: true, resubmitFlag: false}
     }, {
         title: "On the Migration of Majestic Space Whales",
         format: "Artist Statement",
@@ -255,7 +255,7 @@ Submission.find({}).remove(function(){
         status: {strict: "Awaiting Adviser Approval", text: "Your adviser has yet to approve this submission."},
         timestamp: "Mon Sept 2 2014 1:48:54 GMT-0500 (CDT)",
         group: 1,
-        resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
+        resubmissionData: {comment: "Initial Submission", parentSubmission: "", isPrimary: true, resubmitFlag: false}
     }, {
         title: "The Commemoration and Memorialization of the American Revolution",
         format: "Artist Statement",
@@ -283,7 +283,7 @@ Submission.find({}).remove(function(){
         status: {strict: "Reviewing in Process", text: "Your URS submission has been approved by your adviser"},
         timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)",
         group: 3,
-        resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
+        resubmissionData: {comment: "Initial Submission", parentSubmission: "", isPrimary: true, resubmitFlag: false}
     }, {
         title: "Margaret C. Anderson’s Little Review",
         format: "Social Science",
@@ -310,7 +310,7 @@ Submission.find({}).remove(function(){
         status: {strict: "Accepted", text: "Your URS submission has been approved, congratulations!"},
         timestamp: "Thur Oct 23 2014 1:48:54 GMT-0500 (CDT)",
         group: 2,
-        resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
+        resubmissionData: {comment: "Initial Submission", parentSubmission: "", isPrimary: true, resubmitFlag: false}
     }, {
         title: "A Study of the Properties of a Paperclip in the Digestive System of a Sloth",
         format: "Artist Statement",
@@ -335,6 +335,6 @@ Submission.find({}).remove(function(){
         status: {strict: "Awaiting Adviser Approval", text: "Your adviser has yet to approve this submission."},
         timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)",
         group: 3,
-        resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
+        resubmissionData: {comment: "Initial Submission", parentSubmission: "", isPrimary: true, resubmitFlag: false}
     });
 });
