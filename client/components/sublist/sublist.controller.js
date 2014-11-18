@@ -63,6 +63,7 @@ angular.module('umm3601ursamajorApp')
 
             for(var x = 0; x < resubmits.length; x++){
                 if(resubmits[x].resubmissionData.parentSubmission === submission._id){
+                    console.log("resubmit found!");
                     return resubmits[x];
                 }
             }
