@@ -339,6 +339,7 @@ angular.module('umm3601ursamajorApp')
                         {status: {strict: "Reviewing in Process", text: "Your URS submission has been approved by your adviser"}}
                     ).success(function(){
                             $scope.selection.item.status.strict = "Reviewing in Process";
+                            $scope.selection.item.status.text = "Your URS submission has been approved by your adviser, awaiting revisions";
                             console.log("Successfully changed status of submission");
                         });
                     sendGmail({
@@ -372,7 +373,6 @@ angular.module('umm3601ursamajorApp')
             ).success(function(){
                     console.log("Successfully updated status of submission");
             });
-
 
             //TODO: needs to be updated to work with the current status system
             if($scope.selection.item.approval && $scope.statusEdit.temp.strict === "Awaiting Adviser Approval"){
