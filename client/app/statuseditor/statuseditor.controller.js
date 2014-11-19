@@ -40,7 +40,7 @@ angular.module('umm3601ursamajorApp')
 
 
         $scope.submitChanges = function(status) {
-            var r = confirm("Are you sure you want to edit thos status?")
+            var r = confirm("Are you sure you want to edit this status?")
             var x = $scope.statusArray.indexOf(status);
             if (r == true){
                     $http.put('/api/statuss/' + $scope.statusArray[x]._id,
