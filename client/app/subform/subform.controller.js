@@ -95,29 +95,63 @@ angular.module('umm3601ursamajorApp')
         $window.open(str);
     };
 
-        $scope.getResubmitData = function(submission){
-            $scope.submissionData = {
-               title: submission.title,
-               format: submission.format,
-               abstract: submission.abstract,
-               presentationType: submission.presentationType,
-               formatChange: submission.formatChange,
-               presenterInfo: {first: submission.presenterInfo.first, last: submission.presenterInfo.last, email: submission.presenterInfo.email},
-               copresenterOne: {first: submission.copresenterOneInfo.first, last: submission.copresenterOneInfo.last, email: submission.copresenterOneInfo.email},
-               copresenterTwo: {first: submission.copresenterTwoInfo.first, last: submission.copresenterTwoInfo.last, email: submission.copresenterTwoInfo.email},
-               discipline: submission.discipline,
-               sponsors: submission.sponsors,
-               sponsorsFinal: [],
-               adviserInfo: {first: submission.adviserInfo.first, last: submission.adviserInfo.last, email: submission.adviserInfo.email},
-               featuredPresentation: submission.featured,
-               mediaServicesEquipment: submission.mediaServicesEquipment,
-               specialRequirements: submission.specialRequirements,
-               presenterTeeSize: submission.presenterTeeSize,
-               otherInfo: submission.otherInfo,
-               resubmitComment: "",
-               resubmitParent: submission._id,
-               resubmitFlag: false
-           };
+    $scope.getResubmitData = function(submission){
+        var tempSponsors = [];
+        var addedToggle = false;
+
+        //TODO: this is still a bit broken, I'll fix it later (joe)
+        for(var x = 0; x <= $scope.fundingSources.length; x++){
+            addedToggle = false;
+//            console.log("Main for loop, sponsor: " + $scope.fundingSources[x]);
+//            console.log("Length of sponsors from submission: " + submission.sponsors.length);
+//            console.log("X: " + x);
+            for(var y = 0; y < submission.sponsors.length; y++){
+//                console.log("final case? " + (x == $scope.fundingSources.length));
+                if(x == $scope.fundingSources.length){
+                    tempSponsors.push(submission.sponsors[submission.sponsors.length - 1]);
+                    break;
+                } else if(submission.sponsors[y] === $scope.fundingSources[x]){
+                    tempSponsors.push(submission.sponsors[y]);
+                    addedToggle = true;
+                }
+            }
+            if(!addedToggle){
+//                console.log("Added toggle false!");
+                if(x == $scope.fundingSources.length){
+                    addedToggle = !addedToggle;
+                } else {
+                    tempSponsors.push("");
+                    addedToggle = !addedToggle;
+                }
+            }
+//            console.log(tempSponsors);
+        }
+        console.log("~~~~~~~~~~~~~~sponsors from parent submission~~~~~~~~~~~~~~~~~~");
+        console.log(tempSponsors);
+
+        $scope.submissionData = {
+            title: submission.title,
+            format: submission.format,
+            abstract: submission.abstract,
+            presentationType: submission.presentationType,
+            formatChange: submission.formatChange,
+            presenterInfo: {first: submission.presenterInfo.first, last: submission.presenterInfo.last, email: submission.presenterInfo.email},
+            copresenterOne: {first: submission.copresenterOneInfo.first, last: submission.copresenterOneInfo.last, email: submission.copresenterOneInfo.email},
+            copresenterTwo: {first: submission.copresenterTwoInfo.first, last: submission.copresenterTwoInfo.last, email: submission.copresenterTwoInfo.email},
+            discipline: submission.discipline,
+            sponsors: tempSponsors,
+            sponsorsFinal: [],
+            adviserInfo: {first: submission.adviserInfo.first, last: submission.adviserInfo.last, email: submission.adviserInfo.email},
+            featuredPresentation: submission.featured,
+            mediaServicesEquipment: submission.mediaServicesEquipment,
+            specialRequirements: submission.specialRequirements,
+            presenterTeeSize: submission.presenterTeeSize,
+            otherInfo: submission.otherInfo,
+            resubmitComment: "",
+            resubmitParent: submission._id,
+            resubmitFlag: false
+        };
+
         $scope.isResubmitting = true;
         $scope.resubmitParent = submission;
     };
@@ -133,7 +167,7 @@ angular.module('umm3601ursamajorApp')
 
     $scope.submitSubmission = function(){
         var r = confirm("Are you sure you want to submit?");
-        if (r == true) {
+        if (r) {
             for (var i = 0; i < $scope.submissionData.sponsors.length; i++) {
                 if ($scope.submissionData.sponsors[i] != "" && $scope.submissionData.sponsors[i] != null) {
                     $scope.submissionData.sponsorsFinal.push($scope.submissionData.sponsors[i]);
@@ -161,10 +195,11 @@ angular.module('umm3601ursamajorApp')
                     status: {strict: "Awaiting Adviser Approval", text: "Adviser has not been notified"},
                     timestamp: $scope.timestamp,
                     group: 0,
-                    resubmissionData: {comment: $scope.submissionData.resubmitComment, parentSubmission: $scope.submissionData.resubmitParent, resubmitFlag: $scope.submissionData.resubmitFlag }
+                    resubmissionData: {comment: $scope.submissionData.resubmitComment, parentSubmission: $scope.submissionData.resubmitParent, isPrimary: false, resubmitFlag: $scope.submissionData.resubmitFlag }
                 });
         };
-        if (r == true) {
+
+        if (r) {
             alert("Please send the email that is about to be generated.");
             sendGmail({
                 to: $scope.submissionData.adviserInfo.email,
@@ -173,7 +208,7 @@ angular.module('umm3601ursamajorApp')
                     ' has submitted a URS submission that requires your approval. Please go to https://ursa-major.herokuapp.com/ to log in and approve the submission.'
             });
         }
-        if ($scope.isResubmitting) {
+        if ($scope.isResubmitting && r) {
             $http.patch('api/submissions/' + $scope.submissionData.resubmitParent,
              // This is only setting false right now. comment and submission donot get stored.
                  {resubmissionData: {comment: $scope.resubmitParent.resubmissionData.comment, parentSubmission: $scope.resubmitParent.resubmissionData.parentSubmission, resubmitFlag: false}}
@@ -181,8 +216,10 @@ angular.module('umm3601ursamajorApp')
                 console.log("Successfully unflagged the original submission for resbumission.");
             });
         }
-        $scope.resetData();
-        $location.path('/submissionpage');
+        if(r) {
+            $scope.resetData();
+            $location.path('/submissionpage');
+        }
     };
 
     $scope.charsRemaining = function() {

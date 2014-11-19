@@ -190,7 +190,7 @@ Submission.find({}).remove(function(){
         copresenterTwoInfo: {first: "", last: "", email: ""},
         discipline: "Chemistry",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {first: "Jim", last: "Togeas", email: "togeasjb@morris.umn.edu"},
+        adviserInfo: {first: "Joseph", last: "Thelen", email: "thele116@morris.umn.edu"},
         featured: false,
         mediaServicesEquipment: "",
         specialRequirements: "",
@@ -200,7 +200,8 @@ Submission.find({}).remove(function(){
         status:  {strict: "Awaiting Adviser Approval", text: "Your adviser has yet to approve this submission."},
         timestamp: "Sat Oct 18 2014 10:48:54 GMT-0500 (CDT)",
         group: 1,
-        resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
+        resubmissionData: {comment: "Initial Submission", parentSubmission: "", isPrimary: true, resubmitFlag: false},
+        comments: []
     }, {
         title: "Blind Construction: Mixed Media",
         format: "Artist Statement",
@@ -212,11 +213,11 @@ Submission.find({}).remove(function(){
         presentationType: "Performance",
         formatChange: false,
         presenterInfo: {first: "Jacob", last: "Opdahl", email: "opdah023@morris.umn.edu"},
-        copresenterOneInfo: {first: "Jennifer", last: "Kittleson", email: "kittle003@morris.umn.edu"},
+        copresenterOneInfo: {first: "Savannah", last: "Farm", email: "farmx009@morris.umn.edu"},
         copresenterTwoInfo: {first: "Maggie", last: "Casale", email: "casal033@morris.umn.edu"},
         discipline: "Art History",
         sponsors: [],
-        adviserInfo: {first: "Julia", last: "Dabbs", email: "reviewer@reviewer.com"},
+        adviserInfo: {first: "Jacob", last: "Opdahl", email: "opdah023@morris.umn.edu"},
         featured: true,
         mediaServicesEquipment: "",
         specialRequirements: "A space to perform with three people.",
@@ -226,7 +227,8 @@ Submission.find({}).remove(function(){
         status: {strict: "Revisions Needed", text: "Your URS submission has been flagged for revisions, and is in need of changes."},
         timestamp: "Tue Oct 21 2014 23:22:54 GMT-0500 (CDT)",
         group: 1,
-        resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
+        resubmissionData: {comment: "Initial Submission", parentSubmission: "", isPrimary: true, resubmitFlag: false},
+        comments: []
     }, {
         title: "On the Migration of Majestic Space Whales",
         format: "Artist Statement",
@@ -249,7 +251,7 @@ Submission.find({}).remove(function(){
         copresenterTwoInfo: {first: "", last: "", email: ""},
         discipline: "Biology",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {first: "KK",last: "Lamberty", email: "lamberty@morris.umn.edu"},
+        adviserInfo: {first: "Peter",last: "Hans", email: "hans4858@morris.umn.edu"},
         featured: true,
         mediaServicesEquipment: "Microphone for my sick rhymes, 5 laser stage lights with automated gimbals.",
         specialRequirements: "A whale suit.",
@@ -259,7 +261,8 @@ Submission.find({}).remove(function(){
         status: {strict: "Awaiting Adviser Approval", text: "Your adviser has yet to approve this submission."},
         timestamp: "Mon Sept 2 2014 1:48:54 GMT-0500 (CDT)",
         group: 1,
-        resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
+        resubmissionData: {comment: "Initial Submission", parentSubmission: "", isPrimary: true, resubmitFlag: false},
+        comments: []
     }, {
         title: "The Commemoration and Memorialization of the American Revolution",
         format: "Artist Statement",
@@ -272,12 +275,12 @@ Submission.find({}).remove(function(){
             "this research highlights the importance of the revolution in shaping the actions of the United States government.",
         presentationType: "Performance",
         formatChange: false,
-        presenterInfo: {first: "Benjamin", last: "Herman III", email: "herma137@morris.umn.edu"},
-        copresenterOneInfo: {first: "Jean", last: "Lee", email: "lee334@morris.umn.edu"},
+        presenterInfo: {first: "Mitchell", last: "Finzel", email: "finze008"},
+        copresenterOneInfo: {first: "Brandon", last: "Moody", email: "moody107@morris.umn.edu"},
         copresenterTwoInfo: {first: "", last: "", email: ""},
         discipline: "History",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {first: "Jennifer", last: "Deane", email: "deanej@morris.umn.edu"},
+        adviserInfo: {first: "Niccolas", last: "Ricci", email: "ricc0082@morris.umn.edu"},
         featured: true,
         mediaServicesEquipment: "A way to show images, either a projector or a warning so I can print them.",
         specialRequirements: "",
@@ -287,7 +290,8 @@ Submission.find({}).remove(function(){
         status: {strict: "Reviewing in Process", text: "Your URS submission has been approved by your adviser"},
         timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)",
         group: 3,
-        resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
+        resubmissionData: {comment: "Initial Submission", parentSubmission: "", isPrimary: true, resubmitFlag: false},
+        comments: []
     }, {
         title: "Margaret C. Anderson’s Little Review",
         format: "Social Science",
@@ -299,12 +303,12 @@ Submission.find({}).remove(function(){
             "This case example shows how little magazine publishing is arguably a literary art.",
         presentationType: "Poster or Visual Display",
         formatChange: true,
-        presenterInfo: {first: "Sophia", last: "Estante", email: "estant082@morris.umn.edu"},
-        copresenterOneInfo: {first: "Lorrie", last: "Moore", email: "moore002@morris.umn.edu"},
+        presenterInfo: {first: "Savannah", last: "Farm", email: "farmx009@morris.umn.edu"},
+        copresenterOneInfo: {first: "", last: "", email: ""},
         copresenterTwoInfo: {first: "", last: "", email: ""},
         discipline: "English",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {first: "Brad", last: "Deane", email: "deanb@morris.umn.edu"},
+        adviserInfo: {first: "Mark", last: "Lehet", email: "lehet005@morris.umn.edu"},
         featured: true,
         mediaServicesEquipment: "",
         specialRequirements: "A small space to make the presentation personal.",
@@ -314,7 +318,8 @@ Submission.find({}).remove(function(){
         status: {strict: "Accepted", text: "Your URS submission has been approved, congratulations!"},
         timestamp: "Thur Oct 23 2014 1:48:54 GMT-0500 (CDT)",
         group: 2,
-        resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
+        resubmissionData: {comment: "Initial Submission", parentSubmission: "", isPrimary: true, resubmitFlag: false},
+        comments: []
     }, {
         title: "A Study of the Properties of a Paperclip in the Digestive System of a Sloth",
         format: "Artist Statement",
@@ -324,12 +329,12 @@ Submission.find({}).remove(function(){
             " which we use to prove that redundancy and replication can interfere to achieve this aim. ",
         presentationType: "Oral Presentation",
         formatChange: false,
-        presenterInfo: {first: "Sally", last: "Birch", email: "birch003@morris.umn.edu"},
-        copresenterOneInfo: {first: "Timmy", last: "Flabberghast III", email: "flabb137@morris.umn.edu"},
-        copresenterTwoInfo: {first: "Dill", last: "Pickle", email: "saxxx027@morris.umn.edu"},
+        presenterInfo: {first: "Hongya", last: "Zhou", email: "zhoux616@morris.umn.edu"},
+        copresenterOneInfo: {first: "Otto", last: "Marckel II", email: "marck018@morris.umn.edu"},
+        copresenterTwoInfo: {first: "Dalton", last: "Gusaas", email: "gusaa004@morris.umn.edu"},
         discipline: "Biology",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {first: "Margaret", last: "Kuchenreuther", email: "casal033@morris.umn.edu"},
+        adviserInfo: {first: "Maggie", last: "Casale", email: "casal033@morris.umn.edu"},
         featured: false,
         mediaServicesEquipment: "",
         specialRequirements: "a sloth",
@@ -339,6 +344,7 @@ Submission.find({}).remove(function(){
         status: {strict: "Awaiting Adviser Approval", text: "Your adviser has yet to approve this submission."},
         timestamp: "Mon Oct 20 2014 1:48:54 GMT-0500 (CDT)",
         group: 3,
-        resubmissionData: {comment: "Initial Submission", parentSubmission: "", resubmitFlag: false}
+        resubmissionData: {comment: "Initial Submission", parentSubmission: "", isPrimary: true, resubmitFlag: false},
+        comments: []
     });
 });
