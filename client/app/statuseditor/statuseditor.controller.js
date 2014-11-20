@@ -33,9 +33,13 @@ angular.module('umm3601ursamajorApp')
             });
         };
 
-        //TODO: still not working, boolean is being FALSE
+        $scope.addStatus = function() {
+
+        }
+
+
         $scope.requiredStatus = function(status){
-          return(status.initialState || status.finalState);
+            return(status.priority == 1 || status.priority == 15);
         };
 
 
