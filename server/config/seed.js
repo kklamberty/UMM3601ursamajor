@@ -14,25 +14,29 @@ var Status = require('../api/status/status.model');
 //      -Nic, (11/9)
 Status.find({}).remove(function() {
     Status.create({
-        strict: "Reviewing in Process",
-        color: {red: 255, green: 220, blue: 10, alpha: 1},
+        strict: "Accepted",
+        color: {red: 0, green: 255, blue: 0, alpha: 1},
         emailSubject: "URS submission update",
-        emailBody: ", Your URS submission has been approved by your adviser."
+        emailBody:  ", Your URS submission has been approved, congratulations!",
+        priority: 1
     },{
         strict: "Revisions Needed",
         color: {red: 0, green: 100, blue: 255, alpha: 1},
         emailSubject: "URS submission update",
-        emailBody: ", Your URS submission has been flagged for revisions, and is in need of changes."
+        emailBody: ", Your URS submission has been flagged for revisions, and is in need of changes.",
+        priority: 3
     },{
-        strict: "Accepted",
-        color: {red: 0, green: 255, blue: 0, alpha: 1},
+        strict: "Reviewing in Process",
+        color: {red: 255, green: 220, blue: 10, alpha: 1},
         emailSubject: "URS submission update",
-        emailBody:  ", Your URS submission has been approved, congratulations!"
+        emailBody: ", Your URS submission has been approved by your adviser.",
+        priority: 2
     },{
         strict: "Awaiting Adviser Approval",
         color: {red: 255, green: 0, blue: 0, alpha: 1},
-        emailSubject: "",
-        emailBody: ""
+        emailSubject: "URS submission update",
+        emailBody: ", Your URS submission is pending approval from your adviser.",
+        priority: 15
     });
 });
 
@@ -219,7 +223,7 @@ Submission.find({}).remove(function(){
         specialRequirements: "A space to perform with three people.",
         presenterTeeSize: "M",
         otherInfo: "",
-        approval: false,
+        approval: true,
         status: {strict: "Revisions Needed", text: "Your URS submission has been flagged for revisions, and is in need of changes."},
         timestamp: "Tue Oct 21 2014 23:22:54 GMT-0500 (CDT)",
         group: 1,
@@ -271,12 +275,13 @@ Submission.find({}).remove(function(){
             "this research highlights the importance of the revolution in shaping the actions of the United States government.",
         presentationType: "Performance",
         formatChange: false,
-        presenterInfo: {first: "Mitchell", last: "Finzel", email: "finze008"},
+        presenterInfo: {first: "Mitchell", last: "Finzel", email: "finze008@morris.umn.edu"},
         copresenterOneInfo: {first: "Brandon", last: "Moody", email: "moody107@morris.umn.edu"},
         copresenterTwoInfo: {first: "", last: "", email: ""},
         discipline: "History",
         sponsors: [], //Might need to worry about if this is static for the DB later.
-        adviserInfo: {first: "Niccolas", last: "Ricci", email: "ricc0082@morris.umn.edu"},
+        adviserInfo: {first: "Niccolas", last: "Ricci", email: "saxxx027@morris.umn.edu"},
+        //ricc0082@morris.umn.edu
         featured: true,
         mediaServicesEquipment: "A way to show images, either a projector or a warning so I can print them.",
         specialRequirements: "",

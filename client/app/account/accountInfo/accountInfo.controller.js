@@ -13,4 +13,5 @@ angular.module('umm3601ursamajorApp')
         $scope.isAdmin = Auth.isAdmin;
         $scope.getReviewerGroup = Auth.getReviewerGroup;
 
+        $scope.isAdmin = Auth.isAdmin;
     });
