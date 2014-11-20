@@ -8,7 +8,7 @@
                     <h3 ng-hide="requiredStatus(status)">Priority:
                     <textarea  ng-model="status.priority"  cols="1" rows="1" name="priority"></textarea>
                     </h3>
-                    <h3 ng-show="requiredStatus(status)">Priority: {{status.priority}}</h3>
+                    <h3 ng-show="requiredStatus(status)">Required Status</h3>
                         <button ng-hide="requiredStatus(status)" class="btn btn-md btn-danger" ng-click="deleteStatus(status)">
                         <span class="glyphicon glyphicon-trash"></span></button><br>
 
