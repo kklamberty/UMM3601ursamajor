@@ -99,7 +99,7 @@ angular.module('umm3601ursamajorApp')
         var tempSponsors = [];
         var addedToggle = false;
 
-        //TODO: this is still a bit broken, I'll fix it later (joe)
+        //fixed now (probably)
         for(var x = 0; x <= $scope.fundingSources.length; x++){
             addedToggle = false;
 //            console.log("Main for loop, sponsor: " + $scope.fundingSources[x]);
@@ -108,7 +108,9 @@ angular.module('umm3601ursamajorApp')
             for(var y = 0; y < submission.sponsors.length; y++){
 //                console.log("final case? " + (x == $scope.fundingSources.length));
                 if(x == $scope.fundingSources.length){
-                    tempSponsors.push(submission.sponsors[submission.sponsors.length - 1]);
+                    if(submission.sponsors[submission.sponsors.length - 1] != $scope.fundingSources[x -1]){
+                        tempSponsors.push(submission.sponsors[submission.sponsors.length - 1]);
+                    }
                     break;
                 } else if(submission.sponsors[y] === $scope.fundingSources[x]){
                     tempSponsors.push(submission.sponsors[y]);
