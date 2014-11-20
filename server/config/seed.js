@@ -144,40 +144,36 @@ User.find({}).remove(function() {
             __v: 0
             }, {
             name: "Jacob Opdahl",
-            email: "opdah023@morris.umn.eduu",
+            email: "opdah023@morris.umn.edu",
             provider: "google",
             google: {
                 hd: "morris.umn.edu",
                 locale: "en",
-                gender: "male",
-                picture: "",
-                link: "",
+                picture: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
                 family_name: "Opdahl",
                 given_name: "Jacob",
                 name: "Jacob Opdahl",
                 verified_email: true,
-                email: "ophda023@morris.umn.edu",
-                id: ""
+                email: "opdah023@morris.umn.edu",
+                id: "111717955914079275928"
             },
             group: -1,
             role: "admin",
             __v: 0
             }, {
             name: "Joseph Thelen",
-            email: "thele116@morris.umn.eduu",
+            email: "thele116@morris.umn.edu",
             provider: "google",
             google: {
                 hd: "morris.umn.edu",
                 locale: "en",
-                gender: "male",
-                picture: "",
-                link: "",
+                picture: "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg",
                 family_name: "Thelen",
                 given_name: "Joseph",
                 name: "Joseph Thelen",
                 verified_email: true,
                 email: "thele116@morris.umn.edu",
-                id: ""
+                id: "114952307600153399103"
             },
             group: -1,
             role: "admin",
