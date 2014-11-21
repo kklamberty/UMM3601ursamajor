@@ -22,7 +22,7 @@ angular.module('umm3601ursamajorApp')
 //    };
 
     $scope.logout = function() {
-        document.location.href = "https://www.google.com/accounts/Logout";
+        //document.location.href = "https://www.google.com/accounts/Logout";
         Auth.logout();
         $location.path('/login');
         $window.open("https://www.google.com/accounts/Logout");
