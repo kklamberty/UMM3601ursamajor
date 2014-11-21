@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('umm3601ursamajorApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth) {
+  .controller('NavbarCtrl', function ($scope, $location, Auth, $window) {
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
@@ -20,12 +20,10 @@ angular.module('umm3601ursamajorApp')
 //        }continue=http://www.facebook.com
 //        return false;
 //    };
-
     $scope.logout = function() {
-        document.location.href = "https://www.google.com/accounts/Logout";
         Auth.logout();
         $location.path('/login');
-
+        $window.open("https://www.google.com/accounts/Logout");
     };
 
     $scope.isActive = function(route) {
