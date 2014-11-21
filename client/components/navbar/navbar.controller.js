@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('umm3601ursamajorApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth) {
+  .controller('NavbarCtrl', function ($scope, $location, Auth, $http, $filter, socket) {
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
