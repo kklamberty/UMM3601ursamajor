@@ -32,25 +32,9 @@ describe('filter', function() {
 
 // TODO: this test isn't finished, just a template as of now. FINISH IT AND WRITE MORE TESTS!!!
 describe('Functions used for filtering', function() {
-    beforeEach(module('umm3601ursamajorApp'));
-
-    var SublistCtrl, scope;
-
-    beforeEach(inject(function($controller, $rootScope) {
-        scope = $rootScope.$new();
-        SublistCtrl = $controller('SublistCtrl', {
-            $scope: scope
-        });
-    }));
-
-    it('should ...', function () {
-        expect(1).toEqual(1);
-    });
-
-    //this is broken. it's all broken. Apparently it cannot find "io"....
-    it('Should be a resubmission... ', function($scope) {
-        var testSubmission =
-        {
+    beforeEach(module('umm3601ursamajorApp', function ($provide) {
+        var submissionMock, submissionStub;
+        submissionStub = {
             title: "A Study of the Properties of a Paperclip in the Digestive System of a Sloth",
             format: "Artist Statement",
             abstract: "Many physicists would agree that, had it not been for scatter/gather I/O, the study of link-level acknowledgements might never have occurred. " +
@@ -78,6 +62,29 @@ describe('Functions used for filtering', function() {
             comments: []
         };
 
-        expect($scope.isResubmission(testSubmission)).toEqual(true);
-    });
+        submissionMock = function () {
+            this.$get = function () {
+                return submissionStub;
+            }
+        };
+        $provide.provider('submission', submissionMock);
+    }));
+
+    describe('the controller initialization', function () {
+        var SublistCtrl, scope, socket;
+        beforeEach(inject(function ($controller, $rootScope, _socket_) {
+            scope = $rootScope.$new();
+            socket = _socket_;
+            SublistCtrl = $controller('SublistCtrl', {
+                $scope: scope
+            });
+        }));
+
+        describe('checking if a submission is a resubmission', function () {
+            //this is broken. it's all broken. Apparently it cannot find "io"....
+            it('Should be a resubmission... ', function ($scope) {
+                expect(scope.isResubmission(submissionMock)).toEqual(true);
+            });
+        })
+    })
 });
