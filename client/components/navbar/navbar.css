@@ -49,4 +49,18 @@
 .navbar-default .navbar-brand:hover{
     color: #7a0019;
 }
+
+/*Adds circle behind number.*/
+#circle {
+    width: 20px;
+    height: 20px;
+    background: red;
+    border-radius: 25px;
+    margin: 15px 10px 0px 2px;
+    text-align:center;
+    color: white;
+}
+#circle:hover {
+
+}
 /*----------------------------------------------------------------------------------------*/
